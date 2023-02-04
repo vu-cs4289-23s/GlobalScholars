@@ -7,19 +7,30 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
+* Clone the project
+    ```sh
+    git clone https://github.com/vu-cs4289-23s/GlobalScholars.git
+    ```
+    ```sh
+    gh repo clone vu-cs4289-23s/GlobalScholars
+    ```
+* Go to project directory
+    ```sh
+    cd GlobalScholars
+    ```
 * Install pnpm using npm
-  ```sh
-  npm i -g pnpm@latest-6
-  ```
+    ```sh
+    npm i -g pnpm@latest-6
+    ```
 
 * Install dependencies
     ```sh
     pnpm i
     ```
-* If you are running into issues, you might need to start up the local pnpm server
-  ```sh
-  pnpm server start
-  ```
+* If you are running into issues installing dependencies using pnpm, you might need to start up the local pnpm server
+    ```sh
+    pnpm server start && pnpm i
+    ```
 * Run dev server
     ```sh
     pnpm dev
