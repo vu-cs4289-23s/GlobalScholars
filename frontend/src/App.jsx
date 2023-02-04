@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import axios from "axios";
@@ -60,6 +61,19 @@ function App() {
           Access server using proxy for Another API
         </button>
         <p>data : {anotherApiData}</p>
+      </div>
+      <h1>ROUTES</h1>
+      <div>
+        <Link to="/search">Search Page</Link>
+      </div>
+      <div>
+        <Link to="/forum">Forum Page</Link>
+      </div>
+      <div>
+        <Link to="/landing">Landing Page</Link>
+      </div>
+      <div>
+        <Link to="/oihoahsdfoiadfa">Random route will go to an error page</Link>
       </div>
     </div>
   );
