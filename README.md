@@ -27,7 +27,7 @@ This is an example of how to list things you need to use the software and how to
     ```sh
     pnpm i
     ```
-* If you are running into issues installing dependencies using pnpm, you might need to start up the local pnpm server
+* If you are running into issues installing dependencies using pnpm, you might need to start up the local pnpm server first
     ```sh
     pnpm server start && pnpm i
     ```
