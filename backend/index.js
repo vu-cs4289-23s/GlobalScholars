@@ -1,9 +1,11 @@
 import express from "express";
+import compression from "compression";
 import Api from "./api/index.js";
 
 const SetUpServer = () => {
   const app = express();
   const port = 8080;
+  app.use(compression());
 
   Api(app);
 
