@@ -6,6 +6,9 @@ const SetUpServer = () => {
   const app = express();
   const port = 8080;
   app.use(compression());
+  app.get("/", (req, res) => {
+    res.send("Hello World!");
+  });
 
   Api(app);
 
