@@ -6,16 +6,20 @@ const Header = () => {
   //link to register page
   return (
     <div className="flex justify-between">
-      <div>
+      <div className="flex">
         <img src={passportIcon} alt="passport" className="flex" width={80} />
+        <h1 className="text-4xl pl-2 font-bold text-white">GlobalScholars</h1>
       </div>
+      <div></div>
       <div>
-        <h1 className="text-4xl font-bold text-white">GlobalScholars</h1>
-      </div>
-      <div>
-        <h1 className="text-lg font-bold text-white underline hover:text-slate-300 cursor-pointer">
-          <Link to="/register">Register</Link>
-        </h1>
+        <div>
+          <Link
+            to="/register"
+            className="text-white text-lg font-bold underline hover:text-slate-300 cursor-pointer"
+          >
+            Register
+          </Link>
+        </div>
       </div>
     </div>
   );
