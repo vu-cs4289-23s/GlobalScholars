@@ -1,6 +1,7 @@
 import { Form } from "react-router-dom";
-import passwordIcon from "../../assets/Login/password-icon.svg";
-import usernameIcon from "../../assets/Login/username-icon.svg";
+import passwordIcon from "../../assets/Login&Register/password-icon.svg";
+import usernameIcon from "../../assets/Login&Register/username-icon.svg";
+import googleIcon from "../../assets/Login&Register/google-icon.svg";
 
 const Login = () => {
   return (
@@ -35,7 +36,11 @@ const Login = () => {
         </div>
 
         <button className="flex w-60 justify-center bg-neutral-200 text-black mt-8">
-          LOGIN
+          Login
+        </button>
+        <button className="flex w-60 justify-center bg-neutral-200 text-black mt-4">
+          Login w/ Google OAuth
+          <img src={googleIcon} alt="google" width={27} className="pl-1" />
         </button>
       </Form>
     </div>

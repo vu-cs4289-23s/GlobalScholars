@@ -1,7 +1,12 @@
+import Register from "../components/login&register/register";
+import Header from "../components/login&register/header";
 export default function RegisterPage() {
   return (
-    <div id="register-page">
-      <h1>Register Page</h1>
+    <div className="h-screen w-screen bg-[url('/login-background2.png')]">
+      <Header />
+      <div className="flex">
+        <Register />
+      </div>
     </div>
   );
 }
