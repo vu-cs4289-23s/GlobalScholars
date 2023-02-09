@@ -4,7 +4,7 @@ import usernameIcon from "../assets/Login/username-icon.svg";
 
 const Login = () => {
   return (
-    <div className=" mt-36 ml-36 bg-slate-100 h-96 w-96 flex text-slate-400">
+    <div className=" mt-36 ml-16 bg-slate-100 h-96 w-96 flex text-slate-400">
       <Form
         className=" flex flex-col items-center justify-center align-middle w-96 h-96 rounded-lg shadow-xl"
         onSubmit={(e) => {
