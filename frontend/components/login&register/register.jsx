@@ -2,58 +2,52 @@ import { Form } from "react-router-dom";
 import googleIcon from "../../assets/Login&Register/google-icon.svg";
 const Register = () => {
   return (
-    <div className=" mt-24 ml-16  bg-slate-100 w-96 h-[550px] flex text-slate-400">
+    <div className=" mt-24 ml-16 bg-[rgba(255,255,255,0.5)] w-96 h-[550px] flex text-slate-600 ">
       <Form
-        className=" flex flex-col items-center justify-center align-middle w-96  rounded-lg shadow-xl"
+        className=" flex flex-col items-center justify-center align-middle w-96  rounded-lg shadow-xl "
         onSubmit={(e) => {
           e.preventDefault();
           console.log("submit");
         }}
       >
-        <div className="flex">
+        <div className="flex border-b-[1px] border-slate-400">
           <input
             type="text"
             placeholder="Username"
-            className="flex rounded-none border-0 border-opacity-0 bg-transparent border-none shadow-none ring-0 hover:ring-0 hover:outline-none bg-slate-100 focus:outline-none focus:ring-0"
+            className="flex rounded-none  bg-transparent border-none shadow-none ring-0 placeholder-slate-600 hover:ring-0 hover:outline-none  focus:outline-none border-b-orange-50 focus:ring-0"
           />
         </div>
-        <div className="flex">
+        <div className="flex border-b-[1px] border-slate-400">
           <input
             type="text"
             placeholder="First Name"
-            className="flex rounded-none mt-8 border-0 border-opacity-0 bg-transparent border-none shadow-none bg-slate-100 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
+            className="flex rounded-none mt-8  border-b-2 bg-transparent border-none ring-0 shadow-none placeholder-slate-600  hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>
-        <div className="flex">
+        <div className="flex border-b-[1px] border-slate-400">
           <input
             type="text"
             placeholder="Last Name"
-            className="flex rounded-none mt-8 border-0 border-opacity-0 bg-transparent border-none shadow-none bg-slate-100 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
+            className="flex rounded-none mt-8  bg-transparent border-none shadow-none ring-0  placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>
-        <div className="flex">
+        <div className="flex border-b-[1px] border-slate-400">
           <input
             type="text"
             placeholder="Email"
-            className="flex rounded-none mt-8 border-0 border-opacity-0 bg-transparent border-none shadow-none bg-slate-100 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
+            className="flex rounded-none mt-8  bg-transparent border-none shadow-none ring-0 placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>
-        <div className="flex">
+        <div className="flex border-b-[1px] border-slate-400">
           <input
             type="password"
             placeholder="Password"
-            className="flex rounded-none mt-8 border-0 border-opacity-0 bg-transparent border-none shadow-none bg-slate-100 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
+            className="flex rounded-none mt-8  bg-transparent border-none shadow-none ring-0 placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>
 
         <button className="flex w-60 justify-center bg-neutral-200 text-black mt-8">
           Register
-        </button>
-        <button className="flex w-60 justify-center bg-neutral-200 text-black mt-4">
-          <div className="flex top-0">
-            Register w/ Google
-            <img src={googleIcon} alt="google" width={27} className="pl-1" />
-          </div>
         </button>
       </Form>
     </div>
