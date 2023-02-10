@@ -5,9 +5,9 @@ import googleIcon from "../../assets/Login&Register/google-icon.svg";
 
 const Login = () => {
   return (
-    <div className=" mt-36 ml-16 bg-slate-100 bg-[rgba(255,255,255,0.5)] h-96 w-96 flex text-slate-600">
+    <div className="absolute left-[8%] top-[20%] bg-slate-100 bg-[rgba(255,255,255,0.5)] h-[50%]  w-80 sm:w-96 flex text-slate-600">
       <Form
-        className=" flex flex-col items-center justify-center align-middle w-96 h-96 rounded-lg shadow-xl"
+        className=" flex flex-col items-center justify-center align-middle w-full h-full rounded-lg shadow-xl"
         onSubmit={(e) => {
           e.preventDefault();
           console.log("submit");

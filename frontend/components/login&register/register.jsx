@@ -2,9 +2,9 @@ import { Form } from "react-router-dom";
 import googleIcon from "../../assets/Login&Register/google-icon.svg";
 const Register = () => {
   return (
-    <div className=" mt-24 ml-16 bg-[rgba(255,255,255,0.5)] w-96 h-[550px] flex text-slate-600 ">
+    <div className=" absolute left-[5%] top-[20%]  bg-[rgba(255,255,255,0.5)]  w-80 sm:w-96 h-[60%] flex text-slate-600 ">
       <Form
-        className=" flex flex-col items-center justify-center align-middle w-96  rounded-lg shadow-xl "
+        className=" flex flex-col items-center justify-center align-middle w-full  rounded-lg shadow-xl "
         onSubmit={(e) => {
           e.preventDefault();
           console.log("submit");
