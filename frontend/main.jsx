@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error-page";
-import SearchPage from "./pages/search-page";
 import LandingPage from "./pages/landing-page";
 import ForumPage from "./pages/forum-page";
 import PriceEstimator from "./pages/price-estimator";
@@ -19,11 +18,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/search",
-    element: <SearchPage />,
     errorElement: <ErrorPage />,
   },
   {

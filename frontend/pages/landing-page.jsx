@@ -1,7 +1,9 @@
+import SearchBar from "../components/landing-page/search-bar";
+
 export default function LandingPage() {
   return (
     <div id="landing-page">
-      <h1>Landing Page</h1>
+      <SearchBar />
     </div>
   );
 }

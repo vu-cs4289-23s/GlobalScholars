@@ -1,22 +1,38 @@
 import { Form } from "react-router-dom";
+import { useEffect, useState } from "react";
 import passwordIcon from "../../assets/Login&Register/password-icon.svg";
 import usernameIcon from "../../assets/Login&Register/username-icon.svg";
 import googleIcon from "../../assets/Login&Register/google-icon.svg";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = (e) => {
+    console.log("REG LOGIN");
+    console.log("username: ", username);
+    console.log("password: ", password);
+    e.preventDefault();
+  };
+  const handleGoogleLogin = (e) => {
+    console.log("GOOGLE LOGIN");
+    console.log("username: ", username);
+    console.log("password: ", password);
+    e.preventDefault();
+  };
+
   return (
     <div className="absolute left-[8%] top-[20%] bg-slate-100 bg-[rgba(255,255,255,0.5)] h-[50%]  w-80 sm:w-96 flex text-slate-600">
       <Form
         className=" flex flex-col items-center justify-center align-middle w-full h-full rounded-lg shadow-xl"
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log("submit");
-        }}
+        onKeyDown={(e) => e.key === "Enter" && handleLogin(e)}
       >
         <div className="flex border-b-[1px] border-slate-400">
           <input
             type="text"
             placeholder="Email"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
             className="flex rounded-none border-b-8 border-slate-600 border-opacity-0 bg-transparent  shadow-none  placeholder-slate-600 hover:ring-0 hover:outline-none bg-slate-100 focus:outline-none focus:ring-0"
           />
           <img src={usernameIcon} alt="username" className="flex" width={30} />
@@ -26,6 +42,9 @@ const Login = () => {
             type="password"
             placeholder="Password"
             className="flex rounded-none mt-8 border-b-2 border-opacity-0 bg-transparent  shadow-none bg-slate-100 placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
           <img
             src={passwordIcon}
@@ -35,10 +54,16 @@ const Login = () => {
           />
         </div>
 
-        <button className="flex w-60 justify-center bg-neutral-200 text-black mt-8">
+        <button
+          className="flex w-60 justify-center bg-neutral-200 text-black mt-8"
+          onClick={handleLogin}
+        >
           Login
         </button>
-        <button className="flex w-60 justify-center bg-neutral-200 text-black mt-4">
+        <button
+          className="flex w-60 justify-center bg-neutral-200 text-black mt-4"
+          onClick={handleGoogleLogin}
+        >
           Login w/ Google OAuth
           <img
             src={googleIcon}
