@@ -1,8 +1,8 @@
 import { Form } from "react-router-dom";
 import { useEffect, useState } from "react";
-import passwordIcon from "../../assets/Login&Register/password-icon.svg";
-import usernameIcon from "../../assets/Login&Register/username-icon.svg";
-import googleIcon from "../../assets/Login&Register/google-icon.svg";
+import passwordIcon from "../../assets/password-icon.svg";
+import usernameIcon from "../../assets/username-icon.svg";
+import googleIcon from "../../assets/google-icon.svg";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   return (
-    <div className="absolute left-[8%] top-[20%] bg-slate-100 bg-[rgba(255,255,255,0.5)] h-[50%]  w-80 sm:w-96 flex text-slate-600">
+    <div className="absolute left-[8%] top-[20%] bg-[rgba(255,255,255,0.5)] h-[50%]  w-80 sm:w-96 flex text-slate-600">
       <Form
         className=" flex flex-col items-center justify-center align-middle w-full h-full rounded-lg shadow-xl"
         onKeyDown={(e) => e.key === "Enter" && handleLogin(e)}
