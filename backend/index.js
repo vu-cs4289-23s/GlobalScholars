@@ -43,7 +43,7 @@ const setupServer = async () => {
   // Setup pipeline session support
   app.store = session({
     name: "session",
-    secret: "grahamcardrules",  //change
+    secret: "globallyscholaredsecret",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -83,23 +83,22 @@ const setupServer = async () => {
   // Give them the SPA base page
   app.get("*", (req, res) => {
     const user = req.session.user;
+    // TODO: edit the below user session information
     console.log(`Loading app for: ${user ? user.username : "nobody!"}`);
-
-    // console.log(`Loading app for: ${user ? user.username : "nobody!"}`);
-    // let preloadedState = user
-    //   ? {
-    //     username: user.username,
-    //     first_name: user.first_name,
-    //     last_name: user.last_name,
-    //     primary_email: user.primary_email,
-    //     program: user.program,
-    //     location: user.location,
-    //   }
-    //   : {};
-    // preloadedState = JSON.stringify(preloadedState).replace(/</g, "\\u003c");
-    // res.render("base.pug", {
-    //   state: preloadedState,
-    // });
+    let preloadedState = user
+      ? {
+        username: user.username,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        primary_email: user.primary_email,
+        program: user.program,
+        location: user.location,
+      }
+      : {};
+    preloadedState = JSON.stringify(preloadedState).replace(/</g, "\\u003c");
+    res.render("base.pug", {
+      state: preloadedState,
+    });
   });
 
   // Run the server itself
@@ -112,7 +111,7 @@ const setupServer = async () => {
     };
     // Listen for HTTPS requests
     server = https.createServer(options, app).listen(port, () => {
-      console.log(`Secure Global Scholar listening on: ${server.address().port}`);
+      console.log(`Secure GlobalScholar server listening on: ${server.address().port}`);
     });
     // Redirect HTTP to HTTPS
     http
@@ -123,11 +122,11 @@ const setupServer = async () => {
         res.end();
       })
       .listen(80, () => {
-        console.log(`Global Scholar listening on 80 for HTTPS redirect`);
+        console.log(`GlobalScholar server listening on 80 for HTTPS redirect`);
       });
   } else {
     server = app.listen(port, () => {
-      console.log(`Global Scholar ${env} listening on: ${server.address().port}`);
+      console.log(`GlobalScholar server ${env} listening on: ${server.address().port}`);
     });
   }
 };

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const User = new mongoose.Schema({
-
+    // TODO: add schema
   }
 );
 
