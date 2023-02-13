@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
-import "./App.css";
+import "./App.scss";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement } from "./redux/counter-slice";
