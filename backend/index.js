@@ -14,7 +14,7 @@ import url from "url";
 // Import mongoose
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Import models
 import Post from "./models/post.js";
@@ -27,7 +27,7 @@ import Comment from "./models/comment.js";
 import Routes from "./api/index.js";
 
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : "dev";
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const setupServer = async () => {
   // Get the app config
@@ -87,13 +87,13 @@ const setupServer = async () => {
     console.log(`Loading app for: ${user ? user.username : "nobody!"}`);
     let preloadedState = user
       ? {
-        username: user.username,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        primary_email: user.primary_email,
-        program: user.program,
-        location: user.location,
-      }
+          username: user.username,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          primary_email: user.primary_email,
+          program: user.program,
+          location: user.location,
+        }
       : {};
     preloadedState = JSON.stringify(preloadedState).replace(/</g, "\\u003c");
     res.render("base.pug", {
@@ -111,7 +111,9 @@ const setupServer = async () => {
     };
     // Listen for HTTPS requests
     server = https.createServer(options, app).listen(port, () => {
-      console.log(`Secure GlobalScholar server listening on: ${server.address().port}`);
+      console.log(
+        `Secure GlobalScholar server listening on: ${server.address().port}`
+      );
     });
     // Redirect HTTP to HTTPS
     http
@@ -126,7 +128,9 @@ const setupServer = async () => {
       });
   } else {
     server = app.listen(port, () => {
-      console.log(`GlobalScholar server ${env} listening on: ${server.address().port}`);
+      console.log(
+        `GlobalScholar server ${env} listening on: ${server.address().port}`
+      );
     });
   }
 };
