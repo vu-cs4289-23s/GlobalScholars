@@ -137,7 +137,6 @@ const User = (app) => {
       primary_email: user.primary_email,
       first_name: user.first_name,
       last_name: user.last_name,
-      // city: user.city,
       avatar_url: user.avatar_url,
     });
   });

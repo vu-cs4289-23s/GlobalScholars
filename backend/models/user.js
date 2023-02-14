@@ -13,7 +13,6 @@ const User = new Schema({
   primary_email: { type: String, required: true, index: { unique: true } },
   first_name: { type: String, default: "" },
   last_name: { type: String, default: "" },
-  // city: { type: String, default: "" },
   hash: { type: String, required: true },
   salt: { type: String, required: true },
 
@@ -22,8 +21,16 @@ const User = new Schema({
   background_url: { type: String, default: "" },
   location: { type: Schema.Types.ObjectId, ref: "Location" },
   program: { type: Schema.Types.ObjectId, ref: "Program" },
-  majors: [ { type: String, default: ""  } ],
-  minors: [ { type: String, default: ""  } ],
+  majors: [{
+    type: String,
+    default: "",
+    enum: [],
+  }],
+  minors: [{
+    type: String,
+    default: "",
+    enum: [],
+  }],
   grad_year: { type: Date },
 
   // interactions
@@ -58,7 +65,6 @@ User.pre("save", function (next) {
   this.primary_email = this.primary_email.toLowerCase();
   this.first_name = this.first_name.replace(/<(?:.|\n)*?>/gm, "");
   this.last_name = this.last_name.replace(/<(?:.|\n)*?>/gm, "");
-  // this.city = this.city.replace(/<(?:.|\n)*?>/gm, "");
   next();
 });
 
