@@ -19,4 +19,9 @@ const Post = new Schema({
   program: { type: Schema.ObjectId, ref: "Program" },
 });
 
+Post.pre("validate", function(next) {
+  this.timestamp = Date.now();
+  next();
+});
+
 export default model("Post", Post);

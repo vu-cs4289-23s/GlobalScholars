@@ -31,7 +31,7 @@ const User = new Schema({
     default: "",
     enum: [],
   }],
-  grad_year: { type: Date },
+  grad_year: { type: Date },  //could also be a Number
 
   // interactions
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],

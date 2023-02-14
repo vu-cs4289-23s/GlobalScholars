@@ -9,4 +9,9 @@ const Comment = new Schema({
   saves: { type: Number, default: 0 },
 });
 
+Comment.pre("validate", function(next) {
+  this.timestamp = Date.now();
+  next();
+});
+
 export default model("Comment", Comment);
