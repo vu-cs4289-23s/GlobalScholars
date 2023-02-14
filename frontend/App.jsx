@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
-import "./App.css";
+import "./App.scss";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement } from "./redux/counter-slice";
@@ -75,23 +75,30 @@ function App() {
         <p>data : {anotherApiData}</p>
       </div>
       <h1>REACT ROUTER ROUTES</h1>
+
       <div>
-        <Link to="/search">Search Page</Link>
+        <NavLink to="/forum">Forum Page</NavLink>
       </div>
       <div>
-        <Link to="/forum">Forum Page</Link>
+        <NavLink to="/landing">Landing Page</NavLink>
       </div>
       <div>
-        <Link to="/landing">Landing Page</Link>
+        <NavLink to="/login">Login Page</NavLink>
       </div>
       <div>
-        <Link to="/login">Login Page</Link>
+        <NavLink to="/register">Register Page</NavLink>
       </div>
       <div>
-        <Link to="/register">Register Page</Link>
+        <NavLink to="/profile/powerful">Profile Page</NavLink>
       </div>
       <div>
-        <Link to="/oihoahsdfoiadfa">Random route will go to an error page</Link>
+        <NavLink to="/profile">Profile Page with undefined username</NavLink>
+      </div>
+
+      <div>
+        <NavLink to="/oihoahsdfoiadfa">
+          Random route will go to an error page
+        </NavLink>
       </div>
     </div>
   );

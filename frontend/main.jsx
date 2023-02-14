@@ -2,14 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./routes/error-page";
-import SearchPage from "./routes/search-page";
-import LandingPage from "./routes/landing-page";
-import ForumPage from "./routes/forum-page";
-import PriceEstimator from "./routes/price-estimator";
-import ProfilePage from "./routes/profile-page";
-import LoginPage from "./routes/login-page";
-import RegisterPage from "./routes/register-page";
+import ErrorPage from "./pages/error-page";
+import LandingPage from "./pages/landing-page";
+import ForumPage from "./pages/forum-page";
+import PriceEstimator from "./pages/price-estimator";
+import ProfilePage from "./pages/profile-page";
+import LoginPage from "./pages/login-page";
+import RegisterPage from "./pages/register-page";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 
@@ -19,11 +18,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/search",
-    element: <SearchPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -43,6 +37,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
+    element: <ProfilePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/profile/:username",
     element: <ProfilePage />,
     errorElement: <ErrorPage />,
   },
