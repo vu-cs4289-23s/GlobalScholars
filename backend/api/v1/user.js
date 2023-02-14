@@ -30,6 +30,13 @@ const User = (app) => {
     return undefined;
   };
 
+  const validateVanderbiltEdu = (primary_email) => {
+    if (!primary_email.includes("@") || primary_email.split("@")[1].toLowerCase() !== "vanderbilt.edu") {
+      return { error: "must register with a vanderbilt email" }
+    }
+    return undefined;
+  }
+
   /**
    * Create a new user
    *
@@ -51,6 +58,12 @@ const User = (app) => {
       const invalidPwd = validatePassword(data.password);
       if (invalidPwd) {
         res.status(400).send(`User.create password validation failure: ${invalidPwd.error}`);
+      }
+
+      // Vanderbilt email validation
+      const invalidEmail = validateVanderbiltEdu(data.primary_email);
+      if (invalidEmail) {
+        res.status(400).send(`User.create email validation failure: ${invalidEmail.error}`);
       }
     } catch (err) {
       const message = err;
@@ -124,7 +137,7 @@ const User = (app) => {
       primary_email: user.primary_email,
       first_name: user.first_name,
       last_name: user.last_name,
-      city: user.city,
+      // city: user.city,
       avatar_url: user.avatar_url,
     });
   });
