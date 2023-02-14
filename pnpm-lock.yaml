@@ -59,10 +59,7 @@ dependencies:
   session: 0.1.0
   simple-env-config: 1.0.1
   url: 0.11.0
-<<<<<<< HEAD
-=======
   yup: 1.0.0
->>>>>>> d1054a51c62bcbabe354430c5be39843ff01ac24
 
 devDependencies:
   '@types/react': 18.0.27
