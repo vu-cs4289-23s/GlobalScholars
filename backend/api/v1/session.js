@@ -1,6 +1,6 @@
 import { object, string } from "yup";
+
 const Session = (app) => {
-  // TODO: add endpoints
 
   /**
    * Log a user in

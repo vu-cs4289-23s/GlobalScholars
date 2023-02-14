@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const Location = new mongoose.Schema({
-  // TODO: add schema
+const Location = new Schema({
+
+
+
   }
 );
 
-export default mongoose.model('Location', Location);
+export default model("Location", Location);

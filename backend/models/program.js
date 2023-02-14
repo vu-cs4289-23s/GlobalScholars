@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const Program = new mongoose.Schema({
-  // TODO: add schema
+const Program = new Schema({
+
+
+
   }
 );
 
-export default mongoose.model('Program', Program);
+export default model("Program", Program);

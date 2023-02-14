@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const Comment = new mongoose.Schema({
-    // TODO: add schema
+const Comment = new Schema({
+
+
+
   }
 );
 
-export default mongoose.model('Comment', Comment);
+export default model("Comment", Comment);
