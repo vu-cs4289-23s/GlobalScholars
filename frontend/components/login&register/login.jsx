@@ -3,14 +3,34 @@ import { useEffect, useState } from "react";
 import passwordIcon from "../../assets/password-icon.svg";
 import usernameIcon from "../../assets/username-icon.svg";
 import googleIcon from "../../assets/google-icon.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = (e) => {
+  const navigate = useNavigate();
+  const handleLogin = async (e) => {
     console.log("REG LOGIN");
     console.log("username: ", username);
     console.log("password: ", password);
+    let res = await fetch("/api/v1/session", {
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const data = await res.json();
+    if (res.ok) {
+      console.log("data: ", data);
+      navigate(`/profile/${data.username}`);
+    } else {
+      setError(`Error: ${data.error}`);
+    }
     e.preventDefault();
   };
   const handleGoogleLogin = (e) => {
@@ -33,7 +53,7 @@ const Login = () => {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            className="flex rounded-none border-b-8 border-slate-600 border-opacity-0 bg-transparent  shadow-none  placeholder-slate-600 hover:ring-0 hover:outline-none bg-slate-100 focus:outline-none focus:ring-0"
+            className="flex rounded-none border-b-8 border-slate-600 border-opacity-0 bg-transparent  shadow-none  placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
           <img src={usernameIcon} alt="username" className="flex" width={30} />
         </div>
@@ -41,7 +61,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Password"
-            className="flex rounded-none mt-8 border-b-2 border-opacity-0 bg-transparent  shadow-none bg-slate-100 placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
+            className="flex rounded-none mt-8 border-b-2 border-opacity-0 bg-transparent  shadow-none t placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
