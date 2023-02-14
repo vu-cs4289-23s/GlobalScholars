@@ -141,7 +141,18 @@ const User = (app) => {
     });
   });
 
-
+  /**
+   * Update existing user
+   *
+   * @param {req.params.first_name} First name of the user to query for
+   * @param {req.body.last_name} Last name of the user
+   * @param {req.body.avatar_url} Avatar photo of the user
+   * @param {req.body.background_url} Background photo of the user
+   * @param {req.body.majors} Majors of the user
+   * @param {req.body.minors} Minors of the user
+   * @param {req.body.grad_year} Grad year of the user
+   * @return {204}
+   */
   app.put('api/v1/user/', async (req, res) => {
     if (!req.session.user)
       return res.status(401).send({ error: "unauthorized" });
@@ -153,7 +164,7 @@ const User = (app) => {
       background_url: string(),
       majors: array(),
       minors: array(),
-     grad_year: date(), //could also be a Number
+      grad_year: date(), //could also be a Number
     });
 
     try {
