@@ -49,7 +49,7 @@ const Login = () => {
         <div className="flex border-b-[1px] border-slate-400">
           <input
             type="text"
-            placeholder="Email"
+            placeholder="Username"
             onChange={(e) => {
               setUsername(e.target.value);
             }}
