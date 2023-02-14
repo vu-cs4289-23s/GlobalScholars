@@ -110,6 +110,6 @@ globalscholars@gmail.com
 - David Ha
 - Lina Dreschler
 - Rithik Reddy
-- Claire Gippo
+- Clare Gippo
 - Kelsey Recinas
 - Tatiana Migdel
