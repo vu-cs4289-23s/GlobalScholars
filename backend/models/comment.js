@@ -14,4 +14,10 @@ Comment.pre("validate", function(next) {
   next();
 });
 
+Comment.pre("save", function(next) {
+  // Sanitize strings
+  this.content = this.content.replace(/<(?:.|\n)*?>/gm, "");
+  next();
+});
+
 export default model("Comment", Comment);

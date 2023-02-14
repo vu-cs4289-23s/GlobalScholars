@@ -4,11 +4,10 @@ const Post = new Schema({
   owner: { type: Schema.ObjectId, ref: "User", required: true },
   timestamp: { type: Date },
   content: { type: String, default: "" },
-  // hardcode tags below
   tags: [{
     type: String,
     required: true,
-    enum: ["klondike", "pyramid", "canfield", "golf", "yukon", "hearts"]
+    enum: [],   // TODO
   }],
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
@@ -21,6 +20,12 @@ const Post = new Schema({
 
 Post.pre("validate", function(next) {
   this.timestamp = Date.now();
+  next();
+});
+
+Post.pre("save", function(next) {
+  // Sanitize strings
+  this.content = this.content.replace(/<(?:.|\n)*?>/gm, "");
   next();
 });
 
