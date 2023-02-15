@@ -22,6 +22,7 @@ import Program from "./models/program.js";
 import User from "./models/user.js";
 import Location from "./models/location.js";
 import Comment from "./models/comment.js";
+import PriceEstimate from "./models/price_estimate.js";
 
 // Import routes
 import Routes from "./api/index.js";
@@ -75,6 +76,7 @@ const setupServer = async () => {
     User: User,
     Location: Location,
     Comment: Comment,
+    PriceEstimate: PriceEstimate,
   };
 
   // Call routes
