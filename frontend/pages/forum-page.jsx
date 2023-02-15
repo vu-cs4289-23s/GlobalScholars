@@ -9,7 +9,6 @@ export default function ForumPage() {
 
           <div className="flex h-3/4 justify-center text-4xl bg-white"> Forum Contents </div>
         </div>  
-      </div>
-    
+    </div>
   );
 }
