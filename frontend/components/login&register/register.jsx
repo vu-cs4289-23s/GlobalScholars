@@ -1,11 +1,34 @@
 import { Form } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 const Register = () => {
+  const urlWithProxy = "/api/v1";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const onSubmit = async (ev) => {
+    ev.preventDefault();
+    // Only proceed if there are no errors
+    try {
+      const res = await axios.post(`${urlWithProxy}/user`, {
+        username,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+        primary_email: email,
+        city: "",
+      });
+      console.log(res.data);
+      navigate("/profile");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const handleRegister = (e) => {
     console.log("REG LOGIN");
     console.log(username, firstName, lastName, email, password);
@@ -16,9 +39,7 @@ const Register = () => {
     <div className=" absolute left-[5%] top-[20%]  bg-[rgba(255,255,255,0.5)]  w-80 sm:w-96 h-[60%] flex text-slate-600 ">
       <Form
         className=" flex flex-col items-center justify-center align-middle w-full  rounded-lg shadow-xl "
-        onSubmit={(e) => {
-          handleRegister(e);
-        }}
+        onSubmit={onSubmit}
       >
         <div className="flex border-b-[1px] border-slate-400">
           <input

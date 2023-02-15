@@ -89,7 +89,10 @@ function App() {
         <NavLink to="/register">Register Page</NavLink>
       </div>
       <div>
-        <NavLink to="/profile">Profile Page</NavLink>
+        <NavLink to="/profile/powerful">Profile Page</NavLink>
+      </div>
+      <div>
+        <NavLink to="/profile">Profile Page with undefined username</NavLink>
       </div>
 
       <div>

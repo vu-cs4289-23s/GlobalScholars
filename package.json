@@ -31,7 +31,8 @@
     "sass": "^1.58.0",
     "session": "^0.1.0",
     "simple-env-config": "^1.0.1",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "yup": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
