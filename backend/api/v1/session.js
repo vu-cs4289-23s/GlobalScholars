@@ -19,9 +19,14 @@ const Session = (app) => {
       const data = await schema.validate(await req.body);
       // Search database for user
       try {
+        console.log(data)
         let user = await app.models.User.findOne({ username: data.username });
-        if (!user) res.status(401).send({ error: "unauthorized" });
-        else if (await user.authenticate(data.password)) {
+        if (!user) {
+          user = await app.models.User.findOne({ primary_email: data.username });
+        }
+        if (!user) {
+          res.status(401).send({ error: "unauthorized" });
+        } else if (await user.authenticate(data.password)) {
           // Regenerate session when signing in to prevent fixation
           req.session.regenerate(() => {
             req.session.user = user;
