@@ -29,7 +29,7 @@ const Login = () => {
       console.log("data: ", data);
       navigate(`/profile/${data.username}`);
     } else {
-      setError(`Error: ${data.error}`);
+      console.log("data: ", data);
     }
     e.preventDefault();
   };
