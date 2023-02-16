@@ -8,17 +8,14 @@ const PriceEstimate = new Schema({
     enum: ["Fall", "Spring", "Summer", "Maymester"]
   },
   year: { type: Date },
-  total_cost: { type: Number, default: 0 },
-  vanderbilt_tuition_difference: { type: Number, default: 0 },
 
-  // program fees
+  // program price
   tuition_fee: { type: Number, default: 0 },
   program_fee: { type: Number, default: 0 },
   administrative_fee: { type: Number, default: 0 },
-  total_vanderbilt_fee: { type: Number, default: 0 },
-  total_program: { type: Number, default: 0 },
+  total_program_cost: { type: Number, default: 0 },   // sum of program
 
-  // out of pocket fees
+  // out of pocket price
   meal_estimate: { type: Number, default: 0 },
   housing: { type: Number, default: 0 },
   residence_fee: { type: Number, default: 0 },
@@ -26,7 +23,10 @@ const PriceEstimate = new Schema({
   transportation: { type: Number, default: 0 },
   personal_expenses: { type: Number, default: 0 },
   airfare: { type: Number, default: 0 },
-  total_out_of_pocket: { type: Number, default: 0 },
+  total_out_of_pocket_cost: { type: Number, default: 0 },  // sum of out of pocket
+
+  total_estimated_cost: { type: Number, default: 0 },   // total_program_cost + total_out_of_pocket
+  vandy_tuition_diff: { type: Number, default: 0 },
 });
 
 export default model("PriceEstimate", PriceEstimate);
