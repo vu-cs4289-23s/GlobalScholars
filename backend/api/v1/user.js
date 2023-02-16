@@ -15,6 +15,14 @@ const User = (app) => {
     avatar_url: string().optional(),
   });
 
+  /**
+   * validatePassword
+   *
+   * Validate user password is at least 8 chars in length, contains a number,
+   * contains a lowercase, contains a special char, and contains an uppercase.
+   * @param password
+   * @returns {{error: string}|undefined}
+   */
   const validatePassword = (password) => {
     if (!password || password.length < 8) {
       return { error: "password length must be > 7" };
@@ -30,6 +38,13 @@ const User = (app) => {
     return undefined;
   };
 
+  /**
+   * validateVanderbiltEdu
+   *
+   * Validate a user email is @vanderbilt.edu
+   * @param primary_email
+   * @returns {{error: string}|undefined}
+   */
   const validateVanderbiltEdu = (primary_email) => {
     if (!primary_email.includes("@") || primary_email.split("@")[1].toLowerCase() !== "vanderbilt.edu") {
       return { error: "must register with a vanderbilt email" }
