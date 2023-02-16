@@ -14,7 +14,7 @@ const SearchBar = () => {
 
   return (
     <div
-      className="w-full flex justify-center items-center border-[1px] border-[rgba(0,0,0,0.5)]  rounded-[0.5rem] h-[2.5rem]"
+      className="w-1/3 flex justify-center items-center border-[1px] border-[rgba(0,0,0,0.5)]  rounded-[0.5rem] h-[2.5rem]"
       onKeyDown={onEscPress}
     >
       <div

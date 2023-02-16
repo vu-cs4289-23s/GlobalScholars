@@ -8,15 +8,35 @@ const encryptPassword = (salt, password) =>
 const reservedNames = ["password"];
 
 const User = new Schema({
-  // TODO: add schema
+  // registration information
   username: { type: String, required: true, index: { unique: true } },
   primary_email: { type: String, required: true, index: { unique: true } },
   first_name: { type: String, default: "" },
   last_name: { type: String, default: "" },
-  city: { type: String, default: "" },
   hash: { type: String, required: true },
   salt: { type: String, required: true },
+
+  // profile information
   avatar_url: { type: String, default: "" },
+  background_url: { type: String, default: "" },
+  city: { type: String, default: "" },   // thinking current location of user as opposed to location of their program
+  program: { type: Schema.Types.ObjectId, ref: "Program" },
+  majors: [{
+    type: String,
+    default: "",
+    enum: [],   // TODO
+  }],
+  minors: [{
+    type: String,
+    default: "",
+    enum: [],   // TODO
+  }],
+  grad_year: { type: Date },  //could also be a Number
+
+  // interactions
+  posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  saves: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  // do we also need to save their likes and dislikes ?
 });
 
 User.path("username").validate(function (value) {
@@ -46,7 +66,6 @@ User.pre("save", function (next) {
   this.primary_email = this.primary_email.toLowerCase();
   this.first_name = this.first_name.replace(/<(?:.|\n)*?>/gm, "");
   this.last_name = this.last_name.replace(/<(?:.|\n)*?>/gm, "");
-  this.city = this.city.replace(/<(?:.|\n)*?>/gm, "");
   next();
 });
 
