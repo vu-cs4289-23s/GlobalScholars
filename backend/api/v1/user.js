@@ -139,7 +139,7 @@ const User = (app) => {
     if (!user) {
       //try with player id
       user = await app.models.User.findOne({
-        _id: req.params.username.toLowerCase(),
+        username: req.params.username.toLowerCase(),
       }).exec();
       if (!user) {
         return res

@@ -10,6 +10,7 @@ import session from "express-session";
 import envConfig from "simple-env-config";
 import pug from "pug";
 import url from "url";
+import cors from "cors";
 
 // Import mongoose
 import { createRequire } from "module";
@@ -41,6 +42,7 @@ const setupServer = async () => {
   app.engine("pug", pug.__express);
   app.set("views", __dirname);
   app.use(express.static(path.join(__dirname, "../../public")));
+  app.use(cors());
   // Setup pipeline session support
   app.store = session({
     name: "session",

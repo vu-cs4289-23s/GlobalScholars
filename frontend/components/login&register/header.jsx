@@ -1,16 +1,19 @@
 import passportIcon from "../../assets/passport-icon.svg";
 import { Link } from "react-router-dom";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const Header = () => {
+  const { userInfo, userToken, loading, success } = useSelector(
+    (state) => state.user
+  );
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   return (
     <div className="flex justify-between">
-      <div className="flex cursor-pointer" onClick={() => navigate("/")}>
+      <Link className="flex cursor-pointer" to={"/"}>
         <img src={passportIcon} alt="passport" className="flex" width={80} />
         <h1 className="text-4xl pl-2 font-bold text-white">GlobalScholars</h1>
-      </div>
+      </Link>
       <div></div>
       <div>
         <div>
