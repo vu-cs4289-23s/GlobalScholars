@@ -32,7 +32,7 @@ export default function ProfilePage() {
   return (
     <div>
       {!loading ? (
-        <div class="lds-roller">
+        <div className="lds-roller">
           <div></div>
           <div></div>
           <div></div>

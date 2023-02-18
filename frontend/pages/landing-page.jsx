@@ -1,10 +1,12 @@
 import SearchBar from "../components/landing-page/search-bar";
 import SideBar from "../components/all-pages/sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutAction } from "../redux/user/user-slice";
+import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function LandingPage() {
+  const username = localStorage.getItem("username");
   const dispatch = useDispatch();
   const { loggedIn, userToken, loading, success } = useSelector(
     (state) => state.user
@@ -13,6 +15,11 @@ export default function LandingPage() {
   const logOutHandle = () => {
     dispatch(logoutAction({}));
   };
+  useEffect(() => {
+    if (username !== null && username !== undefined && loggedIn === false) {
+      dispatch(getUserAsyncAction(username));
+    }
+  }, [username, loggedIn]);
   return (
     <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
       <div className="w-[15%] ">
