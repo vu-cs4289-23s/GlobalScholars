@@ -7,39 +7,60 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function ProfilePage() {
-  const { username } = useParams();
   const navigate = useNavigate();
+  const { username } = useParams();
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const fetchUserInfo = async () => {
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  const fetchData = async () => {
     try {
-      const res = await axios.get(`/api/v1/user/${username}`);
+      const res = await axios.get(`/api/v1/user/${username}`, {
+        withCredentials: true,
+      });
       setUser(res.data);
-      setLoading(false);
+      setLoading(true);
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
-    if (username == null || username == undefined) {
-      navigate("/login");
-      return;
-    }
-
-    fetchUserInfo();
-  }, [username]);
+    fetchData();
+    console.log(user);
+  }, []);
+  console.log("USER:", user.username);
 
   return (
+    <div>
+      {!loading ? (
+        <div class="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      ) : (
+        <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
+          <div className="w-[15%] ">
+            <SideBar username={user.username} />
+          </div>
+          <div className="w-[85%]">
+            <div className="flex h-1/4 justify-center text-4xl bg-blue-400">
+              {" "}
+              Profile Header{" "}
+            </div>
 
-    <div id="forum-page" className="flex h-screen w-screen grid-cols-2" >
-        <div className="w-[15%] "><SideBar/></div>
-        <div className= "w-[85%]">
-          <div className="flex h-1/4 justify-center text-4xl bg-blue-400"> Profile Header </div>
-
-          <div className="flex h-3/4 justify-center text-4xl bg-white"> Profile Contents </div>
-        </div>  
-      </div>
+            <div className="flex h-3/4 justify-center text-4xl bg-white">
+              {" "}
+              Profile Contents{" "}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
 
     /*<div id="parent" className="bg-[rgba(39,74,104,0.5)] w-screen h-screen">
       {!loading ? (
@@ -56,6 +77,5 @@ export default function ProfilePage() {
         </div>
       )}
     </div>*/
-
   );
 }

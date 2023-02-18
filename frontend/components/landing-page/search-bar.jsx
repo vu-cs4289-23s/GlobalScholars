@@ -14,21 +14,18 @@ const SearchBar = () => {
 
   return (
     <div
-      className="w-1/3 flex justify-center items-center border-[1px] border-[rgba(0,0,0,0.5)]  rounded-[0.5rem] h-[2.5rem]"
+      className="w-full flex justify-center border-[2px] border-[rgba(0,0,0,0.5)]  rounded-[0.5rem] h-[2.5rem]"
       onKeyDown={onEscPress}
     >
       <div
         id="fake-search-input"
-        className=" w-full bg-white text-left font-sans text-[1rem] text-[rgba(0,0,0,0.5)]  rounded-[0.5rem] flex items-center pl-[1rem] cursor-text z-0"
+        className=" w-full bg-white text-[rgba(0,0,0,0.5)]  rounded-[0.5rem] flex flex-row  pl-[1rem] cursor-pointer z-0"
         onClick={() => setModal(true)}
       >
-        Search Programs Here
-        <img
-          src={magnifyingGlass}
-          alt="magnifying glass"
-          className="ml-2"
-          width={20}
-        />
+        <img src={magnifyingGlass} alt="magnifying glass" width={20} />
+        <div className=" flex justify-center align-middle font-sans text-[1rem] ">
+          Search Programs Here
+        </div>
       </div>
       {modal ? <SearchBarModal setModal={setModal} modal={modal} /> : null}
     </div>
