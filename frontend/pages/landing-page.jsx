@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
-  const { userInfo, userToken, loading, success } = useSelector(
+  const { loggedIn, userToken, loading, success } = useSelector(
     (state) => state.user
   );
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ export default function LandingPage() {
           Landing Contents{" "}
         </div>
       </div>
-      {userInfo.username ? (
+      {loggedIn ? (
         <div className="absolute right-1 top-2">
           <button onClick={() => logOutHandle()}>Log Out</button>
         </div>

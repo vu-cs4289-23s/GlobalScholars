@@ -7,7 +7,7 @@ import { registerAsyncAction } from "../../redux/user/user-slice";
 import axios from "axios";
 
 const Register = () => {
-  const { loading, userInfo, error, success } = useSelector(
+  const { loading, loggedIn, error, success } = useSelector(
     (state) => state.user
   );
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ const Register = () => {
     dispatch(registerAsyncAction(data));
   };
   useEffect(() => {
-    console.log("USER INFO", userInfo);
-    if (userInfo.username !== undefined) {
+    console.log("USER INFO", loggedIn);
+    if (loggedIn) {
       navigate("/landing");
     }
   }, []);

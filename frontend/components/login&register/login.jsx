@@ -9,9 +9,7 @@ import { loginAsyncAction } from "../../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { loading, userInfo, userToken, error, success } = useSelector(
-    (state) => state.user
-  );
+  const { loggedIn } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -20,11 +18,10 @@ const Login = () => {
     console.log("LOGIN DISPATCHED");
   };
   useEffect(() => {
-    console.log("USER INFO", userInfo);
-    if (userInfo.username !== undefined) {
+    if (loggedIn) {
       navigate("/landing");
     }
-  }, [userInfo]);
+  }, [loggedIn]);
 
   return (
     <div className="absolute left-[8%] top-[20%] bg-[rgba(255,255,255,0.5)] h-[50%]  w-80 sm:w-96 flex text-slate-600">
