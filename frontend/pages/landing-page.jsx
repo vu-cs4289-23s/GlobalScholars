@@ -21,10 +21,11 @@ export default function LandingPage() {
     }
   }, [username, loggedIn]);
   return (
-    <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
-      <div className="">
-        <SideBar />
-      </div>
+    <div
+      id="forum-page"
+      className="flex h-screen w-screen sm:grid-cols-1 grid-cols-2"
+    >
+      <SideBar />
       <div className="w-full">
         <div className="flex flex-col  bg-[url('/landing-background.avif')] bg-no-repeat bg-cover">
           <div className="grid  m-10 p-10 gap-2">
