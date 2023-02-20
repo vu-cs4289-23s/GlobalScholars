@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function LandingPage() {
-  const username = localStorage.getItem("username");
   const dispatch = useDispatch();
-  const { loggedIn, userToken, loading, success } = useSelector(
+  const { loggedIn, userToken, loading, success, userInfo } = useSelector(
     (state) => state.user
   );
   const navigate = useNavigate();
@@ -16,10 +15,10 @@ export default function LandingPage() {
     dispatch(logoutAction({}));
   };
   useEffect(() => {
-    if (username !== null && username !== undefined && loggedIn === false) {
-      dispatch(getUserAsyncAction(username));
+    if (loggedIn === false && userInfo.username !== "") {
+      dispatch(getUserAsyncAction(userInfo.username));
     }
-  }, [username, loggedIn]);
+  }, [loggedIn, userInfo]);
   return (
     <div
       id="forum-page"
@@ -39,8 +38,7 @@ export default function LandingPage() {
         </div>
 
         <div className="flex h-2/3 justify-center text-4xl bg-white">
-          {" "}
-          Landing Contents{" "}
+          Landing Contents
         </div>
       </div>
       {loggedIn ? (

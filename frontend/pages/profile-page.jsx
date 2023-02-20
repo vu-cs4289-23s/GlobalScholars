@@ -4,38 +4,37 @@ import SideBar from "../components/all-pages/sidebar";
 import { useParams, useNavigate } from "react-router-dom";
 import ProfileBio from "../components/profile-page/profile-bio";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
-  const { username } = useParams();
 
-  const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(false);
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(`/api/v1/user/${username}`, {
-        withCredentials: true,
-      });
-      setUser(res.data);
-      setLoading(true);
-    } catch (err) {
-      console.log(err);
-    }
+  const { userInfo, loggedIn, success, loading } = useSelector(
+    (state) => state.user
+  );
+  const dispatch = useDispatch();
+  const logOutHandle = () => {
+    dispatch(logoutAction({}));
   };
+
   useEffect(() => {
-    fetchData();
-    console.log(user);
-  }, []);
-  console.log("USER:", user.username);
+    if (success && !loggedIn) {
+      navigate("/login");
+    }
+    if (loggedIn === false && userInfo.username !== "") {
+      dispatch(getUserAsyncAction(userInfo.username));
+    }
+  }, [success, loggedIn, userInfo]);
+  console.log("USER:", userInfo.username);
 
   return (
     <div>
-      {!loading ? (
+      {loading ? (
         <div></div>
       ) : (
         <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
-          <SideBar username={user.username} />
+          <SideBar />
           <div className="w-screen">
             <div
               id="header"
@@ -52,6 +51,9 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
+      <div className="absolute right-1 top-2">
+        <button onClick={() => logOutHandle()}>Log Out</button>
+      </div>
     </div>
 
     /*<div id="parent" className="bg-[rgba(39,74,104,0.5)] w-screen h-screen">
