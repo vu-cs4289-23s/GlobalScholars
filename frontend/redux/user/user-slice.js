@@ -1,10 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import userIcon from "../../assets/userProfile-icon.svg";
 
 const initialState = {
   loading: true,
   loggedIn: false,
-  userInfo: {},
+  userInfo: {
+    username: localStorage.getItem("username")
+      ? localStorage.getItem("username")
+      : "",
+    first_name: "",
+    last_name: "",
+    avatar_url: userIcon,
+  },
   userToken: null,
   error: null,
   success: false,
@@ -39,7 +47,12 @@ const userSlice = createSlice({
     },
     logout: (state) => {
       state.loading = false;
-      state.userInfo = {};
+      state.userInfo = {
+        username: "",
+        first_name: "",
+        last_name: "",
+        avatar_url: userIcon,
+      };
       state.userToken = null;
       state.loggedIn = false;
       state.error = null;

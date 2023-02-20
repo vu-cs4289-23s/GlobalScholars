@@ -37,7 +37,7 @@ const SideBar = () => {
           </p>
         </NavLink>
         <NavLink
-          className=" text-white font-bold hover:underline sm:flex sm:flex-row"
+          className=" text-white font-bold hover:underline sm:flex"
           to="/forum"
         >
           <img src={speechBubbleIcon} width={40} />
@@ -58,7 +58,12 @@ const SideBar = () => {
           className="text-white font-bold hover:underline sm:flex"
           to={`/profile/${userInfo.username}`}
         >
-          <img src={userInfo.avatar_url} width={40} />
+          <img
+            src={userInfo.avatar_url}
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
           <p className="text-sm invisible sm:visible sm:text-xl text-right p-2">
             Profile
           </p>

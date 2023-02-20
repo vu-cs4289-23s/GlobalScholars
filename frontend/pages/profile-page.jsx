@@ -32,30 +32,22 @@ export default function ProfilePage() {
   return (
     <div>
       {!loading ? (
-        <div className="lds-roller">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        <div></div>
       ) : (
         <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
-          <div className="w-[15%] ">
-            <SideBar username={user.username} />
-          </div>
-          <div className="w-[85%]">
-            <div className="flex h-1/4 justify-center text-4xl bg-blue-400">
-              {" "}
-              Profile Header{" "}
+          <SideBar username={user.username} />
+          <div className="w-screen">
+            <div
+              id="header"
+              className="flex h-1/4 justify-center text-4xl bg-blue-400"
+            >
+              Profile Header
             </div>
-
-            <div className="flex h-3/4 justify-center text-4xl bg-white">
-              {" "}
-              Profile Contents{" "}
+            <div
+              id="contents"
+              className="flex h-3/4 justify-center text-4xl bg-white"
+            >
+              Profile Contents
             </div>
           </div>
         </div>

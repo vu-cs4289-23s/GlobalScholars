@@ -36,6 +36,7 @@ const Session = (app) => {
             res.status(200).send({
               username: user.username,
               primary_email: user.primary_email,
+              avatar_url: user.avatar_url,
             });
           });
         } else {

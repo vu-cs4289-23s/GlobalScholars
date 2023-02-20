@@ -107,7 +107,7 @@ const User = (app) => {
       return res.status(400).send({ error: message });
     }
     // Define avatar url
-    data.avatar_url = GravHash(data.primary_email, 200);
+    data.avatar_url = GravHash(data.primary_email, 40);
 
     // Try to create the user
     try {
@@ -119,6 +119,7 @@ const User = (app) => {
       res.status(201).send({
         username: data.username,
         primary_email: data.primary_email,
+        avatar_url: data.avatar_url,
       });
     } catch (err) {
       console.log(err);
@@ -172,7 +173,7 @@ const User = (app) => {
       }
     }
     if (user.avatar_url === "" || user.avatar_url === undefined) {
-      user.avatar_url = GravHash(user.primary_email, 200);
+      user.avatar_url = GravHash(user.primary_email, 40);
       await user.save();
     }
     res.status(200).send({
