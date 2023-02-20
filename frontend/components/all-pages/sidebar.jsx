@@ -14,7 +14,7 @@ const SideBar = () => {
   );
   //state management (what states will we need?)
   return (
-    <div className="flex flex-col p-2 h-screen gap-4 bg-sky-800">
+    <div className="flex flex-col p-2 h-screen  w-36 sm:w-64 gap-4 bg-sky-800">
       {/* logo  */}
       <div className="flex justify-center h-[25%] text-white text-lg indent-1">
         <img

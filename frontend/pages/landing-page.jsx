@@ -22,12 +22,12 @@ export default function LandingPage() {
   }, [username, loggedIn]);
   return (
     <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
-      <div className="w-[15%] ">
+      <div className="">
         <SideBar />
       </div>
-      <div className="w-[85%]">
-        <div className="flex flex-col h-1/3  bg-blue-600">
-          <div className="grid  m-3 p-10 gap-2">
+      <div className="w-full">
+        <div className="flex flex-col  bg-[url('/landing-background.avif')] bg-no-repeat bg-cover">
+          <div className="grid  m-10 p-10 gap-2">
             <div className="flex h-1/2 justify-center items-center text-4xl">
               Study Abroad Search
             </div>
