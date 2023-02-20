@@ -13,7 +13,7 @@ const SearchBar = () => {
         onClick={() => setModal(true)}
       >
         <img src={magnifyingGlass} alt="magnifying glass" width={20} />
-        <h1 className=" font-sans text-sm  sm:text-xl ">
+        <h1 className="ml-2 font-sans text-sm  sm:text-base">
           Search Programs Here
         </h1>
       </div>

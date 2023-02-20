@@ -58,9 +58,9 @@ const SideBar = () => {
           className="text-white font-bold hover:underline sm:flex"
           to={`/profile/${userInfo.username}`}
         >
-          <img src={profileIcon} width={40} />
+          <img src={userInfo.avatar_url} width={40} />
           <p className="text-sm invisible sm:visible sm:text-xl text-right p-2">
-            Profile{" "}
+            Profile
           </p>
         </NavLink>
       </div>
