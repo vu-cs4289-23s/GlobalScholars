@@ -115,7 +115,7 @@ const SearchBarModal = ({ setModal, modal }) => {
                       <p
                         className={`bg-${
                           colors[key % colors.length]
-                        }-100 w-full h-full`}
+                        }-100 w-full h-full  text-sm md:text-md lg:text-lg font-semibold text-gray-600 mr-2 cursor-pointer hover:text-black`}
                       >
                         {value.title}
                       </p>
@@ -127,18 +127,17 @@ const SearchBarModal = ({ setModal, modal }) => {
           )}
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 justify-center mx-12 ">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 justify-between mx-12 ">
           {tags.map((tag, i) => (
-            <div className="bg-${color[0]}-500 w-24" key={i}>
-              <span
-                className={`inline-block rounded-full w-24 px-3 py-1 text-sm font-semibold bg-${
-                  colors[i % colors.length]
-                }-300 text-gray-700 mr-2 mb-2 cursor-pointer`}
-                id={i}
-              >
-                #{tag}
-              </span>
-            </div>
+            <span
+              className={`inline-block rounded-full w-[90%] px-3 py-1 text-sm md:text-md lg:text-lg font-semibold bg-${
+                colors[i % colors.length]
+              }-300 text-gray-700 mr-2 mb-2 cursor-pointer`}
+              id={i}
+              key={i}
+            >
+              {tag}
+            </span>
           ))}
         </div>
       </div>
