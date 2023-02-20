@@ -1,10 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import userIcon from "../../assets/userProfile-icon.svg";
 
 const initialState = {
   loading: true,
   loggedIn: false,
-  userInfo: {},
+  userInfo: {
+    username: localStorage.getItem("username")
+      ? localStorage.getItem("username")
+      : "",
+    first_name: "",
+    last_name: "",
+    avatar_url: userIcon,
+  },
   userToken: null,
   error: null,
   success: false,
@@ -15,9 +23,18 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    getData: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+      state.loggedIn = true;
+      state.success = true;
+      state.error = null;
+    },
+
     login: (state, action) => {
       state.loading = false;
       state.userInfo = action.payload;
+      localStorage.setItem("username", action.payload.username);
       state.loggedIn = true;
       state.error = null;
     },
@@ -30,14 +47,20 @@ const userSlice = createSlice({
     },
     logout: (state) => {
       state.loading = false;
-      state.userInfo = {};
+      state.userInfo = {
+        username: "",
+        first_name: "",
+        last_name: "",
+        avatar_url: userIcon,
+      };
       state.userToken = null;
       state.loggedIn = false;
       state.error = null;
+      localStorage.removeItem("username");
     },
     error: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.payload.message;
     },
   },
 });
@@ -51,6 +74,40 @@ export const loginAsyncAction = (data) => async (dispatch) => {
       },
     };
     const response = await axios.post(`${backendURL}/session`, data, config);
+    dispatch(login(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
+export const getUserAsyncAction = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(`${backendURL}/user/${data}`, config);
+    dispatch(getData(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
+export const loginWithGoogleAsyncAction = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.post(
+      `${backendURL}/session/google`,
+      data,
+      config
+    );
     dispatch(login(response.data));
   } catch (error) {
     console.log(error);
@@ -88,6 +145,6 @@ export const logoutAction = () => (dispatch) => {
     });
 };
 
-export const { login, logout, register, error } = userSlice.actions;
+export const { getData, login, logout, register, error } = userSlice.actions;
 
 export default userSlice.reducer;

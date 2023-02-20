@@ -1,7 +1,7 @@
 import { object, string, array, date } from "yup";
+import md5 from "md5";
 
 const User = (app) => {
-
   const schema = object({
     username: string()
       .required()
@@ -46,11 +46,28 @@ const User = (app) => {
    * @returns {{error: string}|undefined}
    */
   const validateVanderbiltEdu = (primary_email) => {
-    if (!primary_email.includes("@") || primary_email.split("@")[1].toLowerCase() !== "vanderbilt.edu") {
-      return { error: "must register with a vanderbilt email" }
+    if (
+      !primary_email.includes("@") ||
+      primary_email.split("@")[1].toLowerCase() !== "vanderbilt.edu"
+    ) {
+      return { error: "must register with a vanderbilt email" };
     }
     return undefined;
-  }
+  };
+  /**
+   *  GravHash
+   *
+   * Returns the gravatar hash for a given email address
+   * @param {email} email
+   * @param {size of photo} size
+   * @returns
+   */
+  const GravHash = (email, size) => {
+    let hash = email && email.replace(/^\s\s*/, "").replace(/\s\s*$/, "");
+    hash = hash && hash.toLowerCase();
+    hash = hash && md5(hash);
+    return `https://www.gravatar.com/avatar/${hash}?size=${size}`;
+  };
 
   /**
    * Create a new user
@@ -72,29 +89,37 @@ const User = (app) => {
       // Password validation
       const invalidPwd = validatePassword(data.password);
       if (invalidPwd) {
-        res.status(400).send(`User.create password validation failure: ${invalidPwd.error}`);
+        res
+          .status(400)
+          .send(`User.create password validation failure: ${invalidPwd.error}`);
       }
 
       // Vanderbilt email validation
       const invalidEmail = validateVanderbiltEdu(data.primary_email);
       if (invalidEmail) {
-        res.status(400).send(`User.create email validation failure: ${invalidEmail.error}`);
+        res
+          .status(400)
+          .send(`User.create email validation failure: ${invalidEmail.error}`);
       }
     } catch (err) {
       const message = err;
       console.log(`User.create validation failure: ${message}`);
       return res.status(400).send({ error: message });
     }
+    // Define avatar url
+    data.avatar_url = GravHash(data.primary_email, 40);
 
     // Try to create the user
     try {
       let user = new app.models.User(data);
+
       console.log("USER: ", user);
       await user.save();
       // Send the happy response back
       res.status(201).send({
         username: data.username,
         primary_email: data.primary_email,
+        avatar_url: data.avatar_url,
       });
     } catch (err) {
       console.log(err);
@@ -147,6 +172,10 @@ const User = (app) => {
           .send({ error: `unknown user: ${req.params.username}` });
       }
     }
+    if (user.avatar_url === "" || user.avatar_url === undefined) {
+      user.avatar_url = GravHash(user.primary_email, 40);
+      await user.save();
+    }
     res.status(200).send({
       username: user.username,
       primary_email: user.primary_email,
@@ -168,7 +197,7 @@ const User = (app) => {
    * @param {req.body.grad_year} Grad year of the user
    * @return {204}
    */
-  app.put('api/v1/user/', async (req, res) => {
+  app.put("api/v1/user/", async (req, res) => {
     if (!req.session.user)
       return res.status(401).send({ error: "unauthorized" });
 
@@ -224,7 +253,6 @@ const User = (app) => {
         );
         res.status(500).end();
       }
-
     } catch (err) {
       const message = err.details[0].message;
       console.log(`User.update validation failure: ${message}`);

@@ -1,26 +1,33 @@
 import SearchBar from "../components/landing-page/search-bar";
 import SideBar from "../components/all-pages/sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutAction } from "../redux/user/user-slice";
+import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
-  const { loggedIn, userToken, loading, success } = useSelector(
+  const { loggedIn, userToken, loading, success, userInfo } = useSelector(
     (state) => state.user
   );
   const navigate = useNavigate();
   const logOutHandle = () => {
     dispatch(logoutAction({}));
   };
+  useEffect(() => {
+    if (loggedIn === false && userInfo.username !== "") {
+      dispatch(getUserAsyncAction(userInfo.username));
+    }
+  }, [loggedIn, userInfo]);
   return (
-    <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
-      <div className="w-[15%] ">
-        <SideBar />
-      </div>
-      <div className="w-[85%]">
-        <div className="flex flex-col h-1/3  bg-blue-600">
-          <div className="grid  m-3 p-10 gap-2">
+    <div
+      id="forum-page"
+      className="flex h-screen w-screen sm:grid-cols-1 grid-cols-2"
+    >
+      <SideBar />
+      <div className="w-full">
+        <div className="flex flex-col  bg-[url('/landing-background.avif')] bg-no-repeat bg-cover">
+          <div className="grid  m-10 p-10 gap-2">
             <div className="flex h-1/2 justify-center items-center text-4xl">
               Study Abroad Search
             </div>
@@ -31,8 +38,7 @@ export default function LandingPage() {
         </div>
 
         <div className="flex h-2/3 justify-center text-4xl bg-white">
-          {" "}
-          Landing Contents{" "}
+          Landing Contents
         </div>
       </div>
       {loggedIn ? (
