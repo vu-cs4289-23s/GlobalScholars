@@ -56,11 +56,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 ]);
-
+// React.StrictMode is not compatible with redux tool kit and causes dispatches to render twice
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+  // </React.StrictMode>
 );
