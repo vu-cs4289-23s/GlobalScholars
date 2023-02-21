@@ -23,7 +23,7 @@ const Register = () => {
     if (loggedIn) {
       navigate("/landing");
     }
-  }, []);
+  }, [loggedIn]);
   return (
     <div className=" absolute left-[5%] top-[20%]  bg-[rgba(255,255,255,0.5)]  w-80 sm:w-96 h-[60%] flex text-slate-600 ">
       <Form

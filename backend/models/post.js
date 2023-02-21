@@ -7,7 +7,8 @@ const Post = new Schema({
   tags: [{
     type: String,
     required: true,
-    enum: [],   // TODO
+    enum: ["Travel", "Language", "Reviews", "Academic", "Culture", "Other", "Sights",
+    "Housing", "Social", "Cost", "Foods", "Weather", "Location", "Safety"],
   }],
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
