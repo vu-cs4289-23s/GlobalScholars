@@ -13,8 +13,6 @@ const Post = new Schema({
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
   saves: { type: Number, default: 0 },
-
-  // required to link to either a program or a location ?
   location: { type: Schema.ObjectId, ref: "Location" },
   program: { type: Schema.ObjectId, ref: "Program" },
 });
