@@ -4,6 +4,7 @@ import saveIcon from "../../assets/save-icon.svg";
 import calculatorIcon from "../../assets/calculator-icon.svg";
 import profileIcon from "../../assets/userProfile-icon.svg";
 import searchIcon from "../../assets/search-icon.svg";
+import GlobalScholar from "../../assets/GlobalScholar-logo.svg";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -17,17 +18,18 @@ const SideBar = () => {
   const navigate = useNavigate();
   //state management (what states will we need?)
   return (
-    <div className="flex flex-row sm:flex-col p-2 h-24 w-screen sm:h-screen sm:w-64 absolute sm:relative bottom-0 gap-4 bg-sky-800">
+    <div className="flex flex-row sm:flex-col p-6 h-24 w-screen sm:h-screen sm:w-64 absolute sm:relative bottom-0 gap-4 bg-sky-800">
       {/* logo  */}
       <div
         className="w-full sm:flex justify-center  text-white text-lg indent-1 hidden sm:visible"
         onClick={() => navigate("/")}
       >
         <img
-          src={passportIcon}
-          alt="password"
-          className="flex mt-8"
-          width={110}
+          src={GlobalScholar}
+          alt="logo"
+          className="flex mr-3.5"
+          width={150}
+          height={150}
         ></img>
       </div>
 
