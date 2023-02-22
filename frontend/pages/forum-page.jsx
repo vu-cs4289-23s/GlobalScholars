@@ -1,12 +1,9 @@
 import SideBar from "../components/all-pages/sidebar";
-<<<<<<< HEAD
 import CityDescription from "../components/forum/city/city-description.jsx";
-=======
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
->>>>>>> a2113bb7767578187a44255d331cbc1f69c86a36
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
