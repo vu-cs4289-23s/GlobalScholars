@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 
+
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -35,6 +36,8 @@ export default function ForumPage() {
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
       </div>
+
       </div>
+
   );
 }
