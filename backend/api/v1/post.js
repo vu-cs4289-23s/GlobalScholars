@@ -10,7 +10,7 @@ const Post = (app) => {
    * @param {req.body.program} Program program object associated with post
    * @return {201, {id: ID of new post}} Return ID of new post
    */
-  app.post(`api/v1/post`, async (req, res) => {
+  app.post("api/v1/post", async (req, res) => {
     // Verify user is logged in
     if (!req.session.user)
       return res.status(401).send({ error: "unauthorized" });
@@ -21,7 +21,7 @@ const Post = (app) => {
       tags: array().required().min(1),
       location: object(),
       program: object(),
-    }) ;
+    });
 
     // Validate request body
     let data;
@@ -41,14 +41,17 @@ const Post = (app) => {
         program: data.program,
       };
 
+      // Save post to model
       let post = new app.models.Post(newPost);
       try {
         await post.save();
         const query = { $push: { posts: post._id } };
 
-        // Save post to user's document
+        // Update User owner document
         await app.models.User.findByIdAndUpdate(req.session.user._id, query);
-        res.status(201).send({ id: game._id });
+
+        // Success, send Post id to client
+        res.status(201).send({ id: post._id });
       } catch (err) {
         console.log(`Post.create save failure: ${err}`);
         res.status(400).send({ error: "failure creating post" });
@@ -61,15 +64,24 @@ const Post = (app) => {
     }
   });
 
-  // GET Post by id specified in request params
-  app.get(`/api/v1/post/:id`, async (req, res) => {
+  /**
+   * Fetch post by id
+   *
+   * @param (req.params.id} Id of post to fetch
+   * @return {200} Post information
+   */
+  app.get("/api/v1/post/:id", async (req, res) => {
+    // Fetch post filtering by id
     let data;
     try {
       data = await app.models.Post.findById(req.params.id);
 
+      // Check if post exists
       if (!data) {
         res.status(404).send({ error: `unknown post: ${req.params.id}` });
       } else {
+        // Successful fetch, send to client
+
         // Can do more here to fetch extra information
         // Fetch User by Post owner id
         res.status(200).send(data);
@@ -80,15 +92,24 @@ const Post = (app) => {
     }
   });
 
-  // GET all Posts by location specified in request params
-  app.get(`/api/v1/posts/:location`, async (req, res) => {
+  /**
+   * Fetch posts by location
+   *
+   * @param (req.params.location} Location of posts to fetch
+   * @return {200} Post information
+   */
+  app.get("/api/v1/posts/:location", async (req, res) => {
+    // Fetch posts filtering by location
     let data;
     try {
       data = await app.models.Post.find({ location: req.params.location });
 
+      // Check if posts exist
       if (!data) {
         res.status(404).send({ error: `unknown posts for location: ${req.params.location}` });
       } else {
+        // Successful fetch, send to client
+
         // Can do more here to fetch extra information
         // Fetch User by Post owner id
         res.status(200).send(data);
@@ -99,8 +120,15 @@ const Post = (app) => {
     }
   });
 
-  // GET all Posts by location and tags specified in request params
-  app.get(`/api/v1/posts/:location:tags`, async (req, res) => {
+  /**
+   * Fetch posts by location and tags
+   *
+   * @param (req.params.location} Location of posts to fetch
+   * @param (req.params.tags} Tags of posts to fetch
+   * @return {200} Post information
+   */
+  app.get("/api/v1/posts/:location:tags", async (req, res) => {
+    // Fetch posts filtering by location and tags
     let data;
     try {
       data = await app.models.Post.find({
@@ -108,9 +136,12 @@ const Post = (app) => {
         tags: req.params.tags,
       });
 
+      // Check if posts exist
       if (!data) {
         res.status(404).send({ error: `unknown posts for location and tags: ${req.params.location} & ${req.params.tags}` });
       } else {
+        // Successful fetch, send to client
+
         // Can do more here to fetch extra information
         // Fetch User by Post owner id
         res.status(200).send(data);
@@ -121,27 +152,43 @@ const Post = (app) => {
     }
   });
 
-  // GET all Posts by program specified in request params
-  app.get(`/api/v1/posts/:program`, async (req, res) => {
+  /**
+   * Fetch posts by program
+   *
+   * @param (req.params.program} Program of posts to fetch
+   * @return {200} Post information
+   */
+  app.get("/api/v1/posts/:program", async (req, res) => {
+    // Fetch posts filtering by program
     let data;
     try {
       data = await app.models.Post.find({ program: req.params.program });
 
+      // Check if posts exist
       if (!data) {
-        res.status(404).send({ error: `unknown posts for location: ${req.params.program}` });
+        res.status(404).send({ error: `unknown posts for program: ${req.params.program}` });
       } else {
+        // Successful fetch, send to client
+
         // Can do more here to fetch extra information
         // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
       console.log(`Post.get failure: ${err}`);
-      res.status(404).send({ error: `unknown posts for location: ${req.params.program}` });
+      res.status(404).send({ error: `unknown posts for program: ${req.params.program}` });
     }
   });
 
-  // GET all Posts by program and tags specified in request params
-  app.get(`/api/v1/posts/:program:tags`, async (req, res) => {
+  /**
+   * Fetch posts by program and tags
+   *
+   * @param (req.params.program} Program of posts to fetch
+   * @param (req.params.tags} Tags of posts to fetch
+   * @return {200} Post information
+   */
+  app.get("/api/v1/posts/:program:tags", async (req, res) => {
+    // Fetch posts filtering by program and tags
     let data;
     try {
       data = await app.models.Post.find({
@@ -149,22 +196,30 @@ const Post = (app) => {
         tags: req.params.tags,
       });
 
+      // Check if posts exist
       if (!data) {
-        res.status(404).send({ error: `unknown posts for location and tags: ${req.params.program} & ${req.params.tags}` });
+        res.status(404).send({ error: `unknown posts for program and tags: ${req.params.program} & ${req.params.tags}` });
       } else {
+        // Successful fetch, send to client
+
         // Can do more here to fetch extra information
         // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
       console.log(`Post.get failure: ${err}`);
-      res.status(404).send({ error: `unknown posts for location and tags: ${req.params.program} & ${req.params.tags}` });
+      res.status(404).send({ error: `unknown posts for program and tags: ${req.params.program} & ${req.params.tags}` });
     }
   });
 
-  // GET all Posts by User username specified in request params
-  app.get(`/api/v1/posts/:user`, async (req, res) => {
-    // Fetch user
+  /**
+   * Fetch posts by user
+   *
+   * @param (req.params.user} Username of owner of posts to fetch
+   * @return {200} Post information
+   */
+  app.get("/api/v1/posts/:user", async (req, res) => {
+    // Fetch user first
     let user;
     try {
       user = await app.models.User.findOne({ username: req.params.user });
@@ -196,6 +251,72 @@ const Post = (app) => {
       res.status(404).send({ error: `unknown user: ${req.params.user}` });
     }
   });
+
+  /**
+   * Fetch posts by tags
+   *
+   * @param (req.params.tags} Tags of posts to fetch
+   * @return {200} Post information
+   */
+  app.get("/api/v1/posts/:tags", async (req, res) => {
+    // Fetch posts filtering by tags
+    let data;
+    try {
+      data = await app.models.Post.find({ tags: req.params.tags });
+
+      // Check if posts exist
+      if (!data) {
+        res.status(404).send({ error: `unknown posts for tags: ${req.params.tags}` });
+      } else {
+        // Successful fetch, send to client
+
+        // Can do more here to fetch extra information
+        // Fetch User by Post owner id
+        res.status(200).send(data);
+      }
+    } catch (err) {
+      console.log(`Post.get failure: ${err}`);
+      res.status(404).send({ error: `unknown posts for tags: ${req.params.tags}` });
+    }
+  });
+
+  /**
+   * Update Post content
+   *
+   * @param (req.params.id} Id of post to update
+   * @return {200} Updated post
+   */
+  app.put("api/v1/post/:id", async (req, res) => {
+    // Check user is logged into a session
+    if (!req.session.user)
+      return res.status(401).send({ error: "unauthorized" });
+
+    // Define post schema
+    const schema = object({
+      content: string().min(1).max(250),
+    });
+
+    // Validate data schema
+    let data;
+    try {
+      data = await schema.validate(await req.body);
+
+      try {
+        // Find post and validate user owns post
+      } catch (err) {
+
+      }
+    } catch (err) {
+      console.log(err);
+      const message = err.details[0].message;
+      console.log(`Post.update validation failure: ${message}`);
+      res.status(400).send({ error: message });
+    }
+  });
+
+  app.put("api/v1/post/:id", async (req, res) => {
+
+  })
 };
 
 export default Post;
