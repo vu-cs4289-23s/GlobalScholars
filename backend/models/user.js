@@ -19,24 +19,17 @@ const User = new Schema({
   // profile information
   avatar_url: { type: String, default: "" },
   background_url: { type: String, default: "" },
-  city: { type: String, default: "" },   // thinking current location of user as opposed to location of their program
+  city: { type: String, default: "" },
   program: { type: Schema.Types.ObjectId, ref: "Program" },
-  majors: [{
-    type: String,
-    default: "",
-    enum: [],   // TODO
-  }],
-  minors: [{
-    type: String,
-    default: "",
-    enum: [],   // TODO
-  }],
-  grad_year: { type: Date },  //could also be a Number
+  majors: [{ type: String, default: "", }],
+  minors: [{ type: String, default: "", }],
+  grad_year: { type: Date },
 
-  // interactions
+  // post interactions
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   saves: [{ type: Schema.Types.ObjectId, ref: "Post" }],
-  // do we also need to save their likes and dislikes ?
+  likes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  dislikes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
 });
 
 User.path("username").validate(function (value) {

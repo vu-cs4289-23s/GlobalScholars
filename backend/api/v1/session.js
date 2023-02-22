@@ -1,7 +1,6 @@
 import { object, string } from "yup";
 
 const Session = (app) => {
-
   /**
    * Log a user in
    *
@@ -19,10 +18,12 @@ const Session = (app) => {
       const data = await schema.validate(await req.body);
       // Search database for user
       try {
-        console.log(data)
+        console.log(data);
         let user = await app.models.User.findOne({ username: data.username });
         if (!user) {
-          user = await app.models.User.findOne({ primary_email: data.username });
+          user = await app.models.User.findOne({
+            primary_email: data.username,
+          });
         }
         if (!user) {
           res.status(401).send({ error: "unauthorized" });
@@ -35,6 +36,7 @@ const Session = (app) => {
             res.status(200).send({
               username: user.username,
               primary_email: user.primary_email,
+              avatar_url: user.avatar_url,
             });
           });
         } else {
