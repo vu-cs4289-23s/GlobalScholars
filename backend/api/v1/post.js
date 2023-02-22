@@ -187,7 +187,7 @@ const Post = (app) => {
    * @param (req.params.tags} Tags of posts to fetch
    * @return {200} Post information
    */
-  app.get("/api/v1/posts/:program:tags", async (req, res) => {
+  app.get("/api/v1/posts/:program/:tags", async (req, res) => {
     // Fetch posts filtering by program and tags
     let data;
     try {
