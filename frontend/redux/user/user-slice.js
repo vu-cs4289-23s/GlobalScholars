@@ -56,7 +56,7 @@ const userSlice = createSlice({
       state.userToken = null;
       state.loggedIn = false;
       state.error = null;
-      state.success = true;
+  //    state.success = true;
       localStorage.removeItem("username");
     },
     error: (state, action) => {
