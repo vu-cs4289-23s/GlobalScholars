@@ -10,6 +10,7 @@ import session from "express-session";
 import envConfig from "simple-env-config";
 import pug from "pug";
 import url from "url";
+import cors from "cors";
 
 // Import mongoose
 import { createRequire } from "module";
@@ -22,6 +23,7 @@ import Program from "./models/program.js";
 import User from "./models/user.js";
 import Location from "./models/location.js";
 import Comment from "./models/comment.js";
+import PriceEstimate from "./models/price_estimate.js";
 
 // Import routes
 import Routes from "./api/index.js";
@@ -40,6 +42,7 @@ const setupServer = async () => {
   app.engine("pug", pug.__express);
   app.set("views", __dirname);
   app.use(express.static(path.join(__dirname, "../../public")));
+  app.use(cors());
   // Setup pipeline session support
   app.store = session({
     name: "session",
@@ -75,6 +78,7 @@ const setupServer = async () => {
     User: User,
     Location: Location,
     Comment: Comment,
+    PriceEstimate: PriceEstimate,
   };
 
   // Call routes

@@ -1,58 +1,39 @@
 import { Form } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import passwordIcon from "../../assets/password-icon.svg";
 import usernameIcon from "../../assets/username-icon.svg";
 import googleIcon from "../../assets/google-icon.svg";
+import { loginAsyncAction } from "../../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { loggedIn } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const handleLogin = async (e) => {
-    console.log("REG LOGIN");
-    console.log("username: ", username);
-    console.log("password: ", password);
-    let res = await fetch("/api/v1/session", {
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    const data = await res.json();
-    if (res.ok) {
-      console.log("data: ", data);
-      navigate(`/profile/${data.username}`);
-    } else {
-      setError(`Error: ${data.error}`);
+  const submitForm = (data) => {
+    dispatch(loginAsyncAction(data));
+    console.log("LOGIN DISPATCHED");
+  };
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/landing");
     }
-    e.preventDefault();
-  };
-  const handleGoogleLogin = (e) => {
-    console.log("GOOGLE LOGIN");
-    console.log("username: ", username);
-    console.log("password: ", password);
-    e.preventDefault();
-  };
+  }, [loggedIn]);
 
   return (
     <div className="absolute left-[8%] top-[20%] bg-[rgba(255,255,255,0.5)] h-[50%]  w-80 sm:w-96 flex text-slate-600">
-      <Form
+      <form
         className=" flex flex-col items-center justify-center align-middle w-full h-full rounded-lg shadow-xl"
-        onKeyDown={(e) => e.key === "Enter" && handleLogin(e)}
+        onKeyDown={(e) => e.key === "Enter" && handleSubmit(submitForm)}
       >
         <div className="flex border-b-[1px] border-slate-400">
           <input
             type="text"
-            placeholder="Email"
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
+            placeholder="Username"
+            {...register("username", { required: true })}
             className="flex rounded-none border-b-8 border-slate-600 border-opacity-0 bg-transparent  shadow-none  placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
           <img src={usernameIcon} alt="username" className="flex" width={30} />
@@ -62,9 +43,7 @@ const Login = () => {
             type="password"
             placeholder="Password"
             className="flex rounded-none mt-8 border-b-2 border-opacity-0 bg-transparent  shadow-none t placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            {...register("password", { required: true })}
           />
           <img
             src={passwordIcon}
@@ -76,13 +55,16 @@ const Login = () => {
 
         <button
           className="flex w-60 justify-center bg-neutral-200 text-black mt-8"
-          onClick={handleLogin}
+          id="login-button"
+          type="submit"
+          onClick={handleSubmit(submitForm)}
         >
           Login
         </button>
         <button
           className="flex w-60 justify-center bg-neutral-200 text-black mt-4"
-          onClick={handleGoogleLogin}
+          id="google-login-button"
+          type="submit"
         >
           Login w/ Google OAuth
           <img
@@ -93,7 +75,7 @@ const Login = () => {
             className="pl-1"
           />
         </button>
-      </Form>
+      </form>
     </div>
   );
 };
