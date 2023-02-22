@@ -2,6 +2,15 @@ import { object, string, array, date } from "yup";
 
 const Post = (app) => {
 
+  /**
+   * Create a new post
+   *
+   * @param {req.body.content} Content contents of post
+   * @param {req.body.tags} Tags tags associated with post
+   * @param {req.body.location} Location location object associated with post
+   * @param {req.body.program} Program program object associated with post
+   * @return {201, {id: ID of new post}} Return ID of new post
+   */
   app.post(`api/v1/post`, async (req, res) => {
     // Verify user is logged in
     if (!req.session.user)
@@ -52,6 +61,8 @@ const Post = (app) => {
       res.status(400).send({ error: message });
     }
   });
+
+
 };
 
 export default Post;
