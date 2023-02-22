@@ -5,6 +5,7 @@ import saveIcon from "../../assets/save-icon.svg";
 import calculatorIcon from "../../assets/calculator-icon.svg";
 import profileIcon from "../../assets/userProfile-icon.svg";
 import searchIcon from "../../assets/search-icon.svg";
+import globalScholarLogo from "../../assets/GlobalScholar-logo.svg";
 
 
 
@@ -16,10 +17,11 @@ const SideBar = () => {
             {/* logo  */}
             <div className="flex justify-center h-[25%] text-white text-lg indent-1">
                 <img
-                src = {passportIcon}
+                src = {globalScholarLogo}
                 alt="password"
-                className="flex mt-8"
-                width={110}>
+                className="flex mt-5"
+                width={350} 
+                height={350}>
                 </img>
             </div>
 
@@ -38,7 +40,7 @@ const SideBar = () => {
                     <a className=" text-white font-bold hover:underline" href="/price-estimator">Calculator </a>
                 </div>
                 <div className= "flex   align-left text-2xl indent-2">
-                    <img src = {profileIcon} width={40}/>
+                    <img src = {profileIcon} width={40} height={40}/>
                     <a className=" text-white font-bold hover:underline" href="/profile">My Profile </a>
                 </div>
             </div>
