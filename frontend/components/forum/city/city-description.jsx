@@ -6,7 +6,7 @@ import ProgramLink from "../all-forums/program-link.jsx";
 const CityDescription = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg">
+    <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg">
       <grid-cols-1>
         <span className="text-[30px]">
           <span className="content-start row ">
@@ -22,7 +22,7 @@ const CityDescription = () => {
           statue, and the historic district of Nyhavn.
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
-        <span className="flex justify-around">
+        <span className="grid grid-cols-3 sm:grid-cols-5 space-x-3">
           <Tag />
           <Tag />
           <Tag />
@@ -30,7 +30,7 @@ const CityDescription = () => {
           <Tag />
         </span>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
-        <span className="flex justify-around">
+        <span className="grid grid-cols-3 sm:grid-cols-5 space-x-3 content-center">
           <Rating/>
           <Rating/>
           <Rating/>
