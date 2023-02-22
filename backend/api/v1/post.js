@@ -281,12 +281,13 @@ const Post = (app) => {
   });
 
   /**
-   * Update Post content
+   * Edit Post content
    *
    * @param (req.params.id} Id of post to update
+   * @param {req.body.content}
    * @return {200} Updated post
    */
-  app.put("api/v1/post/:id", async (req, res) => {
+  app.put("api/v1/post/edit/:id", async (req, res) => {
     // Check user is logged into a session
     if (!req.session.user)
       return res.status(401).send({ error: "unauthorized" });
@@ -301,8 +302,16 @@ const Post = (app) => {
     try {
       data = await schema.validate(await req.body);
 
+      let post;
       try {
-        // Find post and validate user owns post
+        // Find post
+        post = await app.models.Post.findById(req.params.id);
+
+        // Validate user in session owns post
+        if (req.session.user._id !== post.owner.toString()) {
+          return res.status(401).send({ error: "unauthorized" });
+        }
+
       } catch (err) {
 
       }
@@ -312,6 +321,19 @@ const Post = (app) => {
       console.log(`Post.update validation failure: ${message}`);
       res.status(400).send({ error: message });
     }
+  });
+
+  /**
+   * Update Post statistics
+   *
+   * @param (req.params.id} Id of post to update
+   * @param {req.body.likes}
+   * @param {req.body.dislikes}
+   * @param {req.body.saves}
+   * @return {200} Updated post
+   */
+  app.put("api/v1/post/update/:id", async (req, res) => {
+
   });
 };
 
