@@ -313,10 +313,6 @@ const Post = (app) => {
       res.status(400).send({ error: message });
     }
   });
-
-  app.put("api/v1/post/:id", async (req, res) => {
-
-  })
 };
 
 export default Post;
