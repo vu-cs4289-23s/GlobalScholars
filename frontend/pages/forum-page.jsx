@@ -1,5 +1,6 @@
 import SideBar from "../components/all-pages/sidebar";
 import CityDescription from "../components/forum/city/city-description.jsx";
+import CityPost from "../components/forum/city/city-post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -32,6 +33,7 @@ export default function ForumPage() {
       </div>
       <div className="absolute top-52 w-[85%] left-[15%]">
         <CityDescription />
+        <CityPost />
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
