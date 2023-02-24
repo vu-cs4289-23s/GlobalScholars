@@ -89,17 +89,13 @@ const User = (app) => {
       // Password validation
       const invalidPwd = validatePassword(data.password);
       if (invalidPwd) {
-        res
-          .status(400)
-          .send(`User.create password validation failure: ${invalidPwd.error}`);
+        return res.status(400).send(invalidPwd);
       }
 
       // Vanderbilt email validation
       const invalidEmail = validateVanderbiltEdu(data.primary_email);
       if (invalidEmail) {
-        res
-          .status(400)
-          .send(`User.create email validation failure: ${invalidEmail.error}`);
+        return res.status(400).send(invalidEmail);
       }
     } catch (err) {
       const message = err;
@@ -176,11 +172,22 @@ const User = (app) => {
       user.avatar_url = GravHash(user.primary_email, 40);
       await user.save();
     }
+    if (user.background_url === "" || user.background_url === undefined) {
+      user.background_url =
+        "https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg";
+      await user.save();
+    }
     res.status(200).send({
       username: user.username,
       primary_email: user.primary_email,
       first_name: user.first_name,
       last_name: user.last_name,
+      grad_year: user.grad_year,
+      majors: user.majors,
+      minors: user.minors,
+      city: user.city,
+      bio: user.bio,
+      background_url: user.background_url,
       avatar_url: user.avatar_url,
     });
   });
@@ -197,18 +204,20 @@ const User = (app) => {
    * @param {req.body.grad_year} Grad year of the user
    * @return {204}
    */
-  app.put("api/v1/user/", async (req, res) => {
-    if (!req.session.user)
-      return res.status(401).send({ error: "unauthorized" });
+  app.put("/api/v1/user", async (req, res) => {
+    console.log("PUT /api/v1/user", req.body);
+    // if (!req.session.user)
+    //   return res.status(401).send({ error: "unauthorized" });
 
     const schema = object({
       first_name: string(),
       last_name: string(),
       avatar_url: string(),
-      background_url: string(),
+      background_url: string().optional(),
       majors: array(),
       minors: array(),
       grad_year: date(), //could also be a Number
+      bio: string(),
     });
 
     try {
@@ -246,7 +255,19 @@ const User = (app) => {
           { $set: data },
           { new: true }
         );
-        res.status(204).end();
+        res.status(204).send({
+          username: data.username,
+          primary_email: data.primary_email,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          grad_year: data.grad_year,
+          majors: data.majors,
+          minors: data.minors,
+          city: data.city,
+          bio: data.bio,
+          background_url: data.background_url,
+          avatar_url: data.avatar_url,
+        });
       } catch (err) {
         console.log(
           `User.update logged-in user not found: ${req.session.user.id}`

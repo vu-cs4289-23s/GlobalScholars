@@ -3,7 +3,7 @@ import { Form } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerAsyncAction } from "../../redux/user/user-slice";
+import { registerAndLoginAsyncAction } from "../../redux/user/user-slice";
 import axios from "axios";
 
 const Register = () => {
@@ -16,7 +16,7 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const submitForm = (data) => {
-    dispatch(registerAsyncAction(data));
+    dispatch(registerAndLoginAsyncAction(data));
   };
   useEffect(() => {
     console.log("USER INFO", loggedIn);
