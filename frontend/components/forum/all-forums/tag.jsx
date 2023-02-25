@@ -1,9 +1,11 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 
-const Tag = () => {
-  const navigate = useNavigate();
+const Tag = ({ content }) => {
+  //const navigate = useNavigate();
   return (
-    <span className="w-[60%] px-3 py-1 rounded-full bg-yellow-600 bg-opacity-100 text-center">here is the tag</span>
+    <div className="flex rounded-full bg-yellow-600 bg-opacity-100 justify-center my-1">
+      <div className="mx-2 my-1">{content}</div>
+    </div>
   );
 };
 

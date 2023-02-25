@@ -22,20 +22,20 @@ const CityDescription = () => {
           statue, and the historic district of Nyhavn.
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
-        <span className="grid grid-cols-3 sm:grid-cols-5 space-x-3">
-          <Tag />
-          <Tag />
-          <Tag />
-          <Tag />
-          <Tag />
-        </span>
+        <div className="flex justify-left flex-wrap space-x-3">
+          <Tag content={"Weekend trip"} />
+          <Tag content={"Very affordable"} />
+          <Tag content={"Walkable"} />
+          <Tag content={"Awesome nightlife"} />
+          <Tag content={"Amazing eats"} />
+        </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
-        <span className="grid grid-cols-3 sm:grid-cols-5 space-x-3 content-center">
-          <Rating/>
-          <Rating/>
-          <Rating/>
-          <Rating/>
-        </span>
+        <div className="flex content-center justify-between">
+          <Rating rating={4.2} type={"Overall"} />
+          <Rating rating={3.7} type={"Safety"} />
+          <Rating rating={4.4} type={"Affordability"} />
+          <Rating rating={2.9} type={"Sightseeing"} />
+        </div>
         <p className="py-4 font-bold text-[24px]">Like what you see? Study Here!</p>
         <span>
           {/*<ProgramLink/>*/}
