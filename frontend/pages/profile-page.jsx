@@ -8,6 +8,7 @@ import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileModal from "../components/profile-page/profile-modal";
 import Reviews from "../components/profile-page/reviews";
+import axios from "axios";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -35,19 +36,19 @@ export default function ProfilePage() {
   }, [userInfo, success, loading]);
 
   const getData = () => {
-    fetch("/api/v1/generateDummyPosts/10", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then(function (response) {
-        console.log(response);
-        return response.json();
+    axios
+      .get("/api/v1/generateDummyData?posts=10&users=5", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       })
-      .then(function (myJson) {
-        console.log(myJson);
-        setObject(myJson);
+      .then((res) => {
+        console.log(res.data);
+        setObject(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   useEffect(() => {
