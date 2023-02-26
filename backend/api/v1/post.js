@@ -229,8 +229,7 @@ const Post = (app) => {
     // Fetch user first
     let user;
     try {
-      user = await app.models.User.findOne({ username: req.params.user });
-      console.log(user._id);
+      user = await app.models.User.findOne({ username: req.params.user.toLowerCase() });
 
       // User does not exist
       if (!user) {
