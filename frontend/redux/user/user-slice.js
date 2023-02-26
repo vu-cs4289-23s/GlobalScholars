@@ -41,7 +41,7 @@ const userSlice = createSlice({
     },
     updateUser: (state, action) => {
       state.loading = false;
-      // only update the fields that are passed in
+      console.log("updateUser", state.userInfo);
       for (const [key, value] of Object.entries(action.payload)) {
         state.userInfo[key] = value;
       }
@@ -123,8 +123,15 @@ export const updateUserAsyncAction = (data) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const response = await axios.put(`${backendURL}/user`, data, config);
-    dispatch(updateUser(response.data));
+    await axios.put(
+      `${backendURL}/user`,
+      {
+        ...data,
+        username: localStorage.getItem("username"),
+      },
+      config
+    );
+    dispatch(updateUser(data));
   } catch (error) {
     console.log(error);
     dispatch(error(error));

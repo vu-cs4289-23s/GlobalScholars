@@ -202,7 +202,7 @@ const ProfileModal = ({ modal, setModal }) => {
   return (
     <div className="w-screen h-screen absolute bg-[rgba(0,0,0,.7)]  flex flex-col justify-center items-center">
       <div className="absolute top-60 text-white">{currentQuestion + 1}/ 4</div>
-      <div className="w-1/2 h-1/2  bg-brown rounded-lg flex flex-col justify-center items-center">
+      <div className="w-1/2 h-1/2  bg-brown rounded-lg flex flex-col justify-center items-center absolute top-8 bottom-8    ">
         <h1 className="text-2xl text-white font-sans font-bold">
           {currentQuestion === 0 && "What year are you graduating?"}
           {currentQuestion === 1 && "What are your majors?"}
@@ -220,19 +220,22 @@ const ProfileModal = ({ modal, setModal }) => {
         {currentQuestion === 1 && (
           <div>
             {majors.length > 0 && (
-              <div className="flex flex-wrap justify-center items-center w-[100%]">
+              <div className="flex flex-wrap justify-center items-center w-[100vw] ">
                 {majors.map((major, i) => (
-                  <div className="flex flex-wrap justify-center items-center  w-full">
+                  <div
+                    className="flex flex-wrap justify-center items-center group hover:scale-105 transition ease-in-out duration-150 m-1"
+                    key={i}
+                  >
                     <span
                       className={`inline-block rounded-full w-full px-3 py-1 text-sm md:text-md lg:text-lg font-semibold bg-${
                         colors[i % colors.length]
-                      }-300 text-gray-700 mr-2 mb-2 cursor-pointer relative pr-8`}
+                      }-300 text-gray-700  cursor-pointer relative pr-8`}
                       id={i}
                       key={i}
                     >
                       {major}
                       <button
-                        className="absolute top-0 right-0 m-1 p-1 text-gray-700 hover:text-gray-900 transition ease-in-out duration-150"
+                        className="absolute top-0 right-0 m-1 p-1 text-gray-700 hover:text-gray-900 transition ease-in-out duration-150 sm:invisible group-hover:visible  "
                         onClick={() =>
                           setMajors(majors.filter((m) => m !== major))
                         }
@@ -276,19 +279,22 @@ const ProfileModal = ({ modal, setModal }) => {
         {currentQuestion === 2 && (
           <div>
             {minors.length > 0 && (
-              <div className="flex flex-wrap justify-center items-center w-[100%]">
+              <div className="flex flex-wrap  justify-center items-center w-[100%]">
                 {minors.map((minor, i) => (
-                  <div className="flex flex-wrap justify-center items-center  w-full">
+                  <div
+                    className="flex flex-wrap justify-center items-center group hover:scale-105 transition ease-in-out duration-150 "
+                    key={i}
+                  >
                     <span
                       className={`inline-block rounded-full w-full px-3 py-1 text-sm md:text-md lg:text-lg font-semibold bg-${
                         colors[i % colors.length]
-                      }-300 text-gray-700 mr-2 mb-2 cursor-pointer relative pr-8`}
+                      }-300 text-gray-700 cursor-pointer relative pr-8`}
                       id={i}
                       key={i}
                     >
                       {minor}
                       <button
-                        className="absolute top-0 right-0 m-1 p-1 text-gray-700 hover:text-gray-900 transition ease-in-out duration-150"
+                        className="absolute top-0 right-0 m-1 p-1 text-gray-700 hover:text-gray-900 transition ease-in-out duration-150 sm:invisible group-hover:visible "
                         onClick={() =>
                           setMinors(minors.filter((m) => m !== minor))
                         }

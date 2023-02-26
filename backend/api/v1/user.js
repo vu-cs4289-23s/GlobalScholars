@@ -205,7 +205,7 @@ const User = (app) => {
    * @return {204}
    */
   app.put("/api/v1/user", async (req, res) => {
-    console.log("PUT /api/v1/user", req.body);
+    console.log("PUT /api/v1/user", req.session);
     // if (!req.session.user)
     //   return res.status(401).send({ error: "unauthorized" });
 
@@ -213,6 +213,7 @@ const User = (app) => {
       first_name: string(),
       last_name: string(),
       avatar_url: string(),
+      username: string(),
       background_url: string().optional(),
       majors: array(),
       minors: array(),
@@ -222,7 +223,7 @@ const User = (app) => {
 
     try {
       const data = await schema.validate(await req.body);
-      const query = { username: req.session.user.username };
+      const query = { username: req.body.username };
 
       // check for empty string updates
       const prevData = await app.models.User.findOne(query);
@@ -255,19 +256,7 @@ const User = (app) => {
           { $set: data },
           { new: true }
         );
-        res.status(204).send({
-          username: data.username,
-          primary_email: data.primary_email,
-          first_name: data.first_name,
-          last_name: data.last_name,
-          grad_year: data.grad_year,
-          majors: data.majors,
-          minors: data.minors,
-          city: data.city,
-          bio: data.bio,
-          background_url: data.background_url,
-          avatar_url: data.avatar_url,
-        });
+        res.status(204).end();
       } catch (err) {
         console.log(
           `User.update logged-in user not found: ${req.session.user.id}`

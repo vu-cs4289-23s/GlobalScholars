@@ -18,6 +18,7 @@ specifiers:
   https: ^1.0.0
   logger: ^0.0.1
   md5: ^2.3.0
+  moment: ^2.29.4
   mongoose: ^6.9.1
   morgan: ^1.10.0
   nodemon: ^2.0.20
@@ -53,6 +54,7 @@ dependencies:
   https: 1.0.0
   logger: 0.0.1
   md5: 2.3.0
+  moment: 2.29.4
   mongoose: 6.9.1
   morgan: 1.10.0
   path: 0.12.7
@@ -3005,6 +3007,10 @@ packages:
 
   /moment/2.22.2:
     resolution: {integrity: sha512-LRvkBHaJGnrcWvqsElsOhHCzj8mU39wLx5pQ0pc6s153GynCTsPdGdqsVNKAQD9sKnWj11iF7TZx9fpLwdD3fw==}
+    dev: false
+
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
     dev: false
 
   /mongodb-connection-string-url/2.6.0:
