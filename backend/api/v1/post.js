@@ -93,6 +93,28 @@ const Post = (app) => {
   });
 
   /**
+   * Fetch all posts
+   *
+   * @return {200} Post information
+   */
+  app.get("/api/v1/posts", async (req, res) => {
+    let data;
+    try {
+      data = await app.models.Post.find({});
+
+      if (!data) {
+        res.status(404).send({ error: `there are no posts to fetch` });
+      } else {
+        // Successful fetch, send to client
+        res.status(200).send(data);
+      }
+    } catch (err) {
+      console.log(`Post.get failure: ${err}`);
+      res.status(404).send({ error: `there are no posts to fetch` });
+    }
+  });
+
+  /**
    * Fetch posts by location
    *
    * @param (req.params.location} Location of posts to fetch

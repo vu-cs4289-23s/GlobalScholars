@@ -1,15 +1,18 @@
 import SideBar from "../components/all-pages/sidebar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
-
+import { getAllPostsAsyncAction } from "../redux/post/post-slice.js";
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
+ const { postInfo } = useSelector((state) => state.post);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { forum } = useParams();
+
   const logOutHandle = () => {
     dispatch(logoutAction({}));
   };
@@ -22,6 +25,11 @@ export default function ForumPage() {
       dispatch(getUserAsyncAction(userInfo.username));
     }
   }, [loggedIn, userInfo]);
+
+  useEffect(() => {
+    // get all posts
+    dispatch(getAllPostsAsyncAction());
+  }, []);
 
   return (
     <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
