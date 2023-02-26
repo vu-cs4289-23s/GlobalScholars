@@ -81,9 +81,6 @@ const Post = (app) => {
         res.status(404).send({ error: `unknown post: ${req.params.id}` });
       } else {
         // Successful fetch, send to client
-
-        // Can do more here to fetch extra information
-        // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
@@ -131,9 +128,6 @@ const Post = (app) => {
         res.status(404).send({ error: `unknown posts for location: ${req.params.location}` });
       } else {
         // Successful fetch, send to client
-
-        // Can do more here to fetch extra information
-        // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
@@ -143,7 +137,7 @@ const Post = (app) => {
   });
 
   /**
-   * Fetch posts by location and tags
+   * Fetch posts by location name and tags
    *
    * @param (req.params.location} Location of posts to fetch
    * @param (req.params.tags} Tags of posts to fetch
@@ -163,9 +157,6 @@ const Post = (app) => {
         res.status(404).send({ error: `unknown posts for location and tags: ${req.params.location} & ${req.params.tags}` });
       } else {
         // Successful fetch, send to client
-
-        // Can do more here to fetch extra information
-        // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
@@ -191,9 +182,6 @@ const Post = (app) => {
         res.status(404).send({ error: `unknown posts for program: ${req.params.program}` });
       } else {
         // Successful fetch, send to client
-
-        // Can do more here to fetch extra information
-        // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
@@ -223,9 +211,6 @@ const Post = (app) => {
         res.status(404).send({ error: `unknown posts for program and tags: ${req.params.program} & ${req.params.tags}` });
       } else {
         // Successful fetch, send to client
-
-        // Can do more here to fetch extra information
-        // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
@@ -292,9 +277,6 @@ const Post = (app) => {
         res.status(404).send({ error: `unknown posts for tags: ${req.params.tags}` });
       } else {
         // Successful fetch, send to client
-
-        // Can do more here to fetch extra information
-        // Fetch User by Post owner id
         res.status(200).send(data);
       }
     } catch (err) {
@@ -311,39 +293,41 @@ const Post = (app) => {
    * @return {200} Updated post
    */
   app.put("api/v1/post/edit/:id", async (req, res) => {
-    // Check user is logged into a session
-    if (!req.session.user)
-      return res.status(401).send({ error: "unauthorized" });
+    // TODO -- commented out for now
 
-    // Define post schema
-    const schema = object({
-      content: string().min(1).max(250),
-    });
-
-    // Validate data schema
-    let data;
-    try {
-      data = await schema.validate(await req.body);
-
-      let post;
-      try {
-        // Find post
-        post = await app.models.Post.findById(req.params.id);
-
-        // Validate user in session owns post
-        if (req.session.user._id !== post.owner.toString()) {
-          return res.status(401).send({ error: "unauthorized" });
-        }
-
-      } catch (err) {
-
-      }
-    } catch (err) {
-      console.log(err);
-      const message = err.details[0].message;
-      console.log(`Post.update validation failure: ${message}`);
-      res.status(400).send({ error: message });
-    }
+    // // Check user is logged into a session
+    // if (!req.session.user)
+    //   return res.status(401).send({ error: "unauthorized" });
+    //
+    // // Define post schema
+    // const schema = object({
+    //   content: string().min(1).max(250),
+    // });
+    //
+    // // Validate data schema
+    // let data;
+    // try {
+    //   data = await schema.validate(await req.body);
+    //
+    //   let post;
+    //   try {
+    //     // Find post
+    //     post = await app.models.Post.findById(req.params.id);
+    //
+    //     // Validate user in session owns post
+    //     if (req.session.user._id !== post.owner.toString()) {
+    //       return res.status(401).send({ error: "unauthorized" });
+    //     }
+    //
+    //   } catch (err) {
+    //
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    //   const message = err.details[0].message;
+    //   console.log(`Post.update validation failure: ${message}`);
+    //   res.status(400).send({ error: message });
+    // }
   });
 
   /**
@@ -356,7 +340,7 @@ const Post = (app) => {
    * @return {200} Updated post
    */
   app.put("api/v1/post/update/:id", async (req, res) => {
-
+    // TODO
   });
 };
 
