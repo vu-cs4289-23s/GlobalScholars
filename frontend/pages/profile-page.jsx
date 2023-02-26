@@ -20,6 +20,7 @@ export default function ProfilePage() {
     dispatch(logoutAction({}));
   };
   const [modalOpen, setModalOpen] = useState(false);
+  const [object, setObject] = useState({});
 
   useEffect(() => {
     if (success && !loggedIn) {
@@ -46,6 +47,7 @@ export default function ProfilePage() {
       })
       .then(function (myJson) {
         console.log(myJson);
+        setObject(myJson);
       });
   };
   useEffect(() => {
