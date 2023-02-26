@@ -18,7 +18,7 @@ const SideBar = () => {
   const navigate = useNavigate();
   //state management (what states will we need?)
   return (
-    <div className="flex flex-row sm:flex-col p-6 h-24 w-screen sm:h-screen sm:w-64 absolute sm:relative bottom-0 gap-4 bg-sky-800">
+    <div className="flex flex-row sm:flex-col p-6 h-24 w-screen sm:h-full sm:w-64 absolute sm:relative bottom-0 gap-4 bg-sky-800">
       {/* logo  */}
       <div
         className="w-full sm:flex justify-center  text-white text-lg indent-1 hidden sm:visible"
@@ -39,7 +39,7 @@ const SideBar = () => {
           className=" text-white font-bold  sm:flex hover:cursor-pointer"
           onClick={() => navigate("/landing")}
         >
-          <img src={searchIcon} width={40} />
+          <img src={searchIcon} width={40} height={100}/>
           <p className="invisible sm:visible text-sm sm:text-xl text-right p-2 hover:text-blue-300 hover:underline underline-offset-4">
             Search
           </p>
@@ -57,8 +57,8 @@ const SideBar = () => {
           className=" text-white font-bold sm:flex hover:cursor-pointer"
           onClick={() => navigate("/price-estimator")}
         >
-          <img src={calculatorIcon} width={40} />
-          <p className="invisible sm:visible text-sm sm:text-xl text-right p-2 hover:underline hover:text-sky-300 underline-offset-4">
+          <img src={calculatorIcon} width={40}  className="ml-2"/>
+          <p className="invisible sm:visible text-sm sm:text-xl text-right pt-1 hover:underline hover:text-sky-300 underline-offset-4">
             Calculator
           </p>
         </div>
