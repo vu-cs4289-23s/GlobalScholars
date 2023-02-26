@@ -1,9 +1,9 @@
 // Connect to mongo
-import { Schema } from "mongoose";
 
 const db = connect("mongodb://localhost:55000/globalscholars");
 
-const user = {
+// Insert user
+db.users.insertOne({
   username: "testuser123",
   first_name: "John",
   last_name: "Doe",
@@ -20,18 +20,20 @@ const user = {
   // saves: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   // likes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   // dislikes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
-}
+});
 
-const copenhagen = {
+// Insert location
+db.locations.insertOne({
   city: "Copenhagen",
   country: "Denmark",
   description: "This will be an auto generated description of the location.",
   // programs: [discopenhagen._id],
   like_cnt: 250,
-}
+});
 
-const discopenhagen = {
-  location: [copenhagen._id],
+// Insert program
+db.programs.insertOne({
+  location: new ObjectId("this must be the ID of the location above"),
   program_name: "DIS Copenhagen",
   description: "This will be an auto generated description of the program.",
   majors: ["Computer Science"],
@@ -41,40 +43,23 @@ const discopenhagen = {
   // prerequisites: [{ type: String, default: "" }],
   language: ["English"],
   like_cnt: 24,
-}
-
-const time = Date.now();
-
-db.users.insertOne(user);
-db.locations.insertOne(copenhagen);
-db.programs.insertOne(discopenhagen);
+});
 
 // Insert posts
-db.posts.insertOne(
-  {
-    owner: new ObjectId("63f504a82c3c0dc1f023e25d"),
-    timestamp: Date.now(),
-    content: "YAY it's working!!!",
-    tags: ["Travel", "Language"],
-    likes: 123,
-    dislikes: 3,
-    saves: 4,
-  });
-
-
 db.posts.insertMany([
   {
-    owner: new ObjectId("63f504a82c3c0dc1f023e25d"),
+    owner: new ObjectId("this must be the ID of the user above"),
     timestamp: Date.now(),
     content: "YAY it's working!!!",
     tags: ["Travel", "Language"],
     likes: 123,
     dislikes: 3,
     saves: 4,
-
+    location: new ObjectId("this must be the ID of the location above"),
+    program: new ObjectId("this must be the ID of the program above")
   },
   {
-    owner: "63f504a82c3c0dc1f023e25d",
+    owner: new ObjectId("this must be the ID of the user above"),
     timestamp: Date.now()-1,
     content: "This is a fake post from testinguser17. I am currently studying abroad " +
       "in copenhagen and love this city so much. I recommend visiting Tivoli Gardens " +
@@ -85,7 +70,7 @@ db.posts.insertMany([
     saves: 4,
   },
   {
-    owner: "63f504a82c3c0dc1f023e25d",
+    owner: new ObjectId("this must be the ID of the user above"),
     timestamp: Date.now()-1,
     content: "I partied at Chateau Motel last night and it was crazy",
     tags: ["Travel", "Social"],
@@ -94,47 +79,3 @@ db.posts.insertMany([
     saves: 4,
   },
 ]);
-
-// Insert posts
-db.posts.insertMany([
-  {
-    owner: user._id,
-    timestamp: time,
-    content: "This is a fake post from testuser123. I am currently studying abroad " +
-      "in copenhagen and love this city so much. I recommend visiting Tivoli Gardens " +
-      "during the winter Holidays and drinking glogg.",
-    tags: ["Travel", "Language"],
-    likes: 123,
-    dislikes: 3,
-    saves: 4,
-    location: copenhagen._id,
-    program: discopenhagen._id,
-  },
-  {
-    owner: user._id,
-    timestamp: time-1,
-    content: "This is a fake post from testuser123. I am currently studying abroad " +
-      "in copenhagen and love this city so much. I recommend visiting Tivoli Gardens " +
-      "during the winter Holidays and drinking glogg.",
-    tags: ["Travel", "Culture"],
-    likes: 123,
-    dislikes: 3,
-    saves: 4,
-    location: copenhagen._id,
-    program: discopenhagen._id,
-  },
-  {
-    owner: user._id,
-    timestamp: time-1,
-    content: "I partied at Chateau Motel last night and it was crazy",
-    tags: ["Travel", "Social"],
-    likes: 123,
-    dislikes: 3,
-    saves: 4,
-    location: copenhagen._id,
-    program: discopenhagen._id,
-  },
-])
-
-// In Mongosh terminal run the command below
-// load("mongo-dummy-script.js")
