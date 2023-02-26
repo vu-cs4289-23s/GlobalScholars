@@ -21,9 +21,10 @@ const User = new Schema({
   background_url: { type: String, default: "" },
   city: { type: String, default: "" },
   program: { type: Schema.Types.ObjectId, ref: "Program" },
-  majors: [{ type: String, default: "", }],
-  minors: [{ type: String, default: "", }],
+  majors: [{ type: String, default: "" }],
+  minors: [{ type: String, default: "" }],
   grad_year: { type: Date },
+  bio: { type: String, default: "" },
 
   // post interactions
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],

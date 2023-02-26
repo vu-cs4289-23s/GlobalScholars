@@ -6,6 +6,8 @@ import ProfileBio from "../components/profile-page/profile-bio";
 import { useState, useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useDispatch, useSelector } from "react-redux";
+import ProfileModal from "../components/profile-page/profile-modal";
+import Reviews from "../components/profile-page/reviews";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -17,43 +19,51 @@ export default function ProfilePage() {
   const logOutHandle = () => {
     dispatch(logoutAction({}));
   };
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (success && !loggedIn) {
       navigate("/login");
     }
-    if (loggedIn === false && userInfo.username !== "") {
-      dispatch(getUserAsyncAction(userInfo.username));
+  }, [success, loggedIn]);
+  useEffect(() => {
+    if (!loading && userInfo.majors.length === 0) {
+      //open modal
+      setModalOpen(true);
     }
-  }, [success, loggedIn, userInfo]);
-  console.log("USER:", userInfo.username);
+  }, [userInfo, success, loading]);
 
   return (
-    <div>
-      {loading ? (
-        <div></div>
-      ) : (
-        <div id="forum-page" className="flex h-screen w-screen grid-cols-2">
-          <SideBar />
-          <div className="w-screen">
-            <div
-              id="header"
-              className="flex h-1/4 justify-center text-4xl bg-blue-400"
-            >
-              Profile Header
+    <div id="forum-page" className="flex flex-row h-screen w-screen ">
+      <SideBar />
+      <div className="w-full">
+        <div
+          id="header"
+          className="flex w-full h-[20%] justify-center text-4xl"
+        >
+          {!loading ? (
+            <ProfileBio />
+          ) : (
+            <div className="flex justify-center items-center h-screen">
+              <h1 className="text-4xl text-slate-600">Loading...</h1>
             </div>
-            <div
-              id="contents"
-              className="flex h-3/4 justify-center text-4xl bg-white"
-            >
-              Profile Contents
-            </div>
+          )}
+        </div>
+        <div
+          id="contents"
+          className="flex flex-col  justify-center text-4xl bg-white"
+        >
+          <div className="flex w-full justify-between p-4">
+            <p className="text-sm sm:text-2xl ">Reviews</p>
+            <p className="text-sm sm:text-base">1370 total likes</p>
           </div>
         </div>
-      )}
-      <div className="absolute right-1 top-2">
-        <button onClick={() => logOutHandle()}>Log Out</button>
+        <Reviews />
       </div>
+
+      {modalOpen ? (
+        <ProfileModal modal={modalOpen} setModal={setModalOpen} />
+      ) : null}
     </div>
 
     /*<div id="parent" className="bg-[rgba(39,74,104,0.5)] w-screen h-screen">
