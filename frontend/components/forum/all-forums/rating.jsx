@@ -1,9 +1,20 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 
-const Rating = () => {
+const Rating = ({ rating, type }) => {
   const navigate = useNavigate();
   return (
-    <span className="w-[50%] p-[10%] font-bold sm:text-sm md:text-lg bg-yellow-200 bg-opacity-100 text-center">Rating</span>
+      <div>
+        <div className="flex font-extrabold text-lg bg-yellow-200 bg-opacity-100 text-center justify-center align-middle h-24 w-32">
+          <div className="m-auto text-[32px]">
+              {rating}
+          </div>
+        </div>
+        <div className="flex justify-center align-middle">
+           <div className="m-1">
+               {type}
+           </div>
+        </div>
+      </div>
   );
 };
 
