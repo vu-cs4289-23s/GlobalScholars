@@ -22,7 +22,7 @@ const CityDescription = () => {
           statue, and the historic district of Nyhavn.
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
-        <span className="grid grid-cols-3 sm:grid-cols-5 space-x-3">
+        <span className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
           <Tag />
           <Tag />
           <Tag />
@@ -30,15 +30,19 @@ const CityDescription = () => {
           <Tag />
         </span>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
-        <span className="grid grid-cols-3 sm:grid-cols-5 space-x-3 content-center">
-          <Rating/>
-          <Rating/>
-          <Rating/>
-          <Rating/>
+        <span className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center">
+          <Rating />
+          <Rating />
+          <Rating />
+          <Rating />
         </span>
-        <p className="py-4 font-bold text-[24px]">Like what you see? Study Here!</p>
-        <span>
-          {/*<ProgramLink/>*/}
+        <p className="py-4 font-bold text-[24px]">
+          Like what you see? Study Here!
+        </p>
+        <span className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
+          <ProgramLink />
+          <ProgramLink />
+          <ProgramLink />
         </span>
       </grid-cols-1>
     </div>
