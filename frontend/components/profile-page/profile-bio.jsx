@@ -16,7 +16,7 @@ const ProfileBio = () => {
 
   return (
     <div
-      className={`w-screen h-full sm:w-full flex justify-center bg-[url('https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-center bg-cover bg-no-repeat`}
+      className={`w-screen h-full sm:w-full flex justify-center bg-[url('https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-center bg-cover bg-no-repeat overflow-hidden`}
     >
       <div
         className="bg-[rgba(39,74,104,0.5)] flex flex-col sm:flex-row  w-[90%] h-[75%] relative top-8 rounded-full"
