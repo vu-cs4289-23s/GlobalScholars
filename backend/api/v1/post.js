@@ -120,7 +120,7 @@ const Post = (app) => {
    * @param (req.params.location} Location of posts to fetch
    * @return {200} Post information
    */
-  app.get("/api/v1/posts/:location", async (req, res) => {
+  app.get("/api/v1/posts/location/:location", async (req, res) => {
     // Fetch posts filtering by location
     let data;
     try {
@@ -149,7 +149,7 @@ const Post = (app) => {
    * @param (req.params.tags} Tags of posts to fetch
    * @return {200} Post information
    */
-  app.get("/api/v1/posts/:location:tags", async (req, res) => {
+  app.get("/api/v1/posts/location/:location/:tags", async (req, res) => {
     // Fetch posts filtering by location and tags
     let data;
     try {
@@ -180,7 +180,7 @@ const Post = (app) => {
    * @param (req.params.program} Program of posts to fetch
    * @return {200} Post information
    */
-  app.get("/api/v1/posts/:program", async (req, res) => {
+  app.get("/api/v1/posts/program/:program", async (req, res) => {
     // Fetch posts filtering by program
     let data;
     try {
@@ -209,7 +209,7 @@ const Post = (app) => {
    * @param (req.params.tags} Tags of posts to fetch
    * @return {200} Post information
    */
-  app.get("/api/v1/posts/:program/:tags", async (req, res) => {
+  app.get("/api/v1/posts/program/:program/:tags", async (req, res) => {
     // Fetch posts filtering by program and tags
     let data;
     try {
@@ -240,11 +240,12 @@ const Post = (app) => {
    * @param (req.params.user} Username of owner of posts to fetch
    * @return {200} Post information
    */
-  app.get("/api/v1/posts/:user", async (req, res) => {
+  app.get("/api/v1/posts/user/:user", async (req, res) => {
     // Fetch user first
     let user;
     try {
       user = await app.models.User.findOne({ username: req.params.user });
+      console.log(user._id);
 
       // User does not exist
       if (!user) {
@@ -280,7 +281,7 @@ const Post = (app) => {
    * @param (req.params.tags} Tags of posts to fetch
    * @return {200} Post information
    */
-  app.get("/api/v1/posts/:tags", async (req, res) => {
+  app.get("/api/v1/posts/tags/:tags", async (req, res) => {
     // Fetch posts filtering by tags
     let data;
     try {

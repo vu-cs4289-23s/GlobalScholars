@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Schema } from "mongoose";
 
 const backendURL = "/api/v1";
 
@@ -13,6 +12,8 @@ const initialState = {
     likes: 0,
     dislikes: 0,
     saves: 0,
+    location: "",
+    program: "",
   },
   loading: true,
   error: null,
@@ -45,6 +46,22 @@ export const getAllPostsAsyncAction = () => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/posts`, config);
+    console.log(response.data);
+    dispatch(getPosts(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
+export const getPostsByUserAsyncAction = (user) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(`${backendURL}/posts/user/${user}`, config);
     console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
