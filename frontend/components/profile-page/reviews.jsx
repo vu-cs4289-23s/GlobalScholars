@@ -1,4 +1,16 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllPostsAsyncAction, getPostsByUserAsyncAction } from "../../redux/post/post-slice.js";
+
 const Reviews = ({ id }) => {
+  const dispatch = useDispatch();
+  const { postInfo, success } = useSelector((state) => state.post);
+
+  useEffect(() => {
+    // get all posts
+    dispatch(getPostsByUserAsyncAction(id));
+  }, [id]);
+
   return (
     <div className="flex flex-row  justify-center " id="background">
       <div
@@ -22,7 +34,7 @@ const Reviews = ({ id }) => {
         >
           <div className="flex flex-col w-full h-full items-center justify-start">
             <div className="flex flex-row w-[90%] h-[70%] text-left  bg-green-500 rounded relative top-2">
-              <p className=" p-4">Last night was a moooooooooooooooovie </p>
+              <p className=" p-4">{postInfo[0] ? postInfo[0].content : ""}</p>
             </div>
             <div className="flex flex-row w-[90%] h-auto text-left  rounded relative top-2">
               <input

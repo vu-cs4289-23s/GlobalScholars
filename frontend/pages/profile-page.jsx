@@ -11,6 +11,7 @@ import Reviews from "../components/profile-page/reviews";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const { username } = useParams();
 
   const { userInfo, loggedIn, success, loading } = useSelector(
     (state) => state.user
@@ -58,7 +59,7 @@ export default function ProfilePage() {
             <p className="text-sm sm:text-base">1370 total likes</p>
           </div>
         </div>
-        <Reviews />
+        <Reviews id={username} />
       </div>
 
       {modalOpen ? (
