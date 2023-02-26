@@ -18,12 +18,12 @@ const CityPost = () => {
     };
 
     return (
-        <div className="flex bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4">
+        <div className="flex w-full bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4 overflow-y-scroll">
             <grid-cols-1>
                 <div>photo</div>
             </grid-cols-1>
             <grid-cols-11>
-        <span className="text-[16px]">
+        <span className="text-[16px] w-full h-full">
           Make a Post
             <form className="flex flex-col align-middle">
                 {/* Post Title */}
