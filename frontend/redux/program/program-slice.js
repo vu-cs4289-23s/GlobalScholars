@@ -39,7 +39,23 @@ export const getAllProgramsAsyncAction = () => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/geo/programs`, config);
-    console.log(response.data);
+  //  console.log(response.data);
+    dispatch(getPrograms(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
+export const getProgramByNameAsyncAction = (name) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(`${backendURL}/geo/program/${name}`, config);
+  //  console.log(response.data);
     dispatch(getPrograms(response.data));
   } catch (error) {
     console.log(error);

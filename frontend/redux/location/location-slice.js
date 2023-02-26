@@ -42,7 +42,23 @@ export const getAllLocationsAsyncAction = () => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/geo/locations`, config);
-    console.log(response.data);
+  //  console.log(response.data);
+    dispatch(getLocations(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
+export const getLocationByCityAsyncAction = (city) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(`${backendURL}/geo/location/${city}`, config);
+  //  console.log(response.data);
     dispatch(getLocations(response.data));
   } catch (error) {
     console.log(error);

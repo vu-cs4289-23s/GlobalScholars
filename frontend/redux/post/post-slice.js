@@ -46,7 +46,7 @@ export const getAllPostsAsyncAction = () => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/posts`, config);
-    console.log(response.data);
+  //  console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
     console.log(error);
@@ -62,7 +62,7 @@ export const getPostsByUserAsyncAction = (user) => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/posts/user/${user}`, config);
-    console.log(response.data);
+  //  console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
     console.log(error);
