@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const Program = new Schema({
   location: [{ type: Schema.ObjectId, ref: "Location", required: true }],
   program_name: { type: String },
+  description: { type: String },
   majors: [{ type: String, default: "", }],   // not able to scrape
   semesters: [{
     type: String,

@@ -12,6 +12,7 @@ import axios from "axios";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const { username } = useParams();
 
   const { userInfo, loggedIn, success, loading } = useSelector(
     (state) => state.user
