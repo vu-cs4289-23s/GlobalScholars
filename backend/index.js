@@ -86,11 +86,31 @@ const setupServer = async () => {
   // Call routes
   Routes(app);
 
-  app.get("/api/v1/generateDummyPosts/:number", function (req, res) {
-    const numberOfTimes = req.params.number;
+  app.get("/api/v1/generateDummyData", function (req, res) {
+    let numberOfPosts = req.query.posts;
+    if (numberOfPosts === undefined) {
+      numberOfPosts = 10;
+    }
+    let numberOfUsers = req.query.users;
+    if (numberOfUsers === undefined) {
+      numberOfUsers = 3;
+    }
+
+    let users = Array.from(
+      { length: numberOfUsers },
+      () => new mongoose.Types.ObjectId()
+    );
+    const userss = users;
+
+    // make an array of objectId that will be dynamic based on numberOfTimes
+    const posts = Array.from(
+      { length: numberOfPosts },
+      () => new mongoose.Types.ObjectId()
+    );
     const myPartials = {
       post: `{
-        "owner": "{{random "${new mongoose.Types.ObjectId()}" "${new mongoose.Types.ObjectId()}" "${new mongoose.Types.ObjectId()}"}}",
+        "_id": "{{postsArrayAtI}}",
+        "owner": "{{randomUser}}",
         "timestamp": "{{date '2015-01-01' '2015-12-31' 'YYYY-MM-DD'}}",
         "content": "{{random 'It was alright' 'Wow so good' 'It could use some work' 'I had a great time' 'I had a terrible time' 'I would recommend it' 'I would not recommend it' 'I would go back'}}",
         "tags": [
@@ -104,16 +124,49 @@ const setupServer = async () => {
         "location": "{{city}}",
         "program": "{{company}}"
       }`,
+      user: `{
+        "_id": "{{userArrayAtI}}",
+        "username": "username{{int 0 100}}",
+        "first_name": "{{firstName}}",
+        "last_name": "{{lastName}}",
+        "primary_email": "{{email}}",
+        "program": "{{company}}",
+        "city": "{{city}}"
+      }`,
+    };
+    const myHelpers = {
+      postsArrayAtI() {
+        const value = posts[0];
+        posts.shift();
+        return value;
+      },
+      userArrayAtI() {
+        const value = users[0];
+        users.shift();
+        return value;
+      },
+      randomUser() {
+        const value = userss[Math.floor(Math.random() * userss.length)];
+        return value;
+      },
     };
     const template = `{
       "posts": [
-        {{#repeat ${numberOfTimes}}}
-        {{> post}}
+        {{#repeat ${numberOfPosts}}}
+        {{> post }}
+        {{/repeat}}
+      ],
+      "users": [
+        {{#repeat ${numberOfUsers}}}
+        {{> user }}
         {{/repeat}}
       ]
     }`;
 
-    const result = dummyjson.parse(template, { partials: myPartials });
+    const result = dummyjson.parse(template, {
+      partials: myPartials,
+      helpers: myHelpers,
+    });
 
     //convert json string to json object
 
