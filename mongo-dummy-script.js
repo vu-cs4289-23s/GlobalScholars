@@ -24,7 +24,7 @@ db.users.insertOne({
 
 // Insert location
 db.locations.insertOne({
-  city: "Copenhagen",
+  city: "copenhagen",
   country: "Denmark",
   description: "This will be an auto generated description of the location.",
   // programs: [discopenhagen._id],
