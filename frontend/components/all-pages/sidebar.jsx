@@ -30,7 +30,7 @@ const SideBar = () => {
   }, [success, loggedIn, userInfo]);
   //state management (what states will we need?)
   return (
-    <div className="flex flex-row sm:flex-col p-6 h-24 w-screen sm:h-full sm:w-64 w-full fixed sm:relative bottom-0 gap-4 bg-sky-800">
+    <div className="flex flex-row sm:flex-col p-6 h-24 sm:h-full sm:w-64 w-full fixed sm:sticky sm:top-0 sm:bottom-0 bottom-0 gap-4 bg-sky-800 z-10">
       {/* logo  */}
       <div
         className="w-full sm:flex justify-center  text-white text-lg indent-1 hidden sm:visible"

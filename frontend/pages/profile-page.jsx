@@ -80,7 +80,26 @@ export default function ProfilePage() {
             <p className="text-sm sm:text-base">1370 total likes</p>
           </div>
         </div>
-        <Reviews />
+        {object.posts && object.posts.length > 0 ? (
+          <div className=" overflow-scroll h-[60%] ">
+            {object.posts.map((post) => (
+              <Reviews
+                key={post.id}
+                id={post.id}
+                username={post.username}
+                program={post.program}
+                content={post.content}
+                likes={post.likes}
+                saves={post.saves}
+                tags={post.tags}
+                dislikes={post.dislikes}
+                location={post.location}
+                comments={post.comments}
+                date={post.date}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
 
       {modalOpen ? (
