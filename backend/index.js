@@ -11,6 +11,7 @@ import envConfig from "simple-env-config";
 import pug from "pug";
 import url from "url";
 import cors from "cors";
+import dummyjson from "dummy-json";
 
 // Import mongoose
 import { createRequire } from "module";
@@ -84,6 +85,41 @@ const setupServer = async () => {
 
   // Call routes
   Routes(app);
+
+  app.get("/api/v1/generateDummyPosts/:number", function (req, res) {
+    const numberOfTimes = req.params.number;
+    const myPartials = {
+      post: `{
+        "owner": "{{random "${new mongoose.Types.ObjectId()}" "${new mongoose.Types.ObjectId()}" "${new mongoose.Types.ObjectId()}"}}",
+        "timestamp": "{{date '2015-01-01' '2015-12-31' 'YYYY-MM-DD'}}",
+        "content": "{{random 'It was alright' 'Wow so good' 'It could use some work' 'I had a great time' 'I had a terrible time' 'I would recommend it' 'I would not recommend it' 'I would go back'}}",
+        "tags": [
+          {{#repeat 3}}
+          "{{random "Travel" "Language" "Reviews" "Academic" "Culture" "Other" "Sights" "Housing" "Social" "Cost" "Foods" "Weather" "Location" "Safety"}}"
+          {{/repeat}}
+        ],
+        "likes": {{int 0 100}},
+        "dislikes": {{int 0 100}},
+        "saves": {{int 0 100}},
+        "location": "{{city}}",
+        "program": "{{company}}"
+      }`,
+    };
+    const template = `{
+      "posts": [
+        {{#repeat ${numberOfTimes}}}
+        {{> post}}
+        {{/repeat}}
+      ]
+    }`;
+
+    const result = dummyjson.parse(template, { partials: myPartials });
+
+    //convert json string to json object
+
+    res.set("Content-Type", "application/json");
+    res.status(200).send(result);
+  });
 
   // Give them the SPA base page
   app.get("*", (req, res) => {

@@ -33,6 +33,25 @@ export default function ProfilePage() {
     }
   }, [userInfo, success, loading]);
 
+  const getData = () => {
+    fetch("/api/v1/generateDummyPosts/10", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log(myJson);
+      });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div id="forum-page" className="flex flex-row h-screen w-screen ">
       <SideBar />
