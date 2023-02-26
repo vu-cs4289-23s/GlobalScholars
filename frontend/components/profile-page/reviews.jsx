@@ -6,15 +6,15 @@ const Reviews = ({ id }) => {
         id="container"
       >
         <div
-          className="flex flex-1 flex-col w-64 h-64 items-center justify-center mr-0 pr-0"
+          className="flex flex-1 flex-col w-64 h-64 items-center justify-center m-4"
           id="image container"
         >
           <img
             src="https://www.nationsonline.org/gallery/France/View-of-Versailles.jpg"
             alt="avatar"
-            className=" w-12 h-12 sm:w-24 sm:h-24 lg:w-48 lg:h-48 rounded-full  "
+            className=" w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-full  "
           />
-          <p>France</p>
+          <p className="font-bold mt-4">France</p>
         </div>
         <div
           className="flex flex-row bg-gray-200 w-[80%] h-[90%] rounded-md m-4"
