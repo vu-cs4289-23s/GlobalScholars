@@ -8,6 +8,7 @@ import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileModal from "../components/profile-page/profile-modal";
 import Reviews from "../components/profile-page/reviews";
+import axios from "axios";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function ProfilePage() {
     dispatch(logoutAction({}));
   };
   const [modalOpen, setModalOpen] = useState(false);
+  const [object, setObject] = useState({});
 
   useEffect(() => {
     if (success && !loggedIn) {
@@ -33,6 +35,26 @@ export default function ProfilePage() {
       setModalOpen(true);
     }
   }, [userInfo, success, loading]);
+
+  const getData = () => {
+    axios
+      .get("/api/v1/generateDummyData?posts=10&users=5", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setObject(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div id="forum-page" className="flex flex-row h-screen w-screen ">
@@ -59,7 +81,26 @@ export default function ProfilePage() {
             <p className="text-sm sm:text-base">1370 total likes</p>
           </div>
         </div>
-        <Reviews id={username} />
+        {object.posts && object.posts.length > 0 ? (
+          <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+            {object.posts.map((post) => (
+              <Reviews
+                key={post.id}
+                id={post.id}
+                username={post.username}
+                program={post.program}
+                content={post.content}
+                likes={post.likes}
+                saves={post.saves}
+                tags={post.tags}
+                dislikes={post.dislikes}
+                location={post.location}
+                comments={post.comments}
+                date={post.date}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
 
       {modalOpen ? (
