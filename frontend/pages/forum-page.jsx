@@ -45,7 +45,6 @@ export default function ForumPage() {
           city={locationInfo.length > 0 ? locationInfo[0].city : "N/a"}
           country={locationInfo.length > 0 ? locationInfo[0].country : "N/a"}
         />
-         <CityPost />
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
