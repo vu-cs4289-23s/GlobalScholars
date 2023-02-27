@@ -110,7 +110,7 @@ export default function LandingPage() {
                           </div>
                       </div>
                   ))}
-           </div>
+              </div>
 
            {/* programs popout  */}
            <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
