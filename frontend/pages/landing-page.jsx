@@ -45,14 +45,6 @@ export default function LandingPage() {
                 {name: "Budapest, Hungary", src:"frontend/images/landing-locations/budapest.jpeg"},
                 {name: "Vienna, Austria", src:"frontend/images/landing-locations/vienna.jpeg"},]
   
-  //dynamic array to hold program images & names (will be populated on a click of a location)
-  const [programImages, setProgramImages] = useState([]);
-
-  //bool state that displays programs or hides them depending on location clicked
-  const [showPrograms, setShowPrograms] = useState("");
-  useEffect(() =>{
-    //fetch data here
-  }, [showPrograms])
 
   const {locationInfo} = useSelector((state)  => state.geo);
 
@@ -66,6 +58,14 @@ export default function LandingPage() {
     const programs = locationInfo.programs;
   }
  
+    //dynamic array to hold program images & names (will be populated on a click of a location)
+    const [programImages, setProgramImages] = useState([]);
+
+    //bool state that displays programs or hides them depending on location clicked
+    const [showPrograms, setShowPrograms] = useState("");
+    useEffect(() =>{
+      //fetch data here
+    }, [showPrograms])
 
 
 
@@ -93,18 +93,18 @@ export default function LandingPage() {
               Programs By Location:
             </div>
 
-            <div class="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
+            <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
                 {images.map(({ name, src }) => (
-                      <div class="snap-center" key={name}>
-                          <div class="scroll-snap-align-start h-64 w-64">
+                      <div className="snap-center" key={name}>
+                          <div className="scroll-snap-align-start h-64 w-64">
                             <img
                               src={src}
                               alt={name}
-                              class="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
+                              className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
                               data-name={name}
                               onClick={event => onImageClick(event, name)}
                             />
-                            <p class="text-base font-bold p-6 text-gray-900" data-name={name}>
+                            <p className="text-base font-bold p-6 text-gray-900" data-name={name}>
                               {name}
                             </p>
                           </div>
@@ -113,24 +113,23 @@ export default function LandingPage() {
            </div>
 
            {/* programs popout  */}
-           <div class="snap-proximity snap-x overflow-x-auto  w-[85vw] flex flex-row p-8">
+           <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
            {images.map(({ name, src }) => (
-                      <div class="snap-center" key={name}>
-                          <div class="scroll-snap-align-start h-64 w-64">
+                      <div className="snap-center" key={name}>
+                          <div className="scroll-snap-align-start h-64 w-64">
                             <img
                               src={src}
                               alt={name}
-                              class="h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
+                              className="h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
                               data-name={name}
                             />
-                            <p class="text-base font-bold p-6 text-gray-900" data-name={name}>
+                            <p className="text-base font-bold p-6 text-gray-900" data-name={name}>
                               {name}
                             </p>
                           </div>
                       </div>
                   ))}
             </div>
-
         </div>
       </div>
 
