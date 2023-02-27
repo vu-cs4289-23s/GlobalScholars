@@ -4,6 +4,8 @@ import React, {useState, useEffect} from "react";
 
 const CityPost = () => {
 
+    const [postAnon, setPostAnon] = useState(false);
+
     const [title, setTitle] = useState("");
     const [review, setReview] = useState("1");
     const [color, setColor] = useState("red");
@@ -13,19 +15,33 @@ const CityPost = () => {
     const [affordabilityRating, setAffordabilityRating] = useState(0);
     const [sightsRating, setSightsRating] = useState(0);
 
+
     const onClickPost = async () => {
         console.log("post");
     };
 
+    const onClickTag = (e) => {
+        console.log("you just clicked a tag");
+    }
+
     return (
-        <div className="flex w-full bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4 overflow-y-scroll">
-            <grid-cols-1>
-                <div>photo</div>
-            </grid-cols-1>
-            <grid-cols-11>
+        <div className="flex w-auto bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4">
         <span className="text-[16px] w-full h-full">
-          Make a Post
             <form className="flex flex-col align-middle">
+                {/* Post as */}
+                <div className="flex gap-x-5 my-4">
+                    <div className="font-bold">Post as:</div>
+                    <div className="flex justify-between">
+                        <div>
+                            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />
+                            <label htmlFor="current-user"> (current user)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />
+                            <label htmlFor="anon"> Anonymous</label>
+                        </div>
+                    </div>
+                </div>
                 {/* Post Title */}
                 <div className="flex border-black border-2 rounded-lg flex-col my-1">
                     <div className="mx-2 my-0.5">
@@ -71,133 +87,25 @@ const CityPost = () => {
                         <span className=""> 1-5 Required</span>
                         <span className="text-red-700">*</span>
                     </div>
-                    <div className="m-2 text-[16px]">
-                        <input
-                            type="checkbox"
-                            id="weekend-trip"
-                            name="weekend-trip"
-                            value="Weekend Trip"
-                        />
-                        <label htmlFor="weekend-trip">Weekend Trip</label>
-                        <input
-                            type="checkbox"
-                            id="day-trip"
-                            name="day-trip"
-                            value="Day Trip"
-                        />
-                        <label htmlFor="day-trip">Day Trip</label>
-                        <input
-                            type="checkbox"
-                            id="favorite-city"
-                            name="favorite-city"
-                            value="Favorite City"
-                        />
-                        <label htmlFor="favorite-city">Favorite City</label>
-                        <input
-                            type="checkbox"
-                            id="never-going-back"
-                            name="never-going-back"
-                            value="Never Going Back"
-                        />
-                        <label htmlFor="never-going-back">Never Going Back</label>
-                        <input
-                            type="checkbox"
-                            id="lots-of-history"
-                            name="lots-of-history"
-                            value="Lots of history"
-                        />
-                        <label htmlFor="lots-of-history">Lots of history</label>
-                        <input
-                            type="checkbox"
-                            id="great-hostels"
-                            name="great-hostels"
-                            value="Great hostels"
-                        />
-                        <label htmlFor="great-hostels">Great hostels</label>
-                        <input
-                            type="checkbox"
-                            id="awesome-nightlife"
-                            name="awesome-nightlife"
-                            value="Awesome nightlife"
-                        />
-                        <label htmlFor="awesome-nightlife">Awesome nightlife</label>
-                        <input
-                            type="checkbox"
-                            id="beautiful-scenery"
-                            name="beautiful-scenery"
-                            value="Beautiful Scenery"
-                        />
-                        <label htmlFor="beautiful-scenery">Beautiful scenery</label>
-                        <input
-                            type="checkbox"
-                            id="amazing-eats"
-                            name="amazing-eats"
-                            value="Amazing eats"
-                        />
-                        <label htmlFor="amazing-eats">Amazing eats</label>
-                        <input
-                            type="checkbox"
-                            id="overpriced"
-                            name="overpriced"
-                            value="Overpriced"
-                        />
-                        <label htmlFor="overpriced">Overpriced</label>
-                        <input
-                            type="checkbox"
-                            id="affordable"
-                            name="affordable"
-                            value="Affordable"
-                        />
-                        <label htmlFor="affordable">Affordable</label>
-                        <input
-                            type="checkbox"
-                            id="kinda-pricey"
-                            name="kinda-pricey"
-                            value="Kinda Pricey"
-                        />
-                        <label htmlFor="kinda-pricey">Kinda Pricey</label>
-                        <input
-                            type="checkbox"
-                            id="walkable"
-                            name="walkable"
-                            value="Walkable"
-                        />
-                        <label htmlFor="walkable">Walkable</label>
-                        <input
-                            type="checkbox"
-                            id="hard-to-get-around"
-                            name="hard-to-get-around"
-                            value="Hard to get around"
-                        />
-                        <label htmlFor="hard-to-get-around">Hard to get around</label>
-                        <input
-                            type="checkbox"
-                            id="great-public-transit"
-                            name="great-public-transit"
-                            value="Great public transit"
-                        />
-                        <label htmlFor="great-public-transit">Great public transit</label>
-                        <input
-                            type="checkbox"
-                            id="hold-onto-your-stuff"
-                            name="hold-onto-your-stuff"
-                            value="Hold onto your stuff"
-                        />
-                        <label htmlFor="hold-onto-your-stuff">Hold onto your stuff!</label>
-                        <input
-                            type="checkbox"
-                            id="watch-for-scams"
-                            name="watch-for-scams"
-                            value="Watch for scams"
-                        />
-                        <label htmlFor="watch-for-scams">Watch for scams!</label>
-                        <input
-                            type="checkbox"
-                            id="not-safe"
-                            name="not-safe"
-                            value="not-safe-at-night"
-                        />
-                        <label htmlFor="not-safe">Not safe at night</label>
+                    <div className="flex flex-wrap m-2 text-[16px] gap-x-1.5">
+                        <Tag content={"Weekend trip"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Day trip"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Favorite city"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Never going back"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Lots of history"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Great hostels"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Awesome nightlife"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Beautiful scenery"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Amazing eats"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Overpriced"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Affordable"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Kinda Pricey"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Walkable"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Hard to get around"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Great public transit"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Hold onto your stuff!"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Watch for scams!"} color={"bg-red-400"} onClick={onClickTag} />
+                        <Tag content={"Not safe at night"} color={"bg-red-400"} onClick={onClickTag} />
                     </div>
                 </div>
                 {/* Post Ratings */}
@@ -422,7 +330,7 @@ const CityPost = () => {
                     {/*<label htmlFor="trip-end">Trip end:</label>*/}
 
                 </div>
-                <div>
+                <div className="flex justify-end">
                     <button
                         id="submitBtn"
                         type="submit"
@@ -433,7 +341,6 @@ const CityPost = () => {
                 </div>
             </form>
         </span>
-            </grid-cols-11>
 
         </div>
     );
