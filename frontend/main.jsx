@@ -9,6 +9,7 @@ import PriceEstimator from "./pages/price-estimator";
 import ProfilePage from "./pages/profile-page";
 import LoginPage from "./pages/login-page";
 import RegisterPage from "./pages/register-page";
+import EditPage from "./pages/edit-page";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
   {
     path: "/profile/:username",
     element: <ProfilePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/profile/:username/edit",
+    element: <EditPage />,
     errorElement: <ErrorPage />,
   },
   {

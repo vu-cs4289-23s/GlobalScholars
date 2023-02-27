@@ -70,13 +70,13 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="grid bg-white ">
+        <div className="grid bg-white w-[85vw] ">
               
-            <div className="flex flex-row h-2 p-5 text-2xl">
+            <div className="flex flex-row h-2 p-5 w-[85vw] text-2xl">
               Programs By Location:
             </div>
 
-            <div class="snap-proximity snap-x overflow-x-auto w-screen  flex flex-row p-8">
+            <div class="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
                 {images.map(({ name, src }) => (
                       <div class="snap-center" key={name}>
                           <div class="scroll-snap-align-start h-64 w-64">
@@ -96,7 +96,7 @@ export default function LandingPage() {
            </div>
 
            {/* programs popout  */}
-           <div class="snap-proximity snap-x overflow-x-auto w-screen  flex flex-row p-8">
+           <div class="snap-proximity snap-x overflow-x-auto  w-[85vw] flex flex-row p-8">
            {images.map(({ name, src }) => (
                       <div class="snap-center" key={name}>
                           <div class="scroll-snap-align-start h-64 w-64">

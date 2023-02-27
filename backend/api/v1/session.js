@@ -36,6 +36,14 @@ const Session = (app) => {
             res.status(200).send({
               username: user.username,
               primary_email: user.primary_email,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              grad_year: user.grad_year,
+              majors: user.majors,
+              minors: user.minors,
+              city: user.city,
+              bio: user.bio,
+              background_url: user.background_url,
               avatar_url: user.avatar_url,
             });
           });

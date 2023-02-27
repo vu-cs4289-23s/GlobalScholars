@@ -9,16 +9,30 @@ import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUserAsyncAction } from "../../redux/user/user-slice";
 
 const SideBar = () => {
-  const { userInfo, userToken, loading, success } = useSelector(
+  const { userInfo, loggedIn, userToken, loading, success } = useSelector(
     (state) => state.user
   );
+  const dispatch = useDispatch();
   const currentPath = window.location.pathname;
   const navigate = useNavigate();
+  useEffect(() => {
+    if (success && !loggedIn) {
+      navigate("/login");
+    }
+    if (loggedIn === false && userInfo.username !== "") {
+      dispatch(getUserAsyncAction(userInfo.username));
+    }
+  }, [success, loggedIn, userInfo]);
   //state management (what states will we need?)
   return (
-    <div className="flex flex-row sm:flex-col p-6 h-24 w-screen sm:h-full sm:w-64 absolute sm:relative bottom-0 gap-4 bg-sky-800">
+
+    <div className="flex flex-row sm:flex-col p-6 h-24 w-screen sm:h-full sm:w-64 w-full fixed sm:relative bottom-0 gap-4 bg-sky-800">
+
       {/* logo  */}
       <div
         className="w-full sm:flex justify-center  text-white text-lg indent-1 hidden sm:visible"

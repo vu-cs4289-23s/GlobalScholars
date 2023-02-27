@@ -101,29 +101,29 @@ const SearchBarModal = ({ setModal, modal }) => {
               />
             </div>
           </div>
-        </div>
-        {filteredData.length != 0 && (
-          <div className="dataResult w-[92vw] absolute z-10 mx-4  bg-transparent">
-            {filteredData.slice(0, 15).map((value, key) => {
-              return (
-                <a
-                  className="dataItem w-full h-full bg-slate-400"
-                  href={value.link}
-                  target="_blank"
-                  key={key}
-                >
-                  <p
-                    className={`bg-${
-                      colors[key % colors.length]
-                    }-100 w-full h-full  text-sm md:text-md lg:text-lg font-semibold text-gray-600 mr-2 cursor-pointer hover:text-black`}
+          {filteredData.length != 0 && (
+            <div className="dataResult w-[92vw] absolute z-10 mx-4  bg-transparent">
+              {filteredData.slice(0, 15).map((value, key) => {
+                return (
+                  <a
+                    className="dataItem w-full h-full bg-slate-400"
+                    href={value.link}
+                    target="_blank"
+                    key={key}
                   >
-                    {value.title}
-                  </p>
-                </a>
-              );
-            })}
-          </div>
-        )}
+                    <p
+                      className={`bg-${
+                        colors[key % colors.length]
+                      }-100 w-full h-full  text-sm md:text-md lg:text-lg font-semibold text-gray-600 mr-2 cursor-pointer hover:text-black`}
+                    >
+                      {value.title}
+                    </p>
+                  </a>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 justify-between mx-12 ">
           {tags.map((tag, i) => (

@@ -16,8 +16,10 @@ specifiers:
   fs: 0.0.1-security
   http: 0.0.1-security
   https: ^1.0.0
+  i: ^0.3.7
   logger: ^0.0.1
   md5: ^2.3.0
+  moment: ^2.29.4
   mongoose: ^6.9.1
   morgan: ^1.10.0
   nodemon: ^2.0.20
@@ -51,8 +53,10 @@ dependencies:
   fs: 0.0.1-security
   http: 0.0.1-security
   https: 1.0.0
+  i: 0.3.7
   logger: 0.0.1
   md5: 2.3.0
+  moment: 2.29.4
   mongoose: 6.9.1
   morgan: 1.10.0
   path: 0.12.7
@@ -2579,6 +2583,11 @@ packages:
     resolution: {integrity: sha512-4EC57ddXrkaF0x83Oj8sM6SLQHAWXw90Skqu2M4AEWENZ3F02dFJE/GARA8igO79tcgYqGrD7ae4f5L3um2lgg==}
     dev: false
 
+  /i/0.3.7:
+    resolution: {integrity: sha512-FYz4wlXgkQwIPqhzC5TdNMLSE5+GS1IIDJZY/1ZiEPCT2S3COUVZeT5OW4BmW4r5LHLQuOosSwsvnroG9GR59Q==}
+    engines: {node: '>=0.4'}
+    dev: false
+
   /iconv-lite/0.4.23:
     resolution: {integrity: sha512-neyTUVFtahjf0mB3dZT77u+8O0QB89jFdnBkd5P1JgYPbPaia3gXXOVL2fq8VyU2gMMD7SaN7QukTB/pmXYvDA==}
     engines: {node: '>=0.10.0'}
@@ -3005,6 +3014,10 @@ packages:
 
   /moment/2.22.2:
     resolution: {integrity: sha512-LRvkBHaJGnrcWvqsElsOhHCzj8mU39wLx5pQ0pc6s153GynCTsPdGdqsVNKAQD9sKnWj11iF7TZx9fpLwdD3fw==}
+    dev: false
+
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
     dev: false
 
   /mongodb-connection-string-url/2.6.0:

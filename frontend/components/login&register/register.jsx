@@ -3,7 +3,7 @@ import { Form } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerAsyncAction } from "../../redux/user/user-slice";
+import { registerAndLoginAsyncAction } from "../../redux/user/user-slice";
 import axios from "axios";
 
 const Register = () => {
@@ -16,14 +16,14 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const submitForm = (data) => {
-    dispatch(registerAsyncAction(data));
+    dispatch(registerAndLoginAsyncAction(data));
   };
   useEffect(() => {
     console.log("USER INFO", loggedIn);
     if (loggedIn) {
       navigate("/landing");
     }
-  }, []);
+  }, [loggedIn]);
   return (
     <div className=" absolute left-[5%] top-[20%]  bg-[rgba(255,255,255,0.5)]  w-80 sm:w-96 h-[60%] flex text-slate-600 ">
       <Form

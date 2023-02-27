@@ -38,11 +38,12 @@ const setupServer = async () => {
 
   // Setup our Express pipeline
   let app = express();
+  app.use(cors());
+
   app.use(logger("dev"));
   app.engine("pug", pug.__express);
   app.set("views", __dirname);
   app.use(express.static(path.join(__dirname, "../../public")));
-  app.use(cors());
   // Setup pipeline session support
   app.store = session({
     name: "session",
