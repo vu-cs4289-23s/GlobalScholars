@@ -3,7 +3,10 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 const ProgramLink = () => {
   const navigate = useNavigate();
   return (
-    <img className="rounded-full scale-50 " src="frontend/assets/DIS-Copenhagen-Link.png" />
+    <a href="https://disabroad.org/copenhagen/">
+    <img className="rounded-full scale-[70%] "src="../../frontend/assets/DIS-Copenhagen-Link.png" />
+      <div className="text-lg align-text-top text-black">program name</div>
+    </a>
   );
 };
 
