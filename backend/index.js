@@ -1,5 +1,5 @@
 // Import libraries
-import path from "path";
+import path, { dirname } from "path";
 import fs from "fs";
 import http from "http";
 import https from "https";
@@ -9,7 +9,7 @@ import logger from "morgan";
 import session from "express-session";
 import envConfig from "simple-env-config";
 import pug from "pug";
-import url from "url";
+import { fileURLToPath } from "url";
 import cors from "cors";
 import dummyjson from "dummy-json";
 
@@ -28,9 +28,10 @@ import PriceEstimate from "./models/price_estimate.js";
 
 // Import routes
 import Routes from "./api/index.js";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const resolve = (p) => path.resolve(__dirname, p);
 
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : "dev";
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const setupServer = async () => {
   // Get the app config
@@ -42,9 +43,8 @@ const setupServer = async () => {
   app.use(cors());
 
   app.use(logger("dev"));
-  app.engine("pug", pug.__express);
   app.set("views", __dirname);
-  app.use(express.static(path.join(__dirname, "../../public")));
+  app.use(express.static(path.join(__dirname, "../dist")));
   // Setup pipeline session support
   app.store = session({
     name: "session",
@@ -173,26 +173,14 @@ const setupServer = async () => {
     res.set("Content-Type", "application/json");
     res.status(200).send(result);
   });
+  app.use(express.static(resolve("../dist")));
 
-  // Give them the SPA base page
-  app.get("*", (req, res) => {
-    const user = req.session.user;
-    // TODO: edit the below user session information
-    console.log(`Loading app for: ${user ? user.username : "nobody!"}`);
-    let preloadedState = user
-      ? {
-          username: user.username,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          primary_email: user.primary_email,
-          program: user.program,
-          location: user.location,
-        }
-      : {};
-    preloadedState = JSON.stringify(preloadedState).replace(/</g, "\\u003c");
-    res.render("base.pug", {
-      state: preloadedState,
-    });
+  // // Give them the SPA base page
+  app.use("*", async (req, res) => {
+    const url = req.originalUrl;
+    const template = fs.readFileSync(resolve("../dist/index.html"), "utf-8");
+
+    res.status(200).set({ "Content-Type": "text/html" }).end(template);
   });
 
   // Run the server itself

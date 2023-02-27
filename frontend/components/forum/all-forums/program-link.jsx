@@ -4,7 +4,10 @@ const ProgramLink = () => {
   const navigate = useNavigate();
   return (
     <a href="https://disabroad.org/copenhagen/">
-    <img className="rounded-full scale-[70%] "src="../../frontend/assets/DIS-Copenhagen-Link.png" />
+      <img
+        className="rounded-full scale-[70%] "
+        src="DIS-Copenhagen-Link.png"
+      />
       <div className="text-lg align-text-top text-black">program name</div>
     </a>
   );
