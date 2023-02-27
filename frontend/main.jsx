@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error-page";
 import LandingPage from "./pages/landing-page";
 import ForumPage from "./pages/forum-page";
+import NewPost from "./pages/new-post";
 import PriceEstimator from "./pages/price-estimator";
 import ProfilePage from "./pages/profile-page";
 import LoginPage from "./pages/login-page";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     path: "/forum",
     element: <ForumPage />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/newpost",
+    element: <NewPost />,
   },
   {
     path: "/forum/:name",
