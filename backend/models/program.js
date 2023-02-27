@@ -24,7 +24,10 @@ const Program = new Schema({
   program_link: { type: String },
 
   // Forum data
-  star_rating: { type: Number, default: 0 },
+  overall_rating: { type: Number, default: 0 },
+  safety_rating: { type: Number, default: 0 },
+  affordability_rating: { type: Number, default: 0 },
+  sightseeing_rating: { type: Number, default: 0 },
   top_tags: [{ type: String }],
 });
 

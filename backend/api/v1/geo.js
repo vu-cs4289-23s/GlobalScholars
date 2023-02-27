@@ -32,7 +32,9 @@ const GEOData = (app) => {
   app.get("/api/v1/geo/program/:name", async (req, res) => {
     let data;
     try {
-      data = await app.models.Program.find({ program_name: req.params.name.toLowerCase() });
+      data = await app.models.Program.find({
+        program_name: { $regex : new RegExp(req.params.name, "i") }
+      });
 
       if (!data) {
         res.status(404).send({ error: `the specified program ${req.params.name} does not exist` });
@@ -77,7 +79,9 @@ const GEOData = (app) => {
   app.get("/api/v1/geo/location/:name", async (req, res) => {
     let data;
     try {
-      data = await app.models.Location.find({ city: req.params.name.toLowerCase() });
+      data = await app.models.Location.find({
+        city: { $regex : new RegExp(req.params.name, "i") }
+      });
 
       if (!data) {
         res.status(404).send({ error: `the specified program ${req.params.name} does not exist` });
@@ -101,8 +105,12 @@ const GEOData = (app) => {
     let program, location;
     try {
       // Try to fetch for a matching program or location name
-      program = await app.models.Program.find({ program_name: req.params.name.toLowerCase() });
-      location = await app.models.Location.find({ city: req.params.name.toLowerCase() });
+      program = await app.models.Program.find({
+        program_name: { $regex : new RegExp(req.params.name, "i") }
+      });
+      location = await app.models.Location.find({
+        city: { $regex : new RegExp(req.params.name, "i") }
+      });
 
       // Successful fetch, send to client
       const data = {
