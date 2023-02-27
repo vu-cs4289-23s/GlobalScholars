@@ -27,6 +27,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/forum/:name",
+    element: <ForumPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/landing",
     element: <LandingPage />,
     errorElement: <ErrorPage />,
