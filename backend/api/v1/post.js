@@ -336,10 +336,16 @@ const Post = (app) => {
           // Send success to client
           res.status(204).end();
         } catch (err) {
-
+          console.log(
+            `Post.update post not found: ${req.params.id}`
+          );
+          res.status(500).end();
         }
       } catch (err) {
-
+        console.log(
+          `Post.update post not found: ${req.params.id}`
+        );
+        res.status(500).end();
       }
     } catch (err) {
       console.log(err);
