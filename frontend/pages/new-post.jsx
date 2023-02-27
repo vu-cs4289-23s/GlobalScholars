@@ -6,7 +6,7 @@ import ProgramPost from "../components/forum/program/program-post.jsx";
 
 export default function NewPost() {
 
-    const [postTypeCity, setPostTypeCity] = useState("true");
+    const [postType, setPostType] = useState("city");
 
     return (
         <div className="w-auto h-[100vh] flex flex-row bg-[url('/landing-background.avif')] bg-blue-200">
@@ -20,14 +20,14 @@ export default function NewPost() {
                             </div>
                             <div className="flex justify-center align-middle items-center">
                                 <select name="post-type" id="post-type" onChange={(e=>setPostTypeCity(e.target.value))} className="bg-white border-2 border-black rounded-lg m-2 p-2">
-                                    <option value={"true"}>City</option>
-                                    <option value={"false"}>Program</option>
+                                    <option value={"city"}>City</option>
+                                    <option value={"program"}>Program</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                {postTypeCity === "true" ? <CityPost /> : <ProgramPost /> }
+                {postType === "city" ? <CityPost /> : <ProgramPost /> }
             </div>
         </div>
     );
