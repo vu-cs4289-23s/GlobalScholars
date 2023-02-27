@@ -15,12 +15,12 @@ export default function EditPage() {
   const [email, setEmail] = useState(userInfo.primary_email);
   const [username, setUsername] = useState(userInfo.username);
   const [major, setMajor] = useState(
-    userInfo.majors.length > 0 ? userInfo.majors.join(",") : ""
+    userInfo.majors.length > 0 ? userInfo.majors.join(" & ") : ""
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [minor, setMinor] = useState(
-    userInfo.minors.length > 0 ? userInfo.minors.join(",") : ""
+    userInfo.minors.length > 0 ? userInfo.minors.join(" & ") : ""
   );
   const [year, setYear] = useState(
     moment(userInfo.graduation_date).format("YYYY-MM-DD")
@@ -36,17 +36,24 @@ export default function EditPage() {
   //create a modal to edit profile
   const handleSubmit = (e) => {
     e.preventDefault();
-    //remove spaces
-    major.replace(/\s/g, "");
-    minor.replace(/\s/g, "");
+
     //split by comma
-    const majorArr = major.split(",");
-    const minorArr = minor.split(",");
+    let majorArr = major.split("&");
+    let minorArr = minor.split("&");
+    //remove spaces at the beginning and end of each string
+    const trimmedMajorArr = majorArr.map((major) => {
+      return major.trim();
+    });
+    const trimmedMinorArr = minorArr.map((minor) => {
+      return minor.trim();
+    });
+    console.log("majorArr: ", trimmedMajorArr);
+    console.log("minorArr: ", trimmedMinorArr);
     dispatch(
       updateUserAsyncAction({
         primary_email: email,
-        majors: majorArr,
-        minors: minorArr,
+        majors: trimmedMajorArr,
+        minors: trimmedMinorArr,
         grad_year: year,
         city,
         first_name: firstName,

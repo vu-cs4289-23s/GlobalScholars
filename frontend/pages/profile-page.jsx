@@ -82,7 +82,7 @@ export default function ProfilePage() {
           </div>
         </div>
         {object.posts && object.posts.length > 0 ? (
-          <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+          <div className=" overflow-scroll h-[60%] sm:h-[65%] md:h-[70%] ">
             {object.posts.map((post) => (
               <Reviews
                 key={post.id}
