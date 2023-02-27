@@ -66,6 +66,15 @@ const SideBar = () => {
           </p>
         </div>
         <div
+            className=" text-white font-bold  sm:flex hover:cursor-pointer"
+            onClick={() => navigate("/newpost")}
+        >
+          <img src={speechBubbleIcon} width={40} />
+          <p className="invisible sm:visible text-sm sm:text-xl text-middle p-2 hover:text-blue-300 hover:underline underline-offset-4">
+            Make a Post
+          </p>
+        </div>
+        <div
           className=" text-white font-bold sm:flex hover:cursor-pointer"
           onClick={() => navigate("/price-estimator")}
         >

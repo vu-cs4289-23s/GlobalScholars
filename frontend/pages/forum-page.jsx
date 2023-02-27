@@ -1,5 +1,6 @@
 import SideBar from "../components/all-pages/sidebar";
 import CityDescription from "../components/forum/city/city-description.jsx";
+import CityPost from "../components/forum/city/city-post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -35,6 +36,7 @@ export default function ForumPage() {
       <div>
         <SideBar />
       </div>
+
       <div className="bg-blue-200">
         <img className="flex h-1/4 w-screen object-center object-cover" src="../../frontend/assets/copenhagen-forum-photo.png" />
         <CityDescription
@@ -42,6 +44,7 @@ export default function ForumPage() {
           city={locationInfo.length > 0 ? locationInfo[0].city : "N/a"}
           country={locationInfo.length > 0 ? locationInfo[0].country : "N/a"}
         />
+         <CityPost />
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
