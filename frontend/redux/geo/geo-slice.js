@@ -1,19 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Schema } from "mongoose";
 
 const initialState = {
   loading: true,
   programInfo: {
-    location: [],
     program_name: "",
-    description: "",
-    majors: [],
-    semesters: [],
-    courses: [],
-    estimated_budget: [],
-    prerequisites: [],
-    language: [],
-    like_cnt: 0,
+    geo_link: "",
+    location: [],
+    budget: null,
+    budget_last_update: "",
+    terms: [],
+    restrictions: "",
+    type: "",
+    calendar: "",
+    housing: "",
+    min_gpa: 0,
+    language_of_instruction: "",
+    language_prerequisite: "",
+    additional_prerequisite: "",
+    image_link: "",
+    program_link: "",
+    star_rating: 0,
+    top_tags: [],
   },
   locationInfo: {
     city: "",
@@ -21,6 +30,8 @@ const initialState = {
     description: "",
     programs: [],
     like_cnt: 0,
+    star_rating: 0,
+    top_tags: [],
   },
   error: null,
   success: false,
