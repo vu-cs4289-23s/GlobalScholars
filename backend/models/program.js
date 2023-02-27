@@ -6,7 +6,6 @@ const Program = new Schema({
   geo_link: { type: String },
   location: [{ type: Schema.ObjectId, ref: "Location" }], //for city and country data
   budget: { type: Schema.ObjectId, ref: "PriceEstimate" },
-  budget_last_update: { type: String },
   terms: [{
     type: String,
     default: "",
