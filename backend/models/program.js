@@ -1,20 +1,31 @@
 import { Schema, model } from "mongoose";
 
 const Program = new Schema({
-  location: [{ type: Schema.ObjectId, ref: "Location", required: true }],
-  program_name: { type: String },
-  description: { type: String },
-  majors: [{ type: String, default: "", }],   // not able to scrape
-  semesters: [{
+  // Scraped data
+  program_name: { type: String, index: { unique: true }, required: true},
+  geo_link: { type: String },
+  location: [{ type: Schema.ObjectId, ref: "Location" }], //for city and country data
+  budget: { type: Schema.ObjectId, ref: "PriceEstimate" },
+  budget_last_update: { type: String },
+  terms: [{
     type: String,
     default: "",
-    enum: ["Fall", "Spring", "Summer", "Maymester"],
+    enum: ["Fall", "Spring", "Full Academic Year", "Maymester", "Summer"],
   }],
-  courses: [{ type: String, default: "" }],
-  estimated_budget: [{ type: Schema.ObjectId, ref: "PriceEstimate" }],
-  prerequisites: [{ type: String, default: "" }],
-  language: [{ type: String, default: "" }],
-  like_cnt: { type: Number, default: 0 },
+  restrictions: { type: String },
+  type: { type: String },
+  calendar: { type: String },
+  housing: { type: String },
+  min_gpa: { type: Number },
+  language_of_instruction: { type: String },
+  language_prerequisite: { type: String },
+  additional_prerequisite: { type: String },
+  image_link: { type: String },
+  program_link: { type: String },
+
+  // Forum data
+  star_rating: { type: Number, default: 0 },
+  top_tags: [{ type: String }],
 });
 
 export default model("Program", Program);
