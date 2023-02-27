@@ -22,21 +22,18 @@ export default function LandingPage() {
       dispatch(getUserAsyncAction(userInfo.username));
     }
   }, [loggedIn, userInfo]);
- 
-    //dynamic array to hold program images & names (will be populated on a click of a location)
-    const [programImages, setProgramImages] = useState([]);
 
-    //bool state that displays programs or hides them depending on location clicked
-    const [showPrograms, setShowPrograms] = useState("");
-    useEffect(() =>{
-      //fetch data here
-    }, [showPrograms])
+  //dynamic array to hold program images & names (will be populated on a click of a location)
+  const [programImages, setProgramImages] = useState([]);
+
+  //bool state that displays programs or hides them depending on location clicked
+  const [showPrograms, setShowPrograms] = useState("");
+  useEffect(() => {
+    //fetch data here
+  }, [showPrograms]);
 
   return (
-    <div
-      id="forum-page"
-      className="flex h-screen "
-    >
+    <div id="forum-page" className="flex h-screen ">
       <SideBar />
       <div className="w- h-full ">
         <div className="flex flex-col  h-1/3 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover overflow-x-hidden">
@@ -51,21 +48,19 @@ export default function LandingPage() {
         </div>
 
         <div className="grid bg-white w-[85vw] ">
-              
-            <div className="flex flex-row h-2 p-5 w-[85vw] text-2xl">
-              Programs By Location:
-            </div>
+          <div className="flex flex-row h-2 p-5 w-[85vw] text-2xl">
+            Programs By Location:
+          </div>
 
           {/* displayed locations  */}
-            <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-              <ScrollingImages rounded={true} images={images} />
-            </div>
+          <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
+            <ScrollingImages rounded={true} images={images} />
+          </div>
 
           {/* programs popout  */}
-           <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-              <ScrollingImages images={images} />
+          <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
+            <ScrollingImages images={images} />
           </div>
-        
         </div>
       </div>
 

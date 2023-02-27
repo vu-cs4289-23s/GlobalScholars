@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
-import { getForumDataByName }  from "../redux/geo/geo-slice.js";
+import { getForumDataByName } from "../redux/geo/geo-slice.js";
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
-  const { programInfo, locationInfo } = useSelector((state)  => state.geo);
+  const { programInfo, locationInfo } = useSelector((state) => state.geo);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useParams();
@@ -38,9 +38,16 @@ export default function ForumPage() {
       </div>
 
       <div className="bg-blue-200">
-        <img className="flex h-1/4 w-screen object-center object-cover" src="../../frontend/assets/copenhagen-forum-photo.png" />
+        <img
+          className="flex h-1/4 w-screen object-center object-cover"
+          src="copenhagen-forum-photo.png"
+        />
         <CityDescription
-          description={locationInfo.length > 0 ? locationInfo[0].description : "This location does not exist."}
+          description={
+            locationInfo.length > 0
+              ? locationInfo[0].description
+              : "This location does not exist."
+          }
           city={locationInfo.length > 0 ? locationInfo[0].city : "N/a"}
           country={locationInfo.length > 0 ? locationInfo[0].country : "N/a"}
         />

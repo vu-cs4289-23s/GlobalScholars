@@ -12,6 +12,9 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    outDir: "./backend/dist",
+  },
   plugins: [
     react(),
     viteCompression({
