@@ -31,8 +31,7 @@ const SideBar = () => {
   //state management (what states will we need?)
   return (
 
-    <div className="flex flex-row sm:flex-col p-6 h-24 w-screen sm:h-full sm:w-64 w-full fixed sm:relative bottom-0 gap-4 bg-sky-800">
-
+    <div className="flex flex-row sm:flex-col p-6 h-24 sm:h-full sm:w-64 w-full fixed sm:sticky   bottom-0 gap-4 bg-sky-800 z-10">
       {/* logo  */}
       <div
         className="w-full sm:flex justify-center  text-white text-lg indent-1 hidden sm:visible"
@@ -65,6 +64,15 @@ const SideBar = () => {
           <img src={speechBubbleIcon} width={40} />
           <p className="invisible sm:visible text-sm sm:text-xl text-middle p-2 hover:text-blue-300 hover:underline underline-offset-4">
             Forum
+          </p>
+        </div>
+        <div
+            className=" text-white font-bold  sm:flex hover:cursor-pointer"
+            onClick={() => navigate("/newpost")}
+        >
+          <img src={speechBubbleIcon} width={40} />
+          <p className="invisible sm:visible text-sm sm:text-xl text-middle p-2 hover:text-blue-300 hover:underline underline-offset-4">
+            Make a Post
           </p>
         </div>
         <div

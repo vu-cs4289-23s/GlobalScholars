@@ -1,5 +1,4 @@
 // Connect to mongo
-
 const db = connect("mongodb://localhost:55000/globalscholars");
 
 // Insert user
@@ -24,7 +23,7 @@ db.users.insertOne({
 
 // Insert location
 db.locations.insertOne({
-  city: "Copenhagen",
+  city: "copenhagen",
   country: "Denmark",
   description: "This will be an auto generated description of the location.",
   // programs: [discopenhagen._id],
@@ -79,3 +78,6 @@ db.posts.insertMany([
     saves: 4,
   },
 ]);
+
+// Helpful to test Forum
+db.locations.insertOne({ city: "paris", country: "france", description: "This will be a description about Paris!", like_cnt: 250 });
