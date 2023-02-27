@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { login, register } from "../user/user-slice.js";
 
 const backendURL = "/api/v1";
 
 const initialState = {
   postInfo: {
+    _id: "",
     owner: "",
     timestamp: Date.now(),
     content: "",
@@ -25,6 +27,12 @@ const postSlice = createSlice({
   initialState,
   reducers: {
     getPosts: (state, action) => {
+      state.loading = false;
+      state.postInfo = action.payload;
+      state.success = true;
+      state.error = null;
+    },
+    submitPost: (state, action) => {
       state.loading = false;
       state.postInfo = action.payload;
       state.success = true;
@@ -70,6 +78,22 @@ export const getPostsByUserAsyncAction = (user) => async (dispatch) => {
   }
 };
 
-export const { getPosts, error } = postSlice.actions;
+export const submitNewForumPost = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let response = await axios.post(`${backendURL}/post`, data, config);
+    // New Post ID sent back to client
+    dispatch(submitPost(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+}
+
+export const { getPosts, submitPost, error } = postSlice.actions;
 
 export default postSlice.reducer;
