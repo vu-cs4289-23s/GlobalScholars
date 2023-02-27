@@ -6,7 +6,28 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState} from "react";
 
+import {getLocationByNameAsyncAction}  from "../redux/geo/geo-slice.js";
+
+
+
+
+
 export default function LandingPage() {
+
+
+  const dispatch = useDispatch();
+  const { loggedIn, userToken, loading, success, userInfo } = useSelector(
+    (state) => state.user
+  );
+  const navigate = useNavigate();
+  const logOutHandle = () => {
+    dispatch(logoutAction({}));
+  };
+  useEffect(() => {
+    if (loggedIn === false && userInfo.username !== "") {
+      dispatch(getUserAsyncAction(userInfo.username));
+    }
+  }, [loggedIn, userInfo]);
 
   //get all landing pages into images 
   var images = [{name: "Barcelona, Spain",  src: "frontend/images/landing-locations/barcelona.jpg"},
@@ -24,12 +45,6 @@ export default function LandingPage() {
                 {name: "Budapest, Hungary", src:"frontend/images/landing-locations/budapest.jpeg"},
                 {name: "Vienna, Austria", src:"frontend/images/landing-locations/vienna.jpeg"},]
   
-  const onImageClick = (event, name) => {
-    console.log(event);
-    console.log(name);
-    setShowPrograms(name);
-  }
-
   //dynamic array to hold program images & names (will be populated on a click of a location)
   const [programImages, setProgramImages] = useState([]);
 
@@ -39,19 +54,21 @@ export default function LandingPage() {
     //fetch data here
   }, [showPrograms])
 
-  const dispatch = useDispatch();
-  const { loggedIn, userToken, loading, success, userInfo } = useSelector(
-    (state) => state.user
-  );
-  const navigate = useNavigate();
-  const logOutHandle = () => {
-    dispatch(logoutAction({}));
-  };
-  useEffect(() => {
-    if (loggedIn === false && userInfo.username !== "") {
-      dispatch(getUserAsyncAction(userInfo.username));
-    }
-  }, [loggedIn, userInfo]);
+  const {locationInfo} = useSelector((state)  => state.geo);
+
+  const onImageClick = (event, name) => {
+    console.log(event);
+    console.log(name);
+    // setShowPrograms(name);
+    console.log(name.split(",")[0].toLowerCase())
+    dispatch(getLocationByNameAsyncAction(name.split(",")[0].toLowerCase()))
+
+    const programs = locationInfo.programs;
+  }
+ 
+
+
+
   return (
     <div
       id="forum-page"
