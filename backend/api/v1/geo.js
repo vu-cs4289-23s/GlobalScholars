@@ -98,38 +98,21 @@ const GEOData = (app) => {
    * @return {200} Program information
    */
   app.get("/api/v1/geo/forum/:name", async (req, res) => {
-    let program;
+    let program, location;
     try {
-      // Try to fetch for a matching program name
+      // Try to fetch for a matching program or location name
       program = await app.models.Program.find({ program_name: req.params.name.toLowerCase() });
-      console.log(program);
+      location = await app.models.Location.find({ city: req.params.name.toLowerCase() });
 
-      if (program === null) {
-        // Program doesn't exist
-
-        // Try to fetch for a matching location name
-        let location;
-        try {
-          location = await app.models.Location.find({ city: req.params.name.toLowerCase() });
-          console.log(location);
-
-          if (location === null) {
-            // Neither program or location of specified name exist
-            res.status(404).send({ error: `the specified name ${req.params.name} does not exist as a program or location` });
-          } else {
-            // Successful Location fetch, send to client
-            res.status(200).send(location);
-          }
-        } catch (err) {
-          res.status(404).send({ error: `the specified name ${req.params.name} does not exist as a location` });
-        }
-      } else {
-        // Successful Program fetch, send to client
-        res.status(200).send(program);
+      // Successful fetch, send to client
+      const data = {
+        location: location,
+        program: program,
       }
+      res.status(200).send(data);
     } catch (err) {
-      console.log(`Program.get failure: ${err}`);
-      res.status(404).send({ error: `the specified name ${req.params.name} does not exist as a program` });
+      console.log(`Program/Location.get failure: ${err}`);
+      res.status(404).send({ error: `the specified name ${req.params.name} does not exist as a program or location` });
     }
   });
 };

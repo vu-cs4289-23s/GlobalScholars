@@ -1,13 +1,11 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Tag from "../all-forums/tag.jsx";
 import Rating from "../all-forums/rating.jsx";
 import ProgramLink from "../all-forums/program-link.jsx";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
 
-const CityDescription = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const CityDescription = ({ city, country, description }) => {
+  // Format data
+  city = city.charAt(0).toUpperCase() + city.slice(1);
+  country = country.charAt(0).toUpperCase() + country.slice(1);
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg absolute">
@@ -15,15 +13,11 @@ const CityDescription = () => {
         <span className="text-[30px]">
           <span className="content-start row ">
             Travel To:
-            <span className="font-bold"> Copenhagen, Denmark</span>
+            <span className="font-bold"> {city}, {country}</span>
           </span>
         </span>
         <p>
-          Copenhagen is the capital and largest city of Denmark, known for its
-          beautiful architecture, rich history, and vibrant cultural scene, as
-          well as being a hub for innovation and sustainability. The city is
-          also famous for attractions such as Tivoli Gardens, The Little Mermaid
-          statue, and the historic district of Nyhavn.
+          {description}
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
