@@ -32,7 +32,6 @@ const postSlice = createSlice({
       state.error = null;
     },
     submitPost: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       state.postInfo = action.payload;
       state.success = true;
@@ -42,6 +41,12 @@ const postSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+    reset: (state, action) => {
+      state.loading = initialState.loading;
+      state.postInfo = initialState.postInfo;
+      state.success = initialState.success;
+      state.error = initialState.error;
+    }
   }
 });
 
@@ -79,37 +84,25 @@ export const getPostsByUserAsyncAction = (user) => async (dispatch) => {
 };
 
 export const submitNewForumPost = (data) => async (dispatch) => {
-  // try {
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   let response = await axios.post(`${backendURL}/post`, data, config);
-  //   // New Post ID sent back to client
-  //   console.log(response.data);
-  //   dispatch(submitPost(response.data));
-  // } catch (error) {
-  //   console.log(error);
-  //   dispatch(error(error));
-  // }
+  try {
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    const response = await axios
-      .post(`${backendURL}/post`, data, config)
-      .then(() => {
-        console.log(response.data);
-        dispatch(submitPost(response.data));
-    })
-      .catch((err) => {
-      console.log(err);
-      dispatch(error(err));
-    });
+    const response = await axios.post(`${backendURL}/post`, data, config);
+  //  console.log(response.data);
+    dispatch(submitPost(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
 }
 
-export const { getPosts, submitPost, error } = postSlice.actions;
+export const resetPost = () => (dispatch) => {
+  dispatch(reset());
+}
+
+export const { getPosts, submitPost, reset, error } = postSlice.actions;
 
 export default postSlice.reducer;

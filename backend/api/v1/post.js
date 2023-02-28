@@ -12,10 +12,9 @@ const Post = (app) => {
    */
   app.post("/api/v1/post", async (req, res) => {
     console.log(req.session.user);
-
     // Verify user is logged in
-    // if (!req.session.user)
-    //   return res.status(401).send({ error: "unauthorized" });
+    if (!req.session.user)
+      return res.status(401).send({ error: "unauthorized" });
 
     // Define post schema
     const schema = object({
@@ -30,8 +29,6 @@ const Post = (app) => {
     let data;
     try {
       data = await schema.validate(await req.body);
-
-      console.log(data);
 
       // Set up new post
       let newPost = {
@@ -49,8 +46,6 @@ const Post = (app) => {
 
       // Save post to model
       let post = new app.models.Post(newPost);
-
-      console.log(post);
 
       try {
         await post.save();

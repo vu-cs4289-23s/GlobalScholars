@@ -2,39 +2,12 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { submitNewForumPost } from "../../../redux/post/post-slice.js";
-import { Schema } from "mongoose";
+import { submitNewForumPost, resetPost } from "../../../redux/post/post-slice.js";
 
 const CityPost = () => {
-
-    const [title, setTitle] = useState("");
-    const [review, setReview] = useState("1");
-    const [color, setColor] = useState("red");
-
-    const [overallRating, setOverallRating] = useState(0);
-    const [safetyRating, setSafetyRating] = useState(0);
-    const [affordabilityRating, setAffordabilityRating] = useState(0);
-    const [sightsRating, setSightsRating] = useState(0);
-
-    const onClickPost = async () => {
-        console.log("post");
-    };
-
     const dispatch = useDispatch();
-    const { submitPost } = useSelector((state) => state.post);
-
-    const onSubmit = (ev) => {
-        ev.preventDefault();
-
-        const post = {
-            title: state.title,
-            content: state.content,
-        }
-
-        console.log(`Posting... ${post}`);
-        dispatch(submitNewForumPost(post));
-    };
-
+    const navigate = useNavigate();
+    const { postInfo, success } = useSelector((state) => state.post);
     let [error, setError] = useState("");
     let [state, setState] = useState({
         // owner: "",
@@ -51,6 +24,16 @@ const CityPost = () => {
         // top_tags; [],
     });
 
+    const onSubmit = (ev) => {
+        ev.preventDefault();
+        const post = {
+            title: state.title,
+            content: state.content,
+        }
+        console.log(`Posting...`);
+        dispatch(submitNewForumPost(post));
+    };
+
     const onChange = (ev) => {
         setError("");
         // Update from form and clear errors
@@ -60,7 +43,13 @@ const CityPost = () => {
         });
     };
 
-    console.log(state);
+    useEffect(() => {
+        if (postInfo && success) {
+            // reset post state
+            dispatch(resetPost());
+            navigate("/forum");
+        }
+    }, [postInfo])
 
     return (
         <div className="flex w-full bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4 overflow-y-scroll">
