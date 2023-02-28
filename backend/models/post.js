@@ -7,13 +7,12 @@ const Post = new Schema({
   tags: [{
     type: String,
     required: true,
-    enum: [],   // TODO
+    enum: ["Travel", "Language", "Reviews", "Academic", "Culture", "Other", "Sights",
+    "Housing", "Social", "Cost", "Foods", "Weather", "Location", "Safety"],
   }],
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
   saves: { type: Number, default: 0 },
-
-  // required to link to either a program or a location ?
   location: { type: Schema.ObjectId, ref: "Location" },
   program: { type: Schema.ObjectId, ref: "Program" },
 });

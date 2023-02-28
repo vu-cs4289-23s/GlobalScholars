@@ -54,7 +54,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={incrementCounter}>Increment {counter}</button>
-        <button onClick={decrementCounter}>Decerement {counter}</button>
+        <button onClick={decrementCounter}>Decrement {counter}</button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
@@ -78,6 +78,9 @@ function App() {
 
       <div>
         <NavLink to="/forum">Forum Page</NavLink>
+      </div>
+      <div>
+        <NavLink to="/forum/powerful">Forum Page with specified name of page</NavLink>
       </div>
       <div>
         <NavLink to="/landing">Landing Page</NavLink>

@@ -1,11 +1,19 @@
 import { Schema, model } from "mongoose";
 
 const Location = new Schema({
-  city: { type: String },
+  // Scraped data
+  city: { type: String, index: { unique: true }, required: true},
   country: { type: String },
   description: { type: String },
   programs: [ { type: Schema.ObjectId, ref: "Program" } ],
   like_cnt: { type: Number, default: 0 },
+
+  // Forum data
+  overall_rating: { type: Number, default: 0 },
+  safety_rating: { type: Number, default: 0 },
+  affordability_rating: { type: Number, default: 0 },
+  sightseeing_rating: { type: Number, default: 0 },
+  top_tags: [{ type: String }],
 });
 
 export default model("Location", Location);

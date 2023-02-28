@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   safelist: [
+    "bg-blue-500",
+    "bg-indigo-500",
     "bg-blue-300",
     "bg-amber-300",
     "bg-rose-300",
