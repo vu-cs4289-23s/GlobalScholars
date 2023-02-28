@@ -25,10 +25,10 @@ export default function ForumPage() {
 
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-200">
-      <div>
+      <div className="overflow-y-hidden">
         <SideBar />
       </div>
-      <div className="bg-blue-200">
+      <div className="bg-blue-200 overscroll-contain">
         <img className="flex h-1/4 w-screen object-center object-cover" src="frontend/assets/copenhagen-forum-photo.png" />
         <CityDescription />
       </div>
