@@ -14,7 +14,7 @@ const Program = new Schema({
   restrictions: { type: String },
   type: { type: String },
   calendar: { type: String },
-  housing: { type: String },
+  housing: [{ type: String }],  // make enum?
   min_gpa: { type: Number },
   language_of_instruction: { type: String },
   language_prerequisite: { type: String },

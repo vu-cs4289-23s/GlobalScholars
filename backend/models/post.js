@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const Post = new Schema({
   owner: { type: Schema.ObjectId, ref: "User", required: true },
   timestamp: { type: Date },
+  title: { type: String, default: "" },
   content: { type: String, default: "" },
   tags: [{
     type: String,
