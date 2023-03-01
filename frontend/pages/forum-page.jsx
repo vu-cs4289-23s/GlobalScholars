@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName }  from "../redux/geo/geo-slice.js";
-import axios from "axios";
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -16,7 +15,7 @@ export default function ForumPage() {
   const { name } = useParams();
 
   const logOutHandle = () => {
-    dispatch(logoutAction({}));
+    dispatch(logoutAction());
   };
 
   useEffect(() => {

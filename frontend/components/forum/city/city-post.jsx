@@ -1,21 +1,97 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { submitNewForumPost, resetPost } from "../../../redux/post/post-slice.js";
+import { BiChevronDown } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const CityPost = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { postInfo, success } = useSelector((state) => state.post);
+    let [error, setError] = useState("");
+    let [state, setState] = useState({
+        // owner: "",
+        // timestamp: Date.now(),
+        title: "",
+        content: "",
+        tags: [],
+        city: "",
+        program_name: "",
+        overall_rating: 0,
+        safety_rating: 0,
+        affordability_rating: 0,
+        sightseeing_rating: 0,
+        // top_tags; [],
+    });
 
-    const [title, setTitle] = useState("");
-    const [review, setReview] = useState("1");
-    const [color, setColor] = useState("red");
+    // For the location selector code
+    const [countries, setCountries] = useState(null);
+    const [inputValue, setInputValue] = useState("");
+    const [selected, setSelected] = useState("");
+    const [open, setOpen] = useState(false);
 
-    const [overallRating, setOverallRating] = useState(0);
-    const [safetyRating, setSafetyRating] = useState(0);
-    const [affordabilityRating, setAffordabilityRating] = useState(0);
-    const [sightsRating, setSightsRating] = useState(0);
+    useEffect(() => {
+        // dispatch geo-slice call here once locations are all in the DB
 
-    const onClickPost = async () => {
-        console.log("post");
+        setCountries([
+            {name: "Barcelona, Spain",  src: "frontend/images/landing-locations/barcelona.jpg"},
+            {name: "Copenhagen, Denmark", src: "frontend/images/landing-locations/copenhagen.jpeg"},
+            {name: "Edinburgh, Scotland", src: "frontend/images/landing-locations/edinburgh.jpeg"},
+            {name: "Florence, Italy", src:"frontend/images/landing-locations/florence.jpeg"},
+            {name: "Glasgow, Scotland", src:"frontend/images/landing-locations/glasgow.jpeg"},
+            {name: "London, United Kingdom", src:"frontend/images/landing-locations/london.jpeg"},
+            {name: "Madrid, Spain", src:"frontend/images/landing-locations/madrid.jpeg"},
+            {name: "Paris, France", src:"frontend/images/landing-locations/paris.jpeg"},
+            {name: "Rome, Italy", src:"frontend/images/landing-locations/rome.jpeg"},
+            {name: "Seville, Spain", src:"frontend/images/landing-locations/seville.jpeg"},
+            {name: "Stockholm, Sweden", src:"frontend/images/landing-locations/stockholm.jpeg"},
+            {name: "Prague, Czech Republic", src:"frontend/images/landing-locations/prague.jpeg"},
+            {name: "Budapest, Hungary", src:"frontend/images/landing-locations/budapest.jpeg"},
+            {name: "Vienna, Austria", src:"frontend/images/landing-locations/vienna.jpeg"},
+        ]);
+    }, []);
+
+    const onSubmit = (ev) => {
+        ev.preventDefault();
+        const post = {
+            title: state.title,
+            content: state.content,
+            city: state.city,
+            program_name: state.program_name,
+        }
+        console.log(`Posting...`);
+        dispatch(submitNewForumPost(post));
     };
+
+    const onChange = (ev) => {
+        setError("");
+        // Update from form and clear errors
+        setState({
+            ...state,
+            [ev.target.name]: ev.target.value,
+        });
+    };
+
+    useEffect(() => {
+        if (selected && selected !== "") {
+            // grab just the city name and set its state
+            const selectedCity = selected.split(",")[0].toLowerCase();
+            setState({
+                ...state,
+                city: selectedCity,
+            });
+        }
+    }, [selected]);
+
+    useEffect(() => {
+        if (postInfo && success) {
+            // reset post state
+            dispatch(resetPost());
+            navigate("/forum");
+        }
+    }, [postInfo])
 
     return (
         <div className="flex w-full bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4 overflow-y-scroll">
@@ -40,8 +116,68 @@ const CityPost = () => {
                             name="title"
                             type="text"
                             placeholder="Post Title"
+                            onChange={onChange}
+                            value={state.title}
                         />
                     </div>
+                </div>
+                {/* Location/Program Selector */}
+                <div className="flex border-black border-2 rounded-lg flex-col my-1">
+                        <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
+      <div
+        onClick={() => setOpen(!open)}
+        className={`bg-white w-full p-2 flex items-center justify-between rounded ${
+          !selected && "text-gray-700"
+        }`}
+      >
+        {selected
+          ? selected?.length > 25
+            ? selected?.substring(0, 25) + "..."
+            : selected
+          : "Select Location"}
+          <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+      </div>
+      <ul
+        className={`bg-white mt-2 overflow-y-auto ${
+          open ? "max-h-60" : "max-h-0"
+        } `}
+      >
+        <div className="flex items-center px-2 sticky top-0 bg-white">
+          <AiOutlineSearch size={18} className="text-gray-700" />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value.toLowerCase())}
+            placeholder="Enter location name"
+            className="placeholder:text-gray-700 p-2 outline-none"
+          />
+        </div>
+          {countries?.map((country) => (
+            <li
+              key={country?.name}
+              className={`p-2 text-sm hover:bg-sky-600 hover:text-white
+            ${
+                country?.name?.toLowerCase() === selected?.toLowerCase() &&
+                "bg-sky-600 text-white"
+              }
+            ${
+                country?.name?.toLowerCase().startsWith(inputValue)
+                  ? "block"
+                  : "hidden"
+              }`}
+              onClick={() => {
+                  if (country?.name?.toLowerCase() !== selected.toLowerCase()) {
+                      setSelected(country?.name);
+                      setOpen(false);
+                      setInputValue("");
+                  }
+              }}
+            >
+                {country?.name}
+            </li>
+          ))}
+      </ul>
+    </div>
                 </div>
                 {/* Post Review */}
                 <div className="flex border-black border-2 rounded-lg flex-col my-1">
@@ -57,10 +193,12 @@ const CityPost = () => {
                     <div className="flex relative m-2 h-32">
                         <input
                             className="flex flex-auto"
-                            id="review"
-                            name="review"
+                            id="content"
+                            name="content"
                             type="text"
                             placeholder="Your Review"
+                            onChange={onChange}
+                            value={state.content}
                         />
                     </div>
                 </div>
@@ -221,36 +359,41 @@ const CityPost = () => {
                                 <input
                                     type="radio"
                                     id="overall1"
-                                    name="overall"
+                                    name="overall_rating"
                                     value="1"
+                                    onChange={onChange}
                                 />
                                 {/*<label htmlFor="overall2"> 2 </label>*/}
                                 <input
                                     type="radio"
                                     id="overall2"
-                                    name="overall"
+                                    name="overall_rating"
                                     value="2"
+                                    onChange={onChange}
                                 />
                                 {/*<label htmlFor="overall3"> 3 </label>*/}
                                 <input
                                     type="radio"
                                     id="overall3"
-                                    name="overall"
+                                    name="overall_rating"
                                     value="3"
+                                    onChange={onChange}
                                 />
                                 {/*<label htmlFor="overall4"> 4 </label>*/}
                                 <input
                                     type="radio"
                                     id="overall4"
-                                    name="overall"
+                                    name="overall_rating"
                                     value="4"
+                                    onChange={onChange}
                                 />
                                 {/*<label htmlFor="overall5"> 5 - Awesome </label>*/}
                                 <input
                                     type="radio"
-                                    id="overall2"
-                                    name="overall"
+                                    id="overall5"
+                                    name="overall_rating"
                                     value="5"
+                                    onChange={onChange}
                                 />
                             </grid-cols-5>
                             <grid-cols-2 className="">
@@ -271,32 +414,37 @@ const CityPost = () => {
                                 <input
                                     type="radio"
                                     id="safety1"
-                                    name="safety"
+                                    name="safety_rating"
                                     value="1"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="safety2"
-                                    name="safety"
+                                    name="safety_rating"
                                     value="2"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="safety3"
-                                    name="safety"
+                                    name="safety_rating"
                                     value="3"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="safety4"
-                                    name="safety"
+                                    name="safety_rating"
                                     value="4"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="safety5"
-                                    name="safety"
+                                    name="safety_rating"
                                     value="5"
+                                    onChange={onChange}
                                 />
                             </grid-cols-5>
                             <grid-cols-2 className="">
@@ -317,32 +465,37 @@ const CityPost = () => {
                                 <input
                                     type="radio"
                                     id="affordability1"
-                                    name="affordability"
+                                    name="affordability_rating"
                                     value="1"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="affordability2"
-                                    name="affordability"
+                                    name="affordability_rating"
                                     value="2"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="affordability3"
-                                    name="affordability"
+                                    name="affordability_rating"
                                     value="3"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="affordability4"
-                                    name="affordability"
+                                    name="affordability_rating"
                                     value="4"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="affordability5"
-                                    name="affordability"
+                                    name="affordability_rating"
                                     value="5"
+                                    onChange={onChange}
                                 />
                             </grid-cols-5>
                             <grid-cols-2 className="">
@@ -363,32 +516,37 @@ const CityPost = () => {
                                 <input
                                     type="radio"
                                     id="sights1"
-                                    name="sights"
+                                    name="sightseeing_rating"
                                     value="1"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="sights2"
-                                    name="sights"
+                                    name="sightseeing_rating"
                                     value="2"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="sights3"
-                                    name="sights"
+                                    name="sightseeing_rating"
                                     value="3"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="sights4"
-                                    name="sights"
+                                    name="sightseeing_rating"
                                     value="4"
+                                    onChange={onChange}
                                 />
                                 <input
                                     type="radio"
                                     id="sights5"
-                                    name="sights5"
+                                    name="sightseeing_rating"
                                     value="5"
+                                    onChange={onChange}
                                 />
                             </grid-cols-5>
                             <grid-cols-2 className="">
@@ -426,7 +584,7 @@ const CityPost = () => {
                     <button
                         id="submitBtn"
                         type="submit"
-                        onClick={onClickPost}
+                        onClick={onSubmit}
                     >
                         Submit
                     </button>

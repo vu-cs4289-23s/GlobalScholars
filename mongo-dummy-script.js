@@ -1,4 +1,6 @@
 // Connect to mongo
+import { Schema } from "mongoose";
+
 const db = connect("mongodb://localhost:55000/globalscholars");
 
 // Insert user
@@ -79,5 +81,53 @@ db.posts.insertMany([
   },
 ]);
 
+// BELOW IS FOR FORUM TEST PURPOSES
+
+
+// ObjectId("63fd643be253a847ddf1057d")
+db.locations.insertOne({
+  city: "Copenhagen",
+  country: "Denmark",
+  description: "Copenhagen is the coolest city ever this is my detailed description of the city!",
+  like_cnt: 1087,
+  overall_rating: 4.8,
+  safety_rating: 4.5,
+  affordability_rating: 2.0,
+  sightseeing_rating: 3.2,
+  top_tags: ["Social", "Travel", "Safety"],
+});
+
 // Helpful to test Forum
+
+// ObjectId("63fd659de253a847ddf1057e")
+db.programs.insertOne({
+  program_name: "DIS Copenhagen",
+  geo_link: "https://www.vanderbilt.edu/geo/programs/?program_id=1005",
+  location: [ObjectId("63fd643be253a847ddf1057d")],
+  terms: ["Fall", "Full Academic Year", "Spring"],
+  restrictions: "Vanderbilt applicants only",
+  type: "Study Center",
+  calendar: "Similar to VU",
+  housing: ["Apartment (shared)", "Dormitory", "Homestay"],
+  min_gpa: 3,
+  language_of_instruction: "English",
+  language_prerequisite: "No",
+  additional_prerequisite: "Yes, see program homepage",
+  image_link: "https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2017/12/11205256/brochure_1005.jpg",
+  program_link: "https://disabroad.org/copenhagen/",
+  overall_rating: 4.7,
+  safety_rating: 5.0,
+  affordability_rating: 2.3,
+  sightseeing_rating: 3.8,
+  top_tags: ["Safety", "Travel", "Social"],
+});
+
+// add programs to Copenhagen data now
+db.locations.updateOne(
+  { city: "Copenhagen" },
+  { $set: {"programs": [ObjectId("63fd659de253a847ddf1057e")]} },
+  false,
+  true
+);
+
 db.locations.insertOne({ city: "paris", country: "france", description: "This will be a description about Paris!", like_cnt: 250 });
