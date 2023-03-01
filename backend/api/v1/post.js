@@ -119,9 +119,12 @@ const Post = (app) => {
    */
   app.get("/api/v1/posts/location/:location", async (req, res) => {
     // Fetch posts filtering by location
-    let data;
+    let data, location;
     try {
-      data = await app.models.Post.find({ location: req.params.location });
+      location = await app.models.Location.find({
+        city: { $regex : new RegExp(req.params.location, "i") }
+      });
+      data = await app.models.Post.find({ location: location._id });
 
       // Check if posts exist
       if (!data) {
@@ -145,10 +148,13 @@ const Post = (app) => {
    */
   app.get("/api/v1/posts/location/:location/:tags", async (req, res) => {
     // Fetch posts filtering by location and tags
-    let data;
+    let data, location;
     try {
+      location = await app.models.Location.find({
+        city: { $regex : new RegExp(req.params.location, "i") }
+      });
       data = await app.models.Post.find({
-        location: req.params.location,
+        location: location._id,
         tags: req.params.tags,
       });
 
@@ -173,9 +179,12 @@ const Post = (app) => {
    */
   app.get("/api/v1/posts/program/:program", async (req, res) => {
     // Fetch posts filtering by program
-    let data;
+    let data, program;
     try {
-      data = await app.models.Post.find({ program: req.params.program });
+      program = await app.models.Program.find({
+        program_name: { $regex : new RegExp(req.params.program, "i") }
+      });
+      data = await app.models.Post.find({ program: program._id });
 
       // Check if posts exist
       if (!data) {
@@ -199,10 +208,13 @@ const Post = (app) => {
    */
   app.get("/api/v1/posts/program/:program/:tags", async (req, res) => {
     // Fetch posts filtering by program and tags
-    let data;
+    let data, program;
     try {
+      program = await app.models.Program.find({
+        program_name: { $regex : new RegExp(req.params.program, "i") }
+      });
       data = await app.models.Post.find({
-        program: req.params.program,
+        program: program._id,
         tags: req.params.tags,
       });
 
@@ -229,7 +241,9 @@ const Post = (app) => {
     // Fetch user first
     let user;
     try {
-      user = await app.models.User.findOne({ username: req.params.user.toLowerCase() });
+      user = await app.models.User.findOne({
+        username: { $regex : new RegExp(req.params.user, "i") }
+      });
 
       // User does not exist
       if (!user) {
@@ -292,41 +306,53 @@ const Post = (app) => {
    * @return {200} Updated post
    */
   app.put("api/v1/post/edit/:id", async (req, res) => {
-    // TODO -- commented out for now
+    // Define post schema
+    const schema = object({
+      content: string().min(1).max(250),
+    });
 
-    // // Check user is logged into a session
-    // if (!req.session.user)
-    //   return res.status(401).send({ error: "unauthorized" });
-    //
-    // // Define post schema
-    // const schema = object({
-    //   content: string().min(1).max(250),
-    // });
-    //
-    // // Validate data schema
-    // let data;
-    // try {
-    //   data = await schema.validate(await req.body);
-    //
-    //   let post;
-    //   try {
-    //     // Find post
-    //     post = await app.models.Post.findById(req.params.id);
-    //
-    //     // Validate user in session owns post
-    //     if (req.session.user._id !== post.owner.toString()) {
-    //       return res.status(401).send({ error: "unauthorized" });
-    //     }
-    //
-    //   } catch (err) {
-    //
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   const message = err.details[0].message;
-    //   console.log(`Post.update validation failure: ${message}`);
-    //   res.status(400).send({ error: message });
-    // }
+    // Validate data schema
+    let data;
+    try {
+      data = await schema.validate(await req.body);
+
+      let post;
+      try {
+        // Find post
+        post = await app.models.Post.findById(req.params.id);
+
+        // Validate user in session owns post
+        if (req.session.user._id !== post.owner.toString()) {
+          return res.status(401).send({ error: "unauthorized" });
+        }
+
+        // Find Post and update contents and timestamp
+        const update =  {
+          content: data.content,
+          timestamp: Date.now(),
+        }
+        try {
+          await app.models.Post.findByIdAndUpdate(req.params.id, update, { new: true });
+          // Send success to client
+          res.status(204).end();
+        } catch (err) {
+          console.log(
+            `Post.update post not found: ${req.params.id}`
+          );
+          res.status(500).end();
+        }
+      } catch (err) {
+        console.log(
+          `Post.update post not found: ${req.params.id}`
+        );
+        res.status(500).end();
+      }
+    } catch (err) {
+      console.log(err);
+      const message = err.details[0].message;
+      console.log(`Post.update validation failure: ${message}`);
+      res.status(400).send({ error: message });
+    }
   });
 
   /**

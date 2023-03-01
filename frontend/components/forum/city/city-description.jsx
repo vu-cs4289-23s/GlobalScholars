@@ -7,8 +7,8 @@ import axios from "axios";
 
 const CityDescription = ({ city, country, description }) => {
   // Format data
-  city = city.charAt(0).toUpperCase() + city.slice(1);
-  country = country.charAt(0).toUpperCase() + country.slice(1);
+  city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+  country = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
   const [object, setObject] = useState({});
 
   const getData = () => {
