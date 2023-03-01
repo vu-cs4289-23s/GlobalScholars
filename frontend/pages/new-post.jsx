@@ -9,11 +9,11 @@ export default function NewPost() {
     const [postType, setPostType] = useState("city");
 
     return (
-        <div className="w-auto h-[100vh] flex flex-row bg-[url('/landing-background.avif')] bg-blue-200">
+        <div className="w-screen h-screen flex flex-row bg-[url('/landing-background.avif')] bg-blue-200">
             <SideBar />
-            <div className="overflow-y-scroll">
+            <div className="overflow-y-scroll h-full">
                 <div id="type-selector" className="">
-                    <div id="selector-container">
+                    <div id="selector-container" className="">
                         <div className="flex w-auto bg-white mx-20 text-left p-4 rounded-lg m-4 justify-around">
                             <div className="font-bold text-[32px]">
                                Select the type of post

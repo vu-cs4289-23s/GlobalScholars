@@ -76,9 +76,9 @@ export default function LandingPage() {
     >
       <SideBar />
       <div className="overflow-y-scroll">
-        <div className="flex flex-col h-1/3 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover">
+        <div className="flex flex-col h-1/2 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover justify-end">
           <div className="grid  m-10 p-10 gap-2">
-            <div className="flex h-2/3 justify-center items-center text-4xl font-bold font-mono text-white">
+            <div className="flex h-2/3 justify-center text-4xl font-bold font-mono text-white mb-3">
               Study Abroad Search
             </div>
             <div className="flex h-1/2 justify-center items-bottom text-4xl">
