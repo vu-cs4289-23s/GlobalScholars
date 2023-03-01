@@ -11,16 +11,17 @@ import { getLocationByNameAsyncAction } from "../../../redux/geo/geo-slice.js";
 import ScrollingImages from "../../all-pages/scrolling-images.jsx";
 import images from "../../../../images.js";
 
-const CityDescription = ({ city, country, description }) => {
+const CityDescription = ({ city,
+                           country,
+                           description,
+                           top_tags,
+                           overall_rating,
+                           safety_rating,
+                           affordability_rating,
+                           sightseeing_rating }) => {
 
-  const dispatch = useDispatch();
-
-  // Format data
-  city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
-  country = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
   const [object, setObject] = useState({});
   const { programInfo, locationInfo } = useSelector((state)  => state.geo);
-
 
   const getData = () => {
     axios
@@ -45,16 +46,15 @@ const CityDescription = ({ city, country, description }) => {
   var programImages = [{name: "DIS Copenhagen",  src: "/forum-locations/DIS-Copenhagen.png"}]
 
 
-  const onForumLoad = (event, name) => {
-    console.log(event);
-    console.log(name);
-    // setShowPrograms(name);
-    console.log(name.split(",")[0].toLowerCase())
-    dispatch(getLocationByNameAsyncAction(name.split(",")[0].toLowerCase()))
-
-    const programs = locationInfo.programs;
-  }
-
+  // const onForumLoad = (event, name) => {
+  //   console.log(event);
+  //   console.log(name);
+  //   // setShowPrograms(name);
+  //   console.log(name.split(",")[0].toLowerCase())
+  //   dispatch(getLocationByNameAsyncAction(name.split(",")[0].toLowerCase()))
+  //
+  //   const programs = locationInfo.programs;
+  // }
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg absolute">
@@ -70,18 +70,18 @@ const CityDescription = ({ city, country, description }) => {
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag content={locationInfo.top_tags[0]} color={"bg-red-400"} />
-          <Tag content={locationInfo.top_tags[1]} color={"bg-red-400"} />
-          <Tag content={locationInfo.top_tags[2]} color={"bg-red-400"} />
-          <Tag content={locationInfo.top_tags[3]} color={"bg-red-400"} />
-          <Tag content={locationInfo.top_tags[4]} color={"bg-red-400"} />
+          <Tag content={top_tags[0]}/>
+          <Tag content={top_tags[1]} />
+          <Tag content={top_tags[2]} />
+          <Tag content={top_tags[3]} />
+          <Tag content={top_tags[4]} />
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
-          <Rating rating={locationInfo.star_rating} type={"Overall"} />
-          {/*<Rating rating={3.7} type={"Safety"} />*/}
-          {/*<Rating rating={4.4} type={"Affordability"} />*/}
-          {/*<Rating rating={2.9} type={"Sightseeing"} />*/}
+          <Rating rating={overall_rating} type={"Overall"}/>
+          <Rating rating={safety_rating} type={"Safety"}/>
+          <Rating rating={affordability_rating} type={"Affordability"} />
+          <Rating rating={sightseeing_rating} type={"Sightseeing"} />
         </div>
         <p className="py-4 font-bold text-[24px]">
           Like what you see? Study Here!
