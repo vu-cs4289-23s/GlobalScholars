@@ -19,11 +19,12 @@ export default function NewPost() {
                                Select the type of post
                             </div>
                             <div className="flex justify-center align-middle items-center">
-                                <select name="post-type" id="post-type" onChange={(e=>setPostTypeCity(e.target.value))} className="bg-white border-2 border-black rounded-lg m-2 p-2">
+                                <select name="post-type" id="post-type" onChange={(e=>setPostType(e.target.value))} className="bg-white border-2 border-black rounded-lg m-2 p-2">
                                     <option value={"city"}>City</option>
                                     <option value={"program"}>Program</option>
                                 </select>
                             </div>
+                            {postType}
                         </div>
                     </div>
                 </div>

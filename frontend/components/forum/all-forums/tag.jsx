@@ -2,7 +2,7 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 
 const Tag = ({ content, color, onClick }) => {
   //const navigate = useNavigate();
-    const styles = [
+    const tag = [
         "flex",
         "rounded-full",
         "bg-opacity-100",
@@ -12,7 +12,7 @@ const Tag = ({ content, color, onClick }) => {
     ]
 
   return (
-      <div className={styles.join(" ")}  onClick={onClick}>
+      <div className={tag.join(" ")}  onClick={onClick}>
         <div className="mx-2 my-1">{content}</div>
       </div>
   );

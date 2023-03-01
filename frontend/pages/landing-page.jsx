@@ -75,7 +75,7 @@ export default function LandingPage() {
       className="flex h-screen "
     >
       <SideBar />
-      <div className="w-full h-full ">
+      <div className="w-full h-full overflow-y-scroll">
         <div className="flex flex-col  h-1/3 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover overflow-x-hidden">
           <div className="grid  m-10 p-10 gap-2">
             <div className="flex h-2/3 justify-center items-center text-4xl font-bold font-mono text-white">
