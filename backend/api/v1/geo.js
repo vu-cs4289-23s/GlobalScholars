@@ -105,10 +105,10 @@ const GEOData = (app) => {
     let program, location;
     try {
       // Try to fetch for a matching program or location name
-      program = await app.models.Program.find({
+      program = await app.models.Program.findOne({
         program_name: { $regex : new RegExp(req.params.name, "i") }
       });
-      location = await app.models.Location.find({
+      location = await app.models.Location.findOne({
         city: { $regex : new RegExp(req.params.name, "i") }
       });
 
