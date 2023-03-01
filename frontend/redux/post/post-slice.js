@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { login, register } from "../user/user-slice.js";
 
 const backendURL = "/api/v1";
 
@@ -42,6 +41,12 @@ const postSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+    reset: (state, action) => {
+      state.loading = initialState.loading;
+      state.postInfo = initialState.postInfo;
+      state.success = initialState.success;
+      state.error = initialState.error;
+    }
   }
 });
 
@@ -85,8 +90,8 @@ export const submitNewForumPost = (data) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    let response = await axios.post(`${backendURL}/post`, data, config);
-    // New Post ID sent back to client
+    const response = await axios.post(`${backendURL}/post`, data, config);
+  //  console.log(response.data);
     dispatch(submitPost(response.data));
   } catch (error) {
     console.log(error);
@@ -94,6 +99,10 @@ export const submitNewForumPost = (data) => async (dispatch) => {
   }
 }
 
-export const { getPosts, submitPost, error } = postSlice.actions;
+export const resetPost = () => (dispatch) => {
+  dispatch(reset());
+}
+
+export const { getPosts, submitPost, reset, error } = postSlice.actions;
 
 export default postSlice.reducer;

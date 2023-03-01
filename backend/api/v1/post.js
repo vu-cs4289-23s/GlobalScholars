@@ -10,17 +10,18 @@ const Post = (app) => {
    * @param {req.body.program} Program program object associated with post
    * @return {201, {id: ID of new post}} Return ID of new post
    */
-  app.post("api/v1/post", async (req, res) => {
+  app.post("/api/v1/post", async (req, res) => {
     // Verify user is logged in
     if (!req.session.user)
       return res.status(401).send({ error: "unauthorized" });
 
     // Define post schema
     const schema = object({
+      title: string().required().min(1).max(50),
       content: string().required().min(1).max(250),
-      tags: array().required().min(1),
-      location: object(),
-      program: object(),
+   //   tags: array().required().min(1),
+      city: string().optional(),
+      program_name: string().optional(),
     });
 
     // Validate request body
@@ -32,17 +33,35 @@ const Post = (app) => {
       let newPost = {
         owner: req.session.user._id,
         timestamp: Date.now(),
+        title: data.title,
         content: data.content,
         tags: data.tags,
         likes: 0,
         dislikes: 0,
         saves: 0,
-        location: data.location,
-        program: data.program,
+        program: null,
+        location: null,
       };
+
+      // Try to fetch for a matching program name
+      const program = await app.models.Program.findOne({
+        program_name: { $regex : new RegExp(data.program_name, "i") }
+      });
+      if (program && program !== "") {
+        newPost.program = program._id;
+      }
+
+      // Try to fetch for a matching location name
+      const location = await app.models.Location.findOne({
+        city: { $regex : new RegExp(data.city, "i") }
+      });
+      if (location && location !== "") {
+        newPost.location = location._id;
+      }
 
       // Save post to model
       let post = new app.models.Post(newPost);
+
       try {
         await post.save();
         const query = { $push: { posts: post._id } };
@@ -51,7 +70,7 @@ const Post = (app) => {
         await app.models.User.findByIdAndUpdate(req.session.user._id, query);
 
         // Success, send Post id to client
-        res.status(201).send({ id: post._id });
+        res.status(201).send(newPost);
       } catch (err) {
         console.log(`Post.create save failure: ${err}`);
         res.status(400).send({ error: "failure creating post" });
@@ -332,7 +351,11 @@ const Post = (app) => {
           timestamp: Date.now(),
         }
         try {
-          await app.models.Post.findByIdAndUpdate(req.params.id, update, { new: true });
+          await app.models.Post.findByIdAndUpdate(
+            req.params.id,
+            { $set: update },
+            { new: true }
+          );
           // Send success to client
           res.status(204).end();
         } catch (err) {
