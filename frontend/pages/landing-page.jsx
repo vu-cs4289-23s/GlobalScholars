@@ -65,7 +65,7 @@ export default function LandingPage() {
       {name: "Siena, Italy", src:"frontend/images/landing-locations/Siena, Italy.jpeg"},
       {name: "St Andrews, United Kingdom", src:"frontend/images/landing-locations/St Andrews, United Kingdom.jpeg"},
       {name: "Stirling, United Kingdom", src:"frontend/images/landing-locations/Stirling, United Kingdom.jpeg"},
-      {name: "el Aviv, Israel", src:"frontend/images/landing-locations/Tel Aviv, Israel.jpeg"},
+      {name: "Tel Aviv, Israel", src:"frontend/images/landing-locations/Tel Aviv, Israel.jpeg"},
       {name: "Toulouse, France", src:"frontend/images/landing-locations/Toulouse, France.jpeg"},
       {name: "Turin, Italy", src:"frontend/images/landing-locations/Turin, Italy.jpeg"},
       {name: "York, United Kingdom", src:"frontend/images/landing-locations/York, United Kingdom.jpeg"},]
@@ -96,12 +96,13 @@ export default function LandingPage() {
   return (
     <div
       id="forum-page"
-      className="flex h-screen "
-    >
+      className="flex h-screen overflow-scroll ">
       <SideBar />
-      <div className="w- h-full ">
-        <div className="flex flex-col  h-1/3 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover overflow-x-hidden">
-          <div className="grid  m-10 p-10 gap-2">
+
+
+      <div className="w-full h-full overflow-y-scroll">
+        <div className= "flex flex-col w-full h-1/3 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover overflow-x-hidden">
+          <div className= "grid  m-10 p-10 gap-2">
             <div className="flex h-2/3 justify-center items-center text-4xl font-bold font-mono text-white">
               Study Abroad Search
             </div>
