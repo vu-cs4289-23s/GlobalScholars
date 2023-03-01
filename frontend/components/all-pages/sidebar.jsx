@@ -20,7 +20,8 @@ import { BsCalculatorFill, BsPersonCircle } from 'react-icons/bs';
 const NavigationContainer = tw.div`
   text-white
   font-bold 
-  sm:flex hover:cursor-pointer
+  sm:flex 
+  hover:cursor-pointer
 `
 
 const SidebarNavigationLinkTitle = tw.div`
@@ -69,7 +70,7 @@ const SideBar = () => {
       </div>
 
       {/* links */}
-      <div className="w-full flex sm:grid justify-between m-4  sm:gap-8">
+      <div className="w-full flex sm:grid items-center justify-between m-4  sm:gap-8">
         <NavigationContainer onClick={() => navigate("/landing")} >
           {/* <img src={searchIcon} width={40} height={100}/> */}
           <ImSearch size={36} />
