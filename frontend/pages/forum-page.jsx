@@ -15,7 +15,7 @@ export default function ForumPage() {
   const { name } = useParams();
 
   const logOutHandle = () => {
-    dispatch(logoutAction({}));
+    dispatch(logoutAction());
   };
 
   useEffect(() => {

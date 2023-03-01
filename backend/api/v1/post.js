@@ -11,7 +11,6 @@ const Post = (app) => {
    * @return {201, {id: ID of new post}} Return ID of new post
    */
   app.post("/api/v1/post", async (req, res) => {
-    console.log(req.session.user);
     // Verify user is logged in
     if (!req.session.user)
       return res.status(401).send({ error: "unauthorized" });
@@ -21,8 +20,8 @@ const Post = (app) => {
       title: string().required().min(1).max(50),
       content: string().required().min(1).max(250),
    //   tags: array().required().min(1),
-      location: object().optional(),
-      program: object().optional(),
+      city: string().optional(),
+      program_name: string().optional(),
     });
 
     // Validate request body
@@ -40,9 +39,25 @@ const Post = (app) => {
         likes: 0,
         dislikes: 0,
         saves: 0,
-        // location: data.location,
-        // program: data.program,
+        program: null,
+        location: null,
       };
+
+      // Try to fetch for a matching program name
+      const program = await app.models.Program.findOne({
+        program_name: { $regex : new RegExp(data.program_name, "i") }
+      });
+      if (program && program !== "") {
+        newPost.program = program._id;
+      }
+
+      // Try to fetch for a matching location name
+      const location = await app.models.Location.findOne({
+        city: { $regex : new RegExp(data.city, "i") }
+      });
+      if (location && location !== "") {
+        newPost.location = location._id;
+      }
 
       // Save post to model
       let post = new app.models.Post(newPost);

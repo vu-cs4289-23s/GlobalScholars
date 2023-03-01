@@ -58,6 +58,8 @@ const CityPost = () => {
         const post = {
             title: state.title,
             content: state.content,
+            city: state.city,
+            program_name: state.program_name,
         }
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
