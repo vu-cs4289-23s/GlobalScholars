@@ -38,7 +38,8 @@ export default function ForumPage() {
         <SideBar />
       </div>
       <div className="bg-blue-200">
-        <img className="flex h-1/4 w-screen object-center object-cover" src="../../frontend/assets/copenhagen-forum-photo.png" />
+        <img className="flex h-1/4 w-screen object-center object-cover" src="../../frontend/images/landing-locations/copenhagen.jpeg" />
+        {/*src="../../frontend/assets/landing-page-locations/{locationInfo[0].city}.jpg"*/}
         <CityDescription
           description={locationInfo.length > 0 ? locationInfo[0].description : "This location does not exist."}
           city={locationInfo.length > 0 ? locationInfo[0].city : "N/a"}
