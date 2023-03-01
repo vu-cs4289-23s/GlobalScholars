@@ -43,7 +43,7 @@ const CityDescription = ({ city,
     getData();
   }, []);
 
-  var programImages = [{name: "DIS Copenhagen",  src: "/forum-locations/DIS-Copenhagen.png"}]
+  var programImages = [{name: "DIS Copenhagen",  src: "/forum-locations/DIS-Copenhagen.png", url: "https://disabroad.org/copenhagen/"}]
 
 
   // const onForumLoad = (event, name) => {
@@ -89,7 +89,7 @@ const CityDescription = ({ city,
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
             {/* displayed locations  */}
             <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
-              <ScrollingImages rounded={true} forum={true} images={programImages} />
+              <ScrollingImages rounded={true} url={programImages.url} forum={true} images={programImages} />
           </div>
         </div>
         {object.posts && object.posts.length > 0 ? (

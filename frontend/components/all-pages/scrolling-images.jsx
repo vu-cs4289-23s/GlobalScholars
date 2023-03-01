@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getLocationByNameAsyncAction }  from "../../redux/geo/geo-slice.js";
 import { useDispatch, useSelector } from "react-redux";
 
-const ScrollingImages = ({images, rounded}) => {
+const ScrollingImages = ({images, url, rounded, forum}) => {
   const [shape, setShape] = useState("h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,9 +21,12 @@ const ScrollingImages = ({images, rounded}) => {
     console.log(`Clicking on ${ev.target.name}`);
     // Navigate to forum page for location / program clicked
     if(forum){
+      // navigate(url);
+      // this is hard and i need to figure it out
+    }
+    else {
       navigate(`/forum/${ev.target.name.split(",")[0].toLowerCase()}`);
     }
-    navigate(`/forum/${ev.target.name.split(",")[0].toLowerCase()}`);
   };
 
   const onHover =  (ev) => {
@@ -47,7 +50,7 @@ return (
     <div style={{ display: 'flex' }}>
       {images.map((image) => (
         
-          <div className="scroll-snap-align-start h-64 w-64">
+          <a className="scroll-snap-align-start h-64 w-64" href={image.url} target={"_blank"}>
             <img 
                 src={image.src}
                 name={image.name}
@@ -59,7 +62,7 @@ return (
             <p className="text-base font-bold p-6 text-gray-900">
             {image.name}
             </p>
-         </div>
+         </a>
         
       ))}
     </div>
