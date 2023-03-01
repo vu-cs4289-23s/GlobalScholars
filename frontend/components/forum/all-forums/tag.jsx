@@ -1,11 +1,19 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
 
-const Tag = ({ content }) => {
+const Tag = ({ content, color, onClick }) => {
   //const navigate = useNavigate();
+    const tag = [
+        "flex",
+        "rounded-full",
+        "bg-opacity-100",
+        "justify-center",
+        "my-1",
+        color
+    ]
+
   return (
-    <div className="flex rounded-full bg-yellow-600 bg-opacity-100 justify-center my-1">
-      <div className="mx-2 my-1">{content}</div>
-    </div>
+      <div className={tag.join(" ")} onClick={onClick}>
+        <div className="mx-2 my-1">{content}</div>
+      </div>
   );
 };
 

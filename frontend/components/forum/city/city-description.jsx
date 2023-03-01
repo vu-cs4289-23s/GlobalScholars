@@ -89,11 +89,11 @@ const CityDescription = ({ city, country, description }) => {
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag content={locationInfo.top_tags[0]} />
-          <Tag content={locationInfo.top_tags[1]} />
-          <Tag content={locationInfo.top_tags[2]} />
-          <Tag content={locationInfo.top_tags[3]} />
-          <Tag content={locationInfo.top_tags[4]} />
+          <Tag content={locationInfo.top_tags[0]} color={"bg-red-400"} />
+          <Tag content={locationInfo.top_tags[1]} color={"bg-red-400"} />
+          <Tag content={locationInfo.top_tags[2]} color={"bg-red-400"} />
+          <Tag content={locationInfo.top_tags[3]} color={"bg-red-400"} />
+          <Tag content={locationInfo.top_tags[4]} color={"bg-red-400"} />
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
