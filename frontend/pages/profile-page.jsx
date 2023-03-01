@@ -19,7 +19,7 @@ export default function ProfilePage() {
   );
   const dispatch = useDispatch();
   const logOutHandle = () => {
-    dispatch(logoutAction({}));
+    dispatch(logoutAction());
   };
   const [modalOpen, setModalOpen] = useState(false);
   const [object, setObject] = useState({});
