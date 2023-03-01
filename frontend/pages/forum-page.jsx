@@ -39,7 +39,7 @@ export default function ForumPage() {
       <div className="bg-blue-200">
         <img
           className="flex h-1/4 w-screen object-center object-cover"
-          src="/copenhagen.jpeg"
+          src="/public/landing-locations/copenhagen.jpeg"
         />
         {/*src="../../frontend/assets/landing-page-locations/{locationInfo[0].city}.jpg"*/}
         <CityDescription
