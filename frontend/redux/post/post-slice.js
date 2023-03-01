@@ -5,6 +5,7 @@ const backendURL = "/api/v1";
 
 const initialState = {
   postInfo: {
+    _id: "",
     owner: "",
     timestamp: Date.now(),
     content: "",
@@ -30,10 +31,22 @@ const postSlice = createSlice({
       state.success = true;
       state.error = null;
     },
+    submitPost: (state, action) => {
+      state.loading = false;
+      state.postInfo = action.payload;
+      state.success = true;
+      state.error = null;
+    },
     error: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
     },
+    reset: (state, action) => {
+      state.loading = initialState.loading;
+      state.postInfo = initialState.postInfo;
+      state.success = initialState.success;
+      state.error = initialState.error;
+    }
   }
 });
 
@@ -70,6 +83,26 @@ export const getPostsByUserAsyncAction = (user) => async (dispatch) => {
   }
 };
 
-export const { getPosts, error } = postSlice.actions;
+export const submitNewForumPost = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.post(`${backendURL}/post`, data, config);
+  //  console.log(response.data);
+    dispatch(submitPost(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+}
+
+export const resetPost = () => (dispatch) => {
+  dispatch(reset());
+}
+
+export const { getPosts, submitPost, reset, error } = postSlice.actions;
 
 export default postSlice.reducer;

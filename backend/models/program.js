@@ -6,7 +6,6 @@ const Program = new Schema({
   geo_link: { type: String },
   location: [{ type: Schema.ObjectId, ref: "Location" }], //for city and country data
   budget: { type: Schema.ObjectId, ref: "PriceEstimate" },
-  budget_last_update: { type: String },
   terms: [{
     type: String,
     default: "",
@@ -15,7 +14,7 @@ const Program = new Schema({
   restrictions: { type: String },
   type: { type: String },
   calendar: { type: String },
-  housing: { type: String },
+  housing: [{ type: String }],  // make enum?
   min_gpa: { type: Number },
   language_of_instruction: { type: String },
   language_prerequisite: { type: String },
@@ -24,7 +23,10 @@ const Program = new Schema({
   program_link: { type: String },
 
   // Forum data
-  star_rating: { type: Number, default: 0 },
+  overall_rating: { type: Number, default: 0 },
+  safety_rating: { type: Number, default: 0 },
+  affordability_rating: { type: Number, default: 0 },
+  sightseeing_rating: { type: Number, default: 0 },
   top_tags: [{ type: String }],
 });
 
