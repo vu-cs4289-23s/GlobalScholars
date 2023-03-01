@@ -40,7 +40,7 @@ export default function ForumPage() {
       <div className="bg-blue-200">
         <img
           className="flex h-1/4 w-screen object-center object-cover"
-          src="copenhagen-forum-photo.png"
+          src="/copenhagen-forum-photo.png"
         />
         <CityDescription
           description={
