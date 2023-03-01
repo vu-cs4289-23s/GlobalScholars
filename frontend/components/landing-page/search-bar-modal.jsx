@@ -125,11 +125,11 @@ const SearchBarModal = ({ setModal, modal }) => {
                       colors[key % colors.length]
                     }-500 duration-100  `}
                   >
-                    <img
+                    {/* <img
                       src={value["Image Link"]}
                       alt="program image"
                       className="h-12 w-12 rounded-full mr-2"
-                    />
+                    /> */}
                     <p
                       className={`w-full h-full  text-sm md:text-md lg:text-lg font-semibold text-gray-600 mr-2  hover:scale-105 `}
                     >
