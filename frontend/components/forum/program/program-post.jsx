@@ -2,7 +2,7 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
 import tw from "tailwind-styled-components";
-import {FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
+import {MakePostBox, FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
 
 const ProgramPost = () => {
 
@@ -17,7 +17,7 @@ const ProgramPost = () => {
     }
 
     return (
-        <div className="flex w-auto bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4">
+        <MakePostBox>
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Post as */}
@@ -246,7 +246,7 @@ const ProgramPost = () => {
             </form>
         </span>
 
-        </div>
+        </MakePostBox>
     );
 };
 

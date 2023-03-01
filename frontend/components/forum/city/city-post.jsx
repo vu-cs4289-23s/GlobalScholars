@@ -3,6 +3,19 @@ import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
 import tw from "tailwind-styled-components";
 
+export const MakePostBox = tw.div`
+    flex 
+    w-auto 
+    bg-white 
+    mx-20 
+    text-left 
+    pt-2 
+    pb-6 
+    px-4 
+    rounded-lg 
+    my-4
+`
+
 export const FormInputSectionContainer = tw.div`
     flex
     border-black
@@ -55,7 +68,7 @@ const CityPost = () => {
     }
 
     return (
-        <div className="flex w-auto bg-white mx-20 text-left pt-2 pb-6 px-4 rounded-lg my-4">
+        <MakePostBox>
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Select Name */}
@@ -250,7 +263,7 @@ const CityPost = () => {
                 </div>
             </form>
         </span>
-        </div>
+        </MakePostBox>
     );
 };
 
