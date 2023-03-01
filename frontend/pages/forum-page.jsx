@@ -33,15 +33,15 @@ export default function ForumPage() {
 
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-200">
-      <div>
+      <div className="overflow-y-hidden">
         <SideBar />
       </div>
-
       <div className="bg-blue-200">
         <img
           className="flex h-1/4 w-screen object-center object-cover"
-          src="/copenhagen-forum-photo.png"
+          src="/copenhagen.jpeg"
         />
+        {/*src="../../frontend/assets/landing-page-locations/{locationInfo[0].city}.jpg"*/}
         <CityDescription
           description={
             locationInfo.length > 0
