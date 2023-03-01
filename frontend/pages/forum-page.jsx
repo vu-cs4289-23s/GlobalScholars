@@ -13,6 +13,14 @@ export default function ForumPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useParams();
+  const [city, setCity] = useState("City");
+  const [country, setCountry] =  useState("Country");
+  const [description, setDescription] =  useState("This is my description");
+  const [tags, setTags] = useState(["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"]);
+  const [overallRate, setOverallRate] = useState(0);
+  const [safetyRate, setSafetyRate] = useState(0);
+  const [affordableRate, setAffordableRate] = useState(0);
+  const [sightsRate, setSightsRate] = useState(0);
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -31,6 +39,22 @@ export default function ForumPage() {
     dispatch(getForumDataByName(name));
   }, [name]);
 
+  useEffect(() => {
+    // Set Location data
+    if (locationInfo && locationInfo !== []) {
+      setCity(locationInfo.city);
+      setCountry(locationInfo.country);
+      setDescription(locationInfo.description);
+      setTags(locationInfo.top_tags);
+      setOverallRate(locationInfo.overall_rating);
+      setSafetyRate(locationInfo.safety_rating);
+      setAffordableRate(locationInfo.affordability_rating);
+      setSightsRate(locationInfo.sightseeing_rating);
+    }
+  }, [locationInfo]);
+
+  console.log(locationInfo);
+
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-200">
       <div className="overflow-y-hidden">
@@ -39,17 +63,18 @@ export default function ForumPage() {
       <div className="bg-blue-200">
         <img
           className="flex h-1/4 w-screen object-center object-cover"
-          src="/copenhagen.jpeg"
+          src="../../public/landing-locations/copenhagen.jpeg"
         />
         {/*src="../../frontend/assets/landing-page-locations/{locationInfo[0].city}.jpg"*/}
         <CityDescription
-          description={
-            locationInfo.length > 0
-              ? locationInfo[0].description
-              : "This location does not exist."
-          }
-          city={locationInfo.length > 0 ? locationInfo[0].city : "N/a"}
-          country={locationInfo.length > 0 ? locationInfo[0].country : "N/a"}
+          description={description}
+          city={city}
+          country={country}
+          top_tags={tags}
+          overall_rating={overallRate}
+          safety_rating={safetyRate}
+          affordability_rating={affordableRate}
+          sightseeing_rating={sightsRate}
         />
       </div>
       <div className="absolute right-1 top-2">
