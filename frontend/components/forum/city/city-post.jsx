@@ -3,6 +3,8 @@ import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { submitNewForumPost, resetPost } from "../../../redux/post/post-slice.js";
+import { BiChevronDown } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const CityPost = () => {
     const dispatch = useDispatch();
@@ -15,14 +17,41 @@ const CityPost = () => {
         title: "",
         content: "",
         tags: [],
-        location: undefined,
-        program: undefined,
+        city: "",
+        program_name: "",
         overall_rating: 0,
         safety_rating: 0,
         affordability_rating: 0,
         sightseeing_rating: 0,
         // top_tags; [],
     });
+
+    // For the location selector code
+    const [countries, setCountries] = useState(null);
+    const [inputValue, setInputValue] = useState("");
+    const [selected, setSelected] = useState("");
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        // dispatch geo-slice call here once locations are all in the DB
+
+        setCountries([
+            {name: "Barcelona, Spain",  src: "frontend/images/landing-locations/barcelona.jpg"},
+            {name: "Copenhagen, Denmark", src: "frontend/images/landing-locations/copenhagen.jpeg"},
+            {name: "Edinburgh, Scotland", src: "frontend/images/landing-locations/edinburgh.jpeg"},
+            {name: "Florence, Italy", src:"frontend/images/landing-locations/florence.jpeg"},
+            {name: "Glasgow, Scotland", src:"frontend/images/landing-locations/glasgow.jpeg"},
+            {name: "London, United Kingdom", src:"frontend/images/landing-locations/london.jpeg"},
+            {name: "Madrid, Spain", src:"frontend/images/landing-locations/madrid.jpeg"},
+            {name: "Paris, France", src:"frontend/images/landing-locations/paris.jpeg"},
+            {name: "Rome, Italy", src:"frontend/images/landing-locations/rome.jpeg"},
+            {name: "Seville, Spain", src:"frontend/images/landing-locations/seville.jpeg"},
+            {name: "Stockholm, Sweden", src:"frontend/images/landing-locations/stockholm.jpeg"},
+            {name: "Prague, Czech Republic", src:"frontend/images/landing-locations/prague.jpeg"},
+            {name: "Budapest, Hungary", src:"frontend/images/landing-locations/budapest.jpeg"},
+            {name: "Vienna, Austria", src:"frontend/images/landing-locations/vienna.jpeg"},
+        ]);
+    }, []);
 
     const onSubmit = (ev) => {
         ev.preventDefault();
@@ -42,6 +71,17 @@ const CityPost = () => {
             [ev.target.name]: ev.target.value,
         });
     };
+
+    useEffect(() => {
+        if (selected && selected !== "") {
+            // grab just the city name and set its state
+            const selectedCity = selected.split(",")[0].toLowerCase();
+            setState({
+                ...state,
+                city: selectedCity,
+            });
+        }
+    }, [selected]);
 
     useEffect(() => {
         if (postInfo && success) {
@@ -78,6 +118,64 @@ const CityPost = () => {
                             value={state.title}
                         />
                     </div>
+                </div>
+                {/* Location/Program Selector */}
+                <div className="flex border-black border-2 rounded-lg flex-col my-1">
+                        <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
+      <div
+        onClick={() => setOpen(!open)}
+        className={`bg-white w-full p-2 flex items-center justify-between rounded ${
+          !selected && "text-gray-700"
+        }`}
+      >
+        {selected
+          ? selected?.length > 25
+            ? selected?.substring(0, 25) + "..."
+            : selected
+          : "Select Location"}
+          <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+      </div>
+      <ul
+        className={`bg-white mt-2 overflow-y-auto ${
+          open ? "max-h-60" : "max-h-0"
+        } `}
+      >
+        <div className="flex items-center px-2 sticky top-0 bg-white">
+          <AiOutlineSearch size={18} className="text-gray-700" />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value.toLowerCase())}
+            placeholder="Enter location name"
+            className="placeholder:text-gray-700 p-2 outline-none"
+          />
+        </div>
+          {countries?.map((country) => (
+            <li
+              key={country?.name}
+              className={`p-2 text-sm hover:bg-sky-600 hover:text-white
+            ${
+                country?.name?.toLowerCase() === selected?.toLowerCase() &&
+                "bg-sky-600 text-white"
+              }
+            ${
+                country?.name?.toLowerCase().startsWith(inputValue)
+                  ? "block"
+                  : "hidden"
+              }`}
+              onClick={() => {
+                  if (country?.name?.toLowerCase() !== selected.toLowerCase()) {
+                      setSelected(country?.name);
+                      setOpen(false);
+                      setInputValue("");
+                  }
+              }}
+            >
+                {country?.name}
+            </li>
+          ))}
+      </ul>
+    </div>
                 </div>
                 {/* Post Review */}
                 <div className="flex border-black border-2 rounded-lg flex-col my-1">
