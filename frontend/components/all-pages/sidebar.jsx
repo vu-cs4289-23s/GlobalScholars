@@ -12,6 +12,29 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserAsyncAction } from "../../redux/user/user-slice";
+import tw from "tailwind-styled-components";
+import { ImSearch } from 'react-icons/im';
+import { MdOutlineForum, MdOutlineAddBox } from 'react-icons/md';
+import { BsCalculatorFill, BsPersonCircle } from 'react-icons/bs';
+
+const NavigationContainer = tw.div`
+  text-white
+  font-bold 
+  sm:flex 
+  hover:cursor-pointer
+`
+
+const SidebarNavigationLinkTitle = tw.div`
+  hidden 
+  sm:block 
+  text-sm 
+  sm:text-xl 
+  text-right 
+  p-2 hover:text-blue-300 
+  hover:underline 
+  underline-offset-4
+`
+
 
 const SideBar = () => {
   const { userInfo, loggedIn, userToken, loading, success } = useSelector(
@@ -34,7 +57,7 @@ const SideBar = () => {
     <div className="flex flex-row sm:flex-col p-6 h-24 sm:h-full sm:w-64 w-full fixed sm:sticky   bottom-0 gap-4 bg-sky-800 z-10">
       {/* logo  */}
       <div
-        className="w-full sm:flex justify-center  text-white text-lg indent-1 hidden sm:visible"
+        className="w-full sm:flex justify-center mb-5  text-white text-lg indent-1 hidden sm:visible"
         onClick={() => navigate("/")}
       >
         <img
@@ -47,57 +70,38 @@ const SideBar = () => {
       </div>
 
       {/* links */}
-      <div className="w-full flex sm:grid justify-between m-4  sm:gap-8">
-        <div
-          className=" text-white font-bold  sm:flex hover:cursor-pointer"
-          onClick={() => navigate("/landing")}
-        >
-          <img src={searchIcon} width={40} height={100}/>
-          <p className="invisible sm:visible text-sm sm:text-xl text-right p-2 hover:text-blue-300 hover:underline underline-offset-4">
+      <div className="w-full flex sm:grid items-center justify-between m-4  sm:gap-8">
+        <NavigationContainer onClick={() => navigate("/landing")} >
+          {/* <img src={searchIcon} width={40} height={100}/> */}
+          <ImSearch size={36} />
+          <SidebarNavigationLinkTitle>
             Search
-          </p>
-        </div>
-        <div
-          className=" text-white font-bold  sm:flex hover:cursor-pointer"
-          onClick={() => navigate("/forum")}
-        >
-          <img src={speechBubbleIcon} width={40} />
-          <p className="invisible sm:visible text-sm sm:text-xl text-middle p-2 hover:text-blue-300 hover:underline underline-offset-4">
+          </SidebarNavigationLinkTitle>
+        </NavigationContainer>
+        <NavigationContainer onClick={() => navigate("/forum")} >
+          <MdOutlineForum size={36} />
+          <SidebarNavigationLinkTitle>
             Forum
-          </p>
-        </div>
-        <div
-            className=" text-white font-bold  sm:flex hover:cursor-pointer"
-            onClick={() => navigate("/newpost")}
-        >
-          <img src={speechBubbleIcon} width={40} />
-          <p className="invisible sm:visible text-sm sm:text-xl text-middle p-2 hover:text-blue-300 hover:underline underline-offset-4">
-            Make a Post
-          </p>
-        </div>
-        <div
-          className=" text-white font-bold sm:flex hover:cursor-pointer"
-          onClick={() => navigate("/price-estimator")}
-        >
-          <img src={calculatorIcon} width={40}  className="ml-2"/>
-          <p className="invisible sm:visible text-sm sm:text-xl text-right pt-1 hover:underline hover:text-sky-300 underline-offset-4">
+          </SidebarNavigationLinkTitle>
+        </NavigationContainer>
+        <NavigationContainer onClick={() => navigate("/newpost")} >
+          <MdOutlineAddBox size={36} />
+          <SidebarNavigationLinkTitle>
+            Make Post
+          </SidebarNavigationLinkTitle>
+        </NavigationContainer>
+        <NavigationContainer onClick={() => navigate("/price-estimator")} >
+          <BsCalculatorFill size={36} />
+          <SidebarNavigationLinkTitle>
             Calculator
-          </p>
-        </div>
-        <div
-          className="text-white font-bold sm:flex hover:cursor-pointer"
-          onClick={() => navigate(`/profile/${userInfo.username}`)}
-        >
-          <img
-            src={userInfo.avatar_url}
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
-          <p className="text-sm invisible sm:visible sm:text-xl text-right p-2 hover:underline hover:text-sky-300 underline-offset-4">
+          </SidebarNavigationLinkTitle>
+        </NavigationContainer>
+        <NavigationContainer onClick={() => navigate(`/profile/${userInfo.username}`)}>
+          <BsPersonCircle size={36} />
+          <SidebarNavigationLinkTitle>
             Profile
-          </p>
-        </div>
+          </SidebarNavigationLinkTitle>
+        </NavigationContainer>
       </div>
     </div>
   );

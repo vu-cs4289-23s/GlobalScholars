@@ -21,7 +21,6 @@ const CityDescription = ({ city,
   const [object, setObject] = useState({});
   const { programInfo, locationInfo } = useSelector((state)  => state.geo);
 
-
   const getData = () => {
     axios
       .get("/api/v1/generateDummyData?posts=10&users=5", {
