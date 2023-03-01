@@ -20,7 +20,7 @@ const CityDescription = ({ city, country, description }) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+      //  console.log(res.data);
         setObject(res.data);
       })
       .catch((err) => {

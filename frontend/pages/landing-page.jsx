@@ -3,25 +3,17 @@ import SideBar from "../components/all-pages/sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useState} from "react";
-import ScrollingImagesRounded from "../components/all-pages/rounded-scrolling-images";
-import ScrollingImagesSquare from "../components/all-pages/square-scrolling-images";
-
-import {getLocationByNameAsyncAction}  from "../redux/geo/geo-slice.js";
-
-
-
-
+import { useEffect, useState } from "react";
+import ScrollingImages from "../components/all-pages/scrolling-images.jsx";
+import images from "../../images.js";
 
 export default function LandingPage() {
-
-
   const dispatch = useDispatch();
   const { loggedIn, userToken, loading, success, userInfo } = useSelector(
     (state) => state.user
   );
   const navigate = useNavigate();
+
   const logOutHandle = () => {
     dispatch(logoutAction({}));
   };
@@ -30,6 +22,7 @@ export default function LandingPage() {
       dispatch(getUserAsyncAction(userInfo.username));
     }
   }, [loggedIn, userInfo]);
+<<<<<<< HEAD
 
   //get all landing pages into images 
   var images = [{name: "Barcelona, Spain",  src: "frontend/images/landing-locations/barcelona.jpg"},
@@ -81,6 +74,8 @@ export default function LandingPage() {
 
     const programs = locationInfo.programs;
   }
+=======
+>>>>>>> 19fb04622f5205c14745409c1e446d0bb94e38e1
  
     //dynamic array to hold program images & names (will be populated on a click of a location)
     const [programImages, setProgramImages] = useState([]);
@@ -90,8 +85,6 @@ export default function LandingPage() {
     useEffect(() =>{
       //fetch data here
     }, [showPrograms])
-
-
 
   return (
     <div
@@ -120,12 +113,12 @@ export default function LandingPage() {
 
           {/* displayed locations  */}
             <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-              <ScrollingImagesRounded images={images} />
+              <ScrollingImages rounded={true} images={images} />
             </div>
 
           {/* programs popout  */}
            <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-              <ScrollingImagesSquare images={images} />
+              <ScrollingImages images={images} />
           </div>
         
         </div>
