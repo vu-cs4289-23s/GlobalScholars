@@ -1,4 +1,3 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
 
 const Tag = ({ content, color, onClick }) => {
   //const navigate = useNavigate();
@@ -12,7 +11,7 @@ const Tag = ({ content, color, onClick }) => {
     ]
 
   return (
-      <div className={tag.join(" ")}  onClick={onClick}>
+      <div className={tag.join(" ")} onClick={onClick}>
         <div className="mx-2 my-1">{content}</div>
       </div>
   );

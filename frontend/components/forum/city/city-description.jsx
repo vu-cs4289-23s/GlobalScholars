@@ -45,11 +45,11 @@ const CityDescription = ({ city, country, description }) => {
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag content={"Weekend trip"} />
-          <Tag content={"Very affordable"} />
-          <Tag content={"Walkable"} />
-          <Tag content={"Awesome nightlife"} />
-          <Tag content={"Amazing eats"} />
+          <Tag content={"Weekend trip"} color={"bg-red-400"} />
+          <Tag content={"Very affordable"} color={"bg-red-400"} />
+          <Tag content={"Walkable"} color={"bg-red-400"} />
+          <Tag content={"Awesome nightlife"} color={"bg-red-400"} />
+          <Tag content={"Amazing eats"} color={"bg-red-400"} />
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
