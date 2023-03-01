@@ -72,11 +72,11 @@ export default function LandingPage() {
   return (
     <div
       id="forum-page"
-      className="flex h-screen "
+      className="flex h-screen h-screen w-screen"
     >
       <SideBar />
-      <div className="w-full h-full overflow-y-scroll">
-        <div className="flex flex-col  h-1/3 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover overflow-x-hidden">
+      <div className="overflow-y-scroll">
+        <div className="flex flex-col h-1/3 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover">
           <div className="grid  m-10 p-10 gap-2">
             <div className="flex h-2/3 justify-center items-center text-4xl font-bold font-mono text-white">
               Study Abroad Search
@@ -87,13 +87,13 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="grid bg-white w-[85vw] ">
+        <div className="grid bg-white">
               
-            <div className="flex flex-row h-2 p-5 w-[85vw] text-2xl">
+            <div className="flex flex-row h-2 p-5 text-2xl font-bold">
               Programs By Location:
             </div>
 
-            <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
+            <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
                 {images.map(({ name, src }) => (
                       <div className="snap-center" key={name}>
                           <div className="scroll-snap-align-start h-64 w-64">
@@ -113,7 +113,7 @@ export default function LandingPage() {
            </div>
 
            {/* programs popout  */}
-           <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
+           <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
            {images.map(({ name, src }) => (
                       <div className="snap-center" key={name}>
                           <div className="scroll-snap-align-start h-64 w-64">
