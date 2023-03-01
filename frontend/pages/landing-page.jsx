@@ -15,7 +15,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   const logOutHandle = () => {
-    dispatch(logoutAction({}));
+    dispatch(logoutAction());
   };
   useEffect(() => {
     if (loggedIn === false && userInfo.username !== "") {
