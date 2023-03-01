@@ -36,7 +36,7 @@ const ScrollingImages = ({images, rounded}) => {
     if (locationInfo && locationInfo !== []) {
       setPrograms(locationInfo.programs);
     }
-  }, locationInfo);
+  }, [locationInfo]);
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
