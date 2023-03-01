@@ -1,5 +1,4 @@
 import SideBar from "../components/all-pages/sidebar";
-import CityDescription from "../components/forum/city/city-description.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
 import React, {useState, useEffect} from "react";
 import ProgramPost from "../components/forum/program/program-post.jsx";
