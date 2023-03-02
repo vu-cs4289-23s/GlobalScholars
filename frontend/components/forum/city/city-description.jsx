@@ -24,7 +24,6 @@ const CityDescription = ({
   const { postInfo } = useSelector((state) => state.post);
 
   useEffect(() => {
-  //  getData();
     if (city && city !== "City") {
       // Fetch posts by city name passed through
       dispatch(getPostsByLocationAsyncAction(city));

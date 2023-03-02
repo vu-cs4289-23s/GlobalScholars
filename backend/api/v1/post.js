@@ -169,7 +169,7 @@ const Post = (app) => {
     // Fetch posts filtering by location and tags
     let data, location;
     try {
-      location = await app.models.Location.find({
+      location = await app.models.Location.findOne({
         city: { $regex : new RegExp(req.params.location, "i") }
       });
       data = await app.models.Post.find({
@@ -200,7 +200,7 @@ const Post = (app) => {
     // Fetch posts filtering by program
     let data, program;
     try {
-      program = await app.models.Program.find({
+      program = await app.models.Program.findOne({
         program_name: { $regex : new RegExp(req.params.program, "i") }
       });
       data = await app.models.Post.find({ program: program._id });
@@ -229,7 +229,7 @@ const Post = (app) => {
     // Fetch posts filtering by program and tags
     let data, program;
     try {
-      program = await app.models.Program.find({
+      program = await app.models.Program.findOne({
         program_name: { $regex : new RegExp(req.params.program, "i") }
       });
       data = await app.models.Post.find({
