@@ -4,7 +4,7 @@ import ProgramLink from "../all-forums/program-link.jsx";
 import Reviews from "../../profile-page/reviews";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { getPostsByLocationAsyncAction } from "../../../redux/post/post-slice.js";
+import { getPostsByLocationAsyncAction, getAllPostsAsyncAction } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 const CityDescription = ({
@@ -25,9 +25,11 @@ const CityDescription = ({
 
   useEffect(() => {
   //  getData();
-    if (city !== "City") {
+    if (city && city !== "City") {
       // Fetch posts by city name passed through
       dispatch(getPostsByLocationAsyncAction(city));
+    } else {
+      dispatch(getAllPostsAsyncAction());
     }
   }, [city]);
 
