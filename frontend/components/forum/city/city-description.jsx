@@ -23,23 +23,6 @@ const CityDescription = ({
   const dispatch = useDispatch();
   const { postInfo } = useSelector((state) => state.post);
 
-  // const getData = () => {
-  //   axios
-  //     .get("/api/v1/generateDummyData?posts=10&users=5", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Accept: "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //     //  console.log(res.data);
-  //       setObject(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   useEffect(() => {
   //  getData();
     if (city !== "City") {
@@ -51,8 +34,6 @@ const CityDescription = ({
   useEffect(() => {
     setPosts(postInfo);
   }, [postInfo]);
-
-  console.log(posts);
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg absolute">
