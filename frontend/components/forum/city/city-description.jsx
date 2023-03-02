@@ -22,25 +22,6 @@ const CityDescription = ({
   const [object, setObject] = useState({});
   const { programInfo, locationInfo } = useSelector((state) => state.geo);
 
-  const getData = () => {
-    axios
-      .get("/api/v1/generateDummyData?posts=10&users=5", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-        //  console.log(res.data);
-        setObject(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
   console.log(
     city,
     country,
