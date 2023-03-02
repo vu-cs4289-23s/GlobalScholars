@@ -55,11 +55,11 @@ const CityDescription = ({ city,
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag content={top_tags[0]}/>
-          <Tag content={top_tags[1]} />
-          <Tag content={top_tags[2]} />
-          <Tag content={top_tags[3]} />
-          <Tag content={top_tags[4]} />
+          <Tag color={"bg-red-400"} content={top_tags[0]}/>
+          <Tag color={"bg-red-400"} content={top_tags[1]} />
+          <Tag color={"bg-red-400"} content={top_tags[2]} />
+          <Tag color={"bg-red-400"} content={top_tags[3]} />
+          <Tag color={"bg-red-400"} content={top_tags[4]} />
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">

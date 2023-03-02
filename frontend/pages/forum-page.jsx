@@ -41,7 +41,7 @@ export default function ForumPage() {
 
   useEffect(() => {
     // Set Location data
-    if (locationInfo && locationInfo !== []) {
+    if (locationInfo && locationInfo.city !== "") {
       setCity(locationInfo.city);
       setCountry(locationInfo.country);
       setDescription(locationInfo.description);
@@ -52,8 +52,6 @@ export default function ForumPage() {
       setSightsRate(locationInfo.sightseeing_rating);
     }
   }, [locationInfo]);
-
-  console.log(locationInfo);
 
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-200">
