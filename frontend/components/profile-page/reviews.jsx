@@ -17,7 +17,6 @@ const Reviews = ({
   type,
   comments,
 }) => {
-  console.log(tags);
   const colorScheme = ["blue", "amber", "pink", "rose", "indigo", "pink"];
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
