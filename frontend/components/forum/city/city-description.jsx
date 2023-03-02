@@ -3,13 +3,24 @@ import Rating from "../all-forums/rating.jsx";
 import ProgramLink from "../all-forums/program-link.jsx";
 import Reviews from "../../profile-page/reviews";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+// import { getForumDataByName }  from "../redux/geo/geo-slice.js";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { getLocationByNameAsyncAction } from "../../../redux/geo/geo-slice.js";
 
-const CityDescription = ({ city, country, description }) => {
-  // Format data
-  city = city.charAt(0).toUpperCase() + city.slice(1);
-  country = country.charAt(0).toUpperCase() + country.slice(1);
+const CityDescription = ({
+  city,
+  country,
+  description,
+  top_tags,
+  overall_rating,
+  safety_rating,
+  affordability_rating,
+  sightseeing_rating,
+}) => {
   const [object, setObject] = useState({});
+  const { programInfo, locationInfo } = useSelector((state) => state.geo);
 
   const getData = () => {
     axios
@@ -20,7 +31,7 @@ const CityDescription = ({ city, country, description }) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        //  console.log(res.data);
         setObject(res.data);
       })
       .catch((err) => {
@@ -37,34 +48,50 @@ const CityDescription = ({ city, country, description }) => {
         <span className="text-[30px]">
           <span className="content-start row ">
             Travel To:
-            <span className="font-bold"> {city}, {country}</span>
+            <span className="font-bold">
+              {" "}
+              {city}, {country}
+            </span>
           </span>
         </span>
-        <p>
-          {description}
-        </p>
+        <p>{description}</p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag content={"Weekend trip"} />
-          <Tag content={"Very affordable"} />
-          <Tag content={"Walkable"} />
-          <Tag content={"Awesome nightlife"} />
-          <Tag content={"Amazing eats"} />
+          <Tag color={"bg-red-400"} content={top_tags[0]} />
+          <Tag color={"bg-red-400"} content={top_tags[1]} />
+          <Tag color={"bg-red-400"} content={top_tags[2]} />
+          <Tag color={"bg-red-400"} content={top_tags[3]} />
+          <Tag color={"bg-red-400"} content={top_tags[4]} />
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
-          <Rating rating={4.2} type={"Overall"} />
-          <Rating rating={3.7} type={"Safety"} />
-          <Rating rating={4.4} type={"Affordability"} />
-          <Rating rating={2.9} type={"Sightseeing"} />
+          <Rating rating={overall_rating} type={"Overall"} />
+          <Rating rating={safety_rating} type={"Safety"} />
+          <Rating rating={affordability_rating} type={"Affordability"} />
+          <Rating rating={sightseeing_rating} type={"Sightseeing"} />
         </div>
         <p className="py-4 font-bold text-[24px]">
           Like what you see? Study Here!
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
-          <ProgramLink />
-          <ProgramLink />
-          <ProgramLink />
+          {/*<div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">*/}
+          {/*  {images.map(({ name, src }) => (*/}
+          {/*    <div className="snap-center" key={name}>*/}
+          {/*      <div className="scroll-snap-align-start h-64 w-64">*/}
+          {/*        <img*/}
+          {/*          src={src}*/}
+          {/*          alt={name}*/}
+          {/*          className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"*/}
+          {/*          data-name={name}*/}
+          {/*          onLoad={event => onForumLoad(event, name)}*/}
+          {/*        />*/}
+          {/*        <p className="text-base font-bold p-6 text-gray-900" data-name={name}>*/}
+          {/*          {name}*/}
+          {/*        </p>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  ))}*/}
+          {/*</div>*/}
         </div>
         {object.posts && object.posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
@@ -72,8 +99,9 @@ const CityDescription = ({ city, country, description }) => {
               <Reviews
                 key={post.id}
                 id={post.id}
-                username={post.username}
-                program={post.program}
+                username={"John Doe"}
+                program={"Computer Science"}
+                date={"2021-05-01"}
                 content={post.content}
                 likes={post.likes}
                 saves={post.saves}
@@ -81,7 +109,7 @@ const CityDescription = ({ city, country, description }) => {
                 dislikes={post.dislikes}
                 location={post.location}
                 comments={post.comments}
-                date={post.date}
+                type={"forum"}
               />
             ))}
           </div>

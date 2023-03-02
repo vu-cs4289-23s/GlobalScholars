@@ -19,7 +19,7 @@ export default function ProfilePage() {
   );
   const dispatch = useDispatch();
   const logOutHandle = () => {
-    dispatch(logoutAction({}));
+    dispatch(logoutAction());
   };
   const [modalOpen, setModalOpen] = useState(false);
   const [object, setObject] = useState({});
@@ -35,6 +35,7 @@ export default function ProfilePage() {
       setModalOpen(true);
     }
   }, [userInfo, success, loading]);
+  console.log(object);
 
   const getData = () => {
     axios
@@ -45,7 +46,7 @@ export default function ProfilePage() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        //  console.log(res.data);
         setObject(res.data);
       })
       .catch((err) => {
@@ -59,10 +60,10 @@ export default function ProfilePage() {
   return (
     <div id="forum-page" className="flex flex-row h-screen w-screen ">
       <SideBar />
-      <div className="w-full">
+      <div className="w-full bg-slate-400">
         <div
           id="header"
-          className="flex w-full h-[20%] justify-center text-4xl"
+          className="flex w-full h-[20%] justify-center text-4xl "
         >
           {!loading ? (
             <ProfileBio />
@@ -76,28 +77,31 @@ export default function ProfilePage() {
           id="contents"
           className="flex flex-col  justify-center text-4xl bg-white"
         >
-          <div className="flex w-full justify-between p-4">
+          <div className="flex w-full justify-between p-4 bg-slate-400">
             <p className="text-sm sm:text-2xl ">Reviews</p>
             <p className="text-sm sm:text-base">1370 total likes</p>
           </div>
         </div>
         {object.posts && object.posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[65%] md:h-[70%] ">
-            {object.posts.map((post) => (
-              <Reviews
-                key={post.id}
-                id={post.id}
-                username={post.username}
-                program={post.program}
-                content={post.content}
-                likes={post.likes}
-                saves={post.saves}
-                tags={post.tags}
-                dislikes={post.dislikes}
-                location={post.location}
-                comments={post.comments}
-                date={post.date}
-              />
+            {object.posts.map((post, key) => (
+              <div key={key}>
+                <Reviews
+                  key={key}
+                  id={post.id}
+                  username={post.username}
+                  program={"Computer Science"}
+                  content={post.content}
+                  likes={post.likes}
+                  saves={post.saves}
+                  tags={post.tags}
+                  dislikes={post.dislikes}
+                  location={post.location}
+                  comments={post.comments}
+                  date={"2021-05-05"}
+                  type={"review"}
+                />
+              </div>
             ))}
           </div>
         ) : null}

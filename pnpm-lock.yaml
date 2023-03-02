@@ -31,12 +31,14 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-hook-form: ^7.43.2
+  react-icons: ^4.7.1
   react-redux: ^8.0.5
   react-router-dom: ^6.8.0
   sass: ^1.58.0
   session: ^0.1.0
   simple-env-config: ^1.0.1
   tailwind: ^4.0.0
+  tailwind-styled-components: ^2.2.0
   tailwindcss: ^3.2.6
   url: ^0.11.0
   vite: ^4.1.0
@@ -66,6 +68,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.2_react@18.2.0
+  react-icons: 4.7.1_react@18.2.0
   react-redux: 8.0.5_fxtgt6bjwd6p4cwoordejim2zi
   react-router-dom: 6.8.0_biqbaboplfbrettd7655fr4n2y
   sass: 1.58.0
@@ -84,6 +87,7 @@ devDependencies:
   nodemon: 2.0.20
   postcss: 8.4.21
   prettier: 2.8.3
+  tailwind-styled-components: 2.2.0_biqbaboplfbrettd7655fr4n2y
   tailwindcss: 3.2.7_postcss@8.4.21
   vite: 4.1.1_sass@1.58.0
   vite-plugin-compression: 0.5.1_vite@4.1.1
@@ -2839,7 +2843,6 @@ packages:
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-    dev: false
 
   /json-lines/1.0.0:
     resolution: {integrity: sha512-ytuLZb4RBQb3bTRsG/QBenyIo5oHLpjeCVph3s2NnoAsZE9K6h+uR+OWpEOWV1UeHdX63tYctGppBpGAc+JNMA==}
@@ -2964,7 +2967,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
 
   /lusca/1.6.1:
     resolution: {integrity: sha512-+JzvUMH/rsE/4XfHdDOl70bip0beRcHSviYATQM0vtls59uVtdn1JMu4iD7ZShBpAmFG8EnaA+PrYG9sECMIOQ==}
@@ -3595,13 +3597,20 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
 
   /react-hook-form/7.43.2_react@18.2.0:
     resolution: {integrity: sha512-NvD3Oe2Y9hhqo2R4I4iJigDzSLpdMnzUpNMxlnzTbdiT7NT3BW0GxWCzEtwPudZMUPbZhNcSy1EcGAygyhDORg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /react-icons/4.7.1_react@18.2.0:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+    peerDependencies:
+      react: '*'
     dependencies:
       react: 18.2.0
     dev: false
@@ -3675,7 +3684,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-cache/1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -3831,7 +3839,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /seedrandom/3.0.5:
     resolution: {integrity: sha512-8OwmbklUNzwezjGInmZ+2clQmExQPvomqjL7LFqOYqtmuxRgQYqOD3mHaU+MvZn5FLUeVxVfQjwLZW/n/JFuqg==}
@@ -4095,6 +4102,21 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /tailwind-merge/1.10.0:
+    resolution: {integrity: sha512-WFnDXSS4kFTZwjKg5/oZSGzBRU/l+qcbv5NVTzLUQvJ9yovDAP05h0F2+ZFW0Lw9EcgRoc2AfURUdZvnEFrXKg==}
+    dev: true
+
+  /tailwind-styled-components/2.2.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Ogemwk0p69aU8WE/ooJZHjqstdJgT5R6HGU6TFz2uSnveSEtvW+C6aWOjGCvCr5H/bREv0IbbQ4yODknRrLBRQ==}
+    peerDependencies:
+      react: '>= 16.8.0'
+      react-dom: '>= 16.8.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tailwind-merge: 1.10.0
+    dev: true
 
   /tailwind/4.0.0:
     resolution: {integrity: sha512-LlUNoD/5maFG1h5kQ6/hXfFPdcnYw+1Z7z+kUD/W/E71CUMwcnrskxiBM8c3G8wmPsD1VvCuqGYMHviI8+yrmg==}

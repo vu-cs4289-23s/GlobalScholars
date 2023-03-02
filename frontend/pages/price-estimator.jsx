@@ -9,7 +9,7 @@ export default function PriceEstimator() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const logOutHandle = () => {
-    dispatch(logoutAction({}));
+    dispatch(logoutAction());
   };
 
   useEffect(() => {
