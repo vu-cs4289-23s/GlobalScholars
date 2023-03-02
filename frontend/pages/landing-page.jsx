@@ -23,14 +23,14 @@ export default function LandingPage() {
     }
   }, [loggedIn, userInfo]);
 
-  //dynamic array to hold program images & names (will be populated on a click of a location)
-  const [programImages, setProgramImages] = useState([]);
-
-  //bool state that displays programs or hides them depending on location clicked
-  const [showPrograms, setShowPrograms] = useState("");
-  useEffect(() => {
-    //fetch data here
-  }, [showPrograms]);
+  // //dynamic array to hold program images & names (will be populated on a click of a location)
+  // const [programImages, setProgramImages] = useState([]);
+  //
+  // //bool state that displays programs or hides them depending on location clicked
+  // const [showPrograms, setShowPrograms] = useState("");
+  // useEffect(() => {
+  //   //fetch data here
+  // }, [showPrograms]);
 
   return (
     <div

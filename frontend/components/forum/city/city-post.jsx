@@ -78,7 +78,7 @@ const CityPost = () => {
         safety_rating: 0,
         affordability_rating: 0,
         sightseeing_rating: 0,
-        // top_tags; [],
+        top_tags: [],
     });
 
     // For the location selector code
@@ -93,8 +93,8 @@ const CityPost = () => {
         setLocations(images);
     }, []);
 
-    const onClickTag = () => {
-        console.log("you just clicked a tag");
+    const onClickTag = (ev) => {
+        console.log(`Tag: ${ev.target.name}`);
     }
 
     const onSubmit = (ev) => {
@@ -131,9 +131,9 @@ const CityPost = () => {
 
     useEffect(() => {
         if (postInfo && success) {
+            navigate(`/forum/${state.city}`);
             // reset post state
             dispatch(resetPost());
-            navigate("/forum");
         }
     }, [postInfo])
 
@@ -248,7 +248,7 @@ const CityPost = () => {
                         <input
                             className="flex flex-auto h-32"
                             id="review"
-                            name="review"
+                            name="content"
                             type="text"
                             placeholder="Your Review"
                             onChange={onChange}
