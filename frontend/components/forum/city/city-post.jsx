@@ -63,7 +63,7 @@ export const FormRatingContainer = tw.div`
 const CityPost = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { postInfo, success } = useSelector((state) => state.post);
+    const { postInfo, success, loading } = useSelector((state) => state.post);
 
     let [postAnon, setPostAnon] = useState("current-user");
 
@@ -107,6 +107,13 @@ const CityPost = () => {
         }
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
+
+        if (success) {
+            const forumNav = state.city;
+            // reset post state
+            dispatch(resetPost());
+            navigate(`/forum/${forumNav}`);
+        }
     };
 
     const onChange = (ev) => {
@@ -128,15 +135,6 @@ const CityPost = () => {
             });
         }
     }, [selected]);
-
-    useEffect(() => {
-        if (postInfo && success) {
-            const forumNav = state.city;
-            // reset post state
-            dispatch(resetPost());
-            // navigate(`/forum/${forumNav}`);
-        }
-    }, [postInfo])
 
     return (
         <MakePostBox>
