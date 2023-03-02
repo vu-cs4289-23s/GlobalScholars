@@ -3,11 +3,7 @@ import Rating from "../all-forums/rating.jsx";
 import ProgramLink from "../all-forums/program-link.jsx";
 import Reviews from "../../profile-page/reviews";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-// import { getForumDataByName }  from "../redux/geo/geo-slice.js";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getLocationByNameAsyncAction } from "../../../redux/geo/geo-slice.js";
 
 const CityDescription = ({ city,
                            country,
@@ -19,7 +15,6 @@ const CityDescription = ({ city,
                            sightseeing_rating }) => {
 
   const [object, setObject] = useState({});
-  const { programInfo, locationInfo } = useSelector((state)  => state.geo);
 
   const getData = () => {
     axios
@@ -47,7 +42,10 @@ const CityDescription = ({ city,
         <span className="text-[30px]">
           <span className="content-start row ">
             Travel To:
-            <span className="font-bold"> {city}, {country}</span>
+            <span className="font-bold">
+              {" "}
+              {city}, {country}
+            </span>
           </span>
         </span>
         <p>
@@ -55,16 +53,13 @@ const CityDescription = ({ city,
         </p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag color={"bg-red-400"} content={top_tags[0]}/>
-          <Tag color={"bg-red-400"} content={top_tags[1]} />
-          <Tag color={"bg-red-400"} content={top_tags[2]} />
-          <Tag color={"bg-red-400"} content={top_tags[3]} />
-          <Tag color={"bg-red-400"} content={top_tags[4]} />
+          {top_tags &&
+            top_tags.map((tag) => <Tag color={"bg-red-400"} content={tag} />)}
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
-          <Rating rating={overall_rating} type={"Overall"}/>
-          <Rating rating={safety_rating} type={"Safety"}/>
+          <Rating rating={overall_rating} type={"Overall"}  />
+          <Rating rating={safety_rating} type={"Safety"} />
           <Rating rating={affordability_rating} type={"Affordability"} />
           <Rating rating={sightseeing_rating} type={"Sightseeing"} />
         </div>

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
-import { getForumDataByName } from "../redux/geo/geo-slice.js";
+import { getForumDataByName, getAllLocationsAsyncAction, getAllProgramsAsyncAction } from "../redux/geo/geo-slice.js";
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -36,7 +36,12 @@ export default function ForumPage() {
   }, [loggedIn, userInfo]);
 
   useEffect(() => {
-    dispatch(getForumDataByName(name));
+    if (name !== undefined) {
+      dispatch(getForumDataByName(name));
+    } else {
+      dispatch(getAllLocationsAsyncAction());
+      dispatch(getAllProgramsAsyncAction());
+    }
   }, [name]);
 
   useEffect(() => {
