@@ -9,7 +9,7 @@ const Program = new Schema({
   terms: [{
     type: String,
     default: "",
-    enum: ["Fall", "Spring", "Full Academic Year", "Maymester", "Summer"],
+    enum: ["Fall", "Spring", "Full Academic Year", "Maymester", "Summer", "Academic Year", "", "Calendar Year"],
   }],
   restrictions: { type: String },
   type: { type: String },
