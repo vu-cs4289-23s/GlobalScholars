@@ -93,8 +93,7 @@ const SideBar = () => {
             <img
               src={userInfo.avatar_url}
               alt="profile"
-              className="rounded-full "
-              width={36}
+              className="rounded-full h-[36px] w-[36px]"
             />
           ) : (
             <BsPersonCircle size={36} />
