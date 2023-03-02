@@ -9,13 +9,13 @@ const Program = new Schema({
   terms: [{
     type: String,
     default: "",
-    enum: ["Fall", "Spring", "Full Academic Year", "Maymester", "Summer"],
+    enum: ["Fall", "Spring", "Full Academic Year", "Maymester", "Summer", "Academic Year", "", "Calendar Year"],
   }],
   restrictions: { type: String },
   type: { type: String },
-  calendar: { type: String },
+  academic_calendar: { type: String },
   housing: [{ type: String }],  // make enum?
-  min_gpa: { type: Number },
+  min_gpa: { type: String },
   language_of_instruction: { type: String },
   language_prerequisite: { type: String },
   additional_prerequisite: { type: String },

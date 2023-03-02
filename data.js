@@ -22,11 +22,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Full Academic Year",
+    "Program terms":[
+      "Full Academic Year"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"German",
     "Language prerequisite":"Yes",
@@ -57,11 +61,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,855",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"675",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English, French",
     "Language prerequisite":"N\/A",
@@ -92,11 +102,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Faculty-led",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -127,11 +141,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Faculty-led",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -170,11 +188,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"N\/A",
     "Academic Calendar":"N\/A",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"N\/A",
     "Language prerequisite":"No",
@@ -205,11 +227,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,809",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.75",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -240,11 +269,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,118",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Full Academic Year, Spring",
+    "Program terms":[
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -275,11 +310,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,410",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"150",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Portuguese",
     "Language prerequisite":"No",
@@ -310,11 +351,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,444",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"700",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -345,11 +392,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"37,427",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -380,11 +433,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,810",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Chinese",
     "Language prerequisite":"No",
@@ -415,11 +474,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"16,782",
     "Tuition Cost":"16,497",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Chinese",
     "Language prerequisite":"No",
@@ -450,11 +513,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"31,110",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"No",
@@ -485,11 +553,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,450",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"50",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -520,11 +595,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"11,283",
     "Tuition Cost":"10,998",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -555,11 +634,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,040",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Chinese",
     "Language prerequisite":"Yes",
@@ -590,11 +675,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"18,615",
     "Tuition Cost":"18,330",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Chinese",
     "Language prerequisite":"Yes",
@@ -625,11 +714,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Arabic, English",
     "Language prerequisite":"No",
@@ -660,11 +754,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,311",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Chinese",
     "Language prerequisite":"Yes",
@@ -695,11 +794,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,150",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"110",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -730,11 +834,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,150",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"110",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -765,11 +875,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Chinese, English",
     "Language prerequisite":"No",
@@ -800,11 +916,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"11,283",
     "Tuition Cost":"10,998",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Chinese, English",
     "Language prerequisite":"No",
@@ -835,11 +955,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"50",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Italian",
     "Language prerequisite":"No",
@@ -870,11 +997,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"18,615",
     "Tuition Cost":"18,330",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Apartment (shared), Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Italian",
     "Language prerequisite":"No",
@@ -905,11 +1037,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,980",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"300",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Chinese, English",
     "Language prerequisite":"No",
@@ -940,11 +1077,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,217",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -975,11 +1120,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,367",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"N\/A",
@@ -1010,11 +1163,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,367",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"No",
@@ -1045,11 +1206,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,367",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"N\/A",
@@ -1080,11 +1249,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,367",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -1115,11 +1292,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,017",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"100",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU, Extends into Summer Months",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.75",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -1150,11 +1333,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"11,283",
     "Tuition Cost":"10,998",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1185,11 +1372,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,142",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"No",
@@ -1250,11 +1445,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"aries",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"aries",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1285,11 +1488,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"80",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, German",
     "Language prerequisite":"No",
@@ -1320,11 +1529,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"630",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Afrikaans, English, Xhosa",
     "Language prerequisite":"No",
@@ -1355,11 +1569,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1390,11 +1609,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"No",
@@ -1425,11 +1648,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1460,11 +1687,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1495,11 +1726,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"675",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, French",
     "Language prerequisite":"No",
@@ -1532,11 +1768,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"560",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Italian",
     "Language prerequisite":"No",
@@ -1567,11 +1807,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1602,11 +1846,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,867",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"350",
-    "Program terms":"Spring",
+    "Program terms":[
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1637,11 +1885,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,117",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"85",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.75",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -1672,11 +1926,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"",
+    "Program terms":[
+      ""
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Summer",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.75",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -1707,11 +1965,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,504",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Korean",
     "Language prerequisite":"No",
@@ -1742,11 +2007,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"11,283",
     "Tuition Cost":"10,998",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Korean",
     "Language prerequisite":"N\/A",
@@ -1777,11 +2046,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,484",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Chinese, English",
     "Language prerequisite":"No",
@@ -1812,11 +2087,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"18,615",
     "Tuition Cost":"18,330",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Chinese, English",
     "Language prerequisite":"No",
@@ -1847,11 +2127,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"5,784",
     "Tuition Cost":"5,499",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Chinese, English",
     "Language prerequisite":"No",
@@ -1882,11 +2167,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,647",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Full Academic Year, Spring",
+    "Program terms":[
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.75",
     "Language of Instruction":"English, Japanese",
     "Language prerequisite":"No",
@@ -1917,11 +2208,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"11,283",
     "Tuition Cost":"10,998",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -1952,11 +2248,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,167",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"675",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, French",
     "Language prerequisite":"No",
@@ -1987,11 +2288,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,167",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"675",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, French",
     "Language prerequisite":"N\/A",
@@ -2022,11 +2328,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2063,11 +2375,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Faculty-led",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2104,11 +2420,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Faculty-led",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2139,11 +2459,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"36,355",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"675",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"French",
     "Language prerequisite":"Yes",
@@ -2174,11 +2501,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Fall",
+    "Program terms":[
+      "Fall"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English, French",
     "Language prerequisite":"No",
@@ -2209,11 +2540,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"36,250",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2246,11 +2585,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"5,784",
     "Tuition Cost":"5,499",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -2281,11 +2626,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"36,130",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2322,11 +2675,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Faculty-led",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -2361,11 +2718,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"0",
     "Tuition Cost":"0",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"3.3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2396,11 +2757,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,057",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"675",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2431,11 +2798,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"31,930",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"70",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Hebrew",
     "Language prerequisite":"No",
@@ -2466,11 +2839,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"5,784",
     "Tuition Cost":"5,499",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Hebrew",
     "Language prerequisite":"No",
@@ -2501,11 +2878,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -2536,11 +2919,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,118",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"300",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Other",
+    "Housing":[
+      "Other"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"Yes",
@@ -2571,11 +2959,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,035",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"300",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Dutch, English",
     "Language prerequisite":"No",
@@ -2606,11 +3001,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2641,11 +3042,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.75",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -2676,11 +3084,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Italian",
     "Language prerequisite":"No",
@@ -2711,11 +3127,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.75",
     "Language of Instruction":"English, Italian",
     "Language prerequisite":"No",
@@ -2746,11 +3170,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"11,283",
     "Tuition Cost":"10,998",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"Yes",
@@ -2781,11 +3209,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"11,283",
     "Tuition Cost":"10,998",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Summer",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2816,11 +3248,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,871",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"320",
-    "Program terms":"Academic Year, Fall, Spring",
+    "Program terms":[
+      "Academic Year",
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, German",
     "Language prerequisite":"No",
@@ -2851,11 +3290,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,871",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"320",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, German",
     "Language prerequisite":"No",
@@ -2886,11 +3332,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"31,600",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"290",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2923,11 +3374,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"38,723",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2960,11 +3417,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"38,723",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"100",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -2995,11 +3458,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,955",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Japanese",
     "Language prerequisite":"Yes",
@@ -3030,11 +3499,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":"8,781",
     "Tuition Cost":"6,874",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3.3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3065,11 +3538,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,438",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Full Academic Year",
+    "Program terms":[
+      "Full Academic Year"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3.3",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -3100,11 +3578,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,675",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"420",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3135,11 +3619,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"43",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3170,11 +3660,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"500",
-    "Program terms":"Full Academic Year, Spring",
+    "Program terms":[
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Italian",
     "Language prerequisite":"N\/A",
@@ -3205,11 +3700,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,100",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3240,11 +3741,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,717",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Other, Student responsibility",
+    "Housing":[
+      "Homestay",
+      "Other",
+      "Student responsibility"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"No",
@@ -3275,11 +3784,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"37,306",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"100",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel, Other",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel",
+      "Other"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -3310,11 +3826,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,435",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"250",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"Yes",
@@ -3345,11 +3867,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,342",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"700",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"Yes",
@@ -3380,11 +3908,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,493",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"700",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"Yes",
@@ -3415,11 +3949,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,499",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3450,11 +3990,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,193",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"220",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Hindi",
     "Language prerequisite":"No",
@@ -3485,11 +4031,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,047",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3520,11 +4071,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,160",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"60",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Arabic, English",
     "Language prerequisite":"No",
@@ -3555,11 +4112,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,197",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"60",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Arabic, English",
     "Language prerequisite":"No",
@@ -3590,11 +4153,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,894",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"100",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3625,11 +4194,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,333",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Spanish",
     "Language prerequisite":"Yes",
@@ -3660,11 +4235,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,496",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Arabic, English",
     "Language prerequisite":"No",
@@ -3695,11 +4276,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,496",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Arabic, English",
     "Language prerequisite":"No",
@@ -3730,11 +4317,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,680",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"420",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Nepali",
     "Language prerequisite":"No",
@@ -3765,11 +4358,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,068",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"420",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Nepali, Tibetan",
     "Language prerequisite":"No",
@@ -3800,11 +4398,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,991",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"210",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3835,11 +4438,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,768",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"140",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Samoan",
     "Language prerequisite":"No",
@@ -3870,11 +4479,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,642",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"250",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3905,11 +4520,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,521",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"88",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -3940,11 +4561,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,182",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"348",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -3975,11 +4602,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"37,414",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"200",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, French",
     "Language prerequisite":"No",
@@ -4010,11 +4643,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"37,695",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"200",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, French",
     "Language prerequisite":"No",
@@ -4045,11 +4683,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"37,734",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"200",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, French",
     "Language prerequisite":"No",
@@ -4080,11 +4724,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,347",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"130",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4115,11 +4765,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,775",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"90",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Homestay, Hostel\/Hotel",
+    "Housing":[
+      "Homestay",
+      "Hostel\/Hotel"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English, Vietnamese",
     "Language prerequisite":"No",
@@ -4160,11 +4816,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Faculty-led",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -4195,11 +4855,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"13,116",
     "Tuition Cost":"12,831",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Summer",
+    "Program terms":[
+      "Summer"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"N\/A",
     "Academic Calendar":"Summer",
-    "Housing":"Dormitory, Homestay",
+    "Housing":[
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -4230,11 +4895,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,160",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"50",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Spring 2022",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English, Hebrew",
     "Language prerequisite":"No",
@@ -4271,11 +4942,15 @@ const data = [
     "Total Paid to Vanderbilt Cost":null,
     "Tuition Cost":null,
     "Visa\/Residence Permit Cost":null,
-    "Program terms":"Maymester",
+    "Program terms":[
+      "Maymester"
+    ],
     "Restrictions":"Vanderbilt\/External applicants accepted",
     "Type of Program":"Faculty-led",
     "Academic Calendar":"Summer",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"N\/A",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4306,11 +4981,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"300",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3.3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4341,11 +5022,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,200",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"360",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4376,11 +5063,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,675",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"340",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4411,11 +5104,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,117",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3.3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4446,11 +5146,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,725",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"420",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4481,11 +5188,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,050",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"25",
-    "Program terms":"Calendar Year, Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Calendar Year",
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4516,11 +5230,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,099",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"80",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4551,11 +5270,16 @@ const data = [
     "Total Paid to Vanderbilt Cost":"38,981",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"170",
-    "Program terms":"Full Academic Year, Spring",
+    "Program terms":[
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"German",
     "Language prerequisite":"Yes",
@@ -4586,11 +5310,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,775",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"25",
-    "Program terms":"Calendar Year, Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Calendar Year",
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4621,11 +5353,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,100",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"80",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Other",
+    "Housing":[
+      "Apartment (shared)",
+      "Other"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4656,11 +5394,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,100",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"80",
-    "Program terms":"Fall, Spring",
+    "Program terms":[
+      "Fall",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Study Center\/University Hybrid",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Other",
+    "Housing":[
+      "Apartment (shared)",
+      "Other"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4691,11 +5435,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,267",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"625",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory, Homestay",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory",
+      "Homestay"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4726,11 +5478,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,300",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4761,11 +5519,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"31,575",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"360",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared)",
+    "Housing":[
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4796,11 +5560,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,125",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"N\/A",
+    "Housing":[
+      "N\/A"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"N\/A",
     "Language prerequisite":"No",
@@ -4831,11 +5601,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"31,250",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"70",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"Arabic, English, Hebrew",
     "Language prerequisite":"No",
@@ -4866,11 +5642,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"32,650",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4901,11 +5684,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"29,350",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"450",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (alone), Apartment (shared)",
+    "Housing":[
+      "Apartment (alone)",
+      "Apartment (shared)"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"N\/A",
@@ -4936,11 +5726,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,675",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"420",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -4971,11 +5768,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,000",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"420",
-    "Program terms":"Calendar Year, Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Calendar Year",
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -5006,11 +5811,18 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,275",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3.2",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -5041,11 +5853,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,125",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Similar to VU",
-    "Housing":"Dormitory",
+    "Housing":[
+      "Dormitory"
+    ],
     "Minimum GPA":"2.9",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -5076,11 +5894,19 @@ const data = [
     "Total Paid to Vanderbilt Cost":"35,750",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"420",
-    "Program terms":"Calendar Year, Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Calendar Year",
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.8",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -5111,11 +5937,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,234",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"160",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Homestay",
+    "Housing":[
+      "Homestay"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"Spanish",
     "Language prerequisite":"Yes",
@@ -5146,11 +5978,17 @@ const data = [
     "Total Paid to Vanderbilt Cost":"34,950",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"0",
-    "Program terms":"Full Academic Year, Spring",
+    "Program terms":[
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"3",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
@@ -5181,18 +6019,25 @@ const data = [
     "Total Paid to Vanderbilt Cost":"33,850",
     "Tuition Cost":"29,065",
     "Visa\/Residence Permit Cost":"25",
-    "Program terms":"Fall, Full Academic Year, Spring",
+    "Program terms":[
+      "Fall",
+      "Full Academic Year",
+      "Spring"
+    ],
     "Restrictions":"Vanderbilt applicants only",
     "Type of Program":"Direct University Enrollment",
     "Academic Calendar":"Extends into Summer Months",
-    "Housing":"Apartment (shared), Dormitory",
+    "Housing":[
+      "Apartment (shared)",
+      "Dormitory"
+    ],
     "Minimum GPA":"2.7",
     "Language of Instruction":"English",
     "Language prerequisite":"No",
     "Additional prerequisites":"N\/A",
     "Image Link":"https:\/\/cdn.vanderbilt.edu\/vu-wp0\/wp-content\/uploads\/sites\/234\/2017\/12\/11205439\/brochure_1045.jpg",
     "Program Link":"https:\/\/www.ifsa-butler.org\/program\/victoria-university-of-wellington-partnership\/"
-  },
+  }
 ];
 
 const majors = ['African American and Diaspora Studies',
