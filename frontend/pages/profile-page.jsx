@@ -45,7 +45,7 @@ export default function ProfilePage() {
         },
       })
       .then((res) => {
-      //  console.log(res.data);
+        //  console.log(res.data);
         setObject(res.data);
       })
       .catch((err) => {
@@ -83,21 +83,23 @@ export default function ProfilePage() {
         </div>
         {object.posts && object.posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[65%] md:h-[70%] ">
-            {object.posts.map((post) => (
-              <Reviews
-                key={post.id}
-                id={post.id}
-                username={post.username}
-                program={post.program}
-                content={post.content}
-                likes={post.likes}
-                saves={post.saves}
-                tags={post.tags}
-                dislikes={post.dislikes}
-                location={post.location}
-                comments={post.comments}
-                date={post.date}
-              />
+            {object.posts.map((post, key) => (
+              <div key={key}>
+                <Reviews
+                  key={key}
+                  id={post.id}
+                  username={post.username}
+                  program={post.program}
+                  content={post.content}
+                  likes={post.likes}
+                  saves={post.saves}
+                  tags={post.tags}
+                  dislikes={post.dislikes}
+                  location={post.location}
+                  comments={post.comments}
+                  date={post.date}
+                />
+              </div>
             ))}
           </div>
         ) : null}

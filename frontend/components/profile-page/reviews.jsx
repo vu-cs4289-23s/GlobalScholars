@@ -1,5 +1,5 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 const Reviews = ({
   key,
   id,
@@ -18,6 +18,7 @@ const Reviews = ({
     <div
       className="flex w-full overflow-visible flex-row sm:h-auto justify-center h-72 "
       id="background"
+      key={key}
     >
       <div
         className="flex flex-row w-[80vw] h-[30vh] m-4 bg-blue-700  justify-center items-center rounded-md"
@@ -32,6 +33,7 @@ const Reviews = ({
             alt="avatar"
             className=" w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-full  "
           />
+          <p className="font-bold mt-4 text-center">{username}</p>
           <p className="font-bold mt-4 text-center">
             {location}, {program}
           </p>
