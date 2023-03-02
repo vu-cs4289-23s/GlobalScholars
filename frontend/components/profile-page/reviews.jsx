@@ -1,7 +1,5 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
-import { useState } from "react";
-import Tag from "../forum/all-forums/tag";
 const Reviews = ({
   key,
   id,
