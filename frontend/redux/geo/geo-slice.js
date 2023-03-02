@@ -40,35 +40,35 @@ const initialState = {
 const backendURL = "/api/v1";
 
 const geoSlice = createSlice({
-    name: "geo",
-    initialState,
-    reducers: {
-      getPrograms: (state, action) => {
-        state.loading = false;
-        state.programInfo = action.payload;
-        state.success = true;
-        state.error = null;
-      },
-      getLocations: (state, action) => {
-        state.loading = false;
-        state.locationInfo = action.payload;
-        state.success = true;
-        state.error = null;
-      },
-      getForumData: (state, action) => {
-        state.loading = false;
-        state.locationInfo = action.payload.location;
-        state.programInfo = action.payload.program;
-        state.success = true;
-        state.error = null;
-      },
-      error: (state, action) => {
-        state.loading = false;
-        state.error = action.payload.message;
-      },
+  name: "geo",
+  initialState,
+  reducers: {
+    getPrograms: (state, action) => {
+      state.loading = false;
+      state.programInfo = action.payload;
+      state.success = true;
+      state.error = null;
     },
-  }
-);
+    getLocations: (state, action) => {
+      state.loading = false;
+      console.log(typeof action.payload);
+      state.locationInfo = action.payload;
+      state.success = true;
+      state.error = null;
+    },
+    getForumData: (state, action) => {
+      state.loading = false;
+      state.locationInfo = action.payload.location;
+      state.programInfo = action.payload.program;
+      state.success = true;
+      state.error = null;
+    },
+    error: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+  },
+});
 
 // DEFINE ACTIONS HERE
 export const getForumDataByName = (name) => async (dispatch) => {
@@ -79,7 +79,7 @@ export const getForumDataByName = (name) => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/geo/forum/${name}`, config);
-  //  console.log(response.data);
+    //  console.log(response.data);
     dispatch(getForumData(response.data));
   } catch (error) {
     console.log(error);
@@ -110,7 +110,10 @@ export const getProgramByNameAsyncAction = (name) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const response = await axios.get(`${backendURL}/geo/program/${name}`, config);
+    const response = await axios.get(
+      `${backendURL}/geo/program/${name}`,
+      config
+    );
     //  console.log(response.data);
     dispatch(getPrograms(response.data));
   } catch (error) {
@@ -142,8 +145,11 @@ export const getLocationByNameAsyncAction = (name) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const response = await axios.get(`${backendURL}/geo/location/${name}`, config);
-     console.log(response.data);
+    const response = await axios.get(
+      `${backendURL}/geo/location/${name}`,
+      config
+    );
+    console.log(response.data);
     dispatch(getLocations(response.data));
   } catch (error) {
     console.log(error);
@@ -151,6 +157,7 @@ export const getLocationByNameAsyncAction = (name) => async (dispatch) => {
   }
 };
 
-export const { getPrograms, getLocations, getForumData, error } = geoSlice.actions;
+export const { getPrograms, getLocations, getForumData, error } =
+  geoSlice.actions;
 
 export default geoSlice.reducer;

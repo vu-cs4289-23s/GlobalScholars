@@ -41,6 +41,16 @@ const CityDescription = ({
   useEffect(() => {
     getData();
   }, []);
+  console.log(
+    city,
+    country,
+    description,
+    top_tags,
+    overall_rating,
+    safety_rating,
+    affordability_rating,
+    sightseeing_rating
+  );
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg absolute">
@@ -57,11 +67,8 @@ const CityDescription = ({
         <p>{description}</p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag color={"bg-red-400"} content={top_tags[0]} />
-          <Tag color={"bg-red-400"} content={top_tags[1]} />
-          <Tag color={"bg-red-400"} content={top_tags[2]} />
-          <Tag color={"bg-red-400"} content={top_tags[3]} />
-          <Tag color={"bg-red-400"} content={top_tags[4]} />
+          {top_tags &&
+            top_tags.map((tag) => <Tag color={"bg-red-400"} content={tag} />)}
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">

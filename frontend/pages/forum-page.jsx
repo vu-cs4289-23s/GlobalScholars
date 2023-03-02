@@ -5,7 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
-import { getForumDataByName } from "../redux/geo/geo-slice.js";
+import {
+  getForumDataByName,
+  getAllLocationsAsyncAction,
+  getAllProgramsAsyncAction,
+} from "../redux/geo/geo-slice.js";
 import axios from "axios";
 
 export default function ForumPage() {
@@ -43,22 +47,13 @@ export default function ForumPage() {
   }, [loggedIn, userInfo]);
 
   useEffect(() => {
-    dispatch(getForumDataByName(name));
-  }, [name]);
-
-  useEffect(() => {
-    // Set Location data
-    if (locationInfo && locationInfo.city !== "") {
-      setCity(locationInfo.city);
-      setCountry(locationInfo.country);
-      setDescription(locationInfo.description);
-      setTags(locationInfo.top_tags);
-      setOverallRate(locationInfo.overall_rating);
-      setSafetyRate(locationInfo.safety_rating);
-      setAffordableRate(locationInfo.affordability_rating);
-      setSightsRate(locationInfo.sightseeing_rating);
+    if (name !== undefined) {
+      dispatch(getForumDataByName(name));
+    } else {
+      dispatch(getAllLocationsAsyncAction());
+      dispatch(getAllProgramsAsyncAction());
     }
-  }, [locationInfo]);
+  }, [name]);
 
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-200">
@@ -70,15 +65,26 @@ export default function ForumPage() {
           className="flex h-1/4 w-screen object-center object-cover"
           src="copenhagen-forum-photo.png"
         />
-        <CityDescription
-          description={
-            locationInfo.length > 0
-              ? locationInfo[0].description
-              : "This location does not exist."
-          }
-          city={locationInfo.length > 0 ? locationInfo[0].city : "N/a"}
-          country={locationInfo.length > 0 ? locationInfo[0].country : "N/a"}
-        />
+        {Object.keys(locationInfo).length !== 0
+          ? Object.keys(locationInfo).map((key) => {
+              return (
+                <div key={key}>
+                  <CityDescription
+                    city={locationInfo[key].city}
+                    country={locationInfo[key].country}
+                    description={locationInfo[key].description}
+                    top_tags={locationInfo[key].top_tags}
+                    overall_rating={locationInfo[key].overall_rating}
+                    safety_rating={locationInfo[key].safety_rating}
+                    affordability_rating={
+                      locationInfo[key].affordability_rating
+                    }
+                    sightseeing_rating={locationInfo[key].sightseeing_rating}
+                  />
+                </div>
+              );
+            })
+          : null}
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
