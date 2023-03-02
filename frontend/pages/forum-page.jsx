@@ -14,9 +14,15 @@ export default function ForumPage() {
   const dispatch = useDispatch();
   const { name } = useParams();
   const [city, setCity] = useState("City");
-  const [country, setCountry] =  useState("Country");
-  const [description, setDescription] =  useState("This is my description");
-  const [tags, setTags] = useState(["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"]);
+  const [country, setCountry] = useState("Country");
+  const [description, setDescription] = useState("This is my description");
+  const [tags, setTags] = useState([
+    "Tag One",
+    "Tag Two",
+    "Tag Three",
+    "Tag Four",
+    "Tag Five",
+  ]);
   const [overallRate, setOverallRate] = useState(0);
   const [safetyRate, setSafetyRate] = useState(0);
   const [affordableRate, setAffordableRate] = useState(0);
@@ -61,7 +67,7 @@ export default function ForumPage() {
       <div className="bg-blue-200">
         <img
           className="flex h-1/4 w-screen object-center object-cover"
-          src="../../public/landing-locations/copenhagen.jpeg"
+          src="/landing-locations/copenhagen.jpeg"
         />
         {/*src="../../frontend/assets/landing-page-locations/{locationInfo[0].city}.jpg"*/}
         <CityDescription
