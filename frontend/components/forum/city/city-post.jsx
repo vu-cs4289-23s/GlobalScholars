@@ -131,9 +131,10 @@ const CityPost = () => {
 
     useEffect(() => {
         if (postInfo && success) {
-            navigate(`/forum/${state.city}`);
+            const forumNav = state.city;
             // reset post state
             dispatch(resetPost());
+            // navigate(`/forum/${forumNav}`);
         }
     }, [postInfo])
 
