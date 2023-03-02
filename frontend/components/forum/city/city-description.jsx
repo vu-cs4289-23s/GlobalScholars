@@ -4,37 +4,55 @@ import ProgramLink from "../all-forums/program-link.jsx";
 import Reviews from "../../profile-page/reviews";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getPostsByLocationAsyncAction } from "../../../redux/post/post-slice.js";
+import { useDispatch, useSelector } from "react-redux";
 
-const CityDescription = ({ city,
-                           country,
-                           description,
-                           top_tags,
-                           overall_rating,
-                           safety_rating,
-                           affordability_rating,
-                           sightseeing_rating }) => {
+const CityDescription = ({
+  city,
+  country,
+  description,
+  top_tags,
+  overall_rating,
+  safety_rating,
+  affordability_rating,
+  sightseeing_rating,
+  image_link,
+  like_cnt
+}) => {
+  const [posts, setPosts] = useState({});
+  const dispatch = useDispatch();
+  const { postInfo } = useSelector((state) => state.post);
 
-  const [object, setObject] = useState({});
+  // const getData = () => {
+  //   axios
+  //     .get("/api/v1/generateDummyData?posts=10&users=5", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //     })
+  //     .then((res) => {
+  //     //  console.log(res.data);
+  //       setObject(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const getData = () => {
-    axios
-      .get("/api/v1/generateDummyData?posts=10&users=5", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-      //  console.log(res.data);
-        setObject(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   useEffect(() => {
-    getData();
-  }, []);
+  //  getData();
+    if (city !== "City") {
+      // Fetch posts by city name passed through
+      dispatch(getPostsByLocationAsyncAction(city));
+    }
+  }, [city]);
+
+  useEffect(() => {
+    setPosts(postInfo);
+  }, [postInfo]);
+
+  console.log(posts);
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg absolute">
@@ -54,7 +72,7 @@ const CityDescription = ({ city,
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
           {top_tags &&
-            top_tags.map((tag) => <Tag color={"bg-red-400"} content={tag} />)}
+            top_tags.map((tag, index) => <Tag color={"bg-red-400"} content={tag} key={index} />)}
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
@@ -90,13 +108,13 @@ const CityDescription = ({ city,
 
 
         </div>
-        {object.posts && object.posts.length > 0 ? (
+        {posts && posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
-            {object.posts.map((post) => (
+            {posts.map((post, index) => (
               <Reviews
-                key={post.id}
-                id={post.id}
-                username={post.username}
+                key={index}
+                id={post._id}
+                username={post.owner}
                 program={post.program}
                 content={post.content}
                 likes={post.likes}
@@ -105,7 +123,7 @@ const CityDescription = ({ city,
                 dislikes={post.dislikes}
                 location={post.location}
                 comments={post.comments}
-                date={post.date}
+                date={post.timestamp}
               />
             ))}
           </div>

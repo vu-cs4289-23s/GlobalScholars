@@ -140,7 +140,7 @@ const Post = (app) => {
     // Fetch posts filtering by location
     let data, location;
     try {
-      location = await app.models.Location.find({
+      location = await app.models.Location.findOne({
         city: { $regex : new RegExp(req.params.location, "i") }
       });
       data = await app.models.Post.find({ location: location._id });
