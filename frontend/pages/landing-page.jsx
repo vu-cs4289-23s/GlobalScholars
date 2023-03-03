@@ -24,68 +24,14 @@ export default function LandingPage() {
     }
   }, [loggedIn, userInfo]);
 
-  //get all landing pages into images
-  var images = [
-    {
-      name: "Barcelona, Spain",
-      src: "/landing-locations/barcelona.jpg",
-    },
-    {
-      name: "Copenhagen, Denmark",
-      src: "/landing-locations/copenhagen.jpeg",
-    },
-    {
-      name: "Edinburgh, Scotland",
-      src: "/landing-locations/edinburgh.jpeg",
-    },
-    { name: "Florence, Italy", src: "/landing-locations/florence.jpeg" },
-    {
-      name: "Glasgow, Scotland",
-      src: "/landing-locations/glasgow.jpeg",
-    },
-    {
-      name: "London, United Kingdom",
-      src: "/landing-locations/london.jpeg",
-    },
-    { name: "Madrid, Spain", src: "/landing-locations/madrid.jpeg" },
-    { name: "Paris, France", src: "/landing-locations/paris.jpeg" },
-    { name: "Rome, Italy", src: "/landing-locations/rome.jpeg" },
-    { name: "Seville, Spain", src: "/landing-locations/seville.jpeg" },
-    {
-      name: "Stockholm, Sweden",
-      src: "/landing-locations/stockholm.jpeg",
-    },
-    {
-      name: "Prague, Czech Republic",
-      src: "/landing-locations/prague.jpeg",
-    },
-    {
-      name: "Budapest, Hungary",
-      src: "/landing-locations/budapest.jpeg",
-    },
-    { name: "Vienna, Austria", src: "/landing-locations/vienna.jpeg" },
-  ];
-
-  const { locationInfo } = useSelector((state) => state.geo);
-
-  const onImageClick = (event, name) => {
-    console.log(event);
-    console.log(name);
-    // setShowPrograms(name);
-    console.log(name.split(",")[0].toLowerCase());
-    dispatch(getLocationByNameAsyncAction(name.split(",")[0].toLowerCase()));
-
-    const programs = locationInfo.programs;
-  };
-
-  //dynamic array to hold program images & names (will be populated on a click of a location)
-  const [programImages, setProgramImages] = useState([]);
-
-  //bool state that displays programs or hides them depending on location clicked
-  const [showPrograms, setShowPrograms] = useState("");
-  useEffect(() => {
-    //fetch data here
-  }, [showPrograms]);
+  // //dynamic array to hold program images & names (will be populated on a click of a location)
+  // const [programImages, setProgramImages] = useState([]);
+  //
+  // //bool state that displays programs or hides them depending on location clicked
+  // const [showPrograms, setShowPrograms] = useState("");
+  // useEffect(() => {
+  //   //fetch data here
+  // }, [showPrograms]);
 
   return (
     <div id="forum-page" className="flex h-screen ">

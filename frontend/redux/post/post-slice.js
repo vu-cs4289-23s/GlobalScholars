@@ -83,6 +83,22 @@ export const getPostsByUserAsyncAction = (user) => async (dispatch) => {
   }
 };
 
+export const getPostsByLocationAsyncAction = (location) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(`${backendURL}/posts/location/${location}`, config);
+    console.log(response.data);
+    dispatch(getPosts(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
 export const submitNewForumPost = (data) => async (dispatch) => {
   try {
     const config = {
