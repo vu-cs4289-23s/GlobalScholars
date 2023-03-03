@@ -302,11 +302,11 @@ const GEOData = (app) => {
 
       await Promise.all(update_locations);
 
-      res.status(200).send({});
+      res.status(200).send({Success: "Success"});
       return;
     } catch (err) {
       console.log(`Error: ${err}`)
-      res.status(401).send({});
+      res.status(401).send({Error: `${err}`});
     }
 
   });
