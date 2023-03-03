@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import images from "../../images";
+import ScrollingImages from "../components/all-pages/scrolling-images";
 
 import { getLocationByNameAsyncAction } from "../redux/geo/geo-slice.js";
 
@@ -54,48 +55,14 @@ export default function LandingPage() {
             Programs By Location:
           </div>
 
+          {/* locations  */}
           <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-            {images.map(({ name, src }) => (
-              <div className="snap-center" key={name}>
-                <div className="scroll-snap-align-start h-64 w-64">
-                  <img
-                    src={src}
-                    alt={name}
-                    className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
-                    data-name={name}
-                    onClick={(event) => onImageClick(event, name)}
-                  />
-                  <p
-                    className="text-base font-bold p-6 text-gray-900"
-                    data-name={name}
-                  >
-                    {name}
-                  </p>
-                </div>
-              </div>
-            ))}
+            ScrollingImages
           </div>
 
           {/* programs popout  */}
           <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-            {images.map(({ name, src }) => (
-              <div className="snap-center" key={name}>
-                <div className="scroll-snap-align-start h-64 w-64">
-                  <img
-                    src={src}
-                    alt={name}
-                    className="h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
-                    data-name={name}
-                  />
-                  <p
-                    className="text-base font-bold p-6 text-gray-900"
-                    data-name={name}
-                  >
-                    {name}
-                  </p>
-                </div>
-              </div>
-            ))}
+            ScrollingImages
           </div>
         </div>
       </div>
