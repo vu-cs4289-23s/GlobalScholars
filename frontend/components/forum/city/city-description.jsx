@@ -4,14 +4,11 @@ import ProgramLink from "../all-forums/program-link.jsx";
 import Reviews from "../../profile-page/reviews";
 import { useEffect, useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import { getLocationByNameAsyncAction } from "../../../redux/geo/geo-slice.js";
 import ScrollingImages from "../../all-pages/scrolling-images.jsx";
 import images from "../../../../images.js";
-=======
 import { getPostsByLocationAsyncAction, getAllPostsAsyncAction } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
->>>>>>> 95548438c810865249fe3e8618aa504c6646d658
 
 const CityDescription = ({
   city,
@@ -85,12 +82,10 @@ const CityDescription = ({
           Like what you see? Study Here!
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
-<<<<<<< HEAD
             {/* displayed locations  */}
             <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
               <ScrollingImages rounded={true} url={programImages.url} forum={true} images={programImages} />
           </div>
-=======
           {/*<div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">*/}
           {/*  {images.map(({ name, src }) => (*/}
           {/*    <div className="snap-center" key={name}>*/}
@@ -109,7 +104,6 @@ const CityDescription = ({
           {/*    </div>*/}
           {/*  ))}*/}
           {/*</div>*/}
->>>>>>> 95548438c810865249fe3e8618aa504c6646d658
         </div>
         {posts && posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[70%] ">

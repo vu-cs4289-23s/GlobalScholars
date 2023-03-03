@@ -20,11 +20,7 @@ const ScrollingImages = ({images, url, rounded, forum}) => {
   const onClick = (ev) => {
     console.log(`Clicking on ${ev.target.name}`);
     // Navigate to forum page for location / program clicked
-    if(forum){
-      // navigate(url);
-      // this is hard and i need to figure it out
-    }
-    else {
+    if(!forum){
       navigate(`/forum/${ev.target.name.split(",")[0].toLowerCase()}`);
     }
   };
@@ -50,7 +46,7 @@ return (
     <div style={{ display: 'flex' }}>
       {images.map((image) => (
         
-          <a className="scroll-snap-align-start h-64 w-64" href={image.url} target={"_blank"}>
+          <div className="scroll-snap-align-start h-64 w-64" href={image.url} target={"_blank"}>
             <img 
                 src={image.src}
                 name={image.name}
@@ -62,7 +58,7 @@ return (
             <p className="text-base font-bold p-6 text-gray-900">
             {image.name}
             </p>
-         </a>
+         </div>
         
       ))}
     </div>

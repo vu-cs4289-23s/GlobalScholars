@@ -5,6 +5,7 @@ import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import images from "/images.js";
 
 import { getLocationByNameAsyncAction } from "../redux/geo/geo-slice.js";
 
