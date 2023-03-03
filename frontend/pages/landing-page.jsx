@@ -3,9 +3,10 @@ import SideBar from "../components/all-pages/sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import ScrollingImages from "../components/all-pages/scrolling-images.jsx";
-import images from "../../images.js";
+import { useEffect } from "react";
+import { useState } from "react";
+
+import { getLocationByNameAsyncAction } from "../redux/geo/geo-slice.js";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -23,20 +24,17 @@ export default function LandingPage() {
     }
   }, [loggedIn, userInfo]);
 
-  //dynamic array to hold program images & names (will be populated on a click of a location)
-  const [programImages, setProgramImages] = useState([]);
-
-  //bool state that displays programs or hides them depending on location clicked
-  const [showPrograms, setShowPrograms] = useState("");
-  useEffect(() => {
-    //fetch data here
-  }, [showPrograms]);
+  // //dynamic array to hold program images & names (will be populated on a click of a location)
+  // const [programImages, setProgramImages] = useState([]);
+  //
+  // //bool state that displays programs or hides them depending on location clicked
+  // const [showPrograms, setShowPrograms] = useState("");
+  // useEffect(() => {
+  //   //fetch data here
+  // }, [showPrograms]);
 
   return (
-    <div
-      id="forum-page"
-      className="flex h-screen h-screen w-screen"
-    >
+    <div id="forum-page" className="flex h-screen ">
       <SideBar />
       <div className="overflow-y-scroll">
         <div className="flex flex-col h-1/2 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover justify-end">
@@ -50,19 +48,53 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="grid bg-white">
-          <div className="flex flex-row h-2 p-5 text-2xl">
+        <div className="grid bg-white w-[85vw] ">
+          <div className="flex flex-row h-2 p-5 w-[85vw] text-2xl">
             Programs By Location:
           </div>
 
-          {/* displayed locations  */}
-          <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
-            <ScrollingImages rounded={true} images={images} />
+          <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
+            {images.map(({ name, src }) => (
+              <div className="snap-center" key={name}>
+                <div className="scroll-snap-align-start h-64 w-64">
+                  <img
+                    src={src}
+                    alt={name}
+                    className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
+                    data-name={name}
+                    onClick={(event) => onImageClick(event, name)}
+                  />
+                  <p
+                    className="text-base font-bold p-6 text-gray-900"
+                    data-name={name}
+                  >
+                    {name}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* programs popout  */}
-          <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
-            <ScrollingImages images={images} />
+          <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
+            {images.map(({ name, src }) => (
+              <div className="snap-center" key={name}>
+                <div className="scroll-snap-align-start h-64 w-64">
+                  <img
+                    src={src}
+                    alt={name}
+                    className="h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
+                    data-name={name}
+                  />
+                  <p
+                    className="text-base font-bold p-6 text-gray-900"
+                    data-name={name}
+                  >
+                    {name}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

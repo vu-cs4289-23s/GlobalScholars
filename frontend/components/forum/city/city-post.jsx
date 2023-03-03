@@ -63,7 +63,7 @@ export const FormRatingContainer = tw.div`
 const CityPost = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { postInfo, success } = useSelector((state) => state.post);
+    const { postInfo, success, loading } = useSelector((state) => state.post);
 
     let [postAnon, setPostAnon] = useState("current-user");
 
@@ -78,7 +78,7 @@ const CityPost = () => {
         safety_rating: 0,
         affordability_rating: 0,
         sightseeing_rating: 0,
-        // top_tags; [],
+        top_tags: [],
     });
 
     // For the location selector code
@@ -93,8 +93,8 @@ const CityPost = () => {
         setLocations(images);
     }, []);
 
-    const onClickTag = () => {
-        console.log("you just clicked a tag");
+    const onClickTag = (ev) => {
+        console.log(`Tag: ${ev.target.name}`);
     }
 
     const onSubmit = (ev) => {
@@ -107,6 +107,13 @@ const CityPost = () => {
         }
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
+
+        if (success) {
+            const forumNav = state.city;
+            // reset post state
+            dispatch(resetPost());
+            navigate(`/forum/${forumNav}`);
+        }
     };
 
     const onChange = (ev) => {
@@ -128,14 +135,6 @@ const CityPost = () => {
             });
         }
     }, [selected]);
-
-    useEffect(() => {
-        if (postInfo && success) {
-            // reset post state
-            dispatch(resetPost());
-            navigate("/forum");
-        }
-    }, [postInfo])
 
     return (
         <MakePostBox>
@@ -248,7 +247,7 @@ const CityPost = () => {
                         <input
                             className="flex flex-auto h-32"
                             id="review"
-                            name="review"
+                            name="content"
                             type="text"
                             placeholder="Your Review"
                             onChange={onChange}

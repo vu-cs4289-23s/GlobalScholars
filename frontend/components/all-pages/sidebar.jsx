@@ -13,16 +13,16 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserAsyncAction } from "../../redux/user/user-slice";
 import tw from "tailwind-styled-components";
-import { ImSearch } from 'react-icons/im';
-import { MdOutlineForum, MdOutlineAddBox } from 'react-icons/md';
-import { BsCalculatorFill, BsPersonCircle } from 'react-icons/bs';
+import { ImSearch } from "react-icons/im";
+import { MdOutlineForum, MdOutlineAddBox } from "react-icons/md";
+import { BsCalculatorFill, BsPersonCircle } from "react-icons/bs";
 
 const NavigationContainer = tw.div`
   text-white
   font-bold 
   sm:flex 
   hover:cursor-pointer
-`
+`;
 
 const SidebarNavigationLinkTitle = tw.div`
   hidden 
@@ -33,8 +33,7 @@ const SidebarNavigationLinkTitle = tw.div`
   p-2 hover:text-blue-300 
   hover:underline 
   underline-offset-4
-`
-
+`;
 
 const SideBar = () => {
   const { userInfo, loggedIn, userToken, loading, success } = useSelector(
@@ -53,8 +52,7 @@ const SideBar = () => {
   }, [success, loggedIn, userInfo]);
   //state management (what states will we need?)
   return (
-
-    <div className="flex flex-row sticky sm:flex-col p-6 h-24 sm:h-full sm:w-64 w-full fixed sm:sticky   bottom-0 gap-4 bg-sky-800 z-10">
+    <div className="flex flex-row sm:flex-col p-6 h-24 sm:h-full sm:w-64 w-full fixed sm:sticky   bottom-0 gap-4 bg-sky-800 z-10">
       {/* logo  */}
       <div
         className="w-full sm:flex justify-center mb-5  text-white text-lg indent-1 hidden sm:visible"
@@ -71,36 +69,36 @@ const SideBar = () => {
 
       {/* links */}
       <div className="w-full flex sm:grid items-center justify-between m-4  sm:gap-8">
-        <NavigationContainer onClick={() => navigate("/landing")} >
+        <NavigationContainer onClick={() => navigate("/landing")}>
           {/* <img src={searchIcon} width={40} height={100}/> */}
           <ImSearch size={36} />
-          <SidebarNavigationLinkTitle>
-            Search
-          </SidebarNavigationLinkTitle>
+          <SidebarNavigationLinkTitle>Search</SidebarNavigationLinkTitle>
         </NavigationContainer>
-        <NavigationContainer onClick={() => navigate("/forum")} >
+        <NavigationContainer onClick={() => navigate("/forum")}>
           <MdOutlineForum size={36} />
-          <SidebarNavigationLinkTitle>
-            Forum
-          </SidebarNavigationLinkTitle>
+          <SidebarNavigationLinkTitle>Forum</SidebarNavigationLinkTitle>
         </NavigationContainer>
-        <NavigationContainer onClick={() => navigate("/newpost")} >
+        <NavigationContainer onClick={() => navigate("/newpost")}>
           <MdOutlineAddBox size={36} />
-          <SidebarNavigationLinkTitle>
-            Make Post
-          </SidebarNavigationLinkTitle>
+          <SidebarNavigationLinkTitle>Make Post</SidebarNavigationLinkTitle>
         </NavigationContainer>
-        <NavigationContainer onClick={() => navigate("/price-estimator")} >
+        <NavigationContainer onClick={() => navigate("/price-estimator")}>
           <BsCalculatorFill size={36} />
-          <SidebarNavigationLinkTitle>
-            Calculator
-          </SidebarNavigationLinkTitle>
+          <SidebarNavigationLinkTitle>Calculator</SidebarNavigationLinkTitle>
         </NavigationContainer>
-        <NavigationContainer onClick={() => navigate(`/profile/${userInfo.username}`)}>
-          <BsPersonCircle size={36} />
-          <SidebarNavigationLinkTitle>
-            Profile
-          </SidebarNavigationLinkTitle>
+        <NavigationContainer
+          onClick={() => navigate(`/profile/${userInfo.username}`)}
+        >
+          {userInfo.avatar_url ? (
+            <img
+              src={userInfo.avatar_url}
+              alt="profile"
+              className="rounded-full h-[36px] w-[36px]"
+            />
+          ) : (
+            <BsPersonCircle size={36} />
+          )}
+          <SidebarNavigationLinkTitle>Profile</SidebarNavigationLinkTitle>
         </NavigationContainer>
       </div>
     </div>
