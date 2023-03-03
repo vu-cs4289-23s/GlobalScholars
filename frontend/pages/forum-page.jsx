@@ -139,7 +139,7 @@ export default function ForumPage() {
           affordability_rating={location.affordability_rating}
           sightseeing_rating={location.sightseeing_rating}
         />
-        {Object.keys(locationInfo).length !== 0
+        {/* {Object.keys(locationInfo).length !== 0
           ? Object.keys(locationInfo).map((key) => {
               return (
                 <div key={key}>
@@ -158,7 +158,7 @@ export default function ForumPage() {
                 </div>
               );
             })
-          : null}
+          : null} */}
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
