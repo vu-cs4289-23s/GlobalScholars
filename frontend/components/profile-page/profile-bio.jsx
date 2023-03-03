@@ -27,7 +27,7 @@ const ProfileBio = () => {
             <img
               src={userInfo.avatar_url}
               alt="avatar"
-              className=" w-24 h-24 rounded-full  "
+              className=" w-[36px] sm:w-[105px] h-[36px] sm:h-[105px] rounded-full  "
             />
           </div>
         </div>

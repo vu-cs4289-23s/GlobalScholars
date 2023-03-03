@@ -3,45 +3,44 @@ import Rating from "../all-forums/rating.jsx";
 import ProgramLink from "../all-forums/program-link.jsx";
 import Reviews from "../../profile-page/reviews";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-// import { getForumDataByName }  from "../redux/geo/geo-slice.js";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+<<<<<<< HEAD
 import { getLocationByNameAsyncAction } from "../../../redux/geo/geo-slice.js";
 import ScrollingImages from "../../all-pages/scrolling-images.jsx";
 import images from "../../../../images.js";
+=======
+import { getPostsByLocationAsyncAction, getAllPostsAsyncAction } from "../../../redux/post/post-slice.js";
+import { useDispatch, useSelector } from "react-redux";
+>>>>>>> 95548438c810865249fe3e8618aa504c6646d658
 
-const CityDescription = ({ city,
-                           country,
-                           description,
-                           top_tags,
-                           overall_rating,
-                           safety_rating,
-                           affordability_rating,
-                           sightseeing_rating }) => {
+const CityDescription = ({
+  city,
+  country,
+  description,
+  top_tags,
+  overall_rating,
+  safety_rating,
+  affordability_rating,
+  sightseeing_rating,
+  image_link,
+  like_cnt
+}) => {
+  const [posts, setPosts] = useState({});
+  const dispatch = useDispatch();
+  const { postInfo } = useSelector((state) => state.post);
 
-  const [object, setObject] = useState({});
-  const { programInfo, locationInfo } = useSelector((state)  => state.geo);
-
-  const getData = () => {
-    axios
-      .get("/api/v1/generateDummyData?posts=10&users=5", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-      //  console.log(res.data);
-        setObject(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   useEffect(() => {
-    getData();
-  }, []);
+    if (city && city !== "City") {
+      // Fetch posts by city name passed through
+      dispatch(getPostsByLocationAsyncAction(city));
+    } else {
+      dispatch(getAllPostsAsyncAction());
+    }
+  }, [city]);
+
+  useEffect(() => {
+    setPosts(postInfo);
+  }, [postInfo]);
 
   var programImages = [{name: "DIS Copenhagen",  src: "/forum-locations/DIS-Copenhagen.png", url: "https://disabroad.org/copenhagen/"}]
 
@@ -62,24 +61,23 @@ const CityDescription = ({ city,
         <span className="text-[30px]">
           <span className="content-start row ">
             Travel To:
-            <span className="font-bold"> {city}, {country}</span>
+            <span className="font-bold">
+              {" "}
+              {city}, {country}
+            </span>
           </span>
         </span>
-        <p>
-          {description}
-        </p>
+        <p>{description}</p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
-          <Tag content={top_tags[0]}/>
-          <Tag content={top_tags[1]} />
-          <Tag content={top_tags[2]} />
-          <Tag content={top_tags[3]} />
-          <Tag content={top_tags[4]} />
+          {top_tags &&
+
+            top_tags.map((tag, index) => <Tag color={"bg-red-400"} content={tag} key={index} />)}
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
-          <Rating rating={overall_rating} type={"Overall"}/>
-          <Rating rating={safety_rating} type={"Safety"}/>
+          <Rating rating={overall_rating} type={"Overall"}  />
+          <Rating rating={safety_rating} type={"Safety"} />
           <Rating rating={affordability_rating} type={"Affordability"} />
           <Rating rating={sightseeing_rating} type={"Sightseeing"} />
         </div>
@@ -87,18 +85,40 @@ const CityDescription = ({ city,
           Like what you see? Study Here!
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
+<<<<<<< HEAD
             {/* displayed locations  */}
             <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
               <ScrollingImages rounded={true} url={programImages.url} forum={true} images={programImages} />
           </div>
+=======
+          {/*<div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">*/}
+          {/*  {images.map(({ name, src }) => (*/}
+          {/*    <div className="snap-center" key={name}>*/}
+          {/*      <div className="scroll-snap-align-start h-64 w-64">*/}
+          {/*        <img*/}
+          {/*          src={src}*/}
+          {/*          alt={name}*/}
+          {/*          className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"*/}
+          {/*          data-name={name}*/}
+          {/*          onLoad={event => onForumLoad(event, name)}*/}
+          {/*        />*/}
+          {/*        <p className="text-base font-bold p-6 text-gray-900" data-name={name}>*/}
+          {/*          {name}*/}
+          {/*        </p>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  ))}*/}
+          {/*</div>*/}
+>>>>>>> 95548438c810865249fe3e8618aa504c6646d658
         </div>
-        {object.posts && object.posts.length > 0 ? (
+        {posts && posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
-            {object.posts.map((post) => (
+            {posts.map((post, index) => (
               <Reviews
-                key={post.id}
-                id={post.id}
-                username={post.username}
+
+                key={index}
+                id={post._id}
+                username={post.owner}
                 program={post.program}
                 content={post.content}
                 likes={post.likes}
@@ -107,7 +127,7 @@ const CityDescription = ({ city,
                 dislikes={post.dislikes}
                 location={post.location}
                 comments={post.comments}
-                date={post.date}
+                date={post.timestamp}
               />
             ))}
           </div>

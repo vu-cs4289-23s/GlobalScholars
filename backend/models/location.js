@@ -14,6 +14,7 @@ const Location = new Schema({
   affordability_rating: { type: Number, default: 0 },
   sightseeing_rating: { type: Number, default: 0 },
   top_tags: [{ type: String }],
+  image_link: { type: String },
 });
 
 export default model("Location", Location);

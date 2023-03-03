@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 // web scraped GEO data
 const PriceEstimate = new Schema({
-   program: { type: Schema.ObjectId, ref: "Program", required: true },
+   // program: { type: Schema.ObjectId, ref: "Program", required: true },
 
   // Scraped data
   total_budget: { type: Number },
@@ -16,7 +16,7 @@ const PriceEstimate = new Schema({
   personal_expenses: { type: Number },
   program_fee: { type: Number },
   total_out_of_pocket_cost: { type: Number },
-  total_vanderbilt_cost: { type: Number },
+  total_paid_to_vanderbilt: { type: Number },
   tuition_cost: { type: Number },
   visa_residence_fee: { type: Number },
 });
