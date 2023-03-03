@@ -48,12 +48,11 @@ const CityDescription = ({
             </span>
           </span>
         </span>
-        <p>
-          {description}
-        </p>
+        <p>{description}</p>
         <p className="py-4 font-bold text-[24px]">Top Tags</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
           {top_tags &&
+
             top_tags.map((tag, index) => <Tag color={"bg-red-400"} content={tag} key={index} />)}
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
@@ -67,8 +66,6 @@ const CityDescription = ({
           Like what you see? Study Here!
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
-
-
           {/*<div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">*/}
           {/*  {images.map(({ name, src }) => (*/}
           {/*    <div className="snap-center" key={name}>*/}
@@ -87,13 +84,12 @@ const CityDescription = ({
           {/*    </div>*/}
           {/*  ))}*/}
           {/*</div>*/}
-
-
         </div>
         {posts && posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
             {posts.map((post, index) => (
               <Reviews
+
                 key={index}
                 id={post._id}
                 username={post.owner}
