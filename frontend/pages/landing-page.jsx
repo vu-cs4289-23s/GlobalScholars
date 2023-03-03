@@ -5,9 +5,8 @@ import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import images from "/images.js";
-
-import { getLocationByNameAsyncAction } from "../redux/geo/geo-slice.js";
+import images from "../../images.js";
+import ScrollingImages from "../components/all-pages/scrolling-images.jsx";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -24,15 +23,6 @@ export default function LandingPage() {
       dispatch(getUserAsyncAction(userInfo.username));
     }
   }, [loggedIn, userInfo]);
-
-  // //dynamic array to hold program images & names (will be populated on a click of a location)
-  // const [programImages, setProgramImages] = useState([]);
-  //
-  // //bool state that displays programs or hides them depending on location clicked
-  // const [showPrograms, setShowPrograms] = useState("");
-  // useEffect(() => {
-  //   //fetch data here
-  // }, [showPrograms]);
 
   return (
     <div id="forum-page" className="flex h-screen ">
@@ -54,48 +44,14 @@ export default function LandingPage() {
             Programs By Location:
           </div>
 
-          <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-            {images.map(({ name, src }) => (
-              <div className="snap-center" key={name}>
-                <div className="scroll-snap-align-start h-64 w-64">
-                  <img
-                    src={src}
-                    alt={name}
-                    className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
-                    data-name={name}
-                    onClick={(event) => onImageClick(event, name)}
-                  />
-                  <p
-                    className="text-base font-bold p-6 text-gray-900"
-                    data-name={name}
-                  >
-                    {name}
-                  </p>
-                </div>
-              </div>
-            ))}
+          {/* displayed locations  */}
+          <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
+            <ScrollingImages rounded={true} images={images} />
           </div>
 
           {/* programs popout  */}
-          <div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">
-            {images.map(({ name, src }) => (
-              <div className="snap-center" key={name}>
-                <div className="scroll-snap-align-start h-64 w-64">
-                  <img
-                    src={src}
-                    alt={name}
-                    className="h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"
-                    data-name={name}
-                  />
-                  <p
-                    className="text-base font-bold p-6 text-gray-900"
-                    data-name={name}
-                  >
-                    {name}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
+            <ScrollingImages rounded={false} images={images} />
           </div>
         </div>
       </div>

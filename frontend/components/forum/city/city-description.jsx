@@ -86,24 +86,6 @@ const CityDescription = ({
             <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
               <ScrollingImages rounded={true} url={programImages.url} forum={true} images={programImages} />
           </div>
-          {/*<div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">*/}
-          {/*  {images.map(({ name, src }) => (*/}
-          {/*    <div className="snap-center" key={name}>*/}
-          {/*      <div className="scroll-snap-align-start h-64 w-64">*/}
-          {/*        <img*/}
-          {/*          src={src}*/}
-          {/*          alt={name}*/}
-          {/*          className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"*/}
-          {/*          data-name={name}*/}
-          {/*          onLoad={event => onForumLoad(event, name)}*/}
-          {/*        />*/}
-          {/*        <p className="text-base font-bold p-6 text-gray-900" data-name={name}>*/}
-          {/*          {name}*/}
-          {/*        </p>*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*  ))}*/}
-          {/*</div>*/}
         </div>
         {posts && posts.length > 0 ? (
           <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
