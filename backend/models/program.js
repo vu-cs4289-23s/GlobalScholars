@@ -15,7 +15,7 @@ const Program = new Schema({
   type: { type: String },
   calendar: { type: String },
   housing: [{ type: String }],
-  min_gpa: { type: Number },
+  min_gpa: { type: String },
   language_of_instruction: { type: String },
   language_prerequisite: { type: String },
   additional_prerequisite: { type: String },
