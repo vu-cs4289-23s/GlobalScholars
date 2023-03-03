@@ -128,7 +128,6 @@ export default function ForumPage() {
           className="flex h-1/4 w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        {/*src="../../frontend/assets/landing-page-locations/{locationInfo[0].city}.jpg"*/}
         <CityDescription
           description={location.description}
           city={location.city}
@@ -139,26 +138,6 @@ export default function ForumPage() {
           affordability_rating={location.affordability_rating}
           sightseeing_rating={location.sightseeing_rating}
         />
-        {/*{Object.keys(locationInfo).length !== 0*/}
-        {/*  ? Object.keys(locationInfo).map((key) => {*/}
-        {/*      return (*/}
-        {/*        <div key={key}>*/}
-        {/*          <CityDescription*/}
-        {/*            city={locationInfo[key].city}*/}
-        {/*            country={locationInfo[key].country}*/}
-        {/*            description={locationInfo[key].description}*/}
-        {/*            top_tags={locationInfo[key].top_tags}*/}
-        {/*            overall_rating={locationInfo[key].overall_rating}*/}
-        {/*            safety_rating={locationInfo[key].safety_rating}*/}
-        {/*            affordability_rating={*/}
-        {/*              locationInfo[key].affordability_rating*/}
-        {/*            }*/}
-        {/*            sightseeing_rating={locationInfo[key].sightseeing_rating}*/}
-        {/*          />*/}
-        {/*        </div>*/}
-        {/*      );*/}
-        {/*    })*/}
-        {/*  : null}*/}
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>

@@ -37,7 +37,7 @@ const CityDescription = ({
   }, [postInfo]);
 
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg absolute">
+    <div className="grid grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 pb-6 px-4 rounded-lg">
       <grid-cols-1>
         <span className="text-[30px]">
           <span className="content-start row ">
