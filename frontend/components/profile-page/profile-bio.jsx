@@ -16,18 +16,18 @@ const ProfileBio = () => {
 
   return (
     <div
-      className={`w-screen h-full sm:w-full flex justify-center bg-[url('https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-center bg-cover bg-no-repeat overflow-hidden`}
+      className={`w-screen h-full sm:w-full flex justify-center bg-[url('/landing-background.avif')] bg-center bg-cover bg-no-repeat overflow-hidden`}
     >
       <div
-        className="bg-[rgba(39,74,104,0.5)] flex flex-col sm:flex-row  w-[90%] h-[75%] relative top-8 rounded-full"
+        className="bg-[rgba(39,74,104,0.7)] flex flex-col sm:flex-row  w-[70%] h-[75%] relative top-8 rounded-3xl"
         id="border"
       >
-        <div className="flex justify-center " id="header-contents">
+        <div className="flex justify-center  " id="header-contents">
           <div className="flex sm:m-2 ">
             <img
               src={userInfo.avatar_url}
               alt="avatar"
-              className=" w-[36px] sm:w-[105px] h-[36px] sm:h-[105px] rounded-full  "
+              className=" w-[36px] sm:w-[105px] h-[36px] sm:h-[105px] justify-center "
             />
           </div>
         </div>
@@ -36,7 +36,7 @@ const ProfileBio = () => {
           className="flex text-sm w-full flex-col align-middle absolute sm:static  justify-center  h-full"
           id="profile-body "
         >
-          <div className="flex text-xs md:text-base text-left relative left-8  leading-4">
+          <div className="flex text-xs md:text-base text-left relative left-8 leading-4">
             <p className=" font-bold text-slate-200 w-[60px] md:w-[80px]">
               Username:
             </p>
@@ -75,12 +75,6 @@ const ProfileBio = () => {
           </div>
         </div>
         <div className="absolute right-10 top-2">
-          <p
-            className="text-slate-200 text-xs md:text-base hover:underline hover:font-bold cursor-pointer"
-            onClick={handleLogOut}
-          >
-            Logout
-          </p>
           <p
             className="text-slate-200 text-xs md:text-base hover:underline hover:font-bold cursor-pointer"
             onClick={() => navigate(`/profile/${userInfo.username}/edit`)}
