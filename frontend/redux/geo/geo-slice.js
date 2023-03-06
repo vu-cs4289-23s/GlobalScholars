@@ -147,7 +147,7 @@ export const getLocationByNameAsyncAction = (name) => async (dispatch) => {
       `${backendURL}/geo/location/${name}`,
       config
     );
-   // console.log(response.data);
+    console.log(response.data);
     dispatch(getLocations(response.data));
   } catch (error) {
     console.log(error);
