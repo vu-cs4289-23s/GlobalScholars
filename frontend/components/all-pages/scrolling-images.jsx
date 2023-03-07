@@ -41,6 +41,8 @@ const ScrollingImages = ({images, rounded}) => {
   // doesn't work
   useEffect(() => {
     // fetch each program by id to display
+    console.log(programIds);
+
     if (programIds && programIds.length > 0) {
       programIds.map((id) => {
         getProgramByIdAsyncAction(id);

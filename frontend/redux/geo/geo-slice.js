@@ -131,7 +131,7 @@ export const getProgramByIdAsyncAction = (id) => async (dispatch) => {
       `${backendURL}/geo/program/id/${id}`,
       config
     );
-    //  console.log(response.data);
+    console.log(response.data);
     dispatch(getPrograms(response.data));
   } catch (error) {
     console.log(error);
