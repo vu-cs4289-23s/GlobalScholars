@@ -63,7 +63,7 @@ export default function ProfilePage() {
       <div className="w-full bg-slate-400">
         <div
           id="header"
-          className="flex w-full h-[20%] justify-center text-4xl "
+          className="flex w-full h-[30%] justify-center text-4xl "
         >
           {!loading ? (
             <ProfileBio />
@@ -110,6 +110,9 @@ export default function ProfilePage() {
       {modalOpen ? (
         <ProfileModal modal={modalOpen} setModal={setModalOpen} />
       ) : null}
+      <div className="absolute right-1 top-2">
+        <button onClick={() => logOutHandle()}>Log Out</button>
+      </div>
     </div>
 
     /*<div id="parent" className="bg-[rgba(39,74,104,0.5)] w-screen h-screen">
@@ -127,5 +130,6 @@ export default function ProfilePage() {
         </div>
       )}
     </div>*/
+    
   );
 }
