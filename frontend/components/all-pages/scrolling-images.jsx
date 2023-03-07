@@ -1,15 +1,15 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLocationByNameAsyncAction }  from "../../redux/geo/geo-slice.js";
+import { getLocationByNameAsyncAction, getProgramByIdAsyncAction }  from "../../redux/geo/geo-slice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 const ScrollingImages = ({images, rounded}) => {
   const [shape, setShape] = useState("h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { locationInfo } = useSelector((state)  => state.geo);
-  const [programs, setPrograms] = useState([]);
+  const { locationInfo, programInfo } = useSelector((state)  => state.geo);
+  const [programIds, setProgramIds] = useState([]);
 
   useEffect(() => {
     if (rounded) {
@@ -33,10 +33,27 @@ const ScrollingImages = ({images, rounded}) => {
 
   useEffect(() => {
     // set programs to the array of program ids associated with the location
-    if (locationInfo && locationInfo !== []) {
-      setPrograms(locationInfo.programs);
+    if (locationInfo && locationInfo.length > 0) {
+      setProgramIds(locationInfo[0].programs);
     }
   }, [locationInfo]);
+
+  // doesn't work
+  useEffect(() => {
+    // fetch each program by id to display
+    console.log(programIds);
+
+    if (programIds && programIds.length > 0) {
+      programIds.map((id) => {
+        getProgramByIdAsyncAction(id);
+        // console.log(programInfo);
+      });
+    }
+  }, [programIds]);
+
+  useEffect(() => {
+    console.log(programInfo);
+  }, [programInfo])
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
