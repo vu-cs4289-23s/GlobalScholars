@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useState } from "react";
 import images from "../../images.js";
 import ScrollingImages from "../components/all-pages/scrolling-images.jsx";
 

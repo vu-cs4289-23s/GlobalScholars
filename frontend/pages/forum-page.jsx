@@ -1,4 +1,5 @@
 import SideBar from "../components/all-pages/sidebar";
+import SearchBar from "../components/landing-page/search-bar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
 import { useSelector, useDispatch } from "react-redux";
@@ -110,7 +111,7 @@ export default function ForumPage() {
       <SideBar />
       <div className="bg-blue-200 overflow-y-hidden">
         <img
-          className="flex h-1/4 w-screen object-center object-cover"
+          className="flex h-1/3 w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
         <CityDescription
@@ -126,6 +127,9 @@ export default function ForumPage() {
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
+      </div>
+      <div className="absolute w-[40vw] right-1 top-16">
+        <SearchBar />
       </div>
     </div>
   );
