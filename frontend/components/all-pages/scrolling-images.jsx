@@ -8,8 +8,8 @@ const ScrollingImages = ({images, rounded}) => {
   const [shape, setShape] = useState("h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { locationInfo, programInfo } = useSelector((state)  => state.geo);
-  const [programIds, setProgramIds] = useState([]);
+  let { locationInfo, programInfo } = useSelector((state)  => state.geo);
+  let [programs, setPrograms ] = useState([]);
 
   useEffect(() => {
     if (rounded) {
@@ -28,32 +28,32 @@ const ScrollingImages = ({images, rounded}) => {
     if (rounded) {
       // Call  to API to fetch all programs under : ev.target.name.split(",")[0].toLowerCase()
       dispatch(getLocationByNameAsyncAction(ev.target.name.split(",")[0].toLowerCase()))
+    //  dispatch(getProgramByIdAsyncAction("64003de5e2b23f92fc39ed72"));
     }
   }
 
   useEffect(() => {
-    // set programs to the array of program ids associated with the location
-    if (locationInfo && locationInfo.length > 0) {
-      setProgramIds(locationInfo[0].programs);
+    console.log(locationInfo);
+    // Dispatch fetch to grab programs associated with the location
+    if (locationInfo && locationInfo.programs) {
+      // Clear old programs
+      setPrograms([]);
+      locationInfo.programs.map((program, index) => {
+        dispatch(getProgramByIdAsyncAction(program));
+      })
     }
   }, [locationInfo]);
 
-  // doesn't work
   useEffect(() => {
-    // fetch each program by id to display
-    console.log(programIds);
-
-    if (programIds && programIds.length > 0) {
-      programIds.map((id) => {
-        getProgramByIdAsyncAction(id);
-        // console.log(programInfo);
-      });
-    }
-  }, [programIds]);
-
-  useEffect(() => {
-    console.log(programInfo);
+    // Set the programs array state
+    setPrograms([...programs, programInfo]);
   }, [programInfo])
+
+  useEffect(() => {
+    console.log(programs);
+
+    // Set square images to programs
+  }, [programs])
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
