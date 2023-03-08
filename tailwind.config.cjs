@@ -31,7 +31,12 @@ module.exports = {
   ],
   content: ["./index.html", "./frontend/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'blue-rgba': 'rgba(39, 74, 104)',
+        'blue-light': 'rgb(192,209,225)',
+      }
+    },
   },
   plugins: [],
 };
