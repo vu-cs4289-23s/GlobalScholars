@@ -43,17 +43,18 @@ const ScrollingImages = ({images, rounded}) => {
     // fetch each program by id to display
     console.log(programIds);
 
+
     if (programIds && programIds.length > 0) {
       programIds.map((id) => {
         getProgramByIdAsyncAction(id);
-        // console.log(programInfo);
+        console.log(programInfo);
       });
     }
-  }, [programIds]);
+  }, [programIds]);git 
 
-  useEffect(() => {
-    console.log(programInfo);
-  }, [programInfo])
+  // useEffect(() => {
+  //   console.log(programInfo);
+  // }, [programInfo])
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
