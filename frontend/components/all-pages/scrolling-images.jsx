@@ -46,7 +46,7 @@ return (
     <div style={{ display: 'flex' }}>
       {images.map((image) => (
         
-          <div className="scroll-snap-align-start h-64 w-64" href={image.url} target={"_blank"}>
+          <a className="scroll-snap-align-start h-64 w-64" href={image.url} target={"_blank"}>
             <img 
                 src={image.src}
                 name={image.name}
@@ -58,7 +58,7 @@ return (
             <p className="text-base font-bold p-6 text-gray-900">
             {image.name}
             </p>
-         </div>
+         </a>
         
       ))}
     </div>
