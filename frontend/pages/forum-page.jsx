@@ -12,7 +12,6 @@ import {
 } from "../redux/geo/geo-slice.js";
 import axios from "axios";
 
-
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const { programInfo, locationInfo } = useSelector((state) => state.geo);
@@ -21,22 +20,16 @@ export default function ForumPage() {
   const { name } = useParams();
 
   const [location, setLocation] = useState({
-    city:  "City",
+    city: "City",
     country: "Country",
     description: "This is my city description",
     programs: [],
-    top_tags: [
-      "Tag One",
-      "Tag Two",
-      "Tag Three",
-      "Tag Four",
-      "Tag Five"
-    ],
+    top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
     overall_rating: 0,
     safety_rating: 0,
     affordability_rating: 0,
     sightseeing_rating: 0,
-    image_link: "",   // TODO -- add location image links to DB
+    image_link: "", // TODO -- add location image links to DB
     like_cnt: 0,
   });
 
@@ -45,13 +38,7 @@ export default function ForumPage() {
     program_name: "Program",
     description: "This is my program description",
     location: [],
-    top_tags: [
-      "Tag One",
-      "Tag Two",
-      "Tag Three",
-      "Tag Four",
-      "Tag Five"
-    ],
+    top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
     overall_rating: 0,
     safety_rating: 0,
     affordability_rating: 0,
@@ -86,7 +73,7 @@ export default function ForumPage() {
     // Set Location data
     if (locationInfo && locationInfo.city !== "") {
       setLocation({
-        city:  locationInfo.city,
+        city: locationInfo.city,
         country: locationInfo.country,
         description: locationInfo.description,
         top_tags: locationInfo.top_tags,
@@ -120,15 +107,12 @@ export default function ForumPage() {
 
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-200">
-      <div className="overflow-y-hidden">
-        <SideBar />
-      </div>
-      <div className="bg-blue-200">
+      <SideBar />
+      <div className="bg-blue-200 overflow-y-hidden">
         <img
           className="flex h-1/4 w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        {/*src="../../frontend/assets/landing-page-locations/{locationInfo[0].city}.jpg"*/}
         <CityDescription
           description={location.description}
           city={location.city}
@@ -139,26 +123,6 @@ export default function ForumPage() {
           affordability_rating={location.affordability_rating}
           sightseeing_rating={location.sightseeing_rating}
         />
-        {/*{Object.keys(locationInfo).length !== 0*/}
-        {/*  ? Object.keys(locationInfo).map((key) => {*/}
-        {/*      return (*/}
-        {/*        <div key={key}>*/}
-        {/*          <CityDescription*/}
-        {/*            city={locationInfo[key].city}*/}
-        {/*            country={locationInfo[key].country}*/}
-        {/*            description={locationInfo[key].description}*/}
-        {/*            top_tags={locationInfo[key].top_tags}*/}
-        {/*            overall_rating={locationInfo[key].overall_rating}*/}
-        {/*            safety_rating={locationInfo[key].safety_rating}*/}
-        {/*            affordability_rating={*/}
-        {/*              locationInfo[key].affordability_rating*/}
-        {/*            }*/}
-        {/*            sightseeing_rating={locationInfo[key].sightseeing_rating}*/}
-        {/*          />*/}
-        {/*        </div>*/}
-        {/*      );*/}
-        {/*    })*/}
-        {/*  : null}*/}
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>

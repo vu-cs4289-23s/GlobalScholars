@@ -16,78 +16,63 @@ const ProfileBio = () => {
 
   return (
     <div
-      className={`w-screen h-full sm:w-full flex justify-center bg-[url('https://images.pexels.com/photos/1005417/pexels-photo-1005417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-center bg-cover bg-no-repeat overflow-hidden`}
+      className={`w-screen h-full sm:w-full flex justify-center bg-[url('/landing-background.avif')] bg-center bg-cover bg-no-repeat overflow-hidden`}
     >
-      <div
-        className="bg-[rgba(39,74,104,0.5)] flex flex-col sm:flex-row  w-[90%] h-[75%] relative top-8 rounded-full"
-        id="border"
-      >
-        <div className="flex justify-center " id="header-contents">
-          <div className="flex sm:m-2 ">
+      {/* <div
+        className="bg-[rgba(39,74,104,0.7)] flex flex-col sm:flex-row  w-[70%] h-[75%] relative top-8 rounded-3xl"
+        id="border"> */}
+
+        {/* two columns- one for photo, one for information */}
+        <div class="flex grid-cols-1 sm:grid-cols-2 gap-4 h-[75%] relative top-8 rounded-3xl bg-[rgba(39,74,104,0.7)]">
+          <div class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 grid grid-rows-2 ">
+            {/* profile picture */}
+            <div class=" ml-4 p-4">
             <img
               src={userInfo.avatar_url}
               alt="avatar"
-              className=" w-[36px] sm:w-[105px] h-[36px] sm:h-[105px] rounded-full  "
+              className=" sm:w-[128px] sm:h-[128px] rounded-full justify-center "
             />
+            </div>
+            {/* edit button */}
+            <div class="mt-12 ml-4">
+              <p
+              className="text-slate-200 mt-2 text-xs md:text-base hover:underline hover:font-bold cursor-pointer"
+              onClick={() => navigate(`/profile/${userInfo.username}/edit`)}
+              >
+              Edit
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div
-          className="flex text-sm w-full flex-col align-middle absolute sm:static  justify-center  h-full"
-          id="profile-body "
-        >
-          <div className="flex text-xs md:text-base text-left relative left-8  leading-4">
-            <p className=" font-bold text-slate-200 w-[60px] md:w-[80px]">
-              Username:
-            </p>
-            <p className="text-slate-200 pl-2">{userInfo.username}</p>
+          <div class=" col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 grid grid-rows-5 gap-1 text-left">
+            {/* name */}
+            <div class="ml-4 top-2">
+              <p className="text-slate-200 text-md mt-2 font-bold">
+                {capitalizeFirstLetter(userInfo.first_name)}{" "}
+                {capitalizeFirstLetter(userInfo.last_name)}
+              </p>
+            </div>
+
+            {/* username */}
+            <div class=" p-4 top-4">
+              <p className=" text-slate-200 text-sm">
+                Username: {userInfo.username}
+              </p>
+            </div>
+
+            {/* major minors */}
+           <div class="p-4 ">
+              <p className=" text-slate-200 text-sm">
+                Major/Minor: {userInfo.majors ? userInfo.majors.join(" & ") : ""} /  {userInfo.minors ? userInfo.minors.join(" & ") : ""}
+              </p>
+            </div>
+
+            {/* user bio */}
+            <div class="p-4">
+              <p className=" text-slate-200 text-sm">
+              About: {userInfo.bio}</p>
+            </div>
           </div>
-          <div className="flex text-xs md:text-base text-left relative left-8  leading-4 ">
-            <p className=" font-bold text-slate-200 w-[60px] md:w-[80px]">
-              Name:
-            </p>
-            <p className="text-slate-200 pl-2">
-              {capitalizeFirstLetter(userInfo.first_name)}{" "}
-              {capitalizeFirstLetter(userInfo.last_name)}
-            </p>
-          </div>
-          <div className="flex text-xs md:text-base text-left relative left-8  leading-4 ">
-            <p className=" font-bold text-slate-200 w-[60px] md:w-[80px]">
-              Majors:{" "}
-            </p>
-            <p className="text-slate-200 pl-2">
-              {userInfo.majors ? userInfo.majors.join(" & ") : ""}
-            </p>
-          </div>
-          <div className="flex text-xs md:text-base text-left relative left-8  leading-4 ">
-            <p className=" font-bold text-slate-200 w-[60px] md:w-[80px]">
-              Minors:{" "}
-            </p>
-            <p className="text-slate-200 pl-2">
-              {userInfo.minors ? userInfo.minors.join(" & ") : ""}
-            </p>
-          </div>
-          <div className="flex text-xs md:text-base text-left  relative left-8  leading-4">
-            <p className=" font-bold text-slate-200 w-[60px] md:w-[80px]">
-              Bio:{" "}
-            </p>
-            <p className=" text-slate-200 pl-2">{userInfo.bio}</p>
-          </div>
-        </div>
-        <div className="absolute right-10 top-2">
-          <p
-            className="text-slate-200 text-xs md:text-base hover:underline hover:font-bold cursor-pointer"
-            onClick={handleLogOut}
-          >
-            Logout
-          </p>
-          <p
-            className="text-slate-200 text-xs md:text-base hover:underline hover:font-bold cursor-pointer"
-            onClick={() => navigate(`/profile/${userInfo.username}/edit`)}
-          >
-            Edit
-          </p>
-        </div>
       </div>
     </div>
   );
