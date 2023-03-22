@@ -37,8 +37,8 @@ const ScrollingImages = ({images, rounded}) => {
     if (locationInfo && locationInfo.programs) {
       // Clear old programs
       setPrograms([]);
-      locationInfo.programs.map((program, index) => {
-        dispatch(getProgramByIdAsyncAction(program));
+      locationInfo.programs.map((programId, index) => {
+        dispatch(getProgramByIdAsyncAction(programId));
       });
     }
   }, [locationInfo]);
@@ -46,13 +46,15 @@ const ScrollingImages = ({images, rounded}) => {
   useEffect(() => {
     // Set the programs array state
     setPrograms([...programs, programInfo]);
-  }, [programInfo])
+  }, [programInfo]);
+
+// need to reset at somome point
 
   useEffect(() => {
     console.log(programs);
     // Set square images to programs
     setPopulateImages([{}]);
-    if (programs.length === locationInfo.programs.length) {
+    if (programs && programs.length === locationInfo.programs.length) {
       programs.map((program, index) => {
         setPopulateImages([...populateImages, {
           name: program.program_name,
@@ -62,14 +64,18 @@ const ScrollingImages = ({images, rounded}) => {
     }
   }, [programs]);
 
-  console.log(populateImages);
+  // console.log(populateImages);
+
+  console.log("Programs");
+  console.log(programs);
+  console.log("program info");
+  console.log(programInfo)
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
 return (
     <div style={{ display: 'flex' }}>
-      {images.map((image) => (
-        
+      { rounded ? images.map((image) => (
           <div className="scroll-snap-align-start h-64 w-64">
             <img 
                 src={image.src}
@@ -83,8 +89,22 @@ return (
             {image.name}
             </p>
          </div>
-        
-      ))}
+      )) :
+        populateImages.map((image) => (
+          <div className="scroll-snap-align-start h-64 w-64">
+            <img
+              src={image.src}
+              name={image.name}
+              alt={image.name}
+              className={shape}
+              onClick={onClick}
+              onMouseOver={onHover}
+            />
+            <p className="text-base font-bold p-6 text-gray-900">
+              {image.name}
+            </p>
+          </div>))
+      }
     </div>
   );
 
