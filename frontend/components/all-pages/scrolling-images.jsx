@@ -54,7 +54,7 @@ const ScrollingImages = ({images, rounded}) => {
     console.log(programs);
     // Set square images to programs
     setPopulateImages([{}]);
-    if (programs && programs.length === locationInfo.programs.length) {
+    if (programs !== null && programs.length === locationInfo.programs.length) {
       programs.map((program, index) => {
         setPopulateImages([...populateImages, {
           name: program.program_name,
@@ -63,11 +63,6 @@ const ScrollingImages = ({images, rounded}) => {
       });
     }
   }, [programs]);
-
-  console.log("Programs");
-  console.log(programs);
-  console.log("program info");
-  console.log(programInfo)
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)

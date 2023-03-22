@@ -59,6 +59,7 @@ const SearchBarModal = ({ setModal, modal }) => {
       }
     }
   };
+
   useEffect(() => {
     if (exitModal) {
       console.log("SETTING TIMEOUT");
@@ -68,6 +69,7 @@ const SearchBarModal = ({ setModal, modal }) => {
       }, 800);
     }
   }, [exitModal]);
+
   useEffect(() => {
     document.getElementById("search-input").focus();
   }, []);
@@ -108,13 +110,14 @@ const SearchBarModal = ({ setModal, modal }) => {
             />
           </div>
         </div>
-        {filteredData.length != 0 && (
+        {filteredData.length !== 0 && (
           <div className="dataResult w-[80%] sm:w-[85%] md:w-[88%] lg:w-[92%]  h-12  -mt-1 pt-0 z-10 mx-8  fixed  ">
             {filteredData.slice(0, 15).map((value, key) => {
               return (
                 <a
                   className="dataItem w-full h-full "
-                  href={value["Program Link"]}
+                  // href={value["Program Link"]}
+                  href={`/forum/${value["Program Name"]}`}
                   target="_blank"
                   key={key}
                 >
