@@ -9,7 +9,8 @@ const ScrollingImages = ({images, rounded}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let { locationInfo, programInfo } = useSelector((state)  => state.geo);
-  let [programs, setPrograms ] = useState([]);
+  let [programs, setPrograms] = useState([]);
+  let [populateImages, setPopulateImages] = useState(images);
 
   useEffect(() => {
     if (rounded) {
@@ -28,19 +29,17 @@ const ScrollingImages = ({images, rounded}) => {
     if (rounded) {
       // Call  to API to fetch all programs under : ev.target.name.split(",")[0].toLowerCase()
       dispatch(getLocationByNameAsyncAction(ev.target.name.split(",")[0].toLowerCase()))
-    //  dispatch(getProgramByIdAsyncAction("64003de5e2b23f92fc39ed72"));
     }
   }
 
   useEffect(() => {
-    console.log(locationInfo);
     // Dispatch fetch to grab programs associated with the location
     if (locationInfo && locationInfo.programs) {
       // Clear old programs
       setPrograms([]);
       locationInfo.programs.map((program, index) => {
         dispatch(getProgramByIdAsyncAction(program));
-      })
+      });
     }
   }, [locationInfo]);
 
@@ -51,9 +50,19 @@ const ScrollingImages = ({images, rounded}) => {
 
   useEffect(() => {
     console.log(programs);
-
     // Set square images to programs
-  }, [programs])
+    setPopulateImages([{}]);
+    if (programs.length === locationInfo.programs.length) {
+      programs.map((program, index) => {
+        setPopulateImages([...populateImages, {
+          name: program.program_name,
+          src: program.image_link,
+        }]);
+      });
+    }
+  }, [programs]);
+
+  console.log(populateImages);
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProfileModal from "../components/profile-page/profile-modal";
 import Reviews from "../components/profile-page/reviews";
 import axios from "axios";
+import { getPostsByUserAsyncAction } from "../redux/post/post-slice.js";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -17,18 +18,23 @@ export default function ProfilePage() {
   const { userInfo, loggedIn, success, loading } = useSelector(
     (state) => state.user
   );
+  const { postInfo } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const logOutHandle = () => {
     dispatch(logoutAction());
   };
   const [modalOpen, setModalOpen] = useState(false);
   const [object, setObject] = useState({});
+  // for setting post state
+  let [toggle, setToggle] = useState(false);
+  let [posts, setPosts] = useState([]);
 
   useEffect(() => {
     if (success && !loggedIn) {
       navigate("/login");
     }
   }, [success, loggedIn]);
+
   useEffect(() => {
     if (!loading && userInfo.majors.length === 0) {
       //open modal
@@ -36,6 +42,16 @@ export default function ProfilePage() {
     }
   }, [userInfo, success, loading]);
   console.log(object);
+
+  // // grab userInfo
+  // useEffect(() => {
+  //   if (userInfo && userInfo.username) {
+  //     dispatch(getPostsByUserAsyncAction(userInfo.username));
+  //   }
+  // }, [userInfo]);
+  //
+  // // update postInfo
+  // if
 
   const getData = () => {
     axios
@@ -56,6 +72,23 @@ export default function ProfilePage() {
   useEffect(() => {
     getData();
   }, []);
+
+  const populatePosts = (ev) => {
+    if (ev.target.name === "posts") {
+      setToggle(true);
+    }
+    if (ev.target.name === "saves") {
+      setToggle(false);
+    }
+  };
+
+  useEffect(() => {
+    if (toggle === true) {
+
+    } else {
+
+    }
+  }, [toggle])
 
   return (
     <div id="forum-page" className="flex flex-row h-screen w-screen ">
@@ -78,8 +111,11 @@ export default function ProfilePage() {
           className="flex flex-col  justify-center text-4xl bg-white"
         >
           <div className="flex w-full justify-between p-4 bg-slate-400">
-            <p className="text-sm sm:text-2xl ">Reviews</p>
-            <p className="text-sm sm:text-base">1370 total likes</p>
+            <div>
+              <button className="text-sm sm:text-2xl " onClick={populatePosts} name="posts">Posts</button>
+              <button className="text-sm sm:text-2xl " onClick={populatePosts} name="saves">Saves</button>
+            </div>
+            <p className="text-sm sm:text-base">{posts & posts.length > 0 ? "count total likes" : ""}</p>
           </div>
         </div>
         {object.posts && object.posts.length > 0 ? (
