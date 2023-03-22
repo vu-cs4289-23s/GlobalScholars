@@ -29,7 +29,7 @@ export default function LandingPage() {
       <SideBar />
       <div className="overflow-y-scroll">
         <div className="flex flex-col h-1/2 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover justify-end">
-          <div className="grid  m-10 p-10 gap-2">
+          <div className="grid m-10 p-10 gap-2">
             <div className="flex h-2/3 justify-center text-4xl font-bold font-mono text-white mb-3">
               Study Abroad Search
             </div>
@@ -39,18 +39,18 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="grid bg-white w-[85vw] ">
-          <div className="flex flex-row h-2 p-5 w-[85vw] text-2xl">
+        <div className="grid bg-white sm:mb-0 mb-24">
+          <div className="flex flex-row h-2 p-5 text-2xl font-bold mb-4">
             Programs By Location:
           </div>
 
           {/* displayed locations  */}
-          <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
+          <div className="snap-proximity snap-x overflow-x-auto overflow-y-clip flex flex-row p-8">
             <ScrollingImages rounded={true} images={images} />
           </div>
 
           {/* programs popout  */}
-          <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
+          <div className="snap-proximity snap-x overflow-x-auto overflow-y-clip flex flex-row p-8">
             <ScrollingImages rounded={false} images={images} />
           </div>
         </div>
