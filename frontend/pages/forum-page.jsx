@@ -125,12 +125,17 @@ export default function ForumPage() {
           sightseeing_rating={location.sightseeing_rating}
         />
       </div>
-      <div className="absolute right-1 top-2">
-        <button onClick={() => logOutHandle()}>Log Out</button>
+    
+        <div className="absolute flex-row right-2 top-2">
+          <button onClick={() => logOutHandle()}>Log Out</button>
+        
+        </div>
+          <div className="absolute  w-1/4 flex-row right-2 top-14">
+          <SearchBar />
+          </div>
+        
+        
       </div>
-      <div className="absolute w-[40vw] right-1 top-16">
-        <SearchBar />
-      </div>
-    </div>
+    
   );
 }

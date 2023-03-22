@@ -6,7 +6,7 @@ const SearchBar = () => {
   const [modal, setModal] = useState(false);
 
   return (
-    <div className="w-full flex justify-center rounded-lg h-[2.5rem]">
+    <div className="w-full flex justify-end rounded-lg h-[2.5rem]">
       <div
         id="fake-search-input"
         className="  bg-white bg-opacity-90 text-[rgba(0,0,0,0.5)] h-full w-1/2 ring-slate-50 ring-2 items-center rounded-lg flex flex-row  pl-[1rem] hover:cursor-pointer z-0"
@@ -14,7 +14,7 @@ const SearchBar = () => {
       >
         <img src={magnifyingGlass} alt="magnifying glass" width={20} />
         <h1 className="ml-2 font-sans text-sm  sm:text-base">
-          Search Programs Here
+          Search
         </h1>
       </div>
       {modal ? <SearchBarModal setModal={setModal} modal={modal} /> : null}
