@@ -48,7 +48,7 @@ const ScrollingImages = ({images, rounded}) => {
     setPrograms([...programs, programInfo]);
   }, [programInfo]);
 
-// need to reset at somome point
+// need to reset at some point
 
   useEffect(() => {
     console.log(programs);
@@ -63,8 +63,6 @@ const ScrollingImages = ({images, rounded}) => {
       });
     }
   }, [programs]);
-
-  // console.log(populateImages);
 
   console.log("Programs");
   console.log(programs);
@@ -90,6 +88,7 @@ return (
             </p>
          </div>
       )) :
+
         populateImages.map((image) => (
           <div className="scroll-snap-align-start h-64 w-64">
             <img
