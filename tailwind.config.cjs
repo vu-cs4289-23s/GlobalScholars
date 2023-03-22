@@ -35,6 +35,7 @@ module.exports = {
       colors: {
         'blue-rgba': 'rgba(39, 74, 104)',
         'blue-light': 'rgb(192,209,225)',
+        'star-yellow': 'rgb(245, 235, 163)',
         'pumpkin': 'rgb(243, 114, 44)',
         'pure-orange': 'rgb(248, 150, 30)',
         'peach': 'rgb(249, 132, 74)',

@@ -295,12 +295,6 @@ const CityPost = () => {
                             <div className="w-[15%]">Overall:</div>
                             <div className="text-[10px]"> 1 - Awful </div>
                             <div className="space-x-3 flex justify-around">
-                                {/*<input type="radio" id="overall1" name="overall_rating" value="1" onChange={onChange} />*/}
-                                {/*<input type="radio" id="overall2" name="overall_rating" value="2" onChange={onChange} />*/}
-                                {/*<input type="radio" id="overall3" name="overall_rating" value="3" onChange={onChange} />*/}
-                                {/*<input type="radio" id="overall4" name="overall_rating" value="4" onChange={onChange} />*/}
-                                {/*<input type="radio" id="overall5" name="overall_rating" value="5" onChange={onChange} />*/}
-
                                 {(overallRating !== undefined && overallRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(1)} /> :
                                     <BsStar size={30} onClick={() => setOverallRating(1)} /> }
@@ -326,11 +320,6 @@ const CityPost = () => {
                             <div className="w-[15%]">Safety:</div>
                             <div className="text-[10px]"> 1 - Dangerous </div>
                             <div className="space-x-3 flex justify-around">
-                                {/*<input type="radio" id="safety1" name="safety_rating" value="1" onChange={onChange} />*/}
-                                {/*<input type="radio" id="safety2" name="safety_rating" value="2" onChange={onChange} />*/}
-                                {/*<input type="radio" id="safety3" name="safety_rating" value="3" onChange={onChange} />*/}
-                                {/*<input type="radio" id="safety4" name="safety_rating" value="4" onChange={onChange} />*/}
-                                {/*<input type="radio" id="safety5" name="safety_rating" value="5" onChange={onChange} />*/}
                                 {(safetyRating !== undefined && safetyRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(1)} /> :
                                     <BsStar size={30} onClick={() => setSafetyRating(1)} /> }
@@ -356,11 +345,6 @@ const CityPost = () => {
                             <div className="w-[15%]">Affordability:</div>
                             <div className="text-[10px]"> 1 - Overpriced </div>
                             <div className="space-x-3 flex justify-around">
-                                {/*<input type="radio" id="affordability1" name="affordability_rating" value="1" onChange={onChange} />*/}
-                                {/*<input type="radio" id="affordability2" name="affordability_rating" value="2" onChange={onChange} />*/}
-                                {/*<input type="radio" id="affordability3" name="affordability_rating" value="3" onChange={onChange} />*/}
-                                {/*<input type="radio" id="affordability4" name="affordability_rating" value="4" onChange={onChange} />*/}
-                                {/*<input type="radio" id="affordability5" name="affordability_rating" value="5" onChange={onChange} />*/}
                                 {(affordabilityRating !== undefined && affordabilityRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(1)} /> :
                                     <BsStar size={30} onClick={() => setAffordabilityRating(1)} /> }
@@ -386,11 +370,6 @@ const CityPost = () => {
                             <div className="w-[15%]">Sightseeing:</div>
                             <div className="text-[10px]"> 1 - Boring </div>
                             <div className="space-x-3 flex justify-around">
-                                {/*<input type="radio" id="sights1" name="sightseeing_rating"value="1" onChange={onChange} />*/}
-                                {/*<input type="radio" id="sights2" name="sightseeing_rating" value="2" onChange={onChange} />*/}
-                                {/*<input type="radio" id="sights3" name="sightseeing_rating" value="3" onChange={onChange} />*/}
-                                {/*<input type="radio" id="sights4" name="sightseeing_rating" value="4" onChange={onChange} />*/}
-                                {/*<input type="radio" id="sights5" name="sightseeing_rating" value="5" onChange={onChange} />*/}
                                 {(sightsRating !== undefined && sightsRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(1)} /> :
                                     <BsStar size={30} onClick={() => setSightsRating(1)} /> }

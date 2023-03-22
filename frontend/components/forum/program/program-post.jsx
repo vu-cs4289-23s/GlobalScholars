@@ -151,12 +151,6 @@ const ProgramPost = () => {
                                 <span className="text-[10px]"> 1 - Awful </span>
                             </grid-cols-2>
                             <div className="space-x-3 flex justify-around">
-                                {/*<input type="radio" id="overall1" name="overall" value="1" />*/}
-                                {/*<input type="radio" id="overall2" name="overall" value="2" />*/}
-                                {/*<input type="radio" id="overall3" name="overall" value="3" />*/}
-                                {/*<input type="radio" id="overall4" name="overall" value="4" />*/}
-                                {/*<input type="radio" id="overall2" name="overall" value="5" />*/}
-
                                 {(overallRating !== undefined && overallRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(1)} /> :
                                     <BsStar size={30} onClick={() => setOverallRating(1)} /> }
@@ -188,11 +182,6 @@ const ProgramPost = () => {
                                 <span className="text-[10px]"> 1 - Difficult </span>
                             </grid-cols-2>
                             <div className="space-x-3 flex justify-around">
-                                {/*<input type="radio" id="class1" name="class" value="1" />*/}
-                                {/*<input type="radio" id="class2" name="class" value="2" />*/}
-                                {/*<input type="radio" id="class3" name="class" value="3" />*/}
-                                {/*<input type="radio" id="class4" name="class" value="4" />*/}
-                                {/*<input type="radio" id="class5" name="class" value="5" />*/}
                                 {(classesRating !== undefined && classesRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setClassesRating(1)} /> :
                                     <BsStar size={30} onClick={() => setClassesRating(1)} /> }
@@ -224,11 +213,6 @@ const ProgramPost = () => {
                                 <span className="text-[10px]"> 1 - Boring </span>
                             </grid-cols-2>
                             <div className="space-x-3  flex justify-around">
-                                {/*<input type="radio" id="campus1" name="campus" value="1" />*/}
-                                {/*<input type="radio" id="campus2" name="campus" value="2" />*/}
-                                {/*<input type="radio" id="campus3" name="campus" value="3" />*/}
-                                {/*<input type="radio" id="campus4" name="campus" value="4" />*/}
-                                {/*<input type="radio" id="campus5" name="campus" value="5" />*/}
                                 {(campusRating !== undefined && campusRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setCampusRating(1)} /> :
                                     <BsStar size={30} onClick={() => setCampusRating(1)} /> }
@@ -260,11 +244,6 @@ const ProgramPost = () => {
                                 <span className="text-[10px]"> 1 - Difficult </span>
                             </grid-cols-2>
                             <div className="space-x-3 flex justify-around">
-                                {/*<input type="radio" id="grading1" name="grading" value="1" />*/}
-                                {/*<input type="radio" id="grading2" name="grading" value="2" />*/}
-                                {/*<input type="radio" id="grading3" name="grading" value="3" />*/}
-                                {/*<input type="radio" id="grading4" name="grading" value="4" />*/}
-                                {/*<input type="radio" id="grading5" name="grading" value="5" />*/}
                                 {(gradingRating !== undefined && gradingRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setGradingRating(1)} /> :
                                     <BsStar size={30} onClick={() => setGradingRating(1)} /> }
