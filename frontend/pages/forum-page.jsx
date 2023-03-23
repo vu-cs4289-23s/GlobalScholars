@@ -110,11 +110,12 @@ export default function ForumPage() {
       <SideBar />
       <div className="bg-blue-200 overflow-y-scroll">
         <img
-          className="flex h-1/4 w-screen object-center object-cover"
+          className="flex h-1/3 w-screen object-center object-cover z-"
           src="/landing-locations/copenhagen.jpeg"
         />
         {/*put toggle above description?*/}
         <CityDescription
+          className="absolute z-1 h-[83%]"
           description={location.description}
           city={location.city}
           country={location.country}
