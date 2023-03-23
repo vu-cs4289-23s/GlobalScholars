@@ -2,11 +2,17 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
 import tw from "tailwind-styled-components";
-import {MakePostBox, FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
+import CityPost, {MakePostBox, FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
+import {program_tags} from "../../../../data.js";
+import { BsStar, BsStarFill } from "react-icons/bs"
 
 const ProgramPost = () => {
 
     const [postAnon, setPostAnon] = useState(false);
+    const [overallRating, setOverallRating] = useState(undefined);
+    const [classesRating, setClassesRating] = useState(undefined);
+    const [campusRating, setCampusRating] = useState(undefined);
+    const [gradingRating, setGradingRating] = useState(undefined);
 
     const onClickPost = async () => {
         console.log("post");
@@ -15,6 +21,12 @@ const ProgramPost = () => {
     const onClickTag = (e) => {
         console.log("you just clicked a tag");
     }
+
+    const tags = program_tags.map((tag, i) => {
+        return (
+            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
+        );
+    });
 
     return (
         <MakePostBox>
@@ -120,24 +132,7 @@ const ProgramPost = () => {
                         <span className="text-red-700">*</span>
                     </FormInputSectionTitle>
                     <FormTagContainer>
-                        <Tag content={"University Housing"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Host Family"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"No housing support"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Beautiful campus"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Great Location"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Lots of homework"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Get ready to read"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"So many papers"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Group projects"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Extra credit"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Not much homework"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Tough grading"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Test heavy"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Lecture heavy"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Beware of pop quizzes"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Participation matters"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Graded by few things"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Classes were a breeze"} color={"bg-red-400"} onClick={onClickTag} />
+                        {tags}
                     </FormTagContainer>
                 </FormInputSectionContainer>
                 {/* Post Ratings */}
@@ -152,18 +147,26 @@ const ProgramPost = () => {
                             <grid-cols-3 className="">
                                 <span className="">Overall:</span>
                             </grid-cols-3>
-
-                            {/*<label htmlFor="overall1"> 1 - Awful </label>*/}
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 1 - Awful </span>
                             </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input type="radio" id="overall1" name="overall" value="1" />
-                                <input type="radio" id="overall2" name="overall" value="2" />
-                                <input type="radio" id="overall3" name="overall" value="3" />
-                                <input type="radio" id="overall4" name="overall" value="4" />
-                                <input type="radio" id="overall2" name="overall" value="5" />
-                            </grid-cols-5>
+                            <div className="space-x-3 flex justify-around">
+                                {(overallRating !== undefined && overallRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(1)} /> }
+                                {(overallRating !== undefined && overallRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(2)} /> }
+                                {(overallRating !== undefined && overallRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(3)} /> }
+                                {(overallRating !== undefined && overallRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(4)} /> }
+                                {(overallRating !== undefined && overallRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(5)} /> }
+                            </div>
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 5 - Awesome </span>
                             </grid-cols-2>
@@ -178,13 +181,23 @@ const ProgramPost = () => {
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 1 - Difficult </span>
                             </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input type="radio" id="class1" name="class" value="1" />
-                                <input type="radio" id="class2" name="class" value="2" />
-                                <input type="radio" id="class3" name="class" value="3" />
-                                <input type="radio" id="class4" name="class" value="4" />
-                                <input type="radio" id="class5" name="class" value="5" />
-                            </grid-cols-5>
+                            <div className="space-x-3 flex justify-around">
+                                {(classesRating !== undefined && classesRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setClassesRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setClassesRating(1)} /> }
+                                {(classesRating !== undefined && classesRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setClassesRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setClassesRating(2)} /> }
+                                {(classesRating !== undefined && classesRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setClassesRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setClassesRating(3)} /> }
+                                {(classesRating !== undefined && classesRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setClassesRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setClassesRating(4)} /> }
+                                {(classesRating !== undefined && classesRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setClassesRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setClassesRating(5)} /> }
+                            </div>
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 5 - Easy </span>
                             </grid-cols-2>
@@ -199,13 +212,23 @@ const ProgramPost = () => {
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 1 - Boring </span>
                             </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input type="radio" id="campus1" name="campus" value="1" />
-                                <input type="radio" id="campus2" name="campus" value="2" />
-                                <input type="radio" id="campus3" name="campus" value="3" />
-                                <input type="radio" id="campus4" name="campus" value="4" />
-                                <input type="radio" id="campus5" name="campus" value="5" />
-                            </grid-cols-5>
+                            <div className="space-x-3  flex justify-around">
+                                {(campusRating !== undefined && campusRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setCampusRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setCampusRating(1)} /> }
+                                {(campusRating !== undefined && campusRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setCampusRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setCampusRating(2)} /> }
+                                {(campusRating !== undefined && campusRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setCampusRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setCampusRating(3)} /> }
+                                {(campusRating !== undefined && campusRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setCampusRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setCampusRating(4)} /> }
+                                {(campusRating !== undefined && campusRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setCampusRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setCampusRating(5)} /> }
+                            </div>
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 5 - Beautiful </span>
                             </grid-cols-2>
@@ -220,13 +243,23 @@ const ProgramPost = () => {
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 1 - Difficult </span>
                             </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input type="radio" id="grading1" name="grading" value="1" />
-                                <input type="radio" id="grading2" name="grading" value="2" />
-                                <input type="radio" id="grading3" name="grading" value="3" />
-                                <input type="radio" id="grading4" name="grading" value="4" />
-                                <input type="radio" id="grading5" name="grading" value="5" />
-                            </grid-cols-5>
+                            <div className="space-x-3 flex justify-around">
+                                {(gradingRating !== undefined && gradingRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setGradingRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setGradingRating(1)} /> }
+                                {(gradingRating !== undefined && gradingRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setGradingRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setGradingRating(2)} /> }
+                                {(gradingRating !== undefined && gradingRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setGradingRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setGradingRating(3)} /> }
+                                {(gradingRating !== undefined && gradingRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setGradingRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setGradingRating(4)} /> }
+                                {(gradingRating !== undefined && gradingRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setGradingRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setGradingRating(5)} /> }
+                            </div>
                             <grid-cols-2 className="">
                                 <span className="text-[10px]"> 5 - Clear and Easy </span>
                             </grid-cols-2>

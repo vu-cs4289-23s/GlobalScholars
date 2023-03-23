@@ -55,7 +55,7 @@ const CityDescription = ({
   // }
 
   return (
-    <div className="grid h-full grid-cols-3 sm:grid-cols-1 bg-gray-400 bg-opacity-50 mx-20 text-left pt-2 px-4 rounded-lg   overflow-y-scroll">
+    <div className="grid h-auto grid-cols-1 bg-gray-400 bg-opacity-50 sm:mx-20 mx-4 text-left pt-2 pb-6 px-4 rounded-lg">
       <grid-cols-1>
         <span className="text-[30px]">
           <span className="content-start row ">
@@ -71,7 +71,7 @@ const CityDescription = ({
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
           {top_tags &&
             top_tags.map((tag, index) => (
-              <Tag color={"bg-red-400"} content={tag} key={index} />
+              <Tag color={"bg-red-400"} content={tag} name={tag} key={index} />
             ))}
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
@@ -90,26 +90,26 @@ const CityDescription = ({
               <ScrollingImages rounded={true} url={programImages.url} forum={true} images={programImages} />
           </div>
         </div>
-        {posts && posts.length > 0 ? (
-          <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
-            {posts.map((post, index) => (
-              <Reviews
-                key={index}
-                id={post._id}
-                username={post.owner}
-                program={post.program}
-                content={post.content}
-                likes={post.likes}
-                saves={post.saves}
-                tags={post.tags}
-                dislikes={post.dislikes}
-                location={post.location}
-                comments={post.comments}
-                date={post.timestamp}
-              />
-            ))}
-          </div>
-        ) : null}
+        {/*{posts && posts.length > 0 ? (*/}
+        {/*  <div className=" overflow-scroll h-[60%] sm:h-[70%] ">*/}
+        {/*    {posts.map((post, index) => (*/}
+        {/*      <Reviews*/}
+        {/*        key={index}*/}
+        {/*        id={post._id}*/}
+        {/*        username={post.owner}*/}
+        {/*        program={post.program}*/}
+        {/*        content={post.content}*/}
+        {/*        likes={post.likes}*/}
+        {/*        saves={post.saves}*/}
+        {/*        tags={post.tags}*/}
+        {/*        dislikes={post.dislikes}*/}
+        {/*        location={post.location}*/}
+        {/*        comments={post.comments}*/}
+        {/*        date={post.timestamp}*/}
+        {/*      />*/}
+        {/*    ))}*/}
+        {/*  </div>*/}
+        {/*) : null}*/}
       </grid-cols-1>
     </div>
   );

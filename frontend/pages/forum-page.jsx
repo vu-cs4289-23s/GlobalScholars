@@ -1,5 +1,6 @@
 import SideBar from "../components/all-pages/sidebar";
 import CityDescription from "../components/forum/city/city-description.jsx";
+import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,6 +12,8 @@ import {
   getAllProgramsAsyncAction,
 } from "../redux/geo/geo-slice.js";
 import axios from "axios";
+import {getAllPostsAsyncAction, getPostsByLocationAsyncAction} from "../redux/post/post-slice.js";
+import Reviews from "../components/profile-page/reviews.jsx";
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -46,6 +49,9 @@ export default function ForumPage() {
     image_link: "",
     like_cnt: 0,
   });
+
+  const [posts, setPosts] = useState({});
+  const { postInfo } = useSelector((state) => state.post);
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -105,10 +111,22 @@ export default function ForumPage() {
     }
   }, [programInfo]);
 
+  useEffect(() => {
+    if (location.city && location.city !== "City") {
+      // Fetch posts by city name passed through
+      dispatch(getPostsByLocationAsyncAction(location.city));
+    } else {
+      dispatch(getAllPostsAsyncAction());
+    }
+  }, [location]);
+
+  useEffect(() => {
+    setPosts(postInfo);
+  }, [postInfo]);
+
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-200">
-      <SideBar />
-      <div className="bg-blue-200 overflow-y-scroll">
+    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
+      <div className="bg-blue-light overflow-y-scroll">
         <img
           className="flex h-1/3 w-screen object-center object-cover z-"
           src="/landing-locations/copenhagen.jpeg"
@@ -125,6 +143,27 @@ export default function ForumPage() {
           affordability_rating={location.affordability_rating}
           sightseeing_rating={location.sightseeing_rating}
         />
+        <FilterBar />
+        {posts && posts.length > 0 ? (
+            <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+              {posts.map((post, index) => (
+                  <Reviews
+                      key={index}
+                      id={post._id}
+                      username={post.owner}
+                      program={post.program}
+                      content={post.content}
+                      likes={post.likes}
+                      saves={post.saves}
+                      tags={post.tags}
+                      dislikes={post.dislikes}
+                      location={post.location}
+                      comments={post.comments}
+                      date={post.timestamp}
+                  />
+              ))}
+            </div>
+        ) : null}
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>

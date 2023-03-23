@@ -26,18 +26,18 @@ export default function PriceEstimator() {
       className="flex w-screen h-screen sm:grid-cols-1 grid-cols-2"
     >
       <SideBar />
-      <div className="w-full">
+      <div className="w-full overflow-y-scroll">
         <div
           id="price-estimator-header"
-          className="flex h-1/4 justify-center text-4xl bg-blue-600"
+          className="flex h-1/3 justify-center items-end text-4xl bg-blue-600 bg-[url('/landing-background.avif')]"
         >
-          Price Estimator Header
+          <div className="font-bold font-mono text-white mb-4">Price Estimator</div>
         </div>
         <div
           id="price-estimator-body"
           className="flex h-3/4 justify-center text-4xl bg-white"
         >
-          Price Estimator Contents
+          <embed src="https://www.google.com/travel/flights" className="w-full h-full m-4 mb-24" />
         </div>
       </div>
       <div className="absolute right-1 top-2">
