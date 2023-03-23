@@ -7,18 +7,22 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import images from "../../../../images.js";
 import tw from "tailwind-styled-components";
+import {city_tags} from "../../../../data.js";
+import {BsStar, BsStarFill} from "react-icons/bs";
 
 export const MakePostBox = tw.div`
     flex 
     w-auto 
     bg-white 
-    mx-20 
+    sm:mx-20 
+    mx-4
     text-left 
     pt-2 
     pb-6 
     px-4 
     rounded-lg 
     my-4
+    mb-28
 `
 
 export const FormInputSectionContainer = tw.div`
@@ -67,6 +71,11 @@ const CityPost = () => {
 
     let [postAnon, setPostAnon] = useState("current-user");
 
+    const [overallRating, setOverallRating] = useState(undefined);
+    const [safetyRating, setSafetyRating] = useState(undefined);
+    const [affordabilityRating, setAffordabilityRating] = useState(undefined);
+    const [sightsRating, setSightsRating] = useState(undefined);
+
     let [error, setError] = useState("");
     let [state, setState] = useState({
         title: "",
@@ -80,6 +89,7 @@ const CityPost = () => {
         sightseeing_rating: 0,
         top_tags: [],
     });
+
 
     // For the location selector code
     const [locations, setLocations] = useState(null);
@@ -95,7 +105,14 @@ const CityPost = () => {
 
     const onClickTag = (ev) => {
         console.log(`Tag: ${ev.target.name}`);
+        ev.stopPropagation();
     }
+
+    const tags = city_tags.map((tag, i) => {
+        return (
+            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
+        );
+    });
 
     const onSubmit = (ev) => {
         ev.preventDefault();
@@ -263,24 +280,7 @@ const CityPost = () => {
                         <span className="text-red-700">*</span>
                     </FormInputSectionTitle>
                     <FormTagContainer>
-                        <Tag content={"Weekend trip"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Day trip"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Favorite city"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Never going back"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Lots of history"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Great hostels"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Awesome nightlife"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Beautiful scenery"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Amazing eats"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Overpriced"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Affordable"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Kinda Pricey"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Walkable"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Hard to get around"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Great public transit"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Hold onto your stuff!"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Watch for scams!"} color={"bg-red-400"} onClick={onClickTag} />
-                        <Tag content={"Not safe at night"} color={"bg-red-400"} onClick={onClickTag} />
+                        {tags}
                     </FormTagContainer>
                 </FormInputSectionContainer>
                 {/* Post Ratings */}
@@ -291,204 +291,102 @@ const CityPost = () => {
                     </FormInputSectionTitle>
                     {/* Overall */}
                     <FormRatingContainer>
-                        <div className="m-2 flex justify-between">
-                            <grid-cols-3 className="">
-                                <span className="">Overall:</span>
-                            </grid-cols-3>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 1 - Awful </span>
-                            </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input
-                                    type="radio"
-                                    id="overall1"
-                                    name="overall_rating"
-                                    value="1"
-                                    onChange={onChange}
-                                />
-                                {/*<label htmlFor="overall2"> 2 </label>*/}
-                                <input
-                                    type="radio"
-                                    id="overall2"
-                                    name="overall_rating"
-                                    value="2"
-                                    onChange={onChange}
-                                />
-                                {/*<label htmlFor="overall3"> 3 </label>*/}
-                                <input
-                                    type="radio"
-                                    id="overall3"
-                                    name="overall_rating"
-                                    value="3"
-                                    onChange={onChange}
-                                />
-                                {/*<label htmlFor="overall4"> 4 </label>*/}
-                                <input
-                                    type="radio"
-                                    id="overall4"
-                                    name="overall_rating"
-                                    value="4"
-                                    onChange={onChange}
-                                />
-                                {/*<label htmlFor="overall5"> 5 - Awesome </label>*/}
-                                <input
-                                    type="radio"
-                                    id="overall5"
-                                    name="overall_rating"
-                                    value="5"
-                                    onChange={onChange}
-                                />
-                            </grid-cols-5>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 5 - Awesome </span>
-                            </grid-cols-2>
+                        <div className="m-2 flex justify-between text-center align-middle">
+                            <div className="w-[15%]">Overall:</div>
+                            <div className="text-[10px]"> 1 - Awful </div>
+                            <div className="space-x-3 flex justify-around">
+                                {(overallRating !== undefined && overallRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(1)} /> }
+                                {(overallRating !== undefined && overallRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(2)} /> }
+                                {(overallRating !== undefined && overallRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(3)} /> }
+                                {(overallRating !== undefined && overallRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(4)} /> }
+                                {(overallRating !== undefined && overallRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setOverallRating(5)} /> }
+                            </div>
+                            <div className="text-[10px]"> 5 - Awesome </div>
                         </div>
                     </FormRatingContainer>
                     {/* Safety */}
                     <FormRatingContainer>
-                        <div className="m-2 flex justify-between">
-                            <grid-cols-3 className="">
-                                <span className="">Safety:</span>
-                            </grid-cols-3>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 1 - Dangerous </span>
-                            </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input
-                                    type="radio"
-                                    id="safety1"
-                                    name="safety_rating"
-                                    value="1"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="safety2"
-                                    name="safety_rating"
-                                    value="2"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="safety3"
-                                    name="safety_rating"
-                                    value="3"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="safety4"
-                                    name="safety_rating"
-                                    value="4"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="safety5"
-                                    name="safety_rating"
-                                    value="5"
-                                    onChange={onChange}
-                                />
-                            </grid-cols-5>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 5 - Very Safe </span>
-                            </grid-cols-2>
+                        <div className="m-2 flex justify-between text-center align-middle">
+                            <div className="w-[15%]">Safety:</div>
+                            <div className="text-[10px]"> 1 - Dangerous </div>
+                            <div className="space-x-3 flex justify-around">
+                                {(safetyRating !== undefined && safetyRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setSafetyRating(1)} /> }
+                                {(safetyRating !== undefined && safetyRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setSafetyRating(2)} /> }
+                                {(safetyRating !== undefined && safetyRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setSafetyRating(3)} /> }
+                                {(safetyRating !== undefined && safetyRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setSafetyRating(4)} /> }
+                                {(safetyRating !== undefined && safetyRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setSafetyRating(5)} /> }
+                            </div>
+                            <div className="text-[10px]"> 5 - Very Safe </div>
                         </div>
                     </FormRatingContainer>
                     {/* Affordability */}
                     <FormRatingContainer>
-                        <div className="m-2 flex justify-between">
-                            <grid-cols-3 className="">
-                                <span className="">Affordability:</span>
-                            </grid-cols-3>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 1 - Overpriced </span>
-                            </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input
-                                    type="radio"
-                                    id="affordability1"
-                                    name="affordability_rating"
-                                    value="1"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="affordability2"
-                                    name="affordability_rating"
-                                    value="2"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="affordability3"
-                                    name="affordability_rating"
-                                    value="3"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="affordability4"
-                                    name="affordability_rating"
-                                    value="4"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="affordability5"
-                                    name="affordability_rating"
-                                    value="5"
-                                    onChange={onChange}
-                                />
-                            </grid-cols-5>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 5 - Cheap </span>
-                            </grid-cols-2>
+                        <div className="m-2 flex justify-between text-center align-middle">
+                            <div className="w-[15%]">Affordability:</div>
+                            <div className="text-[10px]"> 1 - Overpriced </div>
+                            <div className="space-x-3 flex justify-around">
+                                {(affordabilityRating !== undefined && affordabilityRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setAffordabilityRating(1)} /> }
+                                {(affordabilityRating !== undefined && affordabilityRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setAffordabilityRating(2)} /> }
+                                {(affordabilityRating !== undefined && affordabilityRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setAffordabilityRating(3)} /> }
+                                {(affordabilityRating !== undefined && affordabilityRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setAffordabilityRating(4)} /> }
+                                {(affordabilityRating !== undefined && affordabilityRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setAffordabilityRating(5)} /> }
+                            </div>
+                            <div className="text-[10px]"> 5 - Cheap </div>
                         </div>
                     </FormRatingContainer>
                     {/* Sights */}
                     <FormRatingContainer>
-                        <div className="m-2 flex justify-between">
-                            <grid-cols-3 className="">
-                                <span className="">Sightseeing:</span>
-                            </grid-cols-3>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 1 - Boring </span>
-                            </grid-cols-2>
-                            <grid-cols-5 className="space-x-3">
-                                <input type="radio" id="sights1" name="sightseeing_rating"value="1" onChange={onChange} />
-                                <input
-                                    type="radio"
-                                    id="sights2"
-                                    name="sightseeing_rating"
-                                    value="2"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="sights3"
-                                    name="sightseeing_rating"
-                                    value="3"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="sights4"
-                                    name="sightseeing_rating"
-                                    value="4"
-                                    onChange={onChange}
-                                />
-                                <input
-                                    type="radio"
-                                    id="sights5"
-                                    name="sightseeing_rating"
-                                    value="5"
-                                    onChange={onChange}
-                                />
-                            </grid-cols-5>
-                            <grid-cols-2 className="">
-                                <span className="text-[10px]"> 5 - Lots to see </span>
-                            </grid-cols-2>
+                        <div className="m-2 flex justify-between text-center align-middle">
+                            <div className="w-[15%]">Sightseeing:</div>
+                            <div className="text-[10px]"> 1 - Boring </div>
+                            <div className="space-x-3 flex justify-around">
+                                {(sightsRating !== undefined && sightsRating >= 1) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(1)} /> :
+                                    <BsStar size={30} onClick={() => setSightsRating(1)} /> }
+                                {(sightsRating !== undefined && sightsRating >= 2) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(2)} /> :
+                                    <BsStar size={30} onClick={() => setSightsRating(2)} /> }
+                                {(sightsRating !== undefined && sightsRating >= 3) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(3)} /> :
+                                    <BsStar size={30} onClick={() => setSightsRating(3)} /> }
+                                {(sightsRating !== undefined && sightsRating >= 4) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(4)} /> :
+                                    <BsStar size={30} onClick={() => setSightsRating(4)} /> }
+                                {(sightsRating !== undefined && sightsRating >= 5) ?
+                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(5)} /> :
+                                    <BsStar size={30} onClick={() => setSightsRating(5)} /> }
+                            </div>
+                            <div className="text-[10px]"> 5 - Lots to see </div>
                         </div>
                     </FormRatingContainer>
                 </FormInputSectionContainer>
@@ -506,7 +404,7 @@ const CityPost = () => {
                     </div>
                 </FormInputSectionContainer>
                 {/* Submit */}
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-2">
                     <button id="submitBtn" type="submit" onClick={onSubmit}>
                         Post
                     </button>

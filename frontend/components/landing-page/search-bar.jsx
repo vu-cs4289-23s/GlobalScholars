@@ -14,7 +14,11 @@ const SearchBar = () => {
       >
         <img src={magnifyingGlass} alt="magnifying glass" width={20} />
         <h1 className="ml-2 font-sans text-sm  sm:text-base">
+<<<<<<< HEAD
           Search
+=======
+          Start Exploring
+>>>>>>> dfb20ba8fe94ab12b38744089a0aed77b1c976d1
         </h1>
       </div>
       {modal ? <SearchBarModal setModal={setModal} modal={modal} /> : null}

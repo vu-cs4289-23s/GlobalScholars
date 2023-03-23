@@ -121,6 +121,8 @@ export const getProgramByNameAsyncAction = (name) => async (dispatch) => {
 };
 
 export const getProgramByIdAsyncAction = (id) => async (dispatch) => {
+  console.log("here now");
+  
   try {
     const config = {
       headers: {
@@ -131,8 +133,12 @@ export const getProgramByIdAsyncAction = (id) => async (dispatch) => {
       `${backendURL}/geo/program/id/${id}`,
       config
     );
+<<<<<<< HEAD
     console.log("Hello!!!!");
     console.log(response.data);
+=======
+  //  console.log(response.data);
+>>>>>>> dfb20ba8fe94ab12b38744089a0aed77b1c976d1
     dispatch(getPrograms(response.data));
   } catch (error) {
     console.log(error);

@@ -189,6 +189,8 @@ const User = (app) => {
       bio: user.bio,
       background_url: user.background_url,
       avatar_url: user.avatar_url,
+      posts: user.posts,
+      saves: user.saves,
     });
   });
 
