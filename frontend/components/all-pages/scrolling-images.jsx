@@ -50,20 +50,6 @@ const ScrollingImages = ({images, rounded}) => {
 
 // need to reset at some point
 
-<<<<<<< HEAD
-
-    if (programIds && programIds.length > 0) {
-      programIds.map((id) => {
-        getProgramByIdAsyncAction(id);
-        console.log(programInfo);
-      });
-    }
-  }, [programIds]);git 
-
-  // useEffect(() => {
-  //   console.log(programInfo);
-  // }, [programInfo])
-=======
   useEffect(() => {
     console.log(programs);
     // Set square images to programs
@@ -82,7 +68,6 @@ const ScrollingImages = ({images, rounded}) => {
   console.log(programs);
   console.log("program info");
   console.log(programInfo)
->>>>>>> dfb20ba8fe94ab12b38744089a0aed77b1c976d1
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
