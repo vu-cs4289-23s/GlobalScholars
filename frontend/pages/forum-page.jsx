@@ -2,6 +2,7 @@ import SideBar from "../components/all-pages/sidebar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
+import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -146,23 +147,25 @@ export default function ForumPage() {
         {posts && posts.length > 0 ? (
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
               {posts.map((post, index) => (
-                  <Reviews
+                  <ForumPost
                       key={index}
                       id={post._id}
-                      username={post.owner}
-                      program={post.program}
+                      user={post.owner}
+                      title={post.title}
                       content={post.content}
                       likes={post.likes}
                       saves={post.saves}
                       tags={post.tags}
                       dislikes={post.dislikes}
-                      location={post.location}
                       comments={post.comments}
+                      program={post.program}
+                      location={post.location}
                       date={post.timestamp}
                   />
               ))}
             </div>
         ) : null}
+        {/*<ForumPost />*/}
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>

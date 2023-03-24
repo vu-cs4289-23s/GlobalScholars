@@ -22,22 +22,7 @@ const CityDescription = ({
   image_link,
   like_cnt,
 }) => {
-  const [posts, setPosts] = useState({});
   const dispatch = useDispatch();
-  const { postInfo } = useSelector((state) => state.post);
-
-  useEffect(() => {
-    if (city && city !== "City") {
-      // Fetch posts by city name passed through
-      dispatch(getPostsByLocationAsyncAction(city));
-    } else {
-      dispatch(getAllPostsAsyncAction());
-    }
-  }, [city]);
-
-  useEffect(() => {
-    setPosts(postInfo);
-  }, [postInfo]);
 
   return (
     <div className="grid h-auto grid-cols-1 bg-gray-400 bg-opacity-50 sm:mx-20 mx-4 text-left pt-2 pb-6 px-4 rounded-lg">
@@ -70,45 +55,7 @@ const CityDescription = ({
           Like what you see? Study Here!
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
-          {/*<div className="snap-proximity snap-x overflow-x-auto w-[85vw] flex flex-row p-8">*/}
-          {/*  {images.map(({ name, src }) => (*/}
-          {/*    <div className="snap-center" key={name}>*/}
-          {/*      <div className="scroll-snap-align-start h-64 w-64">*/}
-          {/*        <img*/}
-          {/*          src={src}*/}
-          {/*          alt={name}*/}
-          {/*          className="h-52 w-52 rounded-full object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline"*/}
-          {/*          data-name={name}*/}
-          {/*          onLoad={event => onForumLoad(event, name)}*/}
-          {/*        />*/}
-          {/*        <p className="text-base font-bold p-6 text-gray-900" data-name={name}>*/}
-          {/*          {name}*/}
-          {/*        </p>*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*  ))}*/}
-          {/*</div>*/}
         </div>
-        {/*{posts && posts.length > 0 ? (*/}
-        {/*  <div className=" overflow-scroll h-[60%] sm:h-[70%] ">*/}
-        {/*    {posts.map((post, index) => (*/}
-        {/*      <Reviews*/}
-        {/*        key={index}*/}
-        {/*        id={post._id}*/}
-        {/*        username={post.owner}*/}
-        {/*        program={post.program}*/}
-        {/*        content={post.content}*/}
-        {/*        likes={post.likes}*/}
-        {/*        saves={post.saves}*/}
-        {/*        tags={post.tags}*/}
-        {/*        dislikes={post.dislikes}*/}
-        {/*        location={post.location}*/}
-        {/*        comments={post.comments}*/}
-        {/*        date={post.timestamp}*/}
-        {/*      />*/}
-        {/*    ))}*/}
-        {/*  </div>*/}
-        {/*) : null}*/}
       </grid-cols-1>
     </div>
   );

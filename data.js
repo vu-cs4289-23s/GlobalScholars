@@ -6300,5 +6300,189 @@ const program_tags = [
   },
 ]
 
+const all_tags = [
+  {
+    'content': 'Weekend trip',
+    'color': 'pumpkin',
+    'id': 'weekend-trip',
+  },
+  {
+    'content': 'Day trip',
+    'color': 'pure-orange',
+    'id': 'day-trip',
+  },
+  {
+    'content': 'Favorite city',
+    'color': 'peach',
+    'id': 'favorite-city',
+  },
+  {
+    'content': 'Never going back',
+    'color': 'dark-yellow',
+    'id': 'never-going-back',
+  },
+  {
+    'content': 'Lots of history',
+    'color': 'yellow-green',
+    'id': 'lots-of-history',
+  },
+  {
+    'content': 'Great hostels',
+    'color': 'sea-foam',
+    'id': 'great-hostels',
+  },
+  {
+    'content': 'Awesome nightlife',
+    'color': 'electric-lime',
+    'id': 'awesome-nightlife',
+  },
+  {
+    'content': 'Beautiful scenery',
+    'color': 'teal',
+    'id': 'beautiful-scenery',
+  },
+  {
+    'content': 'Amazing eats',
+    'color': 'dark-teal',
+    'id': 'amazing-eats',
+  },
+  {
+    'content': 'Overpriced',
+    'color': 'light-blue',
+    'id': 'overpriced',
+  },
+  {
+    'content': 'Affordable',
+    'color': 'medium-blue',
+    'id': 'affordable',
+  },
+  {
+    'content': 'Kinda Pricey',
+    'color': 'dark-blue',
+    'id': 'kinda-pricey',
+  },
+  {
+    'content': 'Hold onto your stuff!',
+    'color': 'light-lavender',
+    'id': 'hold-onto-stuff',
+  },
+  {
+    'content': 'Not safe at night',
+    'color': 'lavender',
+    'id': 'not-safe-night',
+  },
+  {
+    'content': 'Watch for scams!',
+    'color': 'dark-lavender',
+    'id': 'watch-for-scams',
+  },
+  {
+    'content': 'Walkable',
+    'color': 'baby-pink',
+    'id': 'walkable',
+  },
+  {
+    'content': 'Hard to get around',
+    'color': 'dark-pink',
+    'id': 'hard-toget-around',
+  },
+  {
+    'content': 'Great public transit',
+    'color': 'pink-cream',
+    'id': 'great-transit',
+  },
+  {
+    'content': 'University Housing',
+    'color': 'pumpkin',
+    'id': 'university-housing',
+  },
+  {
+    'content': 'Host Family',
+    'color': 'pure-orange',
+    'id': 'host-family',
+  },
+  {
+    'content': 'No housing support',
+    'color': 'peach',
+    'id': 'no-housing-support',
+  },
+  {
+    'content': 'Beautiful campus',
+    'color': 'dark-yellow',
+    'id': 'beautiful-campus',
+  },
+  {
+    'content': 'Great location',
+    'color': 'yellow-green',
+    'id': 'great-location',
+  },
+  {
+    'content': 'Lots of homework',
+    'color': 'dark-lavender',
+    'id': 'lots-homework',
+  },
+  {
+    'content': 'Get ready to read',
+    'color': 'lavender',
+    'id': 'reading',
+  },
+  {
+    'content': 'So many papers',
+    'color': 'light-lavender',
+    'id': 'many-papers',
+  },
+  {
+    'content': 'Group projects',
+    'color': 'pink-cream',
+    'id': 'group-projects',
+  },
+  {
+    'content': 'Extra credit',
+    'color': 'dark-pink',
+    'id': 'extra-credit',
+  },
+  {
+    'content': 'Not much homework',
+    'color': 'baby-pink',
+    'id': 'not-much-homework',
+  },
+  {
+    'content': 'Tough grading',
+    'color': 'dark-blue',
+    'id': 'tough-grading',
+  },
+  {
+    'content': 'Test heavy',
+    'color': 'medium-blue',
+    'id': 'test-heavy',
+  },
+  {
+    'content': 'Lecture heavy',
+    'color': 'light-blue',
+    'id': 'lecture-heavy',
+  },
+  {
+    'content': 'Beware of pop quizzes',
+    'color': 'sea-foam',
+    'id': 'pop-quizzes',
+  },
+  {
+    'content': 'Participation matters',
+    'color': 'teal',
+    'id': 'participation-matters',
+  },
+  {
+    'content': 'Graded by few things',
+    'color': 'dark-teal',
+    'id': 'few-graded-things',
+  },
+  {
+    'content': 'Classes were a breeze',
+    'color': 'electric-lime',
+    'id': 'classes-breeze',
+  },
+]
+
+
 export default data;
-export { majors, city_tags, program_tags };
+export { majors, city_tags, program_tags, all_tags };
