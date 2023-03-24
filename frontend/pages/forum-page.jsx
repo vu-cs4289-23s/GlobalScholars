@@ -5,7 +5,7 @@ import CityPost from "../components/forum/city/city-post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
+import { getUserAsyncAction, getUserByIdAsyncAction, logoutAction } from "../redux/user/user-slice";
 import {
   getForumDataByName,
   getAllLocationsAsyncAction,
@@ -123,6 +123,18 @@ export default function ForumPage() {
   useEffect(() => {
     setPosts(postInfo);
   }, [postInfo]);
+
+  useEffect(() => {
+    if (posts && posts.length > 0) {
+      // fetch the username of each post owner
+      posts.map((post, index) => {
+        console.log(post);
+        dispatch(getUserByIdAsyncAction(post.owner));
+      });
+    };
+  }, [posts]);
+
+
 
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
