@@ -3,7 +3,11 @@ import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useSelector, useDispatch } from "react-redux";
 import SideBar from "../components/all-pages/sidebar";
+
 import Map from "../components/price-estimator/map";
+
+import LocationDropDown from "../components/price-estimator/location-dropdown";
+
 
 export default function PriceEstimator() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -25,7 +29,6 @@ export default function PriceEstimator() {
 
     <div id="price-estimator" className="flex h-screen w-screen">
       <SideBar />
-      
 
     {/* page contents */}
     <div class="overflow-x-hidden">
@@ -36,7 +39,7 @@ export default function PriceEstimator() {
       </div>
       <div class=" grid-row flex w-screen ml-32 h-1/6 absolutefont-bold font-mono p-4 text-black">
           <div class=" grid-col flex w-1/3  bg-gray-200 text-black">
-            location selectors
+          <LocationDropDown />
           </div>
           <div class=" grid-col flex w-1/3 bg-gray-300 text-black">
             dates
@@ -54,15 +57,10 @@ export default function PriceEstimator() {
           FOLDER
       </div>
 
-      
-    </div>
-
-
-
-      
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
       </div>
+   </div>   
    
   </div>
   );

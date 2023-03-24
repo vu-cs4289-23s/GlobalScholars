@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 
 const Location = new Schema({
   // Scraped data
-  city: { type: String, index: { unique: true }, required: true},
+  city: { type: String, index: { unique: true }, required: true },
   country: { type: String },
   description: { type: String },
-  programs: [ { type: Schema.ObjectId, ref: "Program" } ],
+  programs: [{ type: Schema.ObjectId, ref: "Program" }],
   like_cnt: { type: Number, default: 0 },
 
   // Forum data
