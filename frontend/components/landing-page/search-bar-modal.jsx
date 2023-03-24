@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import xIcon from "../../assets/x-icon.svg";
 import data from "../../../data";
+import { useNavigate } from "react-router-dom";
 
 const SearchBarModal = ({ setModal, modal }) => {
+  const navigate = useNavigate();
   const [wordEntered, setWordEntered] = useState("");
   const [exitModal, setExitModal] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
@@ -59,6 +61,7 @@ const SearchBarModal = ({ setModal, modal }) => {
       }
     }
   };
+
   useEffect(() => {
     if (exitModal) {
       console.log("SETTING TIMEOUT");
@@ -68,9 +71,16 @@ const SearchBarModal = ({ setModal, modal }) => {
       }, 800);
     }
   }, [exitModal]);
+
   useEffect(() => {
     document.getElementById("search-input").focus();
   }, []);
+
+  const onClick = (ev) => {
+    console.log(`Clicking on ${ev.target.name}`);
+    // Navigate to forum page for location / program clicked
+    navigate(`/forum/${ev.target.name}`);
+  };
 
   return (
     <div
@@ -108,13 +118,14 @@ const SearchBarModal = ({ setModal, modal }) => {
             />
           </div>
         </div>
-        {filteredData.length != 0 && (
+        {filteredData.length !== 0 && (
           <div className="dataResult w-[80%] sm:w-[85%] md:w-[88%] lg:w-[92%]  h-12  -mt-1 pt-0 z-10 mx-8  fixed  ">
             {filteredData.slice(0, 15).map((value, key) => {
               return (
                 <a
                   className="dataItem w-full h-full "
-                  href={value["Program Link"]}
+                  // href={value["Program Link"]}
+                  href={`/forum/${value["Program Name"]}`}
                   target="_blank"
                   key={key}
                 >
@@ -150,6 +161,8 @@ const SearchBarModal = ({ setModal, modal }) => {
               }-300 text-gray-700 mr-2 mb-2 cursor-pointer hover:scale-110 ease-linear duration-200`}
               id={i}
               key={i}
+              name={tag}
+              onClick={onClick}
             >
               {tag}
             </span>

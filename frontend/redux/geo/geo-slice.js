@@ -121,8 +121,6 @@ export const getProgramByNameAsyncAction = (name) => async (dispatch) => {
 };
 
 export const getProgramByIdAsyncAction = (id) => async (dispatch) => {
-  console.log("here now");
-  
   try {
     const config = {
       headers: {
