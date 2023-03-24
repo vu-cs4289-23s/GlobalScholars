@@ -64,10 +64,7 @@ const ScrollingImages = ({images, rounded}) => {
     }
   }, [programs]);
 
-  console.log("Programs");
-  console.log(programs);
-  console.log("program info");
-  console.log(programInfo)
+
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
