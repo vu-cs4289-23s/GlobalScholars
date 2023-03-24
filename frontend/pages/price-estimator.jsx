@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useSelector, useDispatch } from "react-redux";
 import SideBar from "../components/all-pages/sidebar";
-
 import Map from "../components/price-estimator/map";
+import Card from "../components/price-estimator/trip-card"
+import TabbedFolder from "../components/price-estimator/trip-folder";
 
 import LocationDropDown from "../components/price-estimator/location-dropdown";
 
@@ -39,22 +40,23 @@ export default function PriceEstimator() {
       </div>
       <div class=" grid-row flex w-screen ml-32 h-1/6 absolutefont-bold font-mono p-4 text-black">
           <div class=" grid-col flex w-1/3  bg-gray-200 text-black">
-          <LocationDropDown />
+          FROM:   <LocationDropDown />
+          TO: <LocationDropDown />
           </div>
           <div class=" grid-col flex w-1/3 bg-gray-300 text-black">
             dates
           </div>
-          <div class=" grid-col flex   bg-gray-400 text-black">
+          <div class=" grid-col flex  bg-gray-400 text-black">
             search icon
           </div>
       </div>
 
       <div class="grid-row  w-screen ml-32 h-2/3 absolutefont-bold font-mono  text-black">
-        <Map/>
+      <Map/>
       </div>
 
-      <div class="grid-row flex w-screen overflow-y-scroll h-2/3 bg-gray-500 absolutefont-bold font-mono p-4 text-black">
-          FOLDER
+      <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4  text-black">
+          <TabbedFolder/>
       </div>
 
       <div className="absolute right-1 top-2">
