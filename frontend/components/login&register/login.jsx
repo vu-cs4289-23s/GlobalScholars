@@ -17,6 +17,11 @@ const Login = () => {
     dispatch(loginAsyncAction(data));
     console.log("LOGIN DISPATCHED");
   };
+
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    window.location.href = "/api/v1/auth/google";
+  };
   useEffect(() => {
     if (loggedIn) {
       navigate("/landing");
@@ -61,10 +66,11 @@ const Login = () => {
         >
           Login
         </button>
-        <button
+        <a
           className="flex w-60 justify-center bg-neutral-200 text-black mt-4"
           id="google-login-button"
           type="submit"
+          href="http://localhost:8080/api/v1/auth/google"
         >
           Login w/ Google OAuth
           <img
@@ -74,7 +80,7 @@ const Login = () => {
             height={30}
             className="pl-1"
           />
-        </button>
+        </a>
       </form>
     </div>
   );
