@@ -34,7 +34,7 @@ const Card = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
           <p>{`Average Cost: ${price}`}</p>
         </div>
         <div className="text-sm text-gray-600 mb-2">
-          <p>{`Cheapest Dates: ${cheapestDates}`}</p>
+          <p>{`Cheapest Month: ${cheapestDates}`}</p>
         </div>
       </div>
     </div>

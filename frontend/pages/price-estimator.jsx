@@ -6,6 +6,7 @@ import SideBar from "../components/all-pages/sidebar";
 import Map from "../components/price-estimator/map";
 import Card from "../components/price-estimator/trip-card"
 import TabbedFolder from "../components/price-estimator/trip-folder";
+import DateSelector from "../components/price-estimator/date-dropdown";
 
 import LocationDropDown from "../components/price-estimator/location-dropdown";
 
@@ -39,19 +40,20 @@ export default function PriceEstimator() {
           Where would you like to travel?
       </div>
       <div class=" grid-row flex w-screen ml-32 h-1/6 absolutefont-bold font-mono p-4 text-black">
-          <div class=" grid-col flex w-1/3  bg-gray-200 text-black">
+          <div class=" grid-col flex w-1/3  bg-gray-200 z-30 text-black">
           FROM:   <LocationDropDown />
-          TO: <LocationDropDown />
+          TO:  <LocationDropDown/>
           </div>
-          <div class=" grid-col flex w-1/3 bg-gray-300 text-black">
-            dates
+          <div class=" grid-col flex  p-2 bg-gray-300 text-black">
+            <DateSelector/>
+            <DateSelector/>
           </div>
           <div class=" grid-col flex  bg-gray-400 text-black">
             search icon
           </div>
       </div>
 
-      <div class="grid-row  w-screen ml-32 h-2/3 absolutefont-bold font-mono  text-black">
+      <div class="grid-row  w-screen ml-32 h-2/3 absolutefont-bold font-mono z-0 text-black">
       <Map/>
       </div>
 
