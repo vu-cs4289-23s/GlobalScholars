@@ -132,6 +132,7 @@ export const getProgramByIdAsyncAction = (id) => async (dispatch) => {
       config
     );
   //  console.log(response.data);
+
     dispatch(getPrograms(response.data));
   } catch (error) {
     console.log(error);
@@ -166,6 +167,7 @@ export const getLocationByNameAsyncAction = (name) => async (dispatch) => {
       `${backendURL}/geo/location/${name}`,
       config
     );
+  //  console.log("in location!")
     console.log(response.data);
     dispatch(getLocations(response.data));
   } catch (error) {
