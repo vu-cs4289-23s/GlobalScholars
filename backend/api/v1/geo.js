@@ -33,7 +33,7 @@ const GEOData = (app) => {
   app.get("/api/v1/geo/program/:name", async (req, res) => {
     let data;
     try {
-      data = await app.models.Program.find({
+      data = await app.models.Program.findOne({
         program_name: { $regex : new RegExp(req.params.name, "i") }
       });
 
@@ -48,6 +48,29 @@ const GEOData = (app) => {
       res.status(404).send({ error: `the specified program ${req.params.name} does not exist` });
     }
   });
+
+  /**
+   * Fetch program in database by id
+   *
+   * @param (req.params.id} id of the program to fetch
+   * @return {200} Program information
+   */
+     app.get("/api/v1/geo/program/id/:id", async (req, res) => {
+      let data;
+      try {
+        data = await app.models.Program.findById(req.params.id);
+
+        if (!data) {
+          res.status(404).send({ error: `the specified program ${req.params.id} does not exist` });
+        } else {
+          // Successful fetch, send to client
+          res.status(200).send(data);
+        }
+      } catch (err) {
+        console.log(`Program.get failure: ${err}`);
+        res.status(404).send({ error: `the specified program ${req.params.id} does not exist` });
+      }
+    });
 
   /**
    * Fetch all locations in database
@@ -80,13 +103,15 @@ const GEOData = (app) => {
   app.get("/api/v1/geo/location/:name", async (req, res) => {
     let data;
     try {
-      data = await app.models.Location.find({
+      data = await app.models.Location.findOne({
         city: { $regex : new RegExp(req.params.name, "i") }
       });
 
       if (!data) {
         res.status(404).send({ error: `the specified program ${req.params.name} does not exist` });
       } else {
+        // Grab the programs at the location
+        data.programs = await app.models.Program.find({ '_id': { $in: data.programs } });
         // Successful fetch, send to client
         res.status(200).send(data);
       }
@@ -95,6 +120,29 @@ const GEOData = (app) => {
       res.status(404).send({ error: `the specified program ${req.params.name} does not exist` });
     }
   });
+
+  /**
+   * Fetch location in database by id
+   *
+   * @param (req.params.id} id of the program to fetch
+   * @return {200} Location information
+   */
+     app.get("/api/v1/geo/location/id/:id", async (req, res) => {
+      let data;
+      try {
+        data = await app.models.Location.findById(req.params.id);
+  
+        if (!data) {
+          res.status(404).send({ error: `the specified location ${req.params.id} does not exist` });
+        } else {
+          // Successful fetch, send to client
+          res.status(200).send(data);
+        }
+      } catch (err) {
+        console.log(`Location.get failure: ${err}`);
+        res.status(404).send({ error: `the specified location ${req.params.id} does not exist` });
+      }
+    });
 
   /**
    * Fetch program or location information for forum

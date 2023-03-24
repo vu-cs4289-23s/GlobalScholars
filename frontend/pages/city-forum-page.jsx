@@ -1,4 +1,5 @@
 import SideBar from "../components/all-pages/sidebar";
+import SearchBar from "../components/landing-page/search-bar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
@@ -6,7 +7,7 @@ import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
+import { getUserAsyncAction, getUserByIdAsyncAction, logoutAction } from "../redux/user/user-slice";
 import {
   getForumDataByName,
   getAllLocationsAsyncAction,
@@ -93,12 +94,24 @@ export default function CityForumPage() {
     setPosts(postInfo);
   }, [postInfo]);
 
+  useEffect(() => {
+    if (posts && posts.length > 0) {
+      // fetch the username of each post owner
+      posts.map((post, index) => {
+        console.log(post);
+        dispatch(getUserByIdAsyncAction(post.owner));
+      });
+    };
+  }, [posts]);
+
+
+
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
       <SideBar />
       <div className="bg-blue-light overflow-y-scroll">
         <img
-          className="flex h-1/4 w-screen object-center object-cover"
+          className="flex h-1/3 w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
         <CityDescription
@@ -135,9 +148,17 @@ export default function CityForumPage() {
         ) : null}
         {/*<ForumPost />*/}
       </div>
-      <div className="absolute right-1 top-2">
-        <button onClick={() => logOutHandle()}>Log Out</button>
+    
+        <div className="absolute flex-row right-2 top-2">
+          <button onClick={() => logOutHandle()}>Log Out</button>
+        
+        </div>
+          <div className="absolute  w-1/4 flex-row right-2 top-14">
+          <SearchBar />
+          </div>
+        
+        
       </div>
-    </div>
+    
   );
 }

@@ -17,9 +17,10 @@ const initialState = {
     grad_year: "",
     bio: "",
     background_url: "",
+    posts: [],
     saved_posts: [],
-    saved_comments: [],
-    saved_events: [],
+    // saved_comments: [],
+    // saved_events: [],
     tags: [],
   },
   userToken: null,
@@ -101,6 +102,7 @@ export const loginAsyncAction = (data) => async (dispatch) => {
   }
 };
 
+// Get user by username
 export const getUserAsyncAction = (data) => async (dispatch) => {
   try {
     const config = {
@@ -109,6 +111,21 @@ export const getUserAsyncAction = (data) => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/user/${data}`, config);
+    dispatch(getUser(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
+export const getUserByIdAsyncAction = (id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(`${backendURL}/user/id/${id}`, config);
     dispatch(getUser(response.data));
   } catch (error) {
     console.log(error);

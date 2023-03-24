@@ -49,7 +49,7 @@ const geoSlice = createSlice({
     },
     getLocations: (state, action) => {
       state.loading = false;
-      console.log(typeof action.payload);
+    //  console.log(typeof action.payload);
       state.locationInfo = action.payload;
       state.success = true;
       state.error = null;
@@ -120,6 +120,26 @@ export const getProgramByNameAsyncAction = (name) => async (dispatch) => {
   }
 };
 
+export const getProgramByIdAsyncAction = (id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(
+      `${backendURL}/geo/program/id/${id}`,
+      config
+    );
+  //  console.log(response.data);
+
+    dispatch(getPrograms(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
 export const getAllLocationsAsyncAction = () => async (dispatch) => {
   try {
     const config = {
@@ -145,6 +165,26 @@ export const getLocationByNameAsyncAction = (name) => async (dispatch) => {
     };
     const response = await axios.get(
       `${backendURL}/geo/location/${name}`,
+      config
+    );
+  //  console.log("in location!")
+    console.log(response.data);
+    dispatch(getLocations(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
+
+export const getLocationByIdAsyncAction = (name) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(
+      `${backendURL}/geo/location/id/${id}`,
       config
     );
     console.log(response.data);
