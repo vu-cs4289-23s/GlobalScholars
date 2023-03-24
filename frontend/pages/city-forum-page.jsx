@@ -37,20 +37,6 @@ export default function CityForumPage() {
     like_cnt: 0,
   });
 
-  // TODO -- make forum dynamic for programs
-  const [program, setProgram] = useState({
-    program_name: "Program",
-    description: "This is my program description",
-    location: [],
-    top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
-    overall_rating: 0,
-    safety_rating: 0,
-    affordability_rating: 0,
-    sightseeing_rating: 0,
-    image_link: "",
-    like_cnt: 0,
-  });
-
   const [posts, setPosts] = useState({});
   const { postInfo } = useSelector((state) => state.post);
 
@@ -72,7 +58,6 @@ export default function CityForumPage() {
       dispatch(getForumDataByName(name));
     } else {
       dispatch(getAllLocationsAsyncAction());
-      dispatch(getAllProgramsAsyncAction());
     }
   }, [name]);
 
@@ -94,23 +79,6 @@ export default function CityForumPage() {
     }
   }, [locationInfo]);
 
-  useEffect(() => {
-    // Set Program data
-    if (programInfo && programInfo.program_name !== "") {
-      setProgram({
-        program_name: programInfo.program_name,
-        description: programInfo.description,
-        location: programInfo.location,
-        top_tags: programInfo.top_tags,
-        overall_rating: programInfo.overall_rating,
-        safety_rating: programInfo.safety_rating,
-        affordability_rating: programInfo.affordability_rating,
-        sightseeing_rating: programInfo.sightseeing_rating,
-        image_link: programInfo.image_link,
-        like_cnt: programInfo.like_cnt,
-      });
-    }
-  }, [programInfo]);
 
   useEffect(() => {
     if (location.city && location.city !== "City") {

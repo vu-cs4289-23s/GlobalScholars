@@ -41,7 +41,7 @@ const CityDescription = ({
         <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
           {top_tags &&
             top_tags.map((tag, index) => (
-              <Tag color={"bg-red-400"} content={tag} name={tag} key={index} />
+              <Tag color={"red-400"} content={tag} name={tag} key={index} />
             ))}
         </div>
         <p className="py-4 font-bold text-[24px]">Ratings</p>
