@@ -24,12 +24,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/forum",
+    path: "/city",
     element: <CityForumPage />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/forum/program",
+    path: "/program",
     element: <ProgramForumPage />,
     errorElement: <ErrorPage />,
   },
