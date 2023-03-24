@@ -144,6 +144,11 @@ const Post = (app) => {
         city: { $regex : new RegExp(req.params.location, "i") }
       });
       data = await app.models.Post.find({ location: location._id });
+      // console.log(data);
+      // data.map((post, index) =>  {
+      //   post.owner = await app.models.User.findById(post.owner);
+      // });
+      // console.log(data);
 
       // Check if posts exist
       if (!data) {

@@ -124,17 +124,15 @@ export default function ForumPage() {
     setPosts(postInfo);
   }, [postInfo]);
 
-  useEffect(() => {
-    if (posts && posts.length > 0) {
-      // fetch the username of each post owner
-      posts.map((post, index) => {
-        console.log(post);
-        dispatch(getUserByIdAsyncAction(post.owner));
-      });
-    };
-  }, [posts]);
-
-
+  // useEffect(() => {
+  //   if (posts && posts.length > 0) {
+  //     // fetch the username of each post owner
+  //     posts.map((post, index) => {
+  //       console.log(post);
+  //       dispatch(getUserByIdAsyncAction(post.owner));
+  //     });
+  //   };
+  // }, [posts]);
 
   return (
     <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
