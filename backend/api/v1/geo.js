@@ -110,6 +110,8 @@ const GEOData = (app) => {
       if (!data) {
         res.status(404).send({ error: `the specified program ${req.params.name} does not exist` });
       } else {
+        // Grab the programs at the location
+        data.programs = await app.models.Program.find({ '_id': { $in: data.programs } });
         // Successful fetch, send to client
         res.status(200).send(data);
       }

@@ -11,7 +11,6 @@ const images = [
   { name: "Seville, Spain", src: "/landing-locations/seville.jpeg" },
   { name: "Stockholm, Sweden", src: "/landing-locations/stockholm.jpeg" },
   { name: "Prague, Czech Republic", src: "/landing-locations/prague.jpeg" },
-  { name: "Budapest, Hungary", src: "/landing-locations/budapest.jpeg" },
   {
     name: "Amsterdam, Netherlands",
     src: "/landing-locations/Amsterdam, Netherlands.jpeg",

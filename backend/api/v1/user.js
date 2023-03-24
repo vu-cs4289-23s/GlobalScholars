@@ -147,7 +147,7 @@ const User = (app) => {
   });
 
   /**
-   * Fetch user information
+   * Fetch user information via username
    *
    * @param {req.params.username} Username of the user to query for
    * @return {200, {username, primary_email, first_name, last_name, city, avatar_url,}}
@@ -192,6 +192,31 @@ const User = (app) => {
       posts: user.posts,
       saves: user.saves,
     });
+  });
+
+  /**
+   * Fetch user information via user id
+   *
+   * @param {req.params.id} ID of the user to query for
+   * @return {200, {username, primary_email, first_name, last_name, city, avatar_url,}}
+   */
+  app.get("/api/v1/user/id/:id", async (req, res) => {
+    // Fetch user filtering by id
+    let data;
+    try {
+      data = await app.models.User.findById(req.params.id);
+
+      // Check if user exists
+      if (!data) {
+        res.status(404).send({ error: `unknown user: ${req.params.id}` });
+      } else {
+        // Successful fetch, send user info to client
+        res.status(200).send(data);
+      }
+    } catch (err) {
+      console.log(`User.get failure: ${err}`);
+      res.status(404).send({ error: `unknown user: ${req.params.id}` });
+    }
   });
 
   /**
