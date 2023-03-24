@@ -93,7 +93,12 @@ const Post = (app) => {
     // Fetch post filtering by id
     let data;
     try {
-      data = await app.models.Post.findById(req.params.id);
+      data = await app.models.Post
+        .findById(req.params.id)
+        .populate("owner", {
+          username: 1,
+          avatar_url: 1,
+        });
 
       // Check if post exists
       if (!data) {
@@ -116,7 +121,12 @@ const Post = (app) => {
   app.get("/api/v1/posts", async (req, res) => {
     let data;
     try {
-      data = await app.models.Post.find({});
+      data = await app.models.Post
+        .find({})
+        .populate("owner", {
+          username: 1,
+          avatar_url: 1,
+        });
 
       if (!data) {
         res.status(404).send({ error: `there are no posts to fetch` });
@@ -143,12 +153,16 @@ const Post = (app) => {
       location = await app.models.Location.findOne({
         city: { $regex : new RegExp(req.params.location, "i") }
       });
-      data = await app.models.Post.find({ location: location._id });
-      // console.log(data);
-      // data.map((post, index) =>  {
-      //   post.owner = await app.models.User.findById(post.owner);
-      // });
-      // console.log(data);
+
+      // Fetch and populate owner data
+      data = await app.models.Post
+        .find({
+          location: location._id
+        })
+        .populate("owner", {
+          username: 1,
+          avatar_url: 1,
+        });
 
       // Check if posts exist
       if (!data) {
@@ -180,7 +194,11 @@ const Post = (app) => {
       data = await app.models.Post.find({
         location: location._id,
         tags: req.params.tags,
-      });
+      })
+        .populate("owner", {
+          username: 1,
+          avatar_url: 1,
+        });
 
       // Check if posts exist
       if (!data) {
@@ -208,7 +226,14 @@ const Post = (app) => {
       program = await app.models.Program.findOne({
         program_name: { $regex : new RegExp(req.params.program, "i") }
       });
-      data = await app.models.Post.find({ program: program._id });
+      data = await app.models.Post
+        .find({
+          program: program._id
+        })
+        .populate("owner", {
+          username: 1,
+          avatar_url: 1,
+        });
 
       // Check if posts exist
       if (!data) {
@@ -237,10 +262,16 @@ const Post = (app) => {
       program = await app.models.Program.findOne({
         program_name: { $regex : new RegExp(req.params.program, "i") }
       });
-      data = await app.models.Post.find({
-        program: program._id,
-        tags: req.params.tags,
-      });
+
+      data = await app.models.Post
+        .find({
+          program: program._id,
+          tags: req.params.tags,
+        })
+        .populate("owner", {
+          username: 1,
+          avatar_url: 1,
+        });
 
       // Check if posts exist
       if (!data) {
@@ -277,7 +308,14 @@ const Post = (app) => {
         // Fetch posts by user
         let data;
         try {
-          data = await app.models.Post.find({ owner: user._id });
+          data = await app.models.Post
+            .find({
+              owner: user._id
+            })
+            .populate("owner", {
+              username: 1,
+              avatar_url: 1,
+            });
 
           // Posts don't exist
           if (!data) {
@@ -307,7 +345,14 @@ const Post = (app) => {
     // Fetch posts filtering by tags
     let data;
     try {
-      data = await app.models.Post.find({ tags: req.params.tags });
+      data = await app.models.Post
+        .find({
+          tags: req.params.tags
+        })
+        .populate("owner", {
+          username: 1,
+          avatar_url: 1,
+        });
 
       // Check if posts exist
       if (!data) {

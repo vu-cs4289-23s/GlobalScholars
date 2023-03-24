@@ -160,7 +160,7 @@ export default function ForumPage() {
                   <Reviews
                       key={index}
                       id={post._id}
-                      username={post.owner}
+                      username={"temporary"}
                       program={post.program}
                       content={post.content}
                       likes={post.likes}
