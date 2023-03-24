@@ -1,5 +1,4 @@
 import SideBar from "../components/all-pages/sidebar";
-import CityDescription from "../components/forum/city/city-description.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
 import React, {useState, useEffect} from "react";
 import ProgramPost from "../components/forum/program/program-post.jsx";
@@ -14,7 +13,7 @@ export default function NewPost() {
             <div className="overflow-y-scroll h-full">
                 <div id="type-selector" className="">
                     <div id="selector-container" className="">
-                        <div className="flex w-auto bg-white mx-20 text-left p-4 rounded-lg m-4 justify-around">
+                        <div className="flex w-auto bg-white sm:mx-20 text-left p-4 rounded-lg m-4 justify-around">
                             <div className="font-bold text-[32px]">
                                Select the type of post
                             </div>
@@ -24,7 +23,6 @@ export default function NewPost() {
                                     <option value={"program"}>Program</option>
                                 </select>
                             </div>
-                            {postType}
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ const GEOData = (app) => {
   app.get("/api/v1/geo/program/:name", async (req, res) => {
     let data;
     try {
-      data = await app.models.Program.find({
+      data = await app.models.Program.findOne({
         program_name: { $regex : new RegExp(req.params.name, "i") }
       });
 
@@ -58,10 +58,8 @@ const GEOData = (app) => {
      app.get("/api/v1/geo/program/id/:id", async (req, res) => {
       let data;
       try {
-        data = await app.models.Program.find({
-          _id: req.params.id
-        });
-  
+        data = await app.models.Program.findById(req.params.id);
+
         if (!data) {
           res.status(404).send({ error: `the specified program ${req.params.id} does not exist` });
         } else {
@@ -105,7 +103,7 @@ const GEOData = (app) => {
   app.get("/api/v1/geo/location/:name", async (req, res) => {
     let data;
     try {
-      data = await app.models.Location.find({
+      data = await app.models.Location.findOne({
         city: { $regex : new RegExp(req.params.name, "i") }
       });
 
@@ -130,9 +128,7 @@ const GEOData = (app) => {
      app.get("/api/v1/geo/location/id/:id", async (req, res) => {
       let data;
       try {
-        data = await app.models.Location.find({
-          _id: req.params.id
-        });
+        data = await app.models.Location.findById(req.params.id);
   
         if (!data) {
           res.status(404).send({ error: `the specified location ${req.params.id} does not exist` });
