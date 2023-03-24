@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import xIcon from "../../assets/x-icon.svg";
 import data from "../../../data";
+import { useNavigate } from "react-router-dom";
 
 const SearchBarModal = ({ setModal, modal }) => {
+  const navigate = useNavigate();
   const [wordEntered, setWordEntered] = useState("");
   const [exitModal, setExitModal] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
@@ -73,6 +75,12 @@ const SearchBarModal = ({ setModal, modal }) => {
   useEffect(() => {
     document.getElementById("search-input").focus();
   }, []);
+
+  const onClick = (ev) => {
+    console.log(`Clicking on ${ev.target.name}`);
+    // Navigate to forum page for location / program clicked
+    navigate(`/forum/${ev.target.name}`);
+  };
 
   return (
     <div
@@ -153,6 +161,8 @@ const SearchBarModal = ({ setModal, modal }) => {
               }-300 text-gray-700 mr-2 mb-2 cursor-pointer hover:scale-110 ease-linear duration-200`}
               id={i}
               key={i}
+              name={tag}
+              onClick={onClick}
             >
               {tag}
             </span>
