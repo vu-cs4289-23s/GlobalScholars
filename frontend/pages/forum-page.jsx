@@ -1,4 +1,5 @@
 import SideBar from "../components/all-pages/sidebar";
+import SearchBar from "../components/landing-page/search-bar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
@@ -139,7 +140,7 @@ export default function ForumPage() {
       <SideBar />
       <div className="bg-blue-light overflow-y-scroll">
         <img
-          className="flex h-1/4 w-screen object-center object-cover"
+          className="flex h-1/3 w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
         <CityDescription
@@ -174,9 +175,17 @@ export default function ForumPage() {
             </div>
         ) : null}
       </div>
-      <div className="absolute right-1 top-2">
-        <button onClick={() => logOutHandle()}>Log Out</button>
+    
+        <div className="absolute flex-row right-2 top-2">
+          <button onClick={() => logOutHandle()}>Log Out</button>
+        
+        </div>
+          <div className="absolute  w-1/4 flex-row right-2 top-14">
+          <SearchBar />
+          </div>
+        
+        
       </div>
-    </div>
+    
   );
 }
