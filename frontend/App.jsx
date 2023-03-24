@@ -77,11 +77,17 @@ function App() {
       <h1>REACT ROUTER ROUTES</h1>
 
       <div>
-        <NavLink to="/forum">Forum Page</NavLink>
+        <NavLink to="/forum">Blank City Forum Page</NavLink>
       </div>
+        <div>
+            <NavLink to="/forum/program">Blank Program Forum Page</NavLink>
+        </div>
       <div>
-        <NavLink to="/forum/powerful">Forum Page with specified name of page</NavLink>
+        <NavLink to="/city/powerful">City Forum Page with specified city</NavLink>
       </div>
+        <div>
+            <NavLink to="/program/powerful">Program Forum Page with specified city</NavLink>
+        </div>
       <div>
         <NavLink to="/landing">Landing Page</NavLink>
       </div>

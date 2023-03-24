@@ -16,7 +16,7 @@ import axios from "axios";
 import {getAllPostsAsyncAction, getPostsByLocationAsyncAction} from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
 
-export default function ForumPage() {
+export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const { programInfo, locationInfo } = useSelector((state) => state.geo);
   const navigate = useNavigate();

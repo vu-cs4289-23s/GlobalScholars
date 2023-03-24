@@ -4,7 +4,8 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error-page";
 import LandingPage from "./pages/landing-page";
-import ForumPage from "./pages/forum-page";
+import CityForumPage from "./pages/city-forum-page.jsx";
+import ProgramForumPage from "./pages/program-forum-page.jsx";
 import NewPost from "./pages/new-post";
 import PriceEstimator from "./pages/price-estimator";
 import ProfilePage from "./pages/profile-page";
@@ -24,7 +25,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/forum",
-    element: <ForumPage />,
+    element: <CityForumPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/forum/program",
+    element: <ProgramForumPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -32,8 +38,13 @@ const router = createBrowserRouter([
     element: <NewPost />,
   },
   {
-    path: "/forum/:name",
-    element: <ForumPage />,
+    path: "/city/:name",
+    element: <CityForumPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/program/:name",
+    element: <ProgramForumPage />,
     errorElement: <ErrorPage />,
   },
   {
