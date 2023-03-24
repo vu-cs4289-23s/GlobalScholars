@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useSelector, useDispatch } from "react-redux";
 import SideBar from "../components/all-pages/sidebar";
+import LocationDropDown from "../components/price-estimator/location-dropdown";
 
 export default function PriceEstimator() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -40,6 +41,7 @@ export default function PriceEstimator() {
           <embed src="https://www.google.com/travel/flights" className="w-full h-full m-4 mb-24" />
         </div>
       </div>
+      <LocationDropDown />
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
       </div>
