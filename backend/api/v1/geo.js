@@ -105,13 +105,15 @@ const GEOData = (app) => {
     try {
       data = await app.models.Location.findOne({
         city: { $regex : new RegExp(req.params.name, "i") }
-      });
+      })
+        .populate("programs", {
+          program_name: 1,
+          image_link: 1,
+        });
 
       if (!data) {
         res.status(404).send({ error: `the specified program ${req.params.name} does not exist` });
       } else {
-        // Grab the programs at the location
-        data.programs = await app.models.Program.find({ '_id': { $in: data.programs } });
         // Successful fetch, send to client
         res.status(200).send(data);
       }
