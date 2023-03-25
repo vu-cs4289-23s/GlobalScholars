@@ -27,13 +27,15 @@ const ForumPost = ({ key, id, user, program, title, content, likes, saves, tags,
     // likes
     const [numLikes, setNumLikes] = useState(100);
     useEffect(() => {
-        setNumLikes(likes.length);
+        // setNumLikes(likes.length);
+        setNumLikes(0);
     }, [likes]);
 
     // dislikes
     const [numDislikes, setNumDislikes] = useState(100);
     useEffect(() => {
-        setNumDislikes(likes.length);
+        // setNumDislikes(likes.length);
+        setNumDislikes(0);
     }, [dislikes]);
 
     // TODO: check if the current user has liked, disliked, or saved the post, if so, change the icon
