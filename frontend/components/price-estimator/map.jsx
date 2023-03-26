@@ -24,8 +24,8 @@ export default function Map(){
 
   return (
     
-    <div class="relative w-full h-screen" >
-        <div ref={mapContainer}  class=" absolute w-3/4 h-2/3 ">
+    <div class="relative w-full h-full" >
+        <div ref={mapContainer}  class=" absolute w-3/4 h-full ">
         </div>
     </div>
     
