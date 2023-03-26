@@ -15,6 +15,10 @@ const Location = new Schema({
   sightseeing_rating: { type: Number, default: 0 },
   top_tags: [{ type: String }],
   image_link: { type: String },
+
+  // coordinates
+  latitude: { type: Number, default: 0},
+  longitude: {type: Number, default: 0}
 });
 
 export default model("Location", Location);
