@@ -125,25 +125,27 @@ export default function ForumPage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
-      <div className="bg-blue-light overflow-y-scroll">
+    <div id="forum-page" className="flex h-screen w-screen bg-white overflow-y-scroll">
+      <SideBar />
+      <div>
         <img
-          className="flex h-1/3 w-screen object-center object-cover z-"
+          className="flex h-[45%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
+        <div className="absolute top-64 z-1 h-full pl-[13%]">
+          <CityDescription
+            description={location.description}
+            city={location.city}
+            country={location.country}
+            top_tags={location.top_tags}
+            overall_rating={location.overall_rating}
+            safety_rating={location.safety_rating}
+            affordability_rating={location.affordability_rating}
+            sightseeing_rating={location.sightseeing_rating}
+          />
+          <FilterBar />
+        </div>
         {/*put toggle above description?*/}
-        <CityDescription
-          className="absolute z-1 h-[83%]"
-          description={location.description}
-          city={location.city}
-          country={location.country}
-          top_tags={location.top_tags}
-          overall_rating={location.overall_rating}
-          safety_rating={location.safety_rating}
-          affordability_rating={location.affordability_rating}
-          sightseeing_rating={location.sightseeing_rating}
-        />
-        <FilterBar />
         {posts && posts.length > 0 ? (
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
               {posts.map((post, index) => (

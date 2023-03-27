@@ -106,7 +106,6 @@ return (
             </p>
           </div>))
       }
->>>>>>> dfb20ba8fe94ab12b38744089a0aed77b1c976d1
     </div>
   );
 

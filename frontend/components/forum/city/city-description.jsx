@@ -15,14 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 const CityDescription = ({
   city,
   country,
-  description,
   top_tags,
   overall_rating,
-  safety_rating,
-  affordability_rating,
-  sightseeing_rating,
-  image_link,
-  like_cnt,
 }) => {
   const [posts, setPosts] = useState({});
   const dispatch = useDispatch();
@@ -55,10 +49,10 @@ const CityDescription = ({
   // }
 
   return (
-    <div className="grid h-auto grid-cols-1 bg-gray-400 bg-opacity-50 sm:mx-20 mx-4 text-left pt-2 pb-6 px-4 rounded-lg">
+    <div className="grid h-auto grid-cols-1 bg-light-gray sm:mx-20 mx-4 text-left pt-2 pb-6 px-4 rounded-[45px] ">
       <grid-cols-1>
         <span className="text-[30px]">
-          <span className="content-start row ">
+          <span className="content-start row px-[3%]">
             Travel To:
             <span className="font-bold">
               {" "}
@@ -66,50 +60,19 @@ const CityDescription = ({
             </span>
           </span>
         </span>
-        <p>{description}</p>
-        <p className="py-4 font-bold text-[24px]">Top Tags</p>
-        <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
+        <div style={{display : "flex", flexDirection : "row"}} className="grid">
+        <p className="py-4 px-[5%] font-bold text-[20px]">Average Rating</p>
+        <div className="grid grid-cols-1 sm:grid-cols-4 self-center">
+          <Rating rating={overall_rating}/>
+        </div>
+        </div>
+        <p className="py-4 px-[5%] font-bold text-[20px]">Top Tags</p>
+        <div className="grid grid-cols-3 sm:grid-cols-5 px-[5%] justify-around justify-items-center">
           {top_tags &&
             top_tags.map((tag, index) => (
               <Tag color={"bg-red-400"} content={tag} name={tag} key={index} />
             ))}
         </div>
-        <p className="py-4 font-bold text-[24px]">Ratings</p>
-        <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
-          <Rating rating={overall_rating} type={"Overall"} />
-          <Rating rating={safety_rating} type={"Safety"} />
-          <Rating rating={affordability_rating} type={"Affordability"} />
-          <Rating rating={sightseeing_rating} type={"Sightseeing"} />
-        </div>
-        <p className="py-4 font-bold text-[24px]">
-          Like what you see? Study Here!
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
-            {/* displayed locations  */}
-            <div className="snap-proximity snap-x overflow-x-auto flex flex-row p-8">
-              <ScrollingImages rounded={true} url={programImages.url} forum={true} images={programImages} />
-          </div>
-        </div>
-        {/*{posts && posts.length > 0 ? (*/}
-        {/*  <div className=" overflow-scroll h-[60%] sm:h-[70%] ">*/}
-        {/*    {posts.map((post, index) => (*/}
-        {/*      <Reviews*/}
-        {/*        key={index}*/}
-        {/*        id={post._id}*/}
-        {/*        username={post.owner}*/}
-        {/*        program={post.program}*/}
-        {/*        content={post.content}*/}
-        {/*        likes={post.likes}*/}
-        {/*        saves={post.saves}*/}
-        {/*        tags={post.tags}*/}
-        {/*        dislikes={post.dislikes}*/}
-        {/*        location={post.location}*/}
-        {/*        comments={post.comments}*/}
-        {/*        date={post.timestamp}*/}
-        {/*      />*/}
-        {/*    ))}*/}
-        {/*  </div>*/}
-        {/*) : null}*/}
       </grid-cols-1>
     </div>
   );
