@@ -87,16 +87,16 @@ const User = (app) => {
       data = await schema.validate(await req.body);
 
       // Password validation
-      const invalidPwd = validatePassword(data.password);
-      if (invalidPwd) {
-        return res.status(400).send(invalidPwd);
-      }
+      // const invalidPwd = validatePassword(data.password);
+      // if (invalidPwd) {
+      //   return res.status(400).send(invalidPwd);
+      // }
 
       // Vanderbilt email validation
-      const invalidEmail = validateVanderbiltEdu(data.primary_email);
-      if (invalidEmail) {
-        return res.status(400).send(invalidEmail);
-      }
+      // const invalidEmail = validateVanderbiltEdu(data.primary_email);
+      // if (invalidEmail) {
+      //   return res.status(400).send(invalidEmail);
+      // }
     } catch (err) {
       const message = err;
       console.log(`User.create validation failure: ${message}`);
