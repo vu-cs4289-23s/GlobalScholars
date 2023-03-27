@@ -194,7 +194,11 @@ export const googleLogin = (response) => async (dispatch) => {
     const loginUser = await axios.post(`${backendURL}/session`, data, config);
     dispatch(login(loginUser.data));
   } catch (error) {
-    const createUser = await axios.post(`${backendURL}/user`, data, config);
+    const createUser = await axios.post(
+      `${backendURL}/user/google`,
+      data,
+      config
+    );
     dispatch(register(createUser.data));
     const loginUser = await axios.post(`${backendURL}/session`, data, config);
     dispatch(login(loginUser.data));
