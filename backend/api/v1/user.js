@@ -82,28 +82,29 @@ const User = (app) => {
    */
   app.post("/api/v1/user", async (req, res) => {
     // Validate user input
+    console.log("BODY: ", req.body);
     let data;
     try {
       data = await schema.validate(await req.body);
 
       // Password validation
-      const invalidPwd = validatePassword(data.password);
-      if (invalidPwd) {
-        return res.status(400).send(invalidPwd);
-      }
+      // const invalidPwd = validatePassword(data.password);
+      // if (invalidPwd) {
+      //   return res.status(400).send(invalidPwd);
+      // }
 
       // Vanderbilt email validation
-      const invalidEmail = validateVanderbiltEdu(data.primary_email);
-      if (invalidEmail) {
-        return res.status(400).send(invalidEmail);
-      }
+      // const invalidEmail = validateVanderbiltEdu(data.primary_email);
+      // if (invalidEmail) {
+      //   return res.status(400).send(invalidEmail);
+      // }
     } catch (err) {
       const message = err;
       console.log(`User.create validation failure: ${message}`);
       return res.status(400).send({ error: message });
     }
     // Define avatar url
-    data.avatar_url = GravHash(data.primary_email, 40);
+    if (!data.avatar_url) data.avatar_url = GravHash(data.primary_email, 40);
 
     // Try to create the user
     try {
