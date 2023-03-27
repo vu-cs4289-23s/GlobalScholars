@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import crypto from "crypto";
-import PassportLocalMongoose from "passport-local-mongoose";
 const makeSalt = () => Math.round(new Date().valueOf() * Math.random()) + "";
 
 const encryptPassword = (salt, password) =>
@@ -63,6 +62,5 @@ User.pre("save", function (next) {
   this.last_name = this.last_name.replace(/<(?:.|\n)*?>/gm, "");
   next();
 });
-User.plugin(PassportLocalMongoose);
 
 export default model("User", User);
