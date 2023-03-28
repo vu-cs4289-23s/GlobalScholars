@@ -7,11 +7,11 @@ function DateSelector() {
     const [selectedDate, setSelectedDate] = useState(new Date());
   
     return (
-      <div className="w-64 relative">
+      <div className=" w-52 pl-6 pr-4">
         <DatePicker
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
-          className="appearance-none block w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+          className="appearance-none block w-full bg-white border border-gray-300 hover:border-gray-400 px-8 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         />
         <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
           <svg
