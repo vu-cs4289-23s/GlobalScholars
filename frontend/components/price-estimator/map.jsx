@@ -8,23 +8,10 @@ const Map = ({  }) => {
   const lat = 39;
   const zoom = 3;
   const markers = [
-    { lng: -77.0369, lat: 38.9072 }, // Washington, DC
-    { lng: -73.9352, lat: 40.7306 }, // New York, NY
-    { lng: -122.4194, lat: 37.7749 } // San Francisco, CA
+    { lng: -77.0369, lat: 38.9072, title: 'Washington, DC' },
+    { lng: -73.9352, lat: 40.7306, title: 'New York, NY' },
+    { lng: -122.4194, lat: 37.7749, title: 'San Francisco, CA' }
   ];
-//   useEffect(() => {
-//     if (!map) return;
-
-//     // add markers to the map
-//   markers.forEach(marker => {
-//     const el = document.createElement('div');
-//     el.className = 'h-4 w-4 bg-red-500 rounded-full'; // Define the "marker" class
-//     // Set the minzoom value for the marker layer
-//     new maplibregl.Marker(el, { minzoom: 10 })
-//       .setLngLat([marker.lng, marker.lat])
-//       .addTo(map);
-//   });
-// }, [map, markers]);
 
   useEffect(() => {
     if (!mapContainer.current || map !== undefined) return;
@@ -53,7 +40,7 @@ const Map = ({  }) => {
               coordinates: [marker.lng, marker.lat]
             },
             properties: {
-              title: 'Marker'
+              title: marker.title
             }
           }))
         }
@@ -63,6 +50,7 @@ const Map = ({  }) => {
         id: 'markers',
         type: 'symbol',
         source: 'markers',
+        //this should display name above the marker 
         layout: {
           'icon-image': 'custom-marker',
           'icon-allow-overlap': true,
