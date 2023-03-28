@@ -3,7 +3,7 @@ import maplibregl from 'maplibre-gl';
 
 const Map = ({  }) => {
   const mapContainer = useRef(null);
-  let map = undef;
+  let map = undefined;
   const lng = 12;
   const lat = 88;
   const zoom = 3;
@@ -13,10 +13,10 @@ const Map = ({  }) => {
     { lng: -122.4194, lat: 37.7749 } // San Francisco, CA
   ];
   useEffect(() => {
+    if (!map) return;
 
     // add markers to the map
-markers.forEach(marker => {
-  if (!map) return;
+  markers.forEach(marker => {
     const el = document.createElement('div');
     el.className = 'marker';
     new maplibregl.Marker(el)
@@ -24,8 +24,6 @@ markers.forEach(marker => {
       .addTo(map);
   });
   }, [map])
-
-
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -63,7 +61,6 @@ markers.forEach(marker => {
       });
     });
   }, [mapContainer, lng, lat, zoom, markers]);
-
   
   return (
     <div class="relative w-full h-full" >
@@ -72,7 +69,6 @@ markers.forEach(marker => {
     </div>
   );
 }
-
 export default Map;
 
 
