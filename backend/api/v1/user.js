@@ -82,29 +82,71 @@ const User = (app) => {
    */
   app.post("/api/v1/user", async (req, res) => {
     // Validate user input
+    console.log("BODY: ", req.body);
     let data;
     try {
       data = await schema.validate(await req.body);
 
       // Password validation
-      const invalidPwd = validatePassword(data.password);
-      if (invalidPwd) {
-        return res.status(400).send(invalidPwd);
-      }
+      // const invalidPwd = validatePassword(data.password);
+      // if (invalidPwd) {
+      //   return res.status(400).send(invalidPwd);
+      // }
 
       // Vanderbilt email validation
-      const invalidEmail = validateVanderbiltEdu(data.primary_email);
-      if (invalidEmail) {
-        return res.status(400).send(invalidEmail);
-      }
+      // const invalidEmail = validateVanderbiltEdu(data.primary_email);
+      // if (invalidEmail) {
+      //   return res.status(400).send(invalidEmail);
+      // }
     } catch (err) {
       const message = err;
       console.log(`User.create validation failure: ${message}`);
       return res.status(400).send({ error: message });
     }
     // Define avatar url
-    data.avatar_url = GravHash(data.primary_email, 40);
+    if (!data.avatar_url) data.avatar_url = GravHash(data.primary_email, 40);
 
+    // Try to create the user
+    try {
+      let user = new app.models.User(data);
+
+      console.log("USER: ", user);
+      await user.save();
+      // Send the happy response back
+      res.status(201).send({
+        username: data.username,
+        primary_email: data.primary_email,
+        avatar_url: data.avatar_url,
+      });
+    } catch (err) {
+      console.log(err);
+      // Error if username is already in use
+      if (err.code === 11000) {
+        if (err.message.indexOf("username_1") !== -1)
+          res.status(400).send({ error: "username already in use" });
+        if (err.message.indexOf("primary_email_1") !== -1)
+          res.status(400).send({ error: "email address already in use" });
+      }
+      // Something else in the username failed
+      else res.status(400).send({ error: "invalid username" });
+    }
+  });
+
+  /**
+   * Create a new user with google
+   *
+   * @param {req.body.username} Display name of the new user
+   * @param {req.body.first_name} First name of the user - optional
+   * @param {req.body.last_name} Last name of the user - optional
+   * @param {req.body.primary_email} Email address of the user
+   * @param {req.body.password} Password for the user
+   * @param {req.body.avatar_url} URL of the user's avatar - optional
+   * @return {201, {username,primary_email}} Return username and others
+   */
+  app.post("/api/v1/user/google", async (req, res) => {
+    let data = req.body;
+    // Define avatar url
+    if (!data.avatar_url) data.avatar_url = GravHash(data.primary_email, 40);
     // Try to create the user
     try {
       let user = new app.models.User(data);
@@ -147,7 +189,7 @@ const User = (app) => {
   });
 
   /**
-   * Fetch user information
+   * Fetch user information via username
    *
    * @param {req.params.username} Username of the user to query for
    * @return {200, {username, primary_email, first_name, last_name, city, avatar_url,}}
@@ -192,6 +234,31 @@ const User = (app) => {
       posts: user.posts,
       saves: user.saves,
     });
+  });
+
+  /**
+   * Fetch user information via user id
+   *
+   * @param {req.params.id} ID of the user to query for
+   * @return {200, {username, primary_email, first_name, last_name, city, avatar_url,}}
+   */
+  app.get("/api/v1/user/id/:id", async (req, res) => {
+    // Fetch user filtering by id
+    let data;
+    try {
+      data = await app.models.User.findById(req.params.id);
+
+      // Check if user exists
+      if (!data) {
+        res.status(404).send({ error: `unknown user: ${req.params.id}` });
+      } else {
+        // Successful fetch, send user info to client
+        res.status(200).send(data);
+      }
+    } catch (err) {
+      console.log(`User.get failure: ${err}`);
+      res.status(404).send({ error: `unknown user: ${req.params.id}` });
+    }
   });
 
   /**

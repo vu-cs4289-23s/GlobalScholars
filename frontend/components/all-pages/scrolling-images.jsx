@@ -8,9 +8,8 @@ const ScrollingImages = ({images, url, rounded, forum}) => {
   const [shape, setShape] = useState("h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let { locationInfo, programInfo } = useSelector((state)  => state.geo);
+  let { locationInfo } = useSelector((state)  => state.geo);
   let [programs, setPrograms] = useState([]);
-  let [populateImages, setPopulateImages] = useState(images);
 
   useEffect(() => {
     if (rounded) {
@@ -27,49 +26,20 @@ const ScrollingImages = ({images, url, rounded, forum}) => {
   };
 
   const onHover =  (ev) => {
-    console.log(`Hovering over ${ev.target.name}`)
+    console.log(`Hovering over ${ev.target.name}`);
     if (rounded) {
       // Call  to API to fetch all programs under : ev.target.name.split(",")[0].toLowerCase()
-      dispatch(getLocationByNameAsyncAction(ev.target.name.split(",")[0].toLowerCase()))
+      dispatch(getLocationByNameAsyncAction(ev.target.name.split(",")[0].toLowerCase()));
     }
-  }
+  };
 
   useEffect(() => {
-    // Dispatch fetch to grab programs associated with the location
+    // Populate programs when hovered location updates
     if (locationInfo && locationInfo.programs) {
-      // Clear old programs
-      setPrograms([]);
-      locationInfo.programs.map((programId, index) => {
-        dispatch(getProgramByIdAsyncAction(programId));
-      });
+      // console.log(locationInfo);
+      setPrograms(locationInfo.programs);
     }
   }, [locationInfo]);
-
-  useEffect(() => {
-    // Set the programs array state
-    setPrograms([...programs, programInfo]);
-  }, [programInfo]);
-
-// need to reset at some point
-
-  useEffect(() => {
-    console.log(programs);
-    // Set square images to programs
-    setPopulateImages([{}]);
-    if (programs && programs.length === locationInfo.programs.length) {
-      programs.map((program, index) => {
-        setPopulateImages([...populateImages, {
-          name: program.program_name,
-          src: program.image_link,
-        }]);
-      });
-    }
-  }, [programs]);
-
-  console.log("Programs");
-  console.log(programs);
-  console.log("program info");
-  console.log(programInfo)
 
     //params: images is the array to be passed in (with src photo and name)
     //        shape is the shape in which the photo will be displayed (rounded or square)
@@ -90,19 +60,18 @@ return (
             </p>
          </div>
       )) :
-
-        populateImages.map((image) => (
+        programs.map((program) => (
           <div className="scroll-snap-align-start h-64 w-64">
             <img
-              src={image.src}
-              name={image.name}
-              alt={image.name}
+              src={program.image_link}
+              name={program.program_name}
+              alt={program.program_name}
               className={shape}
               onClick={onClick}
               onMouseOver={onHover}
             />
             <p className="text-base font-bold p-6 text-gray-900">
-              {image.name}
+              {program.program_name}
             </p>
           </div>))
       }

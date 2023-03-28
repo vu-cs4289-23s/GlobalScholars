@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import passwordIcon from "../../assets/password-icon.svg";
 import usernameIcon from "../../assets/username-icon.svg";
-import googleIcon from "../../assets/google-icon.svg";
-import { loginAsyncAction } from "../../redux/user/user-slice";
+import { loginAsyncAction, googleLogin } from "../../redux/user/user-slice";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const { loggedIn } = useSelector((state) => state.user);
@@ -17,6 +18,11 @@ const Login = () => {
     dispatch(loginAsyncAction(data));
     console.log("LOGIN DISPATCHED");
   };
+
+  const HandleGoogleLogin = (response) => {
+    dispatch(googleLogin(response));
+  };
+
   useEffect(() => {
     if (loggedIn) {
       navigate("/landing");
@@ -54,27 +60,22 @@ const Login = () => {
         </div>
 
         <button
-          className="flex w-60 justify-center bg-neutral-200 text-black mt-8"
+          className="flex w-60 justify-center bg-neutral-200 text-black mt-8 mb-4"
           id="login-button"
           type="submit"
           onClick={handleSubmit(submitForm)}
         >
           Login
         </button>
-        <button
-          className="flex w-60 justify-center bg-neutral-200 text-black mt-4"
-          id="google-login-button"
-          type="submit"
-        >
-          Login w/ Google OAuth
-          <img
-            src={googleIcon}
-            alt="google"
-            width={30}
-            height={30}
-            className="pl-1"
-          />
-        </button>
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            var decoded = jwt_decode(credentialResponse.credential);
+            HandleGoogleLogin(decoded);
+          }}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+        />
       </form>
     </div>
   );

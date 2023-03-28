@@ -3,6 +3,7 @@
   "api_version": "/v1",
   "mongodb": "mongodb://localhost:55000/globalscholars",
   "port": 8080,
+  "redis": 6379,
   "environments" : {
     "test": {
       "mongodb": "mongodb://localhost:55000/testing",
