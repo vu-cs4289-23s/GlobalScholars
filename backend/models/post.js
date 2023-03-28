@@ -16,6 +16,7 @@ const Post = new Schema({
   saves: { type: Number, default: 0 },
   location: { type: Schema.ObjectId, ref: "Location" },
   program: { type: Schema.ObjectId, ref: "Program" },
+  comments: [{ type: Schema.ObjectId, ref: "Comment" }]
 });
 
 Post.pre("validate", function(next) {
