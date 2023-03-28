@@ -37,7 +37,7 @@ export default function PriceEstimator() {
     <div class="overflow-x-hidden">
 
       {/* header bar */}
-      <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-4 mt-16 text-center  text-black">
+      <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-32 mt-16 text-center  text-black">
           Where would you like to travel?
       </div>
       <div class=" grid-row flex w-screen ml-36 h-1/6 absolutefont-bold  text-2xl font-mono p-4 text-black">

@@ -1,39 +1,44 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 
 const Map = ({  }) => {
   const mapContainer = useRef(null);
-  let map = undefined;
-  const lng = 12;
-  const lat = 88;
+  const [map, setMap] = useState(undefined);
+  const lng = -77;
+  const lat = 39;
   const zoom = 3;
   const markers = [
     { lng: -77.0369, lat: 38.9072 }, // Washington, DC
     { lng: -73.9352, lat: 40.7306 }, // New York, NY
     { lng: -122.4194, lat: 37.7749 } // San Francisco, CA
   ];
+//   useEffect(() => {
+//     if (!map) return;
+
+//     // add markers to the map
+//   markers.forEach(marker => {
+//     const el = document.createElement('div');
+//     el.className = 'h-4 w-4 bg-red-500 rounded-full'; // Define the "marker" class
+//     // Set the minzoom value for the marker layer
+//     new maplibregl.Marker(el, { minzoom: 10 })
+//       .setLngLat([marker.lng, marker.lat])
+//       .addTo(map);
+//   });
+// }, [map, markers]);
+
   useEffect(() => {
-    if (!map) return;
+    if (!mapContainer.current || map !== undefined) return;
 
-    // add markers to the map
-  markers.forEach(marker => {
-    const el = document.createElement('div');
-    el.className = 'marker';
-    new maplibregl.Marker(el)
-      .setLngLat([marker.lng, marker.lat])
-      .addTo(map);
-  });
-  }, [map])
-
-  useEffect(() => {
-    if (!mapContainer.current) return;
-
-    map = new maplibregl.Map({
+    setMap(new maplibregl.Map({
       container: mapContainer.current,
       style: `https://api.maptiler.com/maps/streets-v2/style.json?key=CqDXCNXAkUrEn4wMkI6B`,
       center: [lng, lat],
       zoom: zoom
-    });
+    }));
+  }, [mapContainer]);
+
+  useEffect(() => {
+    if (map === undefined) return;
 
     map.on('style.load', function () {
       // Add your code to add layers, markers, etc. here
@@ -41,7 +46,16 @@ const Map = ({  }) => {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
-          features: markers
+          features: markers.map((marker) => ({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [marker.lng, marker.lat]
+            },
+            properties: {
+              title: 'Marker'
+            }
+          }))
         }
       });
 
@@ -60,7 +74,7 @@ const Map = ({  }) => {
         }
       });
     });
-  }, [mapContainer, lng, lat, zoom, markers]);
+  }, [map, lng, lat, zoom, markers]);
   
   return (
     <div class="relative w-full h-full" >
