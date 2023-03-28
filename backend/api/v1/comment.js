@@ -8,7 +8,7 @@ const Comment = (app) => {
    * @param {req.body.parent} Parent post ID associated with comment
    * @return {201, {id: ID of new comment}} Return ID of new comment
    */
-  app.post("/api/v1/post", async (req, res) => {
+  app.post("/api/v1/comment", async (req, res) => {
     // Verify user is logged in
     if (!req.session.user)
       return res.status(401).send({ error: "unauthorized" });
@@ -16,15 +16,13 @@ const Comment = (app) => {
     // Define Comment schema
     const schema = object({
       content: string().required().min(1).max(250),
-    //  parent: string().optional(),
+      // parent: string().optional(),
     });
 
     // Validate request body
     let data;
     try {
       data = await schema.validate(await req.body);
-
-      // Fetch for parent Post ID using data.parent
 
       // Set up new comment
       let newComment = {
@@ -47,7 +45,7 @@ const Comment = (app) => {
         // Update User owner document
         await app.models.User.findByIdAndUpdate(req.session.user._id, query);
         // Update Post parent document
-        // await app.models.Post.findByIdAndUpdate(data.parent, query);
+        await app.models.Post.findByIdAndUpdate(data.parent, query);
 
         // Success, send Comment back
         res.status(201).send(newComment);

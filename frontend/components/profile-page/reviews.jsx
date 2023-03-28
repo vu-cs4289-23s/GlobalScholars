@@ -1,7 +1,10 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
-import { useState } from "react";
 import Tag from "../forum/all-forums/tag";
+import { useDispatch, useSelector } from "react-redux";
+import { submitNewComment, resetComment } from "../../redux/comment/comment-slice.js";
+import React, { useState, useEffect } from "react";
+
 const Reviews = ({
   key,
   id,
@@ -21,7 +24,29 @@ const Reviews = ({
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [save, setSave] = useState(false);
-  const [comment, setComment] = useState("");
+  let [comment, setComment] = useState("");
+  let { commentInfo, success } = useSelector((state) => state.comment);
+  const dispatch = useDispatch();
+
+  const onSubmit = (ev) => {
+    ev.preventDefault();
+    const newComment = {
+      content: comment,
+      parent: id,
+    }
+
+    console.log(`Commenting...`);
+    dispatch(submitNewComment(newComment));
+  };
+
+  useEffect(() => {
+    if (commentInfo && success) {
+      // reset comment state
+      setComment("");
+      dispatch(resetComment());
+    }
+  }, [commentInfo, success]);
+
   return (
     <div
       className="flex w-full overflow-visible flex-row sm:h-auto justify-center items-center sm:w-auto h-72 "
@@ -94,6 +119,7 @@ const Reviews = ({
                   <button
                     className="flex justify-center items-center h-10 w-10 rounded-full bg-blue-600 text-white relative  left-0 top-0 mx-2 mt-2"
                     type="submit"
+                    onClick={onSubmit}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
