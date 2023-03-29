@@ -68,7 +68,7 @@ const TabbedFolder = ({ tabs, card }) => {
   };
 
   return (
-    <div className="flex flex-col justify-items-center h-full w-1/2 mx-auto">
+    <div className="flex flex-col h-full w-3/4 mx-auto">
       <div className="flex border-b border-gray-300">
         {tabs.map((tab) => (
           <button

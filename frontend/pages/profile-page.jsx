@@ -7,6 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import ProfileModal from "../components/profile-page/profile-modal";
 import Reviews from "../components/profile-page/reviews";
 import { getPostByIdAsyncAction, getPostsByUserAsyncAction } from "../redux/post/post-slice.js";
+import TabbedFolder from "../components/price-estimator/trip-folder";
+
+const tabs = [
+  { title: 'My Posts' },
+  { title: 'Saved Posts' },
+];
+
+
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -69,32 +77,35 @@ export default function ProfilePage() {
           className="flex flex-col  justify-center text-4xl bg-white"
         >
           <div className="flex w-full justify-between p-4 bg-slate-400">
-            <div>
+            {/* <div>
               <button className="text-sm sm:text-2xl " onClick={populatePosts} name="posts">Posts</button>
               <button className="text-sm sm:text-2xl " onClick={populatePosts} name="saves">Saves</button>
-            </div>
+            </div> */}
             <p className="text-sm sm:text-base">{posts & posts.length > 0 ? "count total likes" : ""}</p>
           </div>
         </div>
         {posts && posts.length > 0 ? (
-          <div className=" overflow-scroll h-[60%] sm:h-[65%] md:h-[70%] ">
-            {posts.map((post, index) => (
-              <Reviews
-                key={index}
-                id={post._id}
-                username={post.owner ? post.owner.username : ""}
-                program={post.program}
-                content={post.content}
-                likes={post.likes}
-                saves={post.saves}
-                tags={post.tags}
-                dislikes={post.dislikes}
-                location={post.location}
-                comments={post.comments}
-                date={post.timestamp}
-              />
-            ))}
-          </div>
+            <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+              <TabbedFolder tabs={tabs} card={
+              <div>
+              {posts.map((post, index) => (
+                  <Reviews
+                  key={index}
+                  id={post._id}
+                  username={post.owner ? post.owner.username : "" }
+                  program={post.program}
+                  content={post.content}
+                  likes={post.likes}
+                  saves={post.saves}
+                  tags={post.tags}
+                  dislikes={post.dislikes}
+                  location={post.location}
+                  comments={post.comments}
+                  date={post.timestamp}/>  
+              ))}
+              </div>
+            } />
+            </div>
         ) : null}
       </div>
 

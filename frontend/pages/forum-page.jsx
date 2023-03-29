@@ -9,12 +9,7 @@ import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
-import TabbedFolder from "../components/price-estimator/trip-folder";
 
-const tabs = [
-  { title: 'Saved Posts' },
-  { title: 'Explore' },
-];
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -125,8 +120,8 @@ export default function ForumPage() {
         <FilterBar />
         {posts && posts.length > 0 ? (
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
-              <TabbedFolder tabs={tabs} card={
-              <div>
+        
+              
               {posts.map((post, index) => (
                   <Reviews
                   key={index}
@@ -143,8 +138,7 @@ export default function ForumPage() {
                   date={post.timestamp}/>  
               ))}
               </div>
-            } />
-            </div>
+           
         ) : null}
       </div>
         <div className="absolute flex-row right-2 top-2">
