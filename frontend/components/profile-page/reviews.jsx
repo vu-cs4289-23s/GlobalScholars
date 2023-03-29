@@ -1,7 +1,8 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
+import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
 import { useState } from "react";
 import Tag from "../forum/all-forums/tag";
+
 const Reviews = ({
   key,
   id,
@@ -20,8 +21,14 @@ const Reviews = ({
   const colorScheme = ["blue", "amber", "pink", "rose", "indigo", "pink"];
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-  const [save, setSave] = useState(false);
   const [comment, setComment] = useState("");
+
+  //allow for bookmark of post:
+  const [saved, setSaved] = useState(false);
+  const handleSave = () => {
+    setSaved(!saved);
+  }
+
   return (
     <div
       className="flex w-full overflow-visible flex-row sm:h-auto justify-center items-center sm:w-auto h-72 "
@@ -116,16 +123,10 @@ const Reviews = ({
                     id="icons"
                   >
                     <FaThumbsUp height={80} width={80} className="h-6 w-6" />
-                    <FaThumbsDown
-                      height={80}
-                      width={80}
-                      className="h-6 w-6 ml-2"
-                    />
-                    <BsBookmark
-                      height={80}
-                      width={80}
-                      className="h-6 w-6 ml-2"
-                    />
+                    <FaThumbsDown height={80} width={80} className="h-6 w-6 ml-2"/>
+                    <button onClick={handleSave} style={{ color: 'black', border: 0 }}>
+                      {saved ? <BiBookmarkMinus /> : <BiBookmarkPlus />}
+                    </button>
                   </div>
                 )}
               </form>

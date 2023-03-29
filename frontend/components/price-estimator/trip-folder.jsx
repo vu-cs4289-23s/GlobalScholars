@@ -10,7 +10,7 @@ const TabbedFolder = () => {
   };
 
   return (
-    <div className="flex flex-col justify-items-center h-full w-2/3 mx-auto">
+    <div className="flex flex-col justify-items-center h-full w-1/2 mx-auto">
       <div className="flex border-b border-gray-300">
         <button
           className={`py-2 px-4 ${
@@ -37,13 +37,17 @@ const TabbedFolder = () => {
         {activeTab === 'myTrips' ? (
           <div className="bg-blue-200 h-full p-4 mb-2 font-bold text-4xl">
             My Saved Trips
-            <Card/>
+            <div className="mt-6">
+              <Card/>
+            </div>
             
             </div>
         ) : (
-          <div className="bg-green-200 h-full p-4 mb-2 font-bold text-4xl">
+          <div className="bg-green-200 h-full p-4 font-bold text-4xl">
             Explore New Trips
-            <Card/>
+            <div className="mt-6">
+              <Card/>
+            </div>
             </div>
         )}
       </div>
