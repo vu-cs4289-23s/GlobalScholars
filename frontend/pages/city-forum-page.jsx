@@ -11,6 +11,7 @@ import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
+import Comment from "../components/all-pages/comment.jsx";
 
 export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -27,9 +28,9 @@ export default function CityForumPage() {
     programs: [],
     top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
     overall_rating: 0,
-    safety_rating: 0,
-    affordability_rating: 0,
-    sightseeing_rating: 0,
+    // safety_rating: 0,
+    // affordability_rating: 0,
+    // sightseeing_rating: 0,
     image_link: "", // TODO -- add location image links to DB
     like_cnt: 0,
   });
@@ -63,9 +64,9 @@ export default function CityForumPage() {
         description: locationInfo.description,
         top_tags: locationInfo.top_tags,
         overall_rating: locationInfo.overall_rating,
-        safety_rating: locationInfo.safety_rating,
-        affordability_rating: locationInfo.affordability_rating,
-        sightseeing_rating: locationInfo.sightseeing_rating,
+        // safety_rating: locationInfo.safety_rating,
+        // affordability_rating: locationInfo.affordability_rating,
+        // sightseeing_rating: locationInfo.sightseeing_rating,
         image_link: locationInfo.image_link,
         like_cnt: locationInfo.like_cnt,
       });
@@ -120,9 +121,9 @@ export default function CityForumPage() {
             country={location.country}
             top_tags={location.top_tags}
             overall_rating={location.overall_rating}
-            safety_rating={location.safety_rating}
-            affordability_rating={location.affordability_rating}
-            sightseeing_rating={location.sightseeing_rating}
+            // safety_rating={location.safety_rating}
+            // affordability_rating={location.affordability_rating}
+            // sightseeing_rating={location.sightseeing_rating}
           />
           <FilterBar />
         {/*put toggle above description?*/}
@@ -133,7 +134,6 @@ export default function CityForumPage() {
                       key={index}
                       id={post._id}
                       username={post.owner ? post.owner.username : "" }
-                      program={post.program}
                       content={post.content}
                       likes={post.likes}
                       saves={post.saves}

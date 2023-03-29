@@ -69,7 +69,7 @@ const Post = (app) => {
         // Update User owner document
         await app.models.User.findByIdAndUpdate(req.session.user._id, query);
 
-        // Success, send Post id to client
+        // Success, send Post back
         res.status(201).send(newPost);
       } catch (err) {
         console.log(`Post.create save failure: ${err}`);
@@ -98,7 +98,8 @@ const Post = (app) => {
         .populate("owner", {
           username: 1,
           avatar_url: 1,
-        });
+        })
+        .populate("comments");
 
       // Check if post exists
       if (!data) {
