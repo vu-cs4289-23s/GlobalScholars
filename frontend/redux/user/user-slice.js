@@ -170,8 +170,14 @@ export const loginWithGoogleAsyncAction = (data) => async (dispatch) => {
     );
     dispatch(login(response.data));
   } catch (error) {
-    console.log(error);
-    dispatch(error(error));
+    const createUser = await axios.post(
+      `${backendURL}/user/google`,
+      data,
+      config
+    );
+    dispatch(register(createUser.data));
+    const loginUser = await axios.post(`${backendURL}/session`, data, config);
+    dispatch(login(loginUser.data));
   }
 };
 

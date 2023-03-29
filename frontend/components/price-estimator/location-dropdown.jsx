@@ -42,7 +42,7 @@ export default function LocationDropDown() {
                 //map through locationInfo object
                 //map through  by rows
                 Object.keys(locationInfo).map((key) => {
-                  console.log(locationInfo[key].city);
+                  // console.log(locationInfo[key].city);
                   return (
                     <Menu.Item>
                       {({ active }) => (
