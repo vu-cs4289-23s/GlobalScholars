@@ -18,22 +18,7 @@ const CityDescription = ({
   top_tags,
   overall_rating,
 }) => {
-  const [posts, setPosts] = useState({});
   const dispatch = useDispatch();
-  const { postInfo } = useSelector((state) => state.post);
-
-  useEffect(() => {
-    if (city && city !== "City") {
-      // Fetch posts by city name passed through
-      dispatch(getPostsByLocationAsyncAction(city));
-    } else {
-      dispatch(getAllPostsAsyncAction());
-    }
-  }, [city]);
-
-  useEffect(() => {
-    setPosts(postInfo);
-  }, [postInfo]);
 
   var programImages = [{name: "DIS Copenhagen",  src: "/forum-locations/DIS-Copenhagen.png", url: "https://disabroad.org/copenhagen/"}]
 
@@ -70,8 +55,20 @@ const CityDescription = ({
         <div className="grid grid-cols-3 sm:grid-cols-5 px-[5%] justify-around justify-items-center">
           {top_tags &&
             top_tags.map((tag, index) => (
-              <Tag color={"bg-red-400"} content={tag} name={tag} key={index} />
+              <Tag color={"red-400"} content={tag} name={tag} key={index} />
             ))}
+        </div>
+        <p className="py-4 font-bold text-[24px]">Ratings</p>
+        <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
+          <Rating rating={overall_rating} type={"Overall"} />
+          <Rating rating={safety_rating} type={"Safety"} />
+          <Rating rating={affordability_rating} type={"Affordability"} />
+          <Rating rating={sightseeing_rating} type={"Sightseeing"} />
+        </div>
+        <p className="py-4 font-bold text-[24px]">
+          Like what you see? Study Here!
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
         </div>
       </grid-cols-1>
     </div>
