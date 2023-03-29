@@ -1,8 +1,66 @@
+// import React, { useState } from 'react';
+// import Card from './trip-card';
+
+// const TabbedFolder = () => {
+//   const [activeTab, setActiveTab] = useState('myTrips');
+
+//   const handleTabClick = (tab) => {
+//     console.log('clicked')
+//     setActiveTab(tab);
+//   };
+
+//   return (
+//     <div className="flex flex-col justify-items-center h-full w-1/2 mx-auto">
+//       <div className="flex border-b border-gray-300">
+//         <button
+//           className={`py-2 px-4 ${
+//             activeTab === 'myTrips'
+//               ? 'bg-blue-200 font-semibold'
+//               : 'bg-gray-200'
+//           }`}
+//           onClick={() => handleTabClick('myTrips')}
+//         >
+//           My Trips
+//         </button>
+//         <button
+//           className={`py-2 px-4 ${
+//             activeTab === 'explore'
+//               ? 'bg-green-200 font-semibold'
+//               : 'bg-gray-200'
+//           }`}
+//           onClick={() => handleTabClick('explore')}
+//         >
+//           Explore
+//         </button>
+//       </div>
+//       <div className="flex-grow">
+//         {activeTab === 'myTrips' ? (
+//           <div className="bg-blue-200 h-full p-4 mb-2 font-bold text-4xl">
+//             My Saved Trips
+//             <div className="mt-6">
+//               <Card/>
+//             </div>
+            
+//             </div>
+//         ) : (
+//           <div className="bg-green-200 h-full p-4 font-bold text-4xl">
+//             Explore New Trips
+//             <div className="mt-6">
+//               <Card/>
+//             </div>
+//             </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default TabbedFolder;
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Card from './trip-card';
 
-const TabbedFolder = ({ tabs }) => {
+const TabbedFolder = ({ tabs, card }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].title);
 
   const handleTabClick = (tabTitle) => {
@@ -32,10 +90,10 @@ const TabbedFolder = ({ tabs }) => {
             key={tab.title}
             className={`${
               activeTab === tab.title ? '' : 'hidden'
-            } bg-green-200 h-full p-4 font-bold text-4xl`}
+            } bg-sky-200 h-full p-4 font-bold text-4xl`}
           >
             <div className="mt-6">
-              <Card />
+              {card}
             </div>
           </div>
         ))}
@@ -50,6 +108,8 @@ TabbedFolder.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
+  card: PropTypes.element.isRequired,
 };
 
 export default TabbedFolder;
+

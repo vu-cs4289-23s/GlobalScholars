@@ -9,6 +9,12 @@ import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
+import TabbedFolder from "../components/price-estimator/trip-folder";
+
+const tabs = [
+  { title: 'Saved Posts' },
+  { title: 'Explore' },
+];
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -83,24 +89,6 @@ export default function ForumPage() {
     }
   }, [locationInfo]);
 
-  // useEffect(() => {
-  //   // Set Program data
-  //   if (programInfo && programInfo.program_name !== "") {
-  //     setProgram({
-  //       program_name: programInfo.program_name,
-  //       description: programInfo.description,
-  //       location: programInfo.location,
-  //       top_tags: programInfo.top_tags,
-  //       overall_rating: programInfo.overall_rating,
-  //       safety_rating: programInfo.safety_rating,
-  //       affordability_rating: programInfo.affordability_rating,
-  //       sightseeing_rating: programInfo.sightseeing_rating,
-  //       image_link: programInfo.image_link,
-  //       like_cnt: programInfo.like_cnt,
-  //     });
-  //   }
-  // }, [programInfo]);
-
   // fetch all posts for location or fetch all posts
   useEffect(() => {
     if (location.city && location.city !== "City") {
@@ -137,22 +125,25 @@ export default function ForumPage() {
         <FilterBar />
         {posts && posts.length > 0 ? (
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+              <TabbedFolder tabs={tabs} card={
+              <div>
               {posts.map((post, index) => (
                   <Reviews
-                      key={index}
-                      id={post._id}
-                      username={post.owner ? post.owner.username : "" }
-                      program={post.program}
-                      content={post.content}
-                      likes={post.likes}
-                      saves={post.saves}
-                      tags={post.tags}
-                      dislikes={post.dislikes}
-                      location={post.location}
-                      comments={post.comments}
-                      date={post.timestamp}
-                  />
+                  key={index}
+                  id={post._id}
+                  username={post.owner ? post.owner.username : "" }
+                  program={post.program}
+                  content={post.content}
+                  likes={post.likes}
+                  saves={post.saves}
+                  tags={post.tags}
+                  dislikes={post.dislikes}
+                  location={post.location}
+                  comments={post.comments}
+                  date={post.timestamp}/>  
               ))}
+              </div>
+            } />
             </div>
         ) : null}
       </div>
