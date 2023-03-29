@@ -108,10 +108,10 @@ export default function ForumPage() {
       <SideBar />
       <div>
         <img
-          className="flex h-[45%] w-screen object-center object-cover"
+          className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <div className="absolute top-64 z-1 pl-[13%] overflow-y-scroll">
+        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%] ">
           <CityDescription
             description={location.description}
             city={location.city}
@@ -125,7 +125,7 @@ export default function ForumPage() {
           <FilterBar />
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
-            <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+          <div>
               {posts.map((post, index) => (
                   <Reviews
                       key={index}
