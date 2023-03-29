@@ -1,6 +1,6 @@
 const Tag = ({ name, content, color, onClick }) => {
   //const navigate = useNavigate();
-  const background = "bg-" + color;
+  const background = color;
 
   const tag = [
     "flex",
@@ -12,8 +12,6 @@ const Tag = ({ name, content, color, onClick }) => {
     "justify-center",
     "my-1",
     "cursor-pointer",
-    "hover:bg-opacity-100",
-    "bg-opacity-50",
     background,
   ];
 

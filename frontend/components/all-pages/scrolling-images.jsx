@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getLocationByNameAsyncAction, getProgramByIdAsyncAction }  from "../../redux/geo/geo-slice.js";
 import { useDispatch, useSelector } from "react-redux";
 
-const ScrollingImages = ({images, rounded}) => {
+const ScrollingImages = ({images, url, rounded, forum}) => {
   const [shape, setShape] = useState("h-52 w-52 object-cover border-4 border-white inline-block mx-3 transform transition hover:scale-125 hover:outline");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +20,9 @@ const ScrollingImages = ({images, rounded}) => {
   const onClick = (ev) => {
     console.log(`Clicking on ${ev.target.name}`);
     // Navigate to forum page for location / program clicked
-    navigate(`/forum/${ev.target.name.split(",")[0].toLowerCase()}`);
+    if(!forum){
+      navigate(`/forum/${ev.target.name.split(",")[0].toLowerCase()}`);
+    }
   };
 
   const onHover =  (ev) => {

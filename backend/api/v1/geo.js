@@ -1,5 +1,6 @@
 import { object, string, array, date } from "yup";
 import data from "../../../data.js";
+import {lat_long_data} from "../../../data.js";
 
 const GEOData = (app) => {
   /**
@@ -302,11 +303,31 @@ const GEOData = (app) => {
 
       await Promise.all(update_locations);
 
-      res.status(200).send({});
+      res.status(200).send({Success: "Success"});
       return;
     } catch (err) {
       console.log(`Error: ${err}`)
-      res.status(401).send({});
+      res.status(401).send({Error: `${err}`});
+    }
+
+  });
+
+  app.post("/api/v1/geo/populateLatLong", async (req, res) => {
+
+    try {
+      lat_long_data.map(async data => {
+
+        const filter = {city: data.city, country: data.country};
+        const update = {latitude: data.latitude, longitude: data.longitude};
+
+        await app.models.Location.findOneAndUpdate(filter, update);
+
+      });
+
+      res.status(200).send({Success: "Success"});
+    } catch (err) {
+      console.log(`Error: ${err}`)
+      res.status(400).send({Failure: "Failure"});
     }
 
   });

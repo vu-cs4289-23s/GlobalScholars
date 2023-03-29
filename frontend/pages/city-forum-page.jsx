@@ -2,6 +2,8 @@ import SideBar from "../components/all-pages/sidebar";
 import SearchBar from "../components/landing-page/search-bar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
+import CityPost from "../components/forum/city/city-post.jsx";
+import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -9,9 +11,14 @@ import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
+import Comment from "../components/all-pages/comment.jsx";
 
+<<<<<<< HEAD:frontend/pages/forum-page.jsx
 
 export default function ForumPage() {
+=======
+export default function CityForumPage() {
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d:frontend/pages/city-forum-page.jsx
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const { locationInfo } = useSelector((state) => state.geo);
   const navigate = useNavigate();
@@ -26,25 +33,12 @@ export default function ForumPage() {
     programs: [],
     top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
     overall_rating: 0,
-    safety_rating: 0,
-    affordability_rating: 0,
-    sightseeing_rating: 0,
+    // safety_rating: 0,
+    // affordability_rating: 0,
+    // sightseeing_rating: 0,
     image_link: "", // TODO -- add location image links to DB
     like_cnt: 0,
   });
-
-  // const [program, setProgram] = useState({
-  //   program_name: "Program",
-  //   description: "This is my program description",
-  //   location: [],
-  //   top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
-  //   overall_rating: 0,
-  //   safety_rating: 0,
-  //   affordability_rating: 0,
-  //   sightseeing_rating: 0,
-  //   image_link: "",
-  //   like_cnt: 0,
-  // });
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -75,9 +69,9 @@ export default function ForumPage() {
         description: locationInfo.description,
         top_tags: locationInfo.top_tags,
         overall_rating: locationInfo.overall_rating,
-        safety_rating: locationInfo.safety_rating,
-        affordability_rating: locationInfo.affordability_rating,
-        sightseeing_rating: locationInfo.sightseeing_rating,
+        // safety_rating: locationInfo.safety_rating,
+        // affordability_rating: locationInfo.affordability_rating,
+        // sightseeing_rating: locationInfo.sightseeing_rating,
         image_link: locationInfo.image_link,
         like_cnt: locationInfo.like_cnt,
       });
@@ -100,25 +94,28 @@ export default function ForumPage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
+    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll">
       <SideBar />
-      <div className="bg-blue-light overflow-y-scroll">
+      <div>
         <img
-          className="flex h-1/3 w-screen object-center object-cover"
+          className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <CityDescription
-          description={location.description}
-          city={location.city}
-          country={location.country}
-          top_tags={location.top_tags}
-          overall_rating={location.overall_rating}
-          safety_rating={location.safety_rating}
-          affordability_rating={location.affordability_rating}
-          sightseeing_rating={location.sightseeing_rating}
-        />
-        <FilterBar />
+        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%] ">
+          <CityDescription
+            description={location.description}
+            city={location.city}
+            country={location.country}
+            top_tags={location.top_tags}
+            overall_rating={location.overall_rating}
+            // safety_rating={location.safety_rating}
+            // affordability_rating={location.affordability_rating}
+            // sightseeing_rating={location.sightseeing_rating}
+          />
+          <FilterBar />
+        {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
+<<<<<<< HEAD:frontend/pages/forum-page.jsx
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
         
               
@@ -136,10 +133,29 @@ export default function ForumPage() {
                   location={post.location}
                   comments={post.comments}
                   date={post.timestamp}/>  
+=======
+          <div>
+              {posts.map((post, index) => (
+                  <ForumPost
+                      key={index}
+                      id={post._id}
+                      username={post.owner ? post.owner.username : "" }
+                      content={post.content}
+                      likes={post.likes}
+                      saves={post.saves}
+                      tags={post.tags}
+                      dislikes={post.dislikes}
+                      comments={post.comments}
+                      program={post.program}
+                      location={post.location}
+                      date={post.timestamp}
+                  />
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d:frontend/pages/city-forum-page.jsx
               ))}
               </div>
            
         ) : null}
+        </div>
       </div>
         <div className="absolute flex-row right-2 top-2">
           <button onClick={() => logOutHandle()}>Log Out</button>

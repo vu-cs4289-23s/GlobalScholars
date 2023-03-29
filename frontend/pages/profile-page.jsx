@@ -57,9 +57,9 @@ export default function ProfilePage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex flex-row h-screen w-screen ">
+    <div id="forum-page" className="flex overflow-y-hidden overscroll-y-none h-screen w-screen ">
       <SideBar />
-      <div className="w-full bg-slate-400">
+      <div className="w-screen h-screen bg-slate-400">
         <div
           id="header"
           className="flex w-full h-[30%] justify-center text-4xl "
@@ -85,6 +85,7 @@ export default function ProfilePage() {
           </div>
         </div>
         {posts && posts.length > 0 ? (
+<<<<<<< HEAD
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
               <TabbedFolder tabs={tabs} card={
               <div>
@@ -106,6 +107,26 @@ export default function ProfilePage() {
               </div>
             } />
             </div>
+=======
+          <div className=" overflow-y-scroll h-[60%] sm:h-[65%] md:h-[70%] bg-slate-400">
+            {posts.map((post, index) => (
+              <Reviews
+                key={index}
+                id={post._id}
+                username={post.owner ? post.owner.username : ""}
+                program={post.program}
+                content={post.content}
+                likes={post.likes}
+                saves={post.saves}
+                tags={post.tags}
+                dislikes={post.dislikes}
+                location={post.location}
+                comments={post.comments}
+                date={post.timestamp}
+              />
+            ))}
+          </div>
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
         ) : null}
       </div>
 

@@ -3,18 +3,25 @@ import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useSelector, useDispatch } from "react-redux";
 import SideBar from "../components/all-pages/sidebar";
+<<<<<<< HEAD
 import MapContainer from "../components/price-estimator/map-container";
+=======
+import Map from "../components/price-estimator/map";
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
 import Card from "../components/price-estimator/trip-card";
 import TabbedFolder from "../components/price-estimator/trip-folder";
 import DateSelector from "../components/price-estimator/date-dropdown";
 import { ImSearch } from "react-icons/im";
 import LocationDropDown from "../components/price-estimator/location-dropdown";
 
+<<<<<<< HEAD
 const tabs = [
   { title: 'My Trips' },
   { title: 'Explore' },
 ];
 
+=======
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
 export default function PriceEstimator() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -36,9 +43,15 @@ export default function PriceEstimator() {
       <SideBar />
 
       {/* page contents */}
+<<<<<<< HEAD
       <div class="overflow-x-hidden">
         {/* header bar */}
         <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-32 mt-16 text-center  text-black">
+=======
+      <div class="overflow-x-hidden w-screen">
+        {/* header bar */}
+        <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-4 mt-16 text-center  text-black">
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
           Where would you like to travel?
         </div>
         <div class=" grid-row flex w-screen ml-36 h-1/6 absolutefont-bold text-2xl font-mono p-4 text-black">
@@ -57,10 +70,20 @@ export default function PriceEstimator() {
           <div class=" grid-col flex  p-8 ml-6 text-black">
             <ImSearch size={36} />
           </div>
+<<<<<<< HEAD
         </div>
         <div className = "ml-40 w-4/5 h-4/5 ">
           <MapContainer />
         </div>
+=======
+          <div class=" grid-col flex   bg-gray-400 text-black">search icon</div>
+        </div>
+
+
+      <div class="grid-row  w-screen ml-32 h-2/3 absolutefont-bold font-mono z-0 text-black">
+      <Map/>
+      </div>
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
 
       <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4 text-black">
       <TabbedFolder tabs={tabs} card={<Card />} />

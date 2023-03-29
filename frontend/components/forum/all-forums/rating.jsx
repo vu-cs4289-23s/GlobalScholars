@@ -1,20 +1,38 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { BsStarFill } from "react-icons/bs";
 
 const Rating = ({ rating, type }) => {
   const navigate = useNavigate();
   return (
-      <div>
-        <div className="flex font-extrabold text-lg bg-yellow-200 bg-opacity-100 text-center justify-center align-middle h-24 w-32">
-          <div className="m-auto text-[32px]">
-              {rating}
-          </div>
-        </div>
-        <div className="flex justify-center align-middle">
-           <div className="m-1">
-               {type}
-           </div>
-        </div>
-      </div>
+    <div>
+      {rating === 1 ?
+        <BsStarFill color={"black"} style={{ height: "30px", width: "30px" }}/> : rating === 2 ?
+          <span style={{ display: "flex" }}>
+              <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+              <BsStarFill color={"black"} style={{ height: "30px", width: "30px" }}/>
+            </span> :
+          rating === 3 ?
+            <span style={{ display: "flex" }}>
+                <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                <BsStarFill color={"black"} style={{ height: "30px", width: "30px" }}/>
+              </span> :
+            rating === 4 ?
+              <span style={{ display: "flex" }}>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px" }}/>
+                </span> :
+              <span style={{ display: "flex" }}>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px", marginRight: "3px" }}/>
+                  <BsStarFill color={"black"} style={{ height: "30px", width: "30px" }}/>
+                </span>
+      }
+    </div>
   );
 };
 

@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import crypto from "crypto";
-import PassportLocalMongoose from "passport-local-mongoose";
 const makeSalt = () => Math.round(new Date().valueOf() * Math.random()) + "";
 
 const encryptPassword = (salt, password) =>
@@ -32,6 +31,7 @@ const User = new Schema({
   saves: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   likes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   dislikes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
 });
 
 User.path("username").validate(function (value) {
@@ -63,6 +63,5 @@ User.pre("save", function (next) {
   this.last_name = this.last_name.replace(/<(?:.|\n)*?>/gm, "");
   next();
 });
-User.plugin(PassportLocalMongoose);
 
 export default model("User", User);

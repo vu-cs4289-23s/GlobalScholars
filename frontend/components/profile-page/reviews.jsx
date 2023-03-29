@@ -1,7 +1,16 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+<<<<<<< HEAD
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
 import { useState } from "react";
 import Tag from "../forum/all-forums/tag";
+=======
+import { BsBookmark, BsBookmarkFill, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
+import Tag from "../forum/all-forums/tag";
+import { useDispatch, useSelector } from "react-redux";
+import { submitNewComment, resetComment } from "../../redux/comment/comment-slice.js";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
 
 const Reviews = ({
   key,
@@ -21,12 +30,46 @@ const Reviews = ({
   const colorScheme = ["blue", "amber", "pink", "rose", "indigo", "pink"];
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
+<<<<<<< HEAD
   const [comment, setComment] = useState("");
 
   //allow for bookmark of post:
   const [saved, setSaved] = useState(false);
   const handleSave = () => {
     setSaved(!saved);
+=======
+  const [save, setSave] = useState(false);
+  let [comment, setComment] = useState("");
+  let { commentInfo, success } = useSelector((state) => state.comment);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = (ev) => {
+    ev.preventDefault();
+    const newComment = {
+      content: comment,
+      parent: id,
+    }
+
+    console.log(`Commenting...`);
+    dispatch(submitNewComment(newComment));
+  };
+
+  useEffect(() => {
+    if (commentInfo && success) {
+      // reset comment state
+      setComment("");
+      dispatch(resetComment());
+    }
+  }, [commentInfo, success]);
+
+  const postClick = (ev) => {
+    ev.preventDefault();
+
+    if (!ev.target.name || ev.target.name !== "comment") {
+      navigate(`/post/${id}`);
+    }
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
   }
 
   return (
@@ -38,6 +81,8 @@ const Reviews = ({
       <div
         className="flex flex-row w-[90%] h-[30vh] m-4 bg-white  justify-center items-center rounded-md shadow-lg shadow-gray-700"
         id="container"
+        onClick={postClick}
+        style={{cursor:"pointer"}}
       >
         <div
           className="flex flex-1 flex-col w-64 h-full items-center justify-center   m-4"
@@ -92,6 +137,7 @@ const Reviews = ({
             <div className="flex flex-row w-[90%] h-auto text-left  rounded relative top-2">
               <form className="flex w-full">
                 <textarea
+                  name={"comment"}
                   placeholder="Leave a comment"
                   className=" h-[50%] w-full flex justify-start relative top-4 rounded-md focus:scale-[102%] focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:ease-linear transition-all duration-300 ease-in-out "
                   onChange={(e) => setComment(e.target.value)}
@@ -101,6 +147,7 @@ const Reviews = ({
                   <button
                     className="flex justify-center items-center h-10 w-10 rounded-full bg-blue-600 text-white relative  left-0 top-0 mx-2 mt-2"
                     type="submit"
+                    onClick={onSubmit}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -118,6 +165,7 @@ const Reviews = ({
                     </svg>
                   </button>
                 ) : (
+<<<<<<< HEAD
                   <div
                     className="flex justify-center items-center px-2"
                     id="icons"
@@ -127,6 +175,32 @@ const Reviews = ({
                     <button onClick={handleSave} style={{ color: 'black', border: 0 }}>
                       {saved ? <BiBookmarkMinus /> : <BiBookmarkPlus />}
                     </button>
+=======
+                  <div className="flex justify-center align-middle items-center">
+                    <BsHandThumbsUp
+                      height={80}
+                      width={80}
+                      className="h-6 w-6 m-2"
+                    />
+                    <div id="num-likes">
+                      {/*{numLikes}*/}
+                      {0}
+                    </div>
+                    <BsHandThumbsDown
+                      height={80}
+                      width={80}
+                      className="h-6 w-6 m-2"
+                    />
+                    <div id="num-dislikes">
+                      {/*{numDislikes}*/}
+                      {0}
+                    </div>
+                    <BsBookmark
+                      height={80}
+                      width={80}
+                      className="h-6 w-6 m-2"
+                    />
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
                   </div>
                 )}
               </form>
