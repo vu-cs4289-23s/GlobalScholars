@@ -129,7 +129,7 @@ const CityPost = () => {
             const forumNav = state.city;
             // reset post state
             dispatch(resetPost());
-            navigate(`/forum/${forumNav}`);
+            navigate(`/city/${forumNav}`);
         }
     };
 

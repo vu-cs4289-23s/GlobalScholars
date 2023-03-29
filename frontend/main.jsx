@@ -11,6 +11,7 @@ import PriceEstimator from "./pages/price-estimator";
 import ProfilePage from "./pages/profile-page";
 import LoginPage from "./pages/login-page";
 import RegisterPage from "./pages/register-page";
+import PostPage from "./pages/post-page.jsx";
 import EditPage from "./pages/edit-page";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
@@ -81,6 +82,11 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/post/:id",
+    element: <PostPage />,
     errorElement: <ErrorPage />,
   },
 ]);

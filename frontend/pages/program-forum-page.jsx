@@ -1,6 +1,7 @@
 import SideBar from "../components/all-pages/sidebar";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
 import ForumPost from "../components/all-pages/post.jsx";
+import Comment from "../components/all-pages/comment.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";

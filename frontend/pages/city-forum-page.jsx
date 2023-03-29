@@ -4,6 +4,7 @@ import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
 import ForumPost from "../components/all-pages/post.jsx";
+import Comment from "../components/all-pages/comment.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
