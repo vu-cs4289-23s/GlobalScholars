@@ -31,7 +31,7 @@ export default function PriceEstimator() {
       <SideBar />
 
       {/* page contents */}
-      <div class="overflow-x-hidden">
+      <div class="overflow-x-hidden w-screen">
         {/* header bar */}
         <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-4 mt-16 text-center  text-black">
           Where would you like to travel?

@@ -33,19 +33,6 @@ export default function ForumPage() {
     like_cnt: 0,
   });
 
-  // const [program, setProgram] = useState({
-  //   program_name: "Program",
-  //   description: "This is my program description",
-  //   location: [],
-  //   top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
-  //   overall_rating: 0,
-  //   safety_rating: 0,
-  //   affordability_rating: 0,
-  //   sightseeing_rating: 0,
-  //   image_link: "",
-  //   like_cnt: 0,
-  // });
-
   const logOutHandle = () => {
     dispatch(logoutAction());
   };
@@ -118,26 +105,28 @@ export default function ForumPage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
+    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll">
       <SideBar />
-      <div className="bg-blue-light overflow-y-scroll">
+      <div>
         <img
-          className="flex h-1/3 w-screen object-center object-cover"
+          className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <CityDescription
-          description={location.description}
-          city={location.city}
-          country={location.country}
-          top_tags={location.top_tags}
-          overall_rating={location.overall_rating}
-          safety_rating={location.safety_rating}
-          affordability_rating={location.affordability_rating}
-          sightseeing_rating={location.sightseeing_rating}
-        />
-        <FilterBar />
+        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%] ">
+          <CityDescription
+            description={location.description}
+            city={location.city}
+            country={location.country}
+            top_tags={location.top_tags}
+            overall_rating={location.overall_rating}
+            safety_rating={location.safety_rating}
+            affordability_rating={location.affordability_rating}
+            sightseeing_rating={location.sightseeing_rating}
+          />
+          <FilterBar />
+        {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
-            <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+          <div>
               {posts.map((post, index) => (
                   <Reviews
                       key={index}
@@ -156,6 +145,7 @@ export default function ForumPage() {
               ))}
             </div>
         ) : null}
+        </div>
       </div>
         <div className="absolute flex-row right-2 top-2">
           <button onClick={() => logOutHandle()}>Log Out</button>
