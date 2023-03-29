@@ -59,7 +59,7 @@ export default function PriceEstimator() {
       </div>
 
       <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4  text-black">
-          <TabbedFolder/>
+      <TabbedFolder tabs={[    { title: 'My Trips' },    { title: 'Explore' },  ]}/>
       </div>
 
       <div className="absolute right-1 top-2">
