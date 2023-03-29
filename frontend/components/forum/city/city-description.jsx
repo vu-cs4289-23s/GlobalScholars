@@ -61,9 +61,9 @@ const CityDescription = ({
         <p className="py-4 font-bold text-[24px]">Ratings</p>
         <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
           <Rating rating={overall_rating} type={"Overall"} />
-          <Rating rating={safety_rating} type={"Safety"} />
-          <Rating rating={affordability_rating} type={"Affordability"} />
-          <Rating rating={sightseeing_rating} type={"Sightseeing"} />
+          {/*<Rating rating={safety_rating} type={"Safety"} />*/}
+          {/*<Rating rating={affordability_rating} type={"Affordability"} />*/}
+          {/*<Rating rating={sightseeing_rating} type={"Sightseeing"} />*/}
         </div>
         <p className="py-4 font-bold text-[24px]">
           Like what you see? Study Here!
