@@ -4,6 +4,7 @@ import Tag from "../forum/all-forums/tag";
 import { useDispatch, useSelector } from "react-redux";
 import { submitNewComment, resetComment } from "../../redux/comment/comment-slice.js";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Reviews = ({
   key,
@@ -27,6 +28,7 @@ const Reviews = ({
   let [comment, setComment] = useState("");
   let { commentInfo, success } = useSelector((state) => state.comment);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (ev) => {
     ev.preventDefault();
@@ -47,6 +49,14 @@ const Reviews = ({
     }
   }, [commentInfo, success]);
 
+  const postClick = (ev) => {
+    ev.preventDefault();
+
+    if (!ev.target.name || ev.target.name !== "comment") {
+      navigate(`/post/${id}`);
+    }
+  }
+
   return (
     <div
       className="flex w-full overflow-visible flex-row sm:h-auto justify-center items-center sm:w-auto h-72 "
@@ -56,6 +66,8 @@ const Reviews = ({
       <div
         className="flex flex-row w-[90%] h-[30vh] m-4 bg-white  justify-center items-center rounded-md shadow-lg shadow-gray-700"
         id="container"
+        onClick={postClick}
+        style={{cursor:"pointer"}}
       >
         <div
           className="flex flex-1 flex-col w-64 h-full items-center justify-center   m-4"
@@ -110,6 +122,7 @@ const Reviews = ({
             <div className="flex flex-row w-[90%] h-auto text-left  rounded relative top-2">
               <form className="flex w-full">
                 <textarea
+                  name={"comment"}
                   placeholder="Leave a comment"
                   className=" h-[50%] w-full flex justify-start relative top-4 rounded-md focus:scale-[102%] focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:ease-linear transition-all duration-300 ease-in-out "
                   onChange={(e) => setComment(e.target.value)}

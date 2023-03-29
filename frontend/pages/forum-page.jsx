@@ -9,6 +9,7 @@ import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
+import Comment from "../components/all-pages/comment.jsx";
 
 export default function ForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);

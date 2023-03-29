@@ -98,7 +98,8 @@ const Post = (app) => {
         .populate("owner", {
           username: 1,
           avatar_url: 1,
-        });
+        })
+        .populate("comments");
 
       // Check if post exists
       if (!data) {
