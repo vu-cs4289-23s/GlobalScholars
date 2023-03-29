@@ -52,22 +52,6 @@ const CityDescription = ({
         </div>
         </div>
         <p className="py-4 px-[5%] font-bold text-[20px]">Top Tags</p>
-        <div className="grid grid-cols-3 sm:grid-cols-5 px-[5%] justify-around justify-items-center">
-          {top_tags &&
-            top_tags.map((tag, index) => (
-              <Tag color={"red-400"} content={tag} name={tag} key={index} />
-            ))}
-        </div>
-        <p className="py-4 font-bold text-[24px]">Ratings</p>
-        <div className="grid grid-cols-1 sm:grid-cols-4 justify-around justify-items-center text-center">
-          <Rating rating={overall_rating} type={"Overall"} />
-          <Rating rating={safety_rating} type={"Safety"} />
-          <Rating rating={affordability_rating} type={"Affordability"} />
-          <Rating rating={sightseeing_rating} type={"Sightseeing"} />
-        </div>
-        <p className="py-4 font-bold text-[24px]">
-          Like what you see? Study Here!
-        </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
         </div>
       </grid-cols-1>
