@@ -1248,16 +1248,6 @@ packages:
     resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: false
 
-  /@react-oauth/google/0.9.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-iq9I6A4uwZezU/BixqLM6UET6an559ufC4Nh0lEIeIaKC3TJRvcPNWCjjHny56yAhgdT6ivUicLIvEoiSMjnmg==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
-
   /@reduxjs/toolkit/1.9.2_k4ae6lp43ej6mezo3ztvx6pykq:
     resolution: {integrity: sha512-5ZAZ7hwAKWSii5T6NTPmgIBUqyVdlDs+6JjThz6J6dmHLDm6zCzv2OjHIFAi3Vvs1qjmXU0bm6eBojukYXjVMQ==}
     peerDependencies:
@@ -3848,6 +3838,41 @@ packages:
 
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
+  /react-map-gl/7.0.21_5wflejxe2geyle4qn254jrdyiy:
+    resolution: {integrity: sha512-Cmokphv6VHfRJsHVjCtn7nw5mf8rl89CHdvPSaif0OWZZqe+pxM2/5hEr4EvPWeTokRPCo1XTrBpGbShkEuktQ==}
+    peerDependencies:
+      mapbox-gl: '*'
+      react: '>=16.3.0'
+    dependencies:
+      '@types/mapbox-gl': 2.7.10
+      mapbox-gl: 2.13.0
+      react: 18.2.0
+    dev: false
+
+  /react-onclickoutside/6.13.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-ty8So6tcUpIb+ZE+1HAhbLROvAIJYyJe/1vRrrcmW+jLsaM+/powDRqxzo6hSh9CuRZGSL1Q8mvcF5WRD93a0A==}
+    peerDependencies:
+      react: ^15.5.x || ^16.x || ^17.x || ^18.x
+      react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-popper/2.3.0_d52dtujcogewjimhlbpfze4rs4:
+    resolution: {integrity: sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q==}
+    peerDependencies:
+      '@popperjs/core': ^2.0.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: ^16.8.0 || ^17 || ^18
+    dependencies:
+      '@popperjs/core': 2.11.7
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-fast-compare: 3.2.1
+      warning: 4.0.3
     dev: false
 
   /react-redux/8.0.5_fxtgt6bjwd6p4cwoordejim2zi:
