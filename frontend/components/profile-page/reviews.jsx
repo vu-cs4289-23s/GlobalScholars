@@ -1,4 +1,3 @@
-import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { BsBookmark, BsBookmarkFill, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 import Tag from "../forum/all-forums/tag";
 import { useDispatch, useSelector } from "react-redux";

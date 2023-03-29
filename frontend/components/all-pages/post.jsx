@@ -1,6 +1,3 @@
-import { RiFireFill, RiFilter2Fill } from "react-icons/ri";
-import {FaCrown, FaFilter, FaThumbsDown, FaThumbsUp} from "react-icons/fa";
-import { GiFallingStar } from "react-icons/gi";
 import React from "react";
 import { useEffect, useState } from "react";
 import {BsBookmark, BsFillBookmarkFill,
@@ -11,14 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { resetComment, submitNewComment } from "../../redux/comment/comment-slice.js";
 
-const ForumPost = ({ key, id, username, program, title, content, likes, saves, tags, dislikes, location, comments, date}) => {
-
-    // TODO: get the username and profile photo from the user ID passed into method -- need new endpoint
-  //  const [username, setUsername] = useState("");
-    const [photoURL, setPhotoURL] = useState("");
+const ForumPost = ({ key, id, username, avatar, program, title, content, likes, saves, tags, dislikes, location, comments, date}) => {
 
     // TODO: add logic to decifer if this is a city post or a program post -- need two new endpoints
-
 
     // time of post
     const [dateObj, setDateObj] = useState(null);
@@ -90,7 +82,7 @@ const ForumPost = ({ key, id, username, program, title, content, likes, saves, t
                      style={{cursor:"pointer"}}
                 >
                     <img
-                        src={photoURL}
+                        src={avatar}
                         alt="avatar"
                         className={`flex w-10 h-10 rounded-full object-cover shadow-none shadow-black `}
                     />
@@ -109,7 +101,7 @@ const ForumPost = ({ key, id, username, program, title, content, likes, saves, t
             >
                 <div className="font-bold m-2">{title}</div>
                 <div className="mx-2">{content}</div>
-                <div className="m-2">
+                <div className="flex m-2">
                     {tags &&
                         tags.map((tag, index) => (
                             <Tag color={"red-400"} content={tag} name={tag} key={index} />

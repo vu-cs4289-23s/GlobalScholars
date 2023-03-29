@@ -115,6 +115,7 @@ export default function CityForumPage() {
                   <ForumPost
                       key={index}
                       id={post._id}
+                      avatar={post.owner ? post.owner.avatar_url : "" }
                       username={post.owner ? post.owner.username : "" }
                       content={post.content}
                       likes={post.likes}
