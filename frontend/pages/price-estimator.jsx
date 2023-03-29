@@ -41,7 +41,7 @@ export default function PriceEstimator() {
         <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-32 mt-16 text-center  text-black">
           Where would you like to travel?
         </div>
-        <div class=" grid-row flex w-screen ml-36 h-1/6 absolutefont-bold  text-2xl font-mono p-4 text-black">
+        <div class=" grid-row flex w-screen ml-36 h-1/6 absolutefont-bold text-2xl font-mono p-4 text-black">
           <div class=" grid-col flex w-1/3 p-8 ml-6 z-30 text-black">
             FROM:
             <LocationDropDown />
@@ -58,10 +58,11 @@ export default function PriceEstimator() {
             <ImSearch size={36} />
           </div>
         </div>
+        <div className = "ml-40 w-4/5 h-4/5 ">
+          <MapContainer />
+        </div>
 
-        <MapContainer />
-
-      <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4  text-black">
+      <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4 text-black">
       <TabbedFolder tabs={tabs} card={<Card />} />
       </div>
 

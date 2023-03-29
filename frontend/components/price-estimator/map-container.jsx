@@ -27,7 +27,7 @@ const MapContainer = () => {
   };
 
   return (
-    <div className=" w-full h-full p-4">
+    <div className="w-full h-full p-4">
       {/* <div ref={mapContainer} className=" absolute w-3/4 h-full "></div> */}
       <Map
         mapStyle={mapJson}
