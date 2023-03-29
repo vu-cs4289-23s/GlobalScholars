@@ -107,7 +107,7 @@ export const getPostsByLocationAsyncAction = (location) => async (dispatch) => {
       },
     };
     const response = await axios.get(`${backendURL}/posts/location/${location}`, config);
-    console.log(response.data);
+ //   console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
     console.log(error);

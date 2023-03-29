@@ -1,5 +1,5 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
+import { BsBookmark, BsBookmarkFill, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 import Tag from "../forum/all-forums/tag";
 import { useDispatch, useSelector } from "react-redux";
 import { submitNewComment, resetComment } from "../../redux/comment/comment-slice.js";
@@ -150,20 +150,29 @@ const Reviews = ({
                     </svg>
                   </button>
                 ) : (
-                  <div
-                    className="flex justify-center items-center px-2"
-                    id="icons"
-                  >
-                    <FaThumbsUp height={80} width={80} className="h-6 w-6" />
-                    <FaThumbsDown
+                  <div className="flex justify-center align-middle items-center">
+                    <BsHandThumbsUp
                       height={80}
                       width={80}
-                      className="h-6 w-6 ml-2"
+                      className="h-6 w-6 m-2"
                     />
+                    <div id="num-likes">
+                      {/*{numLikes}*/}
+                      {0}
+                    </div>
+                    <BsHandThumbsDown
+                      height={80}
+                      width={80}
+                      className="h-6 w-6 m-2"
+                    />
+                    <div id="num-dislikes">
+                      {/*{numDislikes}*/}
+                      {0}
+                    </div>
                     <BsBookmark
                       height={80}
                       width={80}
-                      className="h-6 w-6 ml-2"
+                      className="h-6 w-6 m-2"
                     />
                   </div>
                 )}
