@@ -55,11 +55,9 @@ export default function PriceEstimator() {
           </div>
         </div>
 
-        <div class="grid-row  w-screen ml-32 h-2/3 absolutefont-bold font-mono z-0 text-black">
-          <MapContainer />
-        </div>
+        <MapContainer />
 
-        <div class="grid-row flex w-screen overflow-y-scroll h-2/3 bg-gray-500 absolutefont-bold font-mono p-4 text-black">
+        <div class="grid-row flex w-screen overflow-y-scroll h-2/3 bg-gray-500 relative font-bold font-mono p-4 text-black">
           FOLDER
         </div>
 

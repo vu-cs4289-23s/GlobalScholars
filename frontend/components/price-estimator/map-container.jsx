@@ -27,7 +27,7 @@ const MapContainer = () => {
   };
 
   return (
-    <div className=" w-full h-full">
+    <div className=" w-full h-full p-4">
       {/* <div ref={mapContainer} className=" absolute w-3/4 h-full "></div> */}
       <Map
         mapStyle={mapJson}
@@ -37,7 +37,6 @@ const MapContainer = () => {
           longitude: 32.2551,
           zoom: 3,
         }}
-        style={{ width: "100%", height: " 100%" }}
         mapLib={maplibregl}
       >
         <NavigationControl position="top-left" />
