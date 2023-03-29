@@ -32,19 +32,6 @@ export default function ForumPage() {
     like_cnt: 0,
   });
 
-  // const [program, setProgram] = useState({
-  //   program_name: "Program",
-  //   description: "This is my program description",
-  //   location: [],
-  //   top_tags: ["Tag One", "Tag Two", "Tag Three", "Tag Four", "Tag Five"],
-  //   overall_rating: 0,
-  //   safety_rating: 0,
-  //   affordability_rating: 0,
-  //   sightseeing_rating: 0,
-  //   image_link: "",
-  //   like_cnt: 0,
-  // });
-
   const logOutHandle = () => {
     dispatch(logoutAction());
   };
@@ -117,14 +104,14 @@ export default function ForumPage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-white overflow-y-scroll">
+    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll">
       <SideBar />
       <div>
         <img
           className="flex h-[45%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <div className="absolute top-64 z-1 h-full pl-[13%]">
+        <div className="absolute top-64 z-1 pl-[13%] overflow-y-scroll">
           <CityDescription
             description={location.description}
             city={location.city}
@@ -136,7 +123,6 @@ export default function ForumPage() {
             sightseeing_rating={location.sightseeing_rating}
           />
           <FilterBar />
-        </div>
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
@@ -158,6 +144,7 @@ export default function ForumPage() {
               ))}
             </div>
         ) : null}
+        </div>
       </div>
         <div className="absolute flex-row right-2 top-2">
           <button onClick={() => logOutHandle()}>Log Out</button>

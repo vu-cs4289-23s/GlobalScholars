@@ -32,7 +32,7 @@ export default function LandingPage() {
             <div className="flex h-2/3 justify-center text-4xl font-bold font-mono text-white mb-3">
               Study Abroad Search
             </div>
-            <div className="flex h-1/2 justify-center items-bottom text-4xl">
+            <div className="flex h-1/2 w-2/3 justify-center content-center items-center text-4xl">
               <SearchBar />
             </div>
           </div>
