@@ -12,17 +12,9 @@ const Comment = ({ key, content, username, user_avatar, timestamp, likes, saves,
         className="flex flex-row w-[90%] h-[10vh] m-4 bg-white  justify-center items-center rounded-md shadow-lg shadow-gray-700"
         id="reviews container"
       >
-        {/*<div*/}
-        {/*  className="flex flex-row w-[100%] h-[90%] rounded-md m-4 "*/}
-        {/*  id="reviews container"*/}
-        {/*>*/}
-        {/*  <div className="flex flex-col">*/}
-        {/*    <p className=" mt-4 text-left text-xs">{username}</p>*/}
-        {/*    <p className=" mt-4 text-left text-xs">{timestamp}</p>*/}
-        {/*  </div>*/}
           <div className="flex flex-col w-full h-full items-center justify-start">
             <div
-              className="flex flex-col w-[90%] h-[70%] text-left bg-gray-200 rounded relative top-2"
+              className="flex flex-col w-[95%] h-[70%] text-left bg-gray-200 rounded relative top-2"
               id="reviews content"
             >
                   {/*<p className=" mt-4 text-left text-xs">{username}</p>*/}

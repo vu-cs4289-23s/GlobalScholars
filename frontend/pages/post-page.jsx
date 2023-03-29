@@ -45,7 +45,7 @@ export default function PostPage() {
               />
             </div>) : null}
         </div>
-        <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+        <div className=" overflow-scroll h-[60%] sm:h-[65%] ">
           { comments && comments.length > 0 ? (
             <div>
               {comments.map((comment, index) => (
