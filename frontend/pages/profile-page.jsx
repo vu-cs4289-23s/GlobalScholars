@@ -85,7 +85,6 @@ export default function ProfilePage() {
           </div>
         </div>
         {posts && posts.length > 0 ? (
-<<<<<<< HEAD
             <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
               <TabbedFolder tabs={tabs} card={
               <div>
@@ -107,26 +106,6 @@ export default function ProfilePage() {
               </div>
             } />
             </div>
-=======
-          <div className=" overflow-y-scroll h-[60%] sm:h-[65%] md:h-[70%] bg-slate-400">
-            {posts.map((post, index) => (
-              <Reviews
-                key={index}
-                id={post._id}
-                username={post.owner ? post.owner.username : ""}
-                program={post.program}
-                content={post.content}
-                likes={post.likes}
-                saves={post.saves}
-                tags={post.tags}
-                dislikes={post.dislikes}
-                location={post.location}
-                comments={post.comments}
-                date={post.timestamp}
-              />
-            ))}
-          </div>
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
         ) : null}
       </div>
 
