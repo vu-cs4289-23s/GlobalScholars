@@ -1,16 +1,13 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-<<<<<<< HEAD
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
 import { useState } from "react";
 import Tag from "../forum/all-forums/tag";
-=======
 import { BsBookmark, BsBookmarkFill, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 import Tag from "../forum/all-forums/tag";
 import { useDispatch, useSelector } from "react-redux";
 import { submitNewComment, resetComment } from "../../redux/comment/comment-slice.js";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
 
 const Reviews = ({
   key,
@@ -30,15 +27,12 @@ const Reviews = ({
   const colorScheme = ["blue", "amber", "pink", "rose", "indigo", "pink"];
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-<<<<<<< HEAD
   const [comment, setComment] = useState("");
 
   //allow for bookmark of post:
   const [saved, setSaved] = useState(false);
   const handleSave = () => {
     setSaved(!saved);
-=======
-  const [save, setSave] = useState(false);
   let [comment, setComment] = useState("");
   let { commentInfo, success } = useSelector((state) => state.comment);
   const dispatch = useDispatch();
@@ -69,7 +63,6 @@ const Reviews = ({
     if (!ev.target.name || ev.target.name !== "comment") {
       navigate(`/post/${id}`);
     }
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
   }
 
   return (
@@ -165,7 +158,6 @@ const Reviews = ({
                     </svg>
                   </button>
                 ) : (
-<<<<<<< HEAD
                   <div
                     className="flex justify-center items-center px-2"
                     id="icons"
@@ -175,32 +167,6 @@ const Reviews = ({
                     <button onClick={handleSave} style={{ color: 'black', border: 0 }}>
                       {saved ? <BiBookmarkMinus /> : <BiBookmarkPlus />}
                     </button>
-=======
-                  <div className="flex justify-center align-middle items-center">
-                    <BsHandThumbsUp
-                      height={80}
-                      width={80}
-                      className="h-6 w-6 m-2"
-                    />
-                    <div id="num-likes">
-                      {/*{numLikes}*/}
-                      {0}
-                    </div>
-                    <BsHandThumbsDown
-                      height={80}
-                      width={80}
-                      className="h-6 w-6 m-2"
-                    />
-                    <div id="num-dislikes">
-                      {/*{numDislikes}*/}
-                      {0}
-                    </div>
-                    <BsBookmark
-                      height={80}
-                      width={80}
-                      className="h-6 w-6 m-2"
-                    />
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
                   </div>
                 )}
               </form>
