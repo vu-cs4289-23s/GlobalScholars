@@ -1,16 +1,11 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-<<<<<<< HEAD
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
-import { useState } from "react";
 import Tag from "../forum/all-forums/tag";
-=======
 import { BsBookmark, BsBookmarkFill, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
-import Tag from "../forum/all-forums/tag";
 import { useDispatch, useSelector } from "react-redux";
 import { submitNewComment, resetComment } from "../../redux/comment/comment-slice.js";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
 
 const Reviews = ({
   key,

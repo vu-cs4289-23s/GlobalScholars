@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@headlessui/react': ^1.7.13
@@ -53,9 +53,9 @@ specifiers:
   yup: ^1.0.0
 
 dependencies:
-  '@headlessui/react': 1.7.13_react-dom@18.2.0+react@18.2.0
-  '@react-oauth/google': 0.9.0_react-dom@18.2.0+react@18.2.0
-  '@reduxjs/toolkit': 1.9.2_react-redux@8.0.5+react@18.2.0
+  '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
+  '@react-oauth/google': 0.9.0_biqbaboplfbrettd7655fr4n2y
+  '@reduxjs/toolkit': 1.9.2_k4ae6lp43ej6mezo3ztvx6pykq
   axios: 1.3.2
   body-parser: 1.20.1
   coffeescript: 2.7.0
@@ -78,18 +78,13 @@ dependencies:
   prop-types: 15.8.1
   pug: 3.0.2
   react: 18.2.0
-  react-datepicker: 4.10.0_react-dom@18.2.0+react@18.2.0
+  react-datepicker: 4.10.0_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.2_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
-<<<<<<< HEAD
   react-map-gl: 7.0.21_5wflejxe2geyle4qn254jrdyiy
   react-redux: 8.0.5_fxtgt6bjwd6p4cwoordejim2zi
   react-router-dom: 6.8.0_biqbaboplfbrettd7655fr4n2y
-=======
-  react-redux: 8.0.5_2de669f829b0fcfe0ace744644a19aca
-  react-router-dom: 6.8.0_react-dom@18.2.0+react@18.2.0
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
   sass: 1.58.0
   session: 0.1.0
   simple-env-config: 1.0.1
@@ -106,8 +101,8 @@ devDependencies:
   nodemon: 2.0.20
   postcss: 8.4.21
   prettier: 2.8.3
-  tailwind-styled-components: 2.2.0_react-dom@18.2.0+react@18.2.0
-  tailwindcss: 3.2.7
+  tailwind-styled-components: 2.2.0_biqbaboplfbrettd7655fr4n2y
+  tailwindcss: 3.2.7_postcss@8.4.21
   vite: 4.1.1_sass@1.58.0
   vite-plugin-compression: 0.5.1_vite@4.1.1
 
@@ -1178,7 +1173,7 @@ packages:
     dev: true
     optional: true
 
-  /@headlessui/react/1.7.13_react-dom@18.2.0+react@18.2.0:
+  /@headlessui/react/1.7.13_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -1255,7 +1250,7 @@ packages:
     resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: false
 
-  /@react-oauth/google/0.9.0_react-dom@18.2.0+react@18.2.0:
+  /@react-oauth/google/0.9.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-iq9I6A4uwZezU/BixqLM6UET6an559ufC4Nh0lEIeIaKC3TJRvcPNWCjjHny56yAhgdT6ivUicLIvEoiSMjnmg==}
     peerDependencies:
       react: '>=16.8.0'
@@ -1265,7 +1260,7 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@reduxjs/toolkit/1.9.2_react-redux@8.0.5+react@18.2.0:
+  /@reduxjs/toolkit/1.9.2_k4ae6lp43ej6mezo3ztvx6pykq:
     resolution: {integrity: sha512-5ZAZ7hwAKWSii5T6NTPmgIBUqyVdlDs+6JjThz6J6dmHLDm6zCzv2OjHIFAi3Vvs1qjmXU0bm6eBojukYXjVMQ==}
     peerDependencies:
       react: ^16.9.0 || ^17.0.0 || ^18
@@ -1278,7 +1273,7 @@ packages:
     dependencies:
       immer: 9.0.19
       react: 18.2.0
-      react-redux: 8.0.5_2de669f829b0fcfe0ace744644a19aca
+      react-redux: 8.0.5_fxtgt6bjwd6p4cwoordejim2zi
       redux: 4.2.1
       redux-thunk: 2.4.2_redux@4.2.1
       reselect: 4.1.7
@@ -3783,7 +3778,7 @@ packages:
       unpipe: 1.0.0
     dev: false
 
-  /react-datepicker/4.10.0_react-dom@18.2.0+react@18.2.0:
+  /react-datepicker/4.10.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-6IfBCZyWj54ZZGLmEZJ9c4Yph0s9MVfEGDC2evOvf9AmVz+RRcfP2Czqad88Ff9wREbcbqa4dk7IFYeXF1d3Ag==}
     peerDependencies:
       react: ^16.9.0 || ^17 || ^18
@@ -3795,8 +3790,8 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-onclickoutside: 6.13.0_react-dom@18.2.0+react@18.2.0
-      react-popper: 2.3.0_1f7439d122718964a187585e5c939197
+      react-onclickoutside: 6.13.0_biqbaboplfbrettd7655fr4n2y
+      react-popper: 2.3.0_d52dtujcogewjimhlbpfze4rs4
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
@@ -3837,7 +3832,6 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-<<<<<<< HEAD
   /react-map-gl/7.0.21_5wflejxe2geyle4qn254jrdyiy:
     resolution: {integrity: sha512-Cmokphv6VHfRJsHVjCtn7nw5mf8rl89CHdvPSaif0OWZZqe+pxM2/5hEr4EvPWeTokRPCo1XTrBpGbShkEuktQ==}
     peerDependencies:
@@ -3850,9 +3844,6 @@ packages:
     dev: false
 
   /react-onclickoutside/6.13.0_biqbaboplfbrettd7655fr4n2y:
-=======
-  /react-onclickoutside/6.13.0_react-dom@18.2.0+react@18.2.0:
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
     resolution: {integrity: sha512-ty8So6tcUpIb+ZE+1HAhbLROvAIJYyJe/1vRrrcmW+jLsaM+/powDRqxzo6hSh9CuRZGSL1Q8mvcF5WRD93a0A==}
     peerDependencies:
       react: ^15.5.x || ^16.x || ^17.x || ^18.x
@@ -3862,7 +3853,7 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /react-popper/2.3.0_1f7439d122718964a187585e5c939197:
+  /react-popper/2.3.0_d52dtujcogewjimhlbpfze4rs4:
     resolution: {integrity: sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
@@ -3876,7 +3867,7 @@ packages:
       warning: 4.0.3
     dev: false
 
-  /react-redux/8.0.5_2de669f829b0fcfe0ace744644a19aca:
+  /react-redux/8.0.5_fxtgt6bjwd6p4cwoordejim2zi:
     resolution: {integrity: sha512-Q2f6fCKxPFpkXt1qNRZdEDLlScsDWyrgSj0mliK59qU6W5gvBiKkdMEG2lJzhd1rCctf0hb6EtePPLZ2e0m1uw==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -3909,7 +3900,7 @@ packages:
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /react-router-dom/6.8.0_react-dom@18.2.0+react@18.2.0:
+  /react-router-dom/6.8.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-hQouduSTywGJndE86CXJ2h7YEy4HYC6C/uh19etM+79FfQ6cFFFHnHyDlzO4Pq0eBUI96E4qVE5yUjA00yJZGQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -4376,7 +4367,7 @@ packages:
     resolution: {integrity: sha512-WFnDXSS4kFTZwjKg5/oZSGzBRU/l+qcbv5NVTzLUQvJ9yovDAP05h0F2+ZFW0Lw9EcgRoc2AfURUdZvnEFrXKg==}
     dev: true
 
-  /tailwind-styled-components/2.2.0_react-dom@18.2.0+react@18.2.0:
+  /tailwind-styled-components/2.2.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-Ogemwk0p69aU8WE/ooJZHjqstdJgT5R6HGU6TFz2uSnveSEtvW+C6aWOjGCvCr5H/bREv0IbbQ4yODknRrLBRQ==}
     peerDependencies:
       react: '>= 16.8.0'
@@ -4423,10 +4414,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /tailwindcss/3.2.7:
+  /tailwindcss/3.2.7_postcss@8.4.21:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3

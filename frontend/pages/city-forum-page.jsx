@@ -13,12 +13,7 @@ import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/
 import Reviews from "../components/profile-page/reviews.jsx";
 import Comment from "../components/all-pages/comment.jsx";
 
-<<<<<<< HEAD:frontend/pages/forum-page.jsx
-
-export default function ForumPage() {
-=======
 export default function CityForumPage() {
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d:frontend/pages/city-forum-page.jsx
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const { locationInfo } = useSelector((state) => state.geo);
   const navigate = useNavigate();
@@ -115,25 +110,6 @@ export default function CityForumPage() {
           <FilterBar />
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
-<<<<<<< HEAD:frontend/pages/forum-page.jsx
-            <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
-        
-              
-              {posts.map((post, index) => (
-                  <Reviews
-                  key={index}
-                  id={post._id}
-                  username={post.owner ? post.owner.username : "" }
-                  program={post.program}
-                  content={post.content}
-                  likes={post.likes}
-                  saves={post.saves}
-                  tags={post.tags}
-                  dislikes={post.dislikes}
-                  location={post.location}
-                  comments={post.comments}
-                  date={post.timestamp}/>  
-=======
           <div>
               {posts.map((post, index) => (
                   <ForumPost
@@ -150,7 +126,6 @@ export default function CityForumPage() {
                       location={post.location}
                       date={post.timestamp}
                   />
->>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d:frontend/pages/city-forum-page.jsx
               ))}
               </div>
            
