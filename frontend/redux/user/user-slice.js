@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import userIcon from "../../assets/userProfile-icon.svg";
+import { googleLogout } from "@react-oauth/google";
 
 const initialState = {
   loading: true,
@@ -83,6 +84,21 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+    loginWithGoogle: (state, action) => {
+      state.loading = false;
+      // state.userInfo = action.payload;
+      localStorage.setItem("userToken", action.payload);
+      state.userToken = action.payload;
+      state.loggedIn = true;
+      state.error = null;
+    },
+    updateUserFromGoogle: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+      state.loggedIn = true;
+      state.error = null;
+    },
   },
 });
 
@@ -156,22 +172,36 @@ export const updateUserAsyncAction = (data) => async (dispatch) => {
   }
 };
 
-export const loginWithGoogleAsyncAction = (data) => async (dispatch) => {
+export const googleLogin = (response) => async (dispatch) => {
+  console.log(response);
+  const data = {
+    username: response.email.split("@")[0].replace(/[^a-zA-Z0-9]/g, ""),
+    first_name: response.name.split(" ")[0],
+    last_name: response.name.split(" ")[1],
+    avatar_url: response.picture,
+    primary_email: response.email,
+    password: response.sub,
+  };
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
   try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await axios.post(
-      `${backendURL}/session/google`,
+    //if user exists, do a login
+    //if user does not exist, create user and then login
+    const checkUser = await axios.head(`${backendURL}/user/${data.username}`);
+    const loginUser = await axios.post(`${backendURL}/session`, data, config);
+    dispatch(login(loginUser.data));
+  } catch (error) {
+    const createUser = await axios.post(
+      `${backendURL}/user/google`,
       data,
       config
     );
-    dispatch(login(response.data));
-  } catch (error) {
-    console.log(error);
-    dispatch(error(error));
+    dispatch(register(createUser.data));
+    const loginUser = await axios.post(`${backendURL}/session`, data, config);
+    dispatch(login(loginUser.data));
   }
 };
 
@@ -182,6 +212,7 @@ export const registerAndLoginAsyncAction = (data) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
+    console.log("registerAndLoginAsyncAction", data);
     let response = await axios.post(`${backendURL}/user`, data, config);
     dispatch(register(response.data));
     response = await axios.post(`${backendURL}/session`, data, config);
@@ -205,9 +236,18 @@ export const logoutAction = () => (dispatch) => {
       console.log(err);
       dispatch(error(err));
     });
+  googleLogout();
 };
 
-export const { getUser, updateUser, login, logout, register, error } =
-  userSlice.actions;
+export const {
+  getUser,
+  updateUser,
+  login,
+  logout,
+  register,
+  error,
+  loginWithGoogle,
+  updateUserFromGoogle,
+} = userSlice.actions;
 
 export default userSlice.reducer;

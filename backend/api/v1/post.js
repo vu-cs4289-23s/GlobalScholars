@@ -36,9 +36,9 @@ const Post = (app) => {
         title: data.title,
         content: data.content,
         tags: data.tags,
-        likes: 0,
-        dislikes: 0,
-        saves: 0,
+        likes: [],
+        dislikes: [],
+        saves: [],
         program: null,
         location: null,
       };
@@ -69,7 +69,7 @@ const Post = (app) => {
         // Update User owner document
         await app.models.User.findByIdAndUpdate(req.session.user._id, query);
 
-        // Success, send Post id to client
+        // Success, send Post back
         res.status(201).send(newPost);
       } catch (err) {
         console.log(`Post.create save failure: ${err}`);
@@ -98,7 +98,8 @@ const Post = (app) => {
         .populate("owner", {
           username: 1,
           avatar_url: 1,
-        });
+        })
+        .populate("comments");
 
       // Check if post exists
       if (!data) {
@@ -438,7 +439,7 @@ const Post = (app) => {
    * @return {200} Updated post
    */
   app.put("api/v1/post/update/:id", async (req, res) => {
-    // TODO
+    // TODO: make endpoint
   });
 };
 

@@ -6,7 +6,7 @@ const ProgramLink = () => {
     <a href="https://disabroad.org/copenhagen/">
       <img
         className="rounded-full scale-[70%] "
-        src="DIS-Copenhagen-Link.png"
+        src="/DIS-Copenhagen.png"
       />
       <div className="text-lg align-text-top text-black">program name</div>
     </a>

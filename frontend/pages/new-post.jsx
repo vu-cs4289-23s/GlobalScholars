@@ -10,7 +10,7 @@ export default function NewPost() {
     return (
         <div className="w-screen h-screen flex flex-row bg-[url('/landing-background.avif')] bg-blue-200">
             <SideBar />
-            <div className="overflow-y-scroll h-full">
+            <div className="overflow-y-scroll h-full w-screen">
                 <div id="type-selector" className="">
                     <div id="selector-container" className="">
                         <div className="flex w-auto bg-white sm:mx-20 text-left p-4 rounded-lg m-4 justify-around">

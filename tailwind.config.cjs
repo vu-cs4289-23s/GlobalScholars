@@ -54,6 +54,7 @@ module.exports = {
         'baby-pink': 'rgb(255, 165, 171)',
         'dark-pink': 'rgb(218, 98, 125)',
         'pink-cream': 'rgb(249, 219, 189)',
+        'light-gray' : 'rgba(217, 217, 217, 1)'
       }
     },
   },

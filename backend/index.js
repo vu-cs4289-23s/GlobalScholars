@@ -28,6 +28,7 @@ import PriceEstimate from "./models/price_estimate.js";
 
 // Import routes
 import Routes from "./api/index.js";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const resolve = (p) => path.resolve(__dirname, p);
 
@@ -40,7 +41,11 @@ const setupServer = async () => {
 
   // Setup our Express pipeline
   let app = express();
-  app.use(cors());
+  app.use(
+    cors({
+      credentials: true,
+    })
+  );
 
   app.use(logger("dev"));
   app.set("views", __dirname);
@@ -56,6 +61,7 @@ const setupServer = async () => {
     },
   });
   app.use(app.store);
+
   // Finish with the body parser
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
