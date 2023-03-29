@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostByIdAsyncAction } from "../redux/post/post-slice.js";
+import ForumPost from "../components/all-pages/post.jsx";
 
 export default function PostPage() {
   const { id } = useParams();

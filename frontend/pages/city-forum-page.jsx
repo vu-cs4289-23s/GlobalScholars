@@ -73,24 +73,6 @@ export default function CityForumPage() {
     }
   }, [locationInfo]);
 
-  // useEffect(() => {
-  //   // Set Program data
-  //   if (programInfo && programInfo.program_name !== "") {
-  //     setProgram({
-  //       program_name: programInfo.program_name,
-  //       description: programInfo.description,
-  //       location: programInfo.location,
-  //       top_tags: programInfo.top_tags,
-  //       overall_rating: programInfo.overall_rating,
-  //       safety_rating: programInfo.safety_rating,
-  //       affordability_rating: programInfo.affordability_rating,
-  //       sightseeing_rating: programInfo.sightseeing_rating,
-  //       image_link: programInfo.image_link,
-  //       like_cnt: programInfo.like_cnt,
-  //     });
-  //   }
-  // }, [programInfo]);
-
   // fetch all posts for location or fetch all posts
   useEffect(() => {
     if (location.city && location.city !== "City") {
