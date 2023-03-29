@@ -1,4 +1,7 @@
 import { object, string } from "yup";
+import coffescript from "coffeescript";
+
+coffescript.register();
 
 const Session = (app) => {
   /**

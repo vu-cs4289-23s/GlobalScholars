@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useSelector, useDispatch } from "react-redux";
 import SideBar from "../components/all-pages/sidebar";
-
 import Map from "../components/price-estimator/map";
+import Card from "../components/price-estimator/trip-card";
+import TabbedFolder from "../components/price-estimator/trip-folder";
+import DateSelector from "../components/price-estimator/date-dropdown";
 
 import LocationDropDown from "../components/price-estimator/location-dropdown";
-
 
 export default function PriceEstimator() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -26,47 +27,46 @@ export default function PriceEstimator() {
     }
   }, [loggedIn, userInfo]);
   return (
-
     <div id="price-estimator" className="flex h-screen w-screen">
       <SideBar />
 
-    {/* page contents */}
-    <div class="overflow-x-hidden">
-
-      {/* header bar */}
-      <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-4 mt-16 text-center  text-black">
+      {/* page contents */}
+      <div class="overflow-x-hidden w-screen">
+        {/* header bar */}
+        <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-4 mt-16 text-center  text-black">
           Where would you like to travel?
       </div>
       <div class=" grid-row flex w-screen ml-32 h-1/6 absolutefont-bold font-mono p-4 text-black">
-          <div class=" grid-col flex w-1/3  bg-gray-200 text-black">
-          <LocationDropDown />
+          <div class=" grid-col flex w-1/3  bg-gray-200 z-30 text-black">
+          FROM:   <LocationDropDown />
+          TO:  <LocationDropDown/>
           </div>
-          <div class=" grid-col flex w-1/3 bg-gray-300 text-black">
-            dates
+          <div class=" grid-col flex  p-2 bg-gray-300 text-black">
+            <DateSelector/>
+            <DateSelector/>
           </div>
-          <div class=" grid-col flex   bg-gray-400 text-black">
+          <div class=" grid-col flex  bg-gray-400 text-black">
             search icon
           </div>
+          <div class=" grid-col flex   bg-gray-400 text-black">search icon</div>
+        </div>
+
+
+      <div class="grid-row  w-screen ml-32 h-2/3 absolutefont-bold font-mono z-0 text-black">
+      <Map/>
       </div>
 
-      <div class="grid-row  w-screen ml-32 h-2/3 absolutefont-bold font-mono  text-black">
-        <Map/>
+      <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4  text-black">
+          <TabbedFolder/>
       </div>
 
-      <div class="grid-row flex w-screen overflow-y-scroll h-2/3 bg-gray-500 absolutefont-bold font-mono p-4 text-black">
-          FOLDER
+        <div className="absolute right-1 top-2">
+          <button onClick={() => logOutHandle()}>Log Out</button>
+        </div>
       </div>
-
-      <div className="absolute right-1 top-2">
-        <button onClick={() => logOutHandle()}>Log Out</button>
-      </div>
-   </div>   
-   
-  </div>
+    </div>
   );
 }
-
-
 
 // <div class="grid grid-cols-4 gap-4">
 // <div class="col-span-2 bg-blue-200 rounded-md p-4">
@@ -85,36 +85,33 @@ export default function PriceEstimator() {
 // </div>
 // </div>
 
-
-{/* <div className="w-full overflow-y-scroll">
+{
+  /* <div className="w-full overflow-y-scroll">
         <div id="price-estimator-header" className="flex h-1/3 ml-5 text-4xl">
           <div className="font-bold font-mono p-5 text-black mb-4">Where would you like to travel?</div>
         </div>
-      </div> */}
+      </div> */
+}
 
+//   {/* destination/dates row */}
+//   <div class="flex col-span-3 h-1/4 grid grid-cols-3 gap-4">
+//   <div class="col-span-1 bg-gray-200 p-4">
+//     location dropdowns
+//   </div>
+//   <div class="col-span-1 bg-gray-300 p-4">
+//     date selectors
+//   </div>
+//   <div class="col-span-1 bg-gray-400 p-4">
+//     search icon
+//   </div>
+// </div>
 
+// {/* map element */}
+// <div class="col-span-1  w-screen bg-gray-200 p-4">
+//   Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1
+// </div>
 
-
-
-        //   {/* destination/dates row */}
-        //   <div class="flex col-span-3 h-1/4 grid grid-cols-3 gap-4">
-        //   <div class="col-span-1 bg-gray-200 p-4">
-        //     location dropdowns
-        //   </div>
-        //   <div class="col-span-1 bg-gray-300 p-4">
-        //     date selectors
-        //   </div>
-        //   <div class="col-span-1 bg-gray-400 p-4">
-        //     search icon
-        //   </div>
-        // </div>
-        
-        // {/* map element */}
-        // <div class="col-span-1  w-screen bg-gray-200 p-4">
-        //   Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1
-        // </div>
-  
-        // {/* trip folder */}
-        // <div class="col-span-1  w-screen bg-gray-300 p-4">
-        //   Row 4, Column 1
-        // </div>
+// {/* trip folder */}
+// <div class="col-span-1  w-screen bg-gray-300 p-4">
+//   Row 4, Column 1
+// </div>

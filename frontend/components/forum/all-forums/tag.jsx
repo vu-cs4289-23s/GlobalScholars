@@ -1,6 +1,6 @@
 const Tag = ({ name, content, color, onClick }) => {
   //const navigate = useNavigate();
-  const background = "bg-" + color;
+  const background = color;
 
   const tag = [
     "flex",

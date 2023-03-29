@@ -4,6 +4,8 @@ import ProgramLink from "../all-forums/program-link.jsx";
 import Reviews from "../../profile-page/reviews";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ScrollingImages from "../../all-pages/scrolling-images.jsx";
+import images from "../../../../images.js";
 import {
   getPostsByLocationAsyncAction,
   getAllPostsAsyncAction,
@@ -13,22 +15,29 @@ import { useDispatch, useSelector } from "react-redux";
 const CityDescription = ({
   city,
   country,
-  description,
   top_tags,
   overall_rating,
-  safety_rating,
-  affordability_rating,
-  sightseeing_rating,
-  image_link,
-  like_cnt,
 }) => {
   const dispatch = useDispatch();
 
+  var programImages = [{name: "DIS Copenhagen",  src: "/forum-locations/DIS-Copenhagen.png", url: "https://disabroad.org/copenhagen/"}]
+
+
+  // const onForumLoad = (event, name) => {
+  //   console.log(event);
+  //   console.log(name);
+  //   // setShowPrograms(name);
+  //   console.log(name.split(",")[0].toLowerCase())
+  //   dispatch(getLocationByNameAsyncAction(name.split(",")[0].toLowerCase()))
+  //
+  //   const programs = locationInfo.programs;
+  // }
+
   return (
-    <div className="grid h-auto grid-cols-1 bg-gray-400 bg-opacity-50 sm:mx-20 mx-4 text-left pt-2 pb-6 px-4 rounded-lg">
+    <div className="grid h-auto grid-cols-1 bg-light-gray sm:mx-20 mx-4 text-left pt-2 pb-6 px-4 rounded-[45px] ">
       <grid-cols-1>
         <span className="text-[30px]">
-          <span className="content-start row ">
+          <span className="content-start row px-[3%]">
             Travel To:
             <span className="font-bold">
               {" "}
@@ -36,9 +45,14 @@ const CityDescription = ({
             </span>
           </span>
         </span>
-        <p>{description}</p>
-        <p className="py-4 font-bold text-[24px]">Top Tags</p>
-        <div className="grid grid-cols-3 sm:grid-cols-5 justify-around justify-items-center">
+        <div style={{display : "flex", flexDirection : "row"}} className="grid">
+        <p className="py-4 px-[5%] font-bold text-[20px]">Average Rating</p>
+        <div className="grid grid-cols-1 sm:grid-cols-4 self-center">
+          <Rating rating={overall_rating}/>
+        </div>
+        </div>
+        <p className="py-4 px-[5%] font-bold text-[20px]">Top Tags</p>
+        <div className="grid grid-cols-3 sm:grid-cols-5 px-[5%] justify-around justify-items-center">
           {top_tags &&
             top_tags.map((tag, index) => (
               <Tag color={"red-400"} content={tag} name={tag} key={index} />

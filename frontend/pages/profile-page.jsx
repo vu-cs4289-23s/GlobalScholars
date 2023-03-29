@@ -1,6 +1,4 @@
-import Header from "../components/login&register/header";
 import SideBar from "../components/all-pages/sidebar";
-
 import { useParams, useNavigate } from "react-router-dom";
 import ProfileBio from "../components/profile-page/profile-bio";
 import { useState, useEffect } from "react";
@@ -8,24 +6,18 @@ import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileModal from "../components/profile-page/profile-modal";
 import Reviews from "../components/profile-page/reviews";
-import axios from "axios";
-import { getPostByIdAsyncAction } from "../redux/post/post-slice.js";
+import { getPostByIdAsyncAction, getPostsByUserAsyncAction } from "../redux/post/post-slice.js";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
   const { username } = useParams();
-
-  let { userInfo, loggedIn, success, loading } = useSelector(
-    (state) => state.user
-  );
+  let { userInfo, loggedIn, success, loading } = useSelector((state) => state.user);
   let { postInfo } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const logOutHandle = () => {
     dispatch(logoutAction());
   };
   const [modalOpen, setModalOpen] = useState(false);
-  // for setting post state
-  let [toggle, setToggle] = useState(true);
   let [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -41,37 +33,25 @@ export default function ProfilePage() {
     }
   }, [userInfo, success, loading]);
 
+  // Grab user and posts owned by the user at page render
   useEffect(() => {
     dispatch(getUserAsyncAction(username));
+    dispatch(getPostsByUserAsyncAction(username));
   }, []);
 
   const populatePosts = (ev) => {
-    if (ev.target.name === "posts") {
-      setToggle(true);
-    }
-    if (ev.target.name === "saves") {
-      setToggle(false);
-    }
+    // TODO
   };
 
+  // Populate posts react state using postInfo redux state
   useEffect(() => {
-    if (toggle === true && userInfo && userInfo.posts) {
-      userInfo.posts.map((postId, index) => {
-        dispatch(getPostByIdAsyncAction(postId));
-      })
-    } else if (toggle === false && userInfo && userInfo.saves) {
-      // setPosts(userInfo.saves);
-    }
-  }, [toggle, userInfo]);
-
-  useEffect(() => {
-    setPosts([...posts, postInfo]);
+    setPosts(postInfo);
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex flex-row h-screen w-screen ">
+    <div id="forum-page" className="flex overflow-y-hidden overscroll-y-none h-screen w-screen ">
       <SideBar />
-      <div className="w-full bg-slate-400">
+      <div className="w-screen h-screen bg-slate-400">
         <div
           id="header"
           className="flex w-full h-[30%] justify-center text-4xl "
@@ -97,12 +77,12 @@ export default function ProfilePage() {
           </div>
         </div>
         {posts && posts.length > 0 ? (
-          <div className=" overflow-scroll h-[60%] sm:h-[65%] md:h-[70%] ">
+          <div className=" overflow-y-scroll h-[60%] sm:h-[65%] md:h-[70%] bg-slate-400">
             {posts.map((post, index) => (
               <Reviews
                 key={index}
                 id={post._id}
-                username={post.owner}
+                username={post.owner ? post.owner.username : ""}
                 program={post.program}
                 content={post.content}
                 likes={post.likes}

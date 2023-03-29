@@ -7,23 +7,19 @@ import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserAsyncAction, getUserByIdAsyncAction, logoutAction } from "../redux/user/user-slice";
-import {
-  getForumDataByName,
-  getAllLocationsAsyncAction,
-  getAllProgramsAsyncAction,
-} from "../redux/geo/geo-slice.js";
-import axios from "axios";
-import {getAllPostsAsyncAction, getPostsByLocationAsyncAction} from "../redux/post/post-slice.js";
+import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
+import { getForumDataByName, } from "../redux/geo/geo-slice.js";
+import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
 
 export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
-  const { programInfo, locationInfo } = useSelector((state) => state.geo);
+  const { locationInfo } = useSelector((state) => state.geo);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useParams();
-
+  let [posts, setPosts] = useState([]);
+  let { postInfo } = useSelector((state) => state.post);
   const [location, setLocation] = useState({
     city: "City",
     country: "Country",
@@ -38,9 +34,6 @@ export default function CityForumPage() {
     like_cnt: 0,
   });
 
-  const [posts, setPosts] = useState({});
-  const { postInfo } = useSelector((state) => state.post);
-
   const logOutHandle = () => {
     dispatch(logoutAction());
   };
@@ -54,16 +47,15 @@ export default function CityForumPage() {
     }
   }, [loggedIn, userInfo]);
 
+  // Get forum data by name in url
   useEffect(() => {
     if (name !== undefined) {
       dispatch(getForumDataByName(name));
-    } else {
-      dispatch(getAllLocationsAsyncAction());
     }
   }, [name]);
 
+  // Set Location data
   useEffect(() => {
-    // Set Location data
     if (locationInfo && locationInfo.city !== "") {
       setLocation({
         city: locationInfo.city,
@@ -80,7 +72,25 @@ export default function CityForumPage() {
     }
   }, [locationInfo]);
 
+  // useEffect(() => {
+  //   // Set Program data
+  //   if (programInfo && programInfo.program_name !== "") {
+  //     setProgram({
+  //       program_name: programInfo.program_name,
+  //       description: programInfo.description,
+  //       location: programInfo.location,
+  //       top_tags: programInfo.top_tags,
+  //       overall_rating: programInfo.overall_rating,
+  //       safety_rating: programInfo.safety_rating,
+  //       affordability_rating: programInfo.affordability_rating,
+  //       sightseeing_rating: programInfo.sightseeing_rating,
+  //       image_link: programInfo.image_link,
+  //       like_cnt: programInfo.like_cnt,
+  //     });
+  //   }
+  // }, [programInfo]);
 
+  // fetch all posts for location or fetch all posts
   useEffect(() => {
     if (location.city && location.city !== "City") {
       // Fetch posts by city name passed through
@@ -90,49 +100,40 @@ export default function CityForumPage() {
     }
   }, [location]);
 
+  // set posts react state with postInfo from redux state
   useEffect(() => {
     setPosts(postInfo);
   }, [postInfo]);
 
-  useEffect(() => {
-    if (posts && posts.length > 0) {
-      // fetch the username of each post owner
-      posts.map((post, index) => {
-        console.log(post);
-        dispatch(getUserByIdAsyncAction(post.owner));
-      });
-    };
-  }, [posts]);
-
-
-
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
+    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll">
       <SideBar />
-      <div className="bg-blue-light overflow-y-scroll">
+      <div>
         <img
-          className="flex h-1/3 w-screen object-center object-cover"
+          className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <CityDescription
-          description={location.description}
-          city={location.city}
-          country={location.country}
-          top_tags={location.top_tags}
-          overall_rating={location.overall_rating}
-          safety_rating={location.safety_rating}
-          affordability_rating={location.affordability_rating}
-          sightseeing_rating={location.sightseeing_rating}
-        />
-        <FilterBar />
+        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%] ">
+          <CityDescription
+            description={location.description}
+            city={location.city}
+            country={location.country}
+            top_tags={location.top_tags}
+            overall_rating={location.overall_rating}
+            safety_rating={location.safety_rating}
+            affordability_rating={location.affordability_rating}
+            sightseeing_rating={location.sightseeing_rating}
+          />
+          <FilterBar />
+        {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
-            <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
+          <div>
               {posts.map((post, index) => (
                   <ForumPost
                       key={index}
                       id={post._id}
-                      user={post.owner}
-                      title={post.title}
+                      username={post.owner ? post.owner.username : "" }
+                      program={post.program}
                       content={post.content}
                       likes={post.likes}
                       saves={post.saves}
@@ -146,19 +147,14 @@ export default function CityForumPage() {
               ))}
             </div>
         ) : null}
-        {/*<ForumPost />*/}
+        </div>
       </div>
-    
         <div className="absolute flex-row right-2 top-2">
           <button onClick={() => logOutHandle()}>Log Out</button>
-        
         </div>
           <div className="absolute  w-1/4 flex-row right-2 top-14">
           <SearchBar />
           </div>
-        
-        
       </div>
-    
   );
 }
