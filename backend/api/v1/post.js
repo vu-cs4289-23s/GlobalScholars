@@ -36,9 +36,9 @@ const Post = (app) => {
         title: data.title,
         content: data.content,
         tags: data.tags,
-        likes: 0,
-        dislikes: 0,
-        saves: 0,
+        likes: [],
+        dislikes: [],
+        saves: [],
         program: null,
         location: null,
       };
@@ -439,7 +439,7 @@ const Post = (app) => {
    * @return {200} Updated post
    */
   app.put("api/v1/post/update/:id", async (req, res) => {
-    // TODO
+    // TODO: make endpoint
   });
 };
 

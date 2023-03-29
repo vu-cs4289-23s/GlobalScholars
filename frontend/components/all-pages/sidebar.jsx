@@ -16,6 +16,8 @@ import tw from "tailwind-styled-components";
 import { ImSearch } from "react-icons/im";
 import { MdOutlineForum, MdOutlineAddBox } from "react-icons/md";
 import { BsCalculatorFill, BsPersonCircle } from "react-icons/bs";
+import { FaCity } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
 
 const NavigationContainer = tw.div`
   text-white
@@ -74,9 +76,13 @@ const SideBar = () => {
           <ImSearch size={36} />
           <SidebarNavigationLinkTitle>Search</SidebarNavigationLinkTitle>
         </NavigationContainer>
-        <NavigationContainer onClick={() => navigate("/forum")}>
-          <MdOutlineForum size={36} />
-          <SidebarNavigationLinkTitle>Forum</SidebarNavigationLinkTitle>
+        <NavigationContainer onClick={() => navigate("/city")}>
+          <FaCity size={36} />
+          <SidebarNavigationLinkTitle>City</SidebarNavigationLinkTitle>
+        </NavigationContainer>
+        <NavigationContainer onClick={() => navigate("/program")}>
+          <ImBooks size={36} />
+          <SidebarNavigationLinkTitle>Program</SidebarNavigationLinkTitle>
         </NavigationContainer>
         <NavigationContainer onClick={() => navigate("/newpost")}>
           <MdOutlineAddBox size={36} />

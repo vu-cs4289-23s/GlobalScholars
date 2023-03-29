@@ -2,6 +2,8 @@ import SideBar from "../components/all-pages/sidebar";
 import SearchBar from "../components/landing-page/search-bar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
+import CityPost from "../components/forum/city/city-post.jsx";
+import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,7 +13,7 @@ import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/
 import Reviews from "../components/profile-page/reviews.jsx";
 import Comment from "../components/all-pages/comment.jsx";
 
-export default function ForumPage() {
+export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const { locationInfo } = useSelector((state) => state.geo);
   const navigate = useNavigate();
@@ -128,7 +130,7 @@ export default function ForumPage() {
         {posts && posts.length > 0 ? (
           <div>
               {posts.map((post, index) => (
-                  <Reviews
+                  <ForumPost
                       key={index}
                       id={post._id}
                       username={post.owner ? post.owner.username : "" }
@@ -138,8 +140,9 @@ export default function ForumPage() {
                       saves={post.saves}
                       tags={post.tags}
                       dislikes={post.dislikes}
-                      location={post.location}
                       comments={post.comments}
+                      program={post.program}
+                      location={post.location}
                       date={post.timestamp}
                   />
               ))}
