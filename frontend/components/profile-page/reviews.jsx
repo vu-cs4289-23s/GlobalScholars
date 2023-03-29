@@ -1,13 +1,16 @@
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+<<<<<<< HEAD
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
 import { useState } from "react";
 import Tag from "../forum/all-forums/tag";
+=======
 import { BsBookmark, BsBookmarkFill, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 import Tag from "../forum/all-forums/tag";
 import { useDispatch, useSelector } from "react-redux";
 import { submitNewComment, resetComment } from "../../redux/comment/comment-slice.js";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+>>>>>>> 3aaabaa465b49e872f15dcdcd322bed73853226d
 
 const Reviews = ({
   key,
@@ -27,16 +30,17 @@ const Reviews = ({
   const colorScheme = ["blue", "amber", "pink", "rose", "indigo", "pink"];
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-  const [comment, setComment] = useState("");
+  
+  let [comment, setComment] = useState("");
+  let { commentInfo, success } = useSelector((state) => state.comment);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //allow for bookmark of post:
   const [saved, setSaved] = useState(false);
   const handleSave = () => {
     setSaved(!saved);
-  let [comment, setComment] = useState("");
-  let { commentInfo, success } = useSelector((state) => state.comment);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  }
 
   const onSubmit = (ev) => {
     ev.preventDefault();
