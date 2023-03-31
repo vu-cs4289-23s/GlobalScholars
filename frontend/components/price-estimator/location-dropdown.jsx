@@ -16,10 +16,10 @@ export default function LocationDropDown() {
     }
   }, []);
   return (
-    <div className="relative w-56 h-full text-right">
+    <div className="relative w-56 h-full ">
       <Menu as="div" className="relative inline-block  text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
+          <Menu.Button className="inline-flex w-full justify-center rounded-md ring-2 ring-black ring-opacity-5 bg-white  px-4 py-2 text-sm font-medium text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
             Locations
             <BsChevronDown
               className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
@@ -36,20 +36,20 @@ export default function LocationDropDown() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className=" max-h-96 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-scroll">
+          <Menu.Items className=" max-h-96 right-0 mt-2 w-56 origin-top-right divide-y rounded-md bg-white  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-scroll">
             <div className="px-1 py-1">
               {
                 //map through locationInfo object
                 //map through  by rows
                 Object.keys(locationInfo).map((key) => {
-                  console.log(locationInfo[key].city);
+                  // console.log(locationInfo[key].city);
                   return (
                     <Menu.Item>
                       {({ active }) => (
                         <button
                           className={`${
                             active
-                              ? "bg-violet-500 text-white"
+                              ? " bg-white  text-white"
                               : "text-gray-900"
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm p-1 m-1`}
                         >

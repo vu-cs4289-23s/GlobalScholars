@@ -128,7 +128,8 @@ export default function CityForumPage() {
                       date={post.timestamp}
                   />
               ))}
-            </div>
+              </div>
+           
         ) : null}
         </div>
       </div>

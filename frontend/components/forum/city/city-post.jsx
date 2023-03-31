@@ -10,6 +10,7 @@ import tw from "tailwind-styled-components";
 import {city_tags} from "../../../../data.js";
 import {BsStar, BsStarFill} from "react-icons/bs";
 
+
 export const MakePostBox = tw.div`
     flex 
     w-auto 
