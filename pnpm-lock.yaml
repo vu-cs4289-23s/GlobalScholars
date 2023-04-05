@@ -82,10 +82,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.2_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
-<<<<<<< HEAD
-=======
   react-map-gl: 7.0.21_5wflejxe2geyle4qn254jrdyiy
->>>>>>> 8ec06312eadf0cf863199b1f88e35c909ff76877
   react-redux: 8.0.5_fxtgt6bjwd6p4cwoordejim2zi
   react-router-dom: 6.8.0_biqbaboplfbrettd7655fr4n2y
   sass: 1.58.0
