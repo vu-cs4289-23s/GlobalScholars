@@ -31,6 +31,7 @@ const User = new Schema({
   saves: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   likes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
   dislikes: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
 });
 
 User.path("username").validate(function (value) {

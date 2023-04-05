@@ -12,6 +12,7 @@ import ProfilePage from "./pages/profile-page";
 import LoginPage from "./pages/login-page";
 import RegisterPage from "./pages/register-page";
 import EditPage from "./pages/edit-page";
+import PostPage from "./pages/post-page.jsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -81,6 +82,11 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/post/:id",
+    element: <PostPage />,
     errorElement: <ErrorPage />,
   },
 ]);
