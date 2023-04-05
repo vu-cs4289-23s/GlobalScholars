@@ -77,14 +77,7 @@ const SearchBarModal = ({ setModal, modal }) => {
   }, []);
 
   const onClick = (ev) => {
-    console.log(`Clicking on ${ev.target.name}`);
-    // Navigate to forum page for location / program clicked
-    navigate(`/program/${ev.target.name}`);
-  };
-
-  const click = (value) => {
-    // Navigate to forum page for location / program clicked
-    navigate(`/program/${value}`);
+    // TODO make the tags clickable and navigate somewhere
   };
 
   return (
@@ -131,8 +124,6 @@ const SearchBarModal = ({ setModal, modal }) => {
                   className="dataItem w-full h-full "
                   // href={value["Program Link"]}
                   href={`/program/${value["Program Name"]}`}
-                //  onClick={click(value["Program Name"])}
-                  target="_blank"
                   key={key}
                 >
                   <div
@@ -162,8 +153,6 @@ const SearchBarModal = ({ setModal, modal }) => {
                   className="dataItem w-full h-full "
                   // href={value["Program Link"]}
                   href={`/city/${value["City"]}`}
-                  //  onClick={click(value["Program Name"])}
-                  target="_blank"
                   key={key}
                 >
                   <div
@@ -189,7 +178,6 @@ const SearchBarModal = ({ setModal, modal }) => {
             })}
           </div>
         )}
-
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 justify-between mx-12 pt-6 ">
           {tags.map((tag, i) => (
             <span
