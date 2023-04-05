@@ -41,20 +41,18 @@ export default function PriceEstimator() {
         <div class=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-4 mt-16 text-center  text-black">
           Where would you like to travel?
         </div>
-        <div class=" grid-row flex w-screen ml-36 h-1/6 absolutefont-bold text-2xl font-mono p-4 text-black">
-          <div class=" grid-col flex w-1/3 p-8 ml-6 z-30 text-black">
-            FROM:
-            <LocationDropDown />
-            TO:
+        <div class=" grid-row flex w-screen h-1/6 absolutefont-bold text-2xl font-mono p-4 text-black">
+          <div class=" grid-col flex w-1/4 p-8 ml-6 z-30 text-black">
+            DESTINATION:
             <LocationDropDown />
           </div>
-          <div class=" grid-col flex p-8 text-black">
+          <div class=" grid-col  flex p-8 text-black">
             START:
             <DateSelector />
             END:
             <DateSelector />
           </div>
-          <div class=" grid-col flex  p-8 ml-6 text-black">
+          <div class=" grid-col flex p-8 ml-6 text-black">
             <ImSearch size={36} />
           </div>
         </div>
