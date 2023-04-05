@@ -39,7 +39,7 @@ export default function PriceEstimator() {
     latitude: 37.7749,
     city: 'San Francisco',
   });
-
+  
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
   const Search = (arg) => {
@@ -51,6 +51,9 @@ export default function PriceEstimator() {
       })
     );
   };
+
+
+
   return (
     <div id="price-estimator" className="flex h-screen w-screen">
       <SideBar />
@@ -76,11 +79,11 @@ export default function PriceEstimator() {
             <ImSearch size={36} onClick={Search} />
           </div>
         </div>
-        <div className="ml-40 w-4/5 h-4/5 ">
+        <div className="ml-28 w-4/5 h-4/5 ">
           <MapContainer from={from} to={to} setFrom={setFrom} />
         </div>
 
-        <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4 text-black">
+        <div class="grid-row flex w-full overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4 text-black">
           <TabbedFolder tabs={tabs} card={<Card />} />
         </div>
 
