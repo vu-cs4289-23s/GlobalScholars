@@ -1,5 +1,5 @@
 const Trip = (app) => {
-  app.get('/api/v1/trip', async (req, res) => {
+  app.post('/api/v1/trip', async (req, res) => {
     try {
       const trips = await app.models.Location.findOne({
         city: req.body.to.city,

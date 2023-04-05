@@ -65,7 +65,18 @@ export const getAllTrips = () => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     };
-    const response = await axios.get(`${backendURL}/trip`, config);
+    const response = await axios.post(
+      `${backendURL}/trip`,
+      {
+        to: {
+          city: 'San Francisco',
+          country: 'United States',
+          latitude: 37.7749295,
+          longitude: -122.4194155,
+        },
+      },
+      config
+    );
     //  console.log(response.data);
     dispatch(getTrips(response.data));
   } catch (error) {
