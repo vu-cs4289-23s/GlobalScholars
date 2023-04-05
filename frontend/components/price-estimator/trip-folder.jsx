@@ -40,7 +40,7 @@
 //             <div className="mt-6">
 //               <Card/>
 //             </div>
-            
+
 //             </div>
 //         ) : (
 //           <div className="bg-green-200 h-full p-4 font-bold text-4xl">
@@ -92,9 +92,7 @@ const TabbedFolder = ({ tabs, card }) => {
               activeTab === tab.title ? '' : 'hidden'
             } bg-sky-200 h-full p-4 font-bold text-4xl`}
           >
-            <div className="mt-6">
-              {card}
-            </div>
+            <div className="mt-6">{card}</div>
           </div>
         ))}
       </div>
@@ -112,4 +110,3 @@ TabbedFolder.propTypes = {
 };
 
 export default TabbedFolder;
-
