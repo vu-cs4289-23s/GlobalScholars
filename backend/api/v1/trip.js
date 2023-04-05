@@ -5,7 +5,7 @@ const Trip = (app) => {
         city: req.body.to.city,
       });
 
-      //TODO genearate values for cost, rating, and cheapest month based on the location data
+      //TODO genearate values for cost, rating, and cheapest month based on the location
       res.status(200).send(trips);
     } catch (err) {
       res.status(500).json(err);
