@@ -82,6 +82,11 @@ const SearchBarModal = ({ setModal, modal }) => {
     navigate(`/program/${ev.target.name}`);
   };
 
+  const click = (value) => {
+    // Navigate to forum page for location / program clicked
+    navigate(`/program/${value}`);
+  };
+
   return (
     <div
       id="modal-container"
@@ -126,6 +131,7 @@ const SearchBarModal = ({ setModal, modal }) => {
                   className="dataItem w-full h-full "
                   // href={value["Program Link"]}
                   href={`/program/${value["Program Name"]}`}
+                //  onClick={click(value["Program Name"])}
                   target="_blank"
                   key={key}
                 >
@@ -145,6 +151,37 @@ const SearchBarModal = ({ setModal, modal }) => {
                       className={`w-full h-full  text-sm md:text-md lg:text-lg font-semibold text-gray-600 mr-2  hover:scale-105 `}
                     >
                       {value["Program Name"]}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+            {filteredData.slice(0, 15).map((value, key) => {
+              return (
+                <a
+                  className="dataItem w-full h-full "
+                  // href={value["Program Link"]}
+                  href={`/city/${value["City"]}`}
+                  //  onClick={click(value["Program Name"])}
+                  target="_blank"
+                  key={key}
+                >
+                  <div
+                    className={`w-full h-full flex justify-center items-center bg-${
+                      colors[key % colors.length]
+                    }-100 cursor-pointer hover:text-black rounded transition linear  hover:-translate-y-1  hover:bg-${
+                      colors[key % colors.length]
+                    }-500 duration-100  `}
+                  >
+                    {/* <img
+                      src={value["Image Link"]}
+                      alt="program image"
+                      className="h-12 w-12 rounded-full mr-2"
+                    /> */}
+                    <p
+                      className={`w-full h-full  text-sm md:text-md lg:text-lg font-semibold text-gray-600 mr-2  hover:scale-105 `}
+                    >
+                      {value["City"]}
                     </p>
                   </div>
                 </a>
