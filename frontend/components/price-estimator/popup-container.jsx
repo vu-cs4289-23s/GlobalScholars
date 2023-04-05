@@ -1,6 +1,6 @@
 import { Popup, Marker } from "react-map-gl";
 import { useState } from "react";
-import { FaMapMarker } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const PopUpContainer = ({ longitude, latitude, city, country }) => {
   const [showPopUps, setShowPopUps] = useState(false);
@@ -17,7 +17,10 @@ const PopUpContainer = ({ longitude, latitude, city, country }) => {
         onMouseLeave={() => setShowPopUps(false)}
       >
         <Marker longitude={longitude} latitude={latitude} anchor="bottom">
-          <FaMapMarker className="text-lg text-red-500 hover:scale-110 transition ease-in-out duration-[100]" />
+          <FaMapMarkerAlt
+            className="text-lg hover:scale-110 transition ease-in-out duration-[100]"
+            style={{ fill: "red" }}
+          />
         </Marker>
       </div>
       {showPopUps && (
