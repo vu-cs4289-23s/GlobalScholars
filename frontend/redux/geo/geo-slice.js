@@ -30,6 +30,8 @@ const initialState = {
     sightseeing_rating: 0,
     top_tags: [],
     image_link: "",
+    longitude: 0,
+    latitude: 0,
   },
   error: null,
   success: false,
@@ -49,7 +51,7 @@ const geoSlice = createSlice({
     },
     getLocations: (state, action) => {
       state.loading = false;
-    //  console.log(typeof action.payload);
+      //  console.log(typeof action.payload);
       state.locationInfo = action.payload;
       state.success = true;
       state.error = null;
@@ -131,7 +133,7 @@ export const getProgramByIdAsyncAction = (id) => async (dispatch) => {
       `${backendURL}/geo/program/id/${id}`,
       config
     );
-  //  console.log(response.data);
+    //  console.log(response.data);
     dispatch(getPrograms(response.data));
   } catch (error) {
     console.log(error);
@@ -185,7 +187,7 @@ export const getLocationByIdAsyncAction = (name) => async (dispatch) => {
       `${backendURL}/geo/location/id/${id}`,
       config
     );
-  //  console.log(response.data);
+    //  console.log(response.data);
     dispatch(getLocations(response.data));
   } catch (error) {
     console.log(error);
