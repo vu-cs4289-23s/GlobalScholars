@@ -64,9 +64,6 @@ export default function CityForumPage() {
         description: locationInfo.description,
         top_tags: locationInfo.top_tags,
         overall_rating: locationInfo.overall_rating,
-        // safety_rating: locationInfo.safety_rating,
-        // affordability_rating: locationInfo.affordability_rating,
-        // sightseeing_rating: locationInfo.sightseeing_rating,
         image_link: locationInfo.image_link,
         like_cnt: locationInfo.like_cnt,
       });
@@ -96,17 +93,17 @@ export default function CityForumPage() {
           className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%] ">
-          <CityDescription
-            description={location.description}
-            city={location.city}
-            country={location.country}
-            top_tags={location.top_tags}
-            overall_rating={location.overall_rating}
-            // safety_rating={location.safety_rating}
-            // affordability_rating={location.affordability_rating}
-            // sightseeing_rating={location.sightseeing_rating}
-          />
+        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
+          {name ?
+            <CityDescription
+              description={location.description}
+              city={location.city}
+              country={location.country}
+              top_tags={location.top_tags}
+              overall_rating={location.overall_rating}
+            />
+          :
+            <SearchBar forum={true}/>}
           <FilterBar />
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
@@ -129,7 +126,6 @@ export default function CityForumPage() {
                   />
               ))}
               </div>
-           
         ) : null}
         </div>
       </div>
@@ -137,7 +133,7 @@ export default function CityForumPage() {
           <button onClick={() => logOutHandle()}>Log Out</button>
         </div>
           <div className="absolute  w-1/4 flex-row right-2 top-14">
-          <SearchBar />
+            { name ? <SearchBar /> : null}
           </div>
       </div>
   );

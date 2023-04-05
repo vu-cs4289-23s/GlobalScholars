@@ -79,7 +79,7 @@ const SearchBarModal = ({ setModal, modal }) => {
   const onClick = (ev) => {
     console.log(`Clicking on ${ev.target.name}`);
     // Navigate to forum page for location / program clicked
-    navigate(`/forum/${ev.target.name}`);
+    navigate(`/program/${ev.target.name}`);
   };
 
   return (
@@ -125,7 +125,7 @@ const SearchBarModal = ({ setModal, modal }) => {
                 <a
                   className="dataItem w-full h-full "
                   // href={value["Program Link"]}
-                  href={`/forum/${value["Program Name"]}`}
+                  href={`/program/${value["Program Name"]}`}
                   target="_blank"
                   key={key}
                 >
