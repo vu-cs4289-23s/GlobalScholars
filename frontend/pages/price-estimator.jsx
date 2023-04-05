@@ -39,7 +39,7 @@ export default function PriceEstimator() {
     latitude: 37.7749,
     city: 'San Francisco',
   });
-
+  
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
   const Search = (arg) => {
@@ -51,6 +51,9 @@ export default function PriceEstimator() {
       })
     );
   };
+
+
+
   return (
     <div id="price-estimator" className="flex h-screen w-screen">
       <SideBar />
@@ -76,11 +79,11 @@ export default function PriceEstimator() {
             <ImSearch size={36} onClick={Search} />
           </div>
         </div>
-        <div className="ml-40 w-4/5 h-4/5 ">
+        <div className="ml-28 w-4/5 h-4/5 ">
           <MapContainer from={from} to={to} setFrom={setFrom} />
         </div>
 
-        <div class="grid-row flex w-screen overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4 text-black">
+        <div class="grid-row flex w-full overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4 text-black">
           <TabbedFolder tabs={tabs} card={<Card />} />
         </div>
 
@@ -92,50 +95,3 @@ export default function PriceEstimator() {
   );
 }
 
-// <div class="grid grid-cols-4 gap-4">
-// <div class="col-span-2 bg-blue-200 rounded-md p-4">
-// from
-// </div>
-
-// <div class="col-span-2 bg-green-200 rounded-md p-4">
-// <input type="text" class="w-full" placeholder="Start" />
-// </div>
-
-// <div class="col-span-2 bg-blue-200 rounded-md p-4">
-// to
-// </div>
-// <div class="col-span-2 bg-green-200 rounded-md p-4">
-// <input type="text" class="w-full" placeholder="End" />
-// </div>
-// </div>
-
-{
-  /* <div className="w-full overflow-y-scroll">
-        <div id="price-estimator-header" className="flex h-1/3 ml-5 text-4xl">
-          <div className="font-bold font-mono p-5 text-black mb-4">Where would you like to travel?</div>
-        </div>
-      </div> */
-}
-
-//   {/* destination/dates row */}
-//   <div class="flex col-span-3 h-1/4 grid grid-cols-3 gap-4">
-//   <div class="col-span-1 bg-gray-200 p-4">
-//     location dropdowns
-//   </div>
-//   <div class="col-span-1 bg-gray-300 p-4">
-//     date selectors
-//   </div>
-//   <div class="col-span-1 bg-gray-400 p-4">
-//     search icon
-//   </div>
-// </div>
-
-// {/* map element */}
-// <div class="col-span-1  w-screen bg-gray-200 p-4">
-//   Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1 Row 3, Column 1
-// </div>
-
-// {/* trip folder */}
-// <div class="col-span-1  w-screen bg-gray-300 p-4">
-//   Row 4, Column 1
-// </div>
