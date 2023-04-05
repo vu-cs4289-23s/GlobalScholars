@@ -50,7 +50,7 @@ export default function PriceEstimator() {
             <DateSelector />
           </div>
           <div class=" grid-col flex p-8 ml-6 text-black">
-            <ImSearch size={36} />
+            <ImSearch size={36} onClick={() => searchForTrips()} />
           </div>
         </div>
         <div className="ml-40 w-4/5 h-4/5 ">

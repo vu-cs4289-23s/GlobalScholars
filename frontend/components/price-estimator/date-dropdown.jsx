@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import "tailwindcss/tailwind.css";
 
-function DateSelector() {
+function DateSelector({}) {
     const [selectedDate, setSelectedDate] = useState(new Date());
   
     return (
