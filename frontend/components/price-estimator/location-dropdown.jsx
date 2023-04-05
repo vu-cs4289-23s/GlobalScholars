@@ -1,10 +1,10 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
-import { BsChevronDown } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllLocationsAsyncAction } from "../../redux/geo/geo-slice.js";
+import { Menu, Transition } from '@headlessui/react';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { BsChevronDown } from 'react-icons/bs';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllLocationsAsyncAction } from '../../redux/geo/geo-slice.js';
 
-export default function LocationDropDown() {
+export default function LocationDropDown({ selected, setSelected }) {
   const { locationInfo } = useSelector((state) => state.geo);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ export default function LocationDropDown() {
       <Menu as="div" className="relative inline-block  text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md ring-2 ring-black ring-opacity-5 bg-white  px-4 py-2 text-sm font-medium text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
-            Locations
+            {selected === '' ? 'Locations' : selected.city}
             <BsChevronDown
               className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
               aria-hidden="true"
@@ -41,17 +41,16 @@ export default function LocationDropDown() {
               {
                 //map through locationInfo object
                 //map through  by rows
-                Object.keys(locationInfo).map((key) => {
+                Object.keys(locationInfo).map((key, id) => {
                   // console.log(locationInfo[key].city);
                   return (
-                    <Menu.Item>
+                    <Menu.Item key={id}>
                       {({ active }) => (
                         <button
                           className={`${
-                            active
-                              ? " bg-white  text-white"
-                              : "text-gray-900"
+                            active ? ' bg-white  text-white' : 'text-gray-900'
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm p-1 m-1`}
+                          onClick={() => setSelected(locationInfo[key])}
                         >
                           {active ? (
                             <DuplicateActiveIcon
