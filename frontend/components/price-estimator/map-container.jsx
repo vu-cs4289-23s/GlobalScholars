@@ -66,43 +66,12 @@ const MapContainer = ({ from, to, setFrom }) => {
     };
   };
 
-  const CaclculateZoomBasedOnDistance = (x1, y1, x2, y2) => {
-    // zoom out more for long distances
-    const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    console.log(distance);
-    if (distance > 200) {
-      return 1;
-    } else if (distance > 150) {
-      return 1.25;
-    } else if (distance > 100) {
-      return 1.75;
-    } else if (distance > 50) {
-      return 2.25;
-    } else if (distance > 20) {
-      return 3;
-    } else if (distance > 10) {
-      return 4;
-    } else {
-      return 6;
-    }
-  };
   useEffect(() => {
     if (from && to) {
-      const midPoint = CalculateMidPoint(
-        from.longitude,
-        from.latitude,
-        to.longitude,
-        to.latitude
-      );
       setViewState({
-        longitude: midPoint.x,
-        latitude: midPoint.y,
-        zoom: CaclculateZoomBasedOnDistance(
-          from.longitude,
-          from.latitude,
-          to.longitude,
-          to.latitude
-        ),
+        longitude: from.longitude,
+        latitude: from.latitude,
+        zoom: 4,
       });
     }
   }, [from, to]);
@@ -127,12 +96,6 @@ const MapContainer = ({ from, to, setFrom }) => {
           }
           onTrackUserLocationEnd={(geo) => console.log('HERE')}
         />
-
-        {from && to && (
-          <Source id="my-data" type="geojson" data={geojson}>
-            <Layer {...layerStyle} />
-          </Source>
-        )}
 
         {locationInfo[0] &&
           //map through locationInfo object
