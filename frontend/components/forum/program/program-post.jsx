@@ -7,9 +7,13 @@ import {program_tags} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
 import { resetPost, submitNewForumPost } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
+import data from "../../../../data.js";
+import { BiChevronDown } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const ProgramPost = () => {
     let [state, setState] = useState({
+        program_name: "",
         semester: "",
         major: "",
         title: "",
@@ -24,6 +28,12 @@ const ProgramPost = () => {
     const [gradingRating, setGradingRating] = useState(undefined);
     const dispatch = useDispatch();
     const { postInfo, success, loading } = useSelector((state) => state.post);
+
+    // For the program selector
+    const [programs, setPrograms] = useState(null);
+    const [inputValue, setInputValue] = useState("");
+    const [selected, setSelected] = useState("");
+    const [open, setOpen] = useState(false);
 
     const onClickTag = (e) => {
         console.log("you just clicked a tag");
@@ -48,6 +58,7 @@ const ProgramPost = () => {
         const post = {
             title: state.title,
             content: state.content,
+            program_name: state.program_name,
         }
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
@@ -59,6 +70,23 @@ const ProgramPost = () => {
         //     navigate(`/program/${forumNav}`);
         // }
     };
+
+    useEffect(() => {
+        let programList = [];
+        data.map((value,index) => {
+            programList.push(value["Program Name"]);
+        });
+        setPrograms(programList);
+    }, []);
+
+    useEffect(() => {
+        if (selected && selected !== "") {
+            setState({
+                ...state,
+                program_name: selected,
+            });
+        }
+    }, [selected]);
 
     return (
         <MakePostBox>
@@ -77,6 +105,64 @@ const ProgramPost = () => {
                             <label htmlFor="anon"> Anonymous</label>
                         </div>
                     </div>
+                </div>
+                {/* Program Selector */}
+                <div className="flex border-black border-2 rounded-lg flex-col my-1">
+                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
+                        <div
+                          onClick={() => setOpen(!open)}
+                          className={`bg-white w-full p-2 flex items-center justify-between rounded ${
+                            !selected && "text-gray-700"
+                          }`}
+                        >
+                        {selected
+                          ? selected?.length > 25
+                            ? selected?.substring(0, 25) + "..."
+                            : selected
+                          : "Select Program"}
+                            <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+                    </div>
+                    <ul
+                      className={`bg-white mt-2 overflow-y-auto ${
+                        open ? "max-h-60" : "max-h-0"
+                      } `}
+                    >
+                    <div className="flex items-center px-2 sticky top-0 bg-white">
+                        <AiOutlineSearch size={18} className="text-gray-700" />
+                        <input
+                          type="text"
+                          value={inputValue}
+                          onChange={(e) => setInputValue(e.target.value.toLowerCase())}
+                          placeholder="Enter program name"
+                          className="placeholder:text-gray-700 p-2 outline-none"
+                        />
+                    </div>
+                        {programs?.map((program) => (
+                          <li
+                            key={program}
+                            className={`p-2 text-sm hover:bg-sky-600 hover:text-white
+                    ${
+                              program?.toLowerCase() === selected?.toLowerCase() &&
+                              "bg-sky-600 text-white"
+                            }
+                    ${
+                              program?.toLowerCase().startsWith(inputValue)
+                                ? "block"
+                                : "hidden"
+                            }`}
+                            onClick={() => {
+                                if (program?.toLowerCase() !== selected.toLowerCase()) {
+                                    setSelected(program);
+                                    setOpen(false);
+                                    setInputValue("");
+                                }
+                            }}
+                          >
+                              {program}
+                          </li>
+                        ))}
+                </ul>
+                </div>
                 </div>
                 {/* Select Semester */}
                 <FormInputSectionContainer>

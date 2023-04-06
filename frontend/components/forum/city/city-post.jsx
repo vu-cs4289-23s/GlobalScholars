@@ -85,7 +85,6 @@ const CityPost = () => {
         content: "",
         tags: [],
         city: "",
-        program_name: "",
         overall_rating: 0,
         affordability_rating: 0,
     });
@@ -120,7 +119,6 @@ const CityPost = () => {
             title: state.title,
             content: state.content,
             city: state.city,
-            program_name: state.program_name,
             // pass in overallRating and affordabilityRating values to update to city model
         }
         console.log(`Posting...`);
