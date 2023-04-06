@@ -12,8 +12,7 @@ import {BsStar, BsStarFill} from "react-icons/bs";
 import {BsInfoCircleFill  } from 'react-icons/bs';
 import { FaDollarSign } from 'react-icons/fa';
 import AffordabilityInfoIcon from "../../all-pages/pricing-guide.jsx";
-
-
+import RatingInfoIcon from "../../all-pages/rating-guide.jsx";
 
 export const MakePostBox = tw.div`
     flex 
@@ -88,10 +87,7 @@ const CityPost = () => {
         city: "",
         program_name: "",
         overall_rating: 0,
-        safety_rating: 0,
         affordability_rating: 0,
-        sightseeing_rating: 0,
-        top_tags: [],
     });
 
 
@@ -125,6 +121,7 @@ const CityPost = () => {
             content: state.content,
             city: state.city,
             program_name: state.program_name,
+            // pass in overallRating and affordabilityRating values to update to city model
         }
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
@@ -295,10 +292,10 @@ const CityPost = () => {
                     </FormInputSectionTitle>
                     {/* Overall */}
                     <FormRatingContainer>
-                        <div className="m-2 flex justify-between text-center align-middle">
+                        <div className="m-2 flex text-center  align-middle">
                             <div className="w-[15%]">Overall Experience:</div>
-                            <div className="text-[10px]"> 1 - Awful </div>
-                            <div className="space-x-3 flex justify-around">
+                            {/*<div className="text-[10px]"> 1 - Awful </div>*/}
+                            <div className="space-x-3 flex justify-center">
                                 {(overallRating !== undefined && overallRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(1)} /> :
                                     <BsStar size={30} onClick={() => setOverallRating(1)} /> }
@@ -314,8 +311,9 @@ const CityPost = () => {
                                 {(overallRating !== undefined && overallRating >= 5) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(5)} /> :
                                     <BsStar size={30} onClick={() => setOverallRating(5)} /> }
+                                <RatingInfoIcon/>
                             </div>
-                            <div className="text-[10px]"> 5 - Awesome </div>
+                            {/*<div className="text-[10px]"> 5 - Awesome </div>*/}
                         </div>
                     </FormRatingContainer>
                     {/* Affordability */}
@@ -338,9 +336,7 @@ const CityPost = () => {
                             ) : (
                                 <FaDollarSign size={30} onClick={() => setAffordabilityRating(3)} />
                             )}
-                            
                             <AffordabilityInfoIcon/>
-                        
                             </div>
                         </div>
                     </FormRatingContainer>

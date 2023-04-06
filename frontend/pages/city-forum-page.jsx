@@ -110,7 +110,6 @@ export default function CityForumPage() {
           <div>
               {posts.map((post, index) => (
                   <ForumPost
-                      key={index}
                       id={post._id}
                       avatar={post.owner ? post.owner.avatar_url : "" }
                       username={post.owner ? post.owner.username : "" }

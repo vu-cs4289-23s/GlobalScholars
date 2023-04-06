@@ -5,18 +5,25 @@ import tw from "tailwind-styled-components";
 import CityPost, {MakePostBox, FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
 import {program_tags} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
+import { resetPost, submitNewForumPost } from "../../../redux/post/post-slice.js";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProgramPost = () => {
-
+    let [state, setState] = useState({
+        semester: "",
+        major: "",
+        title: "",
+        content: "",
+        tags: [],
+        overall_rating: 0,
+    });
     const [postAnon, setPostAnon] = useState(false);
     const [overallRating, setOverallRating] = useState(undefined);
     const [classesRating, setClassesRating] = useState(undefined);
     const [campusRating, setCampusRating] = useState(undefined);
     const [gradingRating, setGradingRating] = useState(undefined);
-
-    const onClickPost = async () => {
-        console.log("post");
-    };
+    const dispatch = useDispatch();
+    const { postInfo, success, loading } = useSelector((state) => state.post);
 
     const onClickTag = (e) => {
         console.log("you just clicked a tag");
@@ -27,6 +34,31 @@ const ProgramPost = () => {
             <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
         );
     });
+
+    const onChange = (ev) => {
+        // Update from form and clear errors
+        setState({
+            ...state,
+            [ev.target.name]: ev.target.value,
+        });
+    };
+
+    const onSubmit = (ev) => {
+        ev.preventDefault();
+        const post = {
+            title: state.title,
+            content: state.content,
+        }
+        console.log(`Posting...`);
+        dispatch(submitNewForumPost(post));
+
+        // if (success) {
+        //     const forumNav = state.program;
+        //     // reset post state
+        //     dispatch(resetPost());
+        //     navigate(`/program/${forumNav}`);
+        // }
+    };
 
     return (
         <MakePostBox>
@@ -76,7 +108,7 @@ const ProgramPost = () => {
                     <div className="flex relative m-2">
                         <div className="flex bg-white rounded-lg justify-center align-middle m-auto">
                             <div>
-                                <select name="major" id="major" className="bg-white border-2 border-black rounded-lg m-2" placeholder="Select semester">
+                                <select name="major" id="major" className="bg-white border-2 border-black rounded-lg m-2" placeholder="Select major">
                                     <option>Computer Science</option>
                                     <option>Economics</option>
                                     <option>Math</option>
@@ -95,6 +127,8 @@ const ProgramPost = () => {
                     </FormInputSectionTitle>
                     <div className="flex relative m-2">
                         <input
+                            onChange={onChange}
+                            value={state.title}
                             className="flex flex-auto"
                             id="title"
                             name="title"
@@ -116,9 +150,11 @@ const ProgramPost = () => {
                     </GuidelinesBox>
                     <div className="flex relative m-2">
                         <input
+                            onChange={onChange}
+                            value={state.content}
                             className="flex flex-auto h-32"
                             id="review"
-                            name="review"
+                            name="content"
                             type="text"
                             placeholder="Your Review"
                         />
@@ -269,9 +305,9 @@ const ProgramPost = () => {
                 {/* Submit */}
                 <div className="flex justify-end">
                     <button
+                        onClick={onSubmit}
                         id="submitBtn"
                         type="submit"
-                        onClick={onClickPost}
                     >
                         Post
                     </button>
