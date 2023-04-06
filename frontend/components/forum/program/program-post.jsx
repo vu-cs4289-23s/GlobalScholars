@@ -27,6 +27,7 @@ const ProgramPost = () => {
     const [campusRating, setCampusRating] = useState(undefined);
     const [gradingRating, setGradingRating] = useState(undefined);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { postInfo, success, loading } = useSelector((state) => state.post);
 
     // For the program selector
@@ -63,12 +64,12 @@ const ProgramPost = () => {
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
 
-        // if (success) {
-        //     const forumNav = state.program;
-        //     // reset post state
-        //     dispatch(resetPost());
-        //     navigate(`/program/${forumNav}`);
-        // }
+        if (success) {
+            const forumNav = state.program_name;
+            // reset post state
+            dispatch(resetPost());
+            navigate(`/program/${forumNav}`);
+        }
     };
 
     useEffect(() => {

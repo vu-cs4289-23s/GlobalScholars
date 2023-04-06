@@ -115,7 +115,7 @@ const ForumPost = ({
 
                   <div className="font-bold ml-2">{username}</div>
                   <div className="ml-2">in</div>
-                  <div className="font-bold ml-2">{url}</div>
+                  <div className="font-bold ml-2">{url.replace(/\s/g, '').toLowerCase()}</div>
               </div>
               <div className="flex items-center">
                   {dateObj !== null ? dateObj.toLocaleDateString() : 'time'}
