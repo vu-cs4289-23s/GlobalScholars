@@ -173,7 +173,7 @@ export const updateUserAsyncAction = (data) => async (dispatch) => {
 };
 
 export const googleLogin = (response) => async (dispatch) => {
-  console.log(response);
+//  console.log(response);
   const data = {
     username: response.email.split("@")[0].replace(/[^a-zA-Z0-9]/g, ""),
     first_name: response.name.split(" ")[0],

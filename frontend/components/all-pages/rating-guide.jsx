@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsInfoCircleFill } from 'react-icons/bs';
 
-const AffordabilityInfoIcon = () => {
+const RatingInfoIcon = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -15,9 +15,8 @@ const AffordabilityInfoIcon = () => {
       {showPopup && (
         <div className="absolute z-10 top-0 left-full ml-2 mt-1 p-2 bg-white border rounded shadow-md">
           <p className="text-sm">
-            $: $100-$250<br />
-            $$: $250-$400<br />
-            $$$: $400+
+            1: Awful <br />
+            5: Awesome
           </p>
         </div>
       )}
@@ -25,4 +24,4 @@ const AffordabilityInfoIcon = () => {
   );
 };
 
-export default AffordabilityInfoIcon;
+export default RatingInfoIcon;
