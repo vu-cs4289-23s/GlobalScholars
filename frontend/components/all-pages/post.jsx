@@ -17,21 +17,21 @@ import {
 } from '../../redux/comment/comment-slice.js';
 
 const ForumPost = ({
-                       key,
-                       id,
-                       username,
-                       avatar,
-                       program,
-                       title,
-                       content,
-                       likes,
-                       saves,
-                       tags,
-                       dislikes,
-                       location,
-                       comments,
-                       date,
-                   }) => {
+  key,
+  id,
+  username,
+  avatar,
+  program,
+  title,
+  content,
+  likes,
+  saves,
+  tags,
+  dislikes,
+  location,
+  comments,
+  date,
+  url, }) => {
 
     // time of post
     const [dateObj, setDateObj] = useState(null);
@@ -115,7 +115,7 @@ const ForumPost = ({
 
                   <div className="font-bold ml-2">{username}</div>
                   <div className="ml-2">in</div>
-                  <div className="font-bold ml-2">{location}</div>
+                  <div className="font-bold ml-2">{url}</div>
               </div>
               <div className="flex items-center">
                   {dateObj !== null ? dateObj.toLocaleDateString() : 'time'}
