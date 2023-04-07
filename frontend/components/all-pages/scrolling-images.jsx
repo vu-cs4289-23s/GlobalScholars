@@ -21,7 +21,12 @@ const ScrollingImages = ({images, url, rounded, forum}) => {
     console.log(`Clicking on ${ev.target.name}`);
     // Navigate to forum page for location / program clicked
     if(!forum){
-      navigate(`/forum/${ev.target.name.split(",")[0].toLowerCase()}`);
+      if (rounded) {
+        navigate(`/city/${ev.target.name.split(",")[0].toLowerCase()}`);
+      } else {
+        navigate(`/program/${ev.target.name.split(",")[0].toLowerCase()}`);
+      }
+
     }
   };
 
