@@ -52,8 +52,6 @@ export default function PriceEstimator() {
     );
   };
 
-
-
   return (
     <div id="price-estimator" className="flex h-screen w-screen">
       <SideBar />
