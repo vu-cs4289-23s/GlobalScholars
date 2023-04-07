@@ -375,7 +375,7 @@ const Post = (app) => {
    * @param {req.body.content}
    * @return {200} Updated post
    */
-  app.put("api/v1/post/edit/:id", async (req, res) => {
+  app.put("/api/v1/post/edit/:id", async (req, res) => {
     // Define post schema
     const schema = object({
       content: string().min(1).max(250),
@@ -438,8 +438,41 @@ const Post = (app) => {
    * @param {req.body.saves}
    * @return {200} Updated post
    */
-  app.put("api/v1/post/update/:id", async (req, res) => {
-    // TODO: make endpoint
+  app.put("/api/v1/post/update/:id", async (req, res) => {
+    // Verify user is logged in
+    if (!req.session.user)
+      return res.status(401).send({ error: "unauthorized" });
+
+    // Increment likes, dislikes, or saves count
+    let postQuery;
+    let userQuery;
+    if (req.body.likes) {
+      postQuery = { $push: { likes: req.session.user.id } };
+      userQuery = { $push: { likes: req.params.id } };
+    }
+    if (req.body.dislikes) {
+      postQuery = { $push: { dislikes: req.session.user.id } };
+      userQuery = { $push: { dislikes: req.params.id } };
+    }
+    if (req.body.saves) {
+      postQuery = { $push: { saves: req.session.user.id } };
+      userQuery = { $push: { saves: req.params.id } };
+    }
+
+    try {
+      // Update Post document
+      const post =  await app.models.Post.findByIdAndUpdate(req.params.id, postQuery);
+      // Update User document
+      await app.models.User.findByIdAndUpdate(req.params.id, userQuery);
+
+      // Send success to client
+      res.status(204).send(post);
+    } catch (err) {
+      console.log(
+        `Post.update post not found: ${req.params.id}`
+      );
+      res.status(500).end();
+    }
   });
 };
 

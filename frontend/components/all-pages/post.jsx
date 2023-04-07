@@ -15,6 +15,7 @@ import {
     resetComment,
     submitNewComment,
 } from '../../redux/comment/comment-slice.js';
+import { updatePostStats } from "../../redux/post/post-slice.js";
 
 const ForumPost = ({
   key,
@@ -41,17 +42,15 @@ const ForumPost = ({
     }, [date]);
 
     // likes
-    const [numLikes, setNumLikes] = useState(100);
+    const [numLikes, setNumLikes] = useState(0);
     useEffect(() => {
-        // setNumLikes(likes.length);
-        setNumLikes(0);
+      setNumLikes(likes ? likes.length : 0);
     }, [likes]);
 
     // dislikes
-    const [numDislikes, setNumDislikes] = useState(100);
+    const [numDislikes, setNumDislikes] = useState(0);
     useEffect(() => {
-        // setNumDislikes(likes.length);
-        setNumDislikes(0);
+        setNumDislikes(dislikes ? dislikes.length : 0);
     }, [dislikes]);
 
     // comments
@@ -95,6 +94,24 @@ const ForumPost = ({
 
     // TODO: check if the current user has liked, disliked, or saved the post, if so, change the icon
 
+  const like = () => {
+    dispatch(updatePostStats(id, {
+      likes: true,
+    }));
+  };
+
+  const dislike = () => {
+    dispatch(updatePostStats(id, {
+      dislikes: true,
+    }));
+  };
+
+  const save = () => {
+    dispatch(updatePostStats(id, {
+      saves: true,
+    }));
+  };
+
     return (
       <div className="flex rounded-lg w-bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between flex-col">
           <div className="flex mb-2 justify-between">
@@ -128,7 +145,7 @@ const ForumPost = ({
           >
               <div className="font-bold m-2">{title}</div>
               <div className="mx-2">{content}</div>
-              <div className="m-2">
+              <div className="flex m-2">
                   {tags &&
                     tags.map((tag, index) => (
                       <Tag color={'red-400'} content={tag} name={tag} key={index} />
@@ -167,15 +184,17 @@ const ForumPost = ({
                     </button>
                   ) : (
                     <div className="flex justify-center align-middle items-center">
-                        <BsHandThumbsUp height={80} width={80} className="h-6 w-6 m-2" />
+                        <BsHandThumbsUp height={80} width={80} className="h-6 w-6 m-2" onClick={like}
+                        />
                         <div id="num-likes">{numLikes}</div>
                         <BsHandThumbsDown
                           height={80}
                           width={80}
                           className="h-6 w-6 m-2"
+                          onClick={dislike}
                         />
                         <div id="num-dislikes">{numDislikes}</div>
-                        <BsBookmark height={80} width={80} className="h-6 w-6 m-2" />
+                        <BsBookmark height={80} width={80} className="h-6 w-6 m-2" onClick={save} />
                     </div>
                   )}
               </form>
