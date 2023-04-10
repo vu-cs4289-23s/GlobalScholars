@@ -321,17 +321,17 @@ const CityPost = () => {
                             <div className="w-[15%]">Affordability:</div>
                             <div className="space-x-3 flex justify-center">
                             {(affordabilityRating !== undefined && affordabilityRating >= 1) ? (
-                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(1)} />
+                                <FaDollarSign size={30} color={"rgb(11,155,29)"} onClick={() => setAffordabilityRating(1)} />
                             ) : (
                                 <FaDollarSign size={30} onClick={() => setAffordabilityRating(1)} />
                             )}
                             {(affordabilityRating !== undefined && affordabilityRating >= 2) ? (
-                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(2)} />
+                                <FaDollarSign size={30} color={"rgb(11,155,29)"} onClick={() => setAffordabilityRating(2)} />
                             ) : (
                                 <FaDollarSign size={30} onClick={() => setAffordabilityRating(2)} />
                             )}
                             {(affordabilityRating !== undefined && affordabilityRating >= 3) ? (
-                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(3)} />
+                                <FaDollarSign size={30} color={"rgb(11,155,29)"} onClick={() => setAffordabilityRating(3)} />
                             ) : (
                                 <FaDollarSign size={30} onClick={() => setAffordabilityRating(3)} />
                             )}
