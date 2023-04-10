@@ -89,14 +89,14 @@ export default function CityForumPage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll">
+    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll bg-blue-light">
       <SideBar />
       <div>
         <img
           className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%] ">
+        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
           <CityDescription
             description={location.description}
             city={location.city}
@@ -116,6 +116,7 @@ export default function CityForumPage() {
                       key={index}
                       id={post._id}
                       username={post.owner ? post.owner.username : "" }
+                      title={post.title}
                       content={post.content}
                       likes={post.likes}
                       saves={post.saves}
