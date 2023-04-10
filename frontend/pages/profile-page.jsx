@@ -65,7 +65,7 @@ export default function ProfilePage() {
             className="flex h-[30%] w-screen sm:w-full object-center object-cover"
             src="/landing-background.avif"
         />
-        <div className="absolute top-40 z-1 w-[75%] overflow-scroll h-[80%] sm:h-[77%]">
+        <div className="absolute top-40 z-1 w-[75%] overflow-scroll h-[80%] sm:h-[78%]">
           <ProfileBio />
           <div className="flex justify-center rounded-lg bg-white mx-4 p-2 px-4 my-4 sm:flex-row sm:mx-20">
               <div id="my_posts" className="flex border-black rounded-lg border-2 p-2 m-auto hover:bg-gray-200" onClick={() => setMyPosts(true)}>
