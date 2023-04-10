@@ -1,19 +1,19 @@
 import SideBar from "../components/all-pages/sidebar";
 import { useParams, useNavigate } from "react-router-dom";
 import ProfileBio from "../components/profile-page/profile-bio";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileModal from "../components/profile-page/profile-modal";
-import Reviews from "../components/profile-page/reviews";
 import { getPostByIdAsyncAction, getPostsByUserAsyncAction } from "../redux/post/post-slice.js";
 import TabbedFolder from "../components/price-estimator/trip-folder";
+import ForumPost from "../components/all-pages/post.jsx";
+import {BsList, BsFillBookmarkFill} from "react-icons/bs";
 
 const tabs = [
   { title: 'My Posts' },
   { title: 'Saved Posts' },
 ];
-
 
 
 export default function ProfilePage() {
@@ -27,6 +27,7 @@ export default function ProfilePage() {
   };
   const [modalOpen, setModalOpen] = useState(false);
   let [posts, setPosts] = useState([]);
+  let [myPosts, setMyPosts] = useState(true);
 
   useEffect(() => {
     if (success && !loggedIn) {
@@ -57,56 +58,52 @@ export default function ProfilePage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex overflow-y-hidden overscroll-y-none h-screen w-screen ">
+    <div id="profile-page" className="flex overflow-x-hidden h-screen w-screen bg-blue-light">
       <SideBar />
-      <div className="w-screen h-screen bg-slate-400">
-        <div
-          id="header"
-          className="flex w-full h-[30%] justify-center text-4xl "
-        >
-          {!loading ? (
-            <ProfileBio />
-          ) : (
-            <div className="flex justify-center items-center h-screen">
-              <h1 className="text-4xl text-slate-600">Loading...</h1>
-            </div>
-          )}
-        </div>
-        <div
-          id="contents"
-          className="flex flex-col  justify-center text-4xl bg-white"
-        >
-          <div className="flex w-full justify-between p-4 bg-slate-400">
-            {/* <div>
-              <button className="text-sm sm:text-2xl " onClick={populatePosts} name="posts">Posts</button>
-              <button className="text-sm sm:text-2xl " onClick={populatePosts} name="saves">Saves</button>
-            </div> */}
-            <p className="text-sm sm:text-base">{posts & posts.length > 0 ? "count total likes" : ""}</p>
-          </div>
-        </div>
-        {posts && posts.length > 0 ? (
-            <div className=" overflow-scroll h-[60%] sm:h-[70%] ">
-              <TabbedFolder tabs={tabs} card={
-              <div>
-              {posts.map((post, index) => (
-                  <Reviews
-                  key={index}
-                  id={post._id}
-                  username={post.owner ? post.owner.username : "" }
-                  program={post.program}
-                  content={post.content}
-                  likes={post.likes}
-                  saves={post.saves}
-                  tags={post.tags}
-                  dislikes={post.dislikes}
-                  location={post.location}
-                  comments={post.comments}
-                  date={post.timestamp}/>  
-              ))}
+      <div className="w-full h-screen -mx-2 flex justify-center overflow-y-scroll overflow-x-hidden">
+        <img
+            className="flex h-[30%] w-screen sm:w-full object-center object-cover"
+            src="/landing-background.avif"
+        />
+        <div className="absolute top-36 w-[65%] space">
+          <ProfileBio />
+          <div className="flex justify-center rounded-lg bg-white mx-4 p-2 px-4 my-4 sm:flex-row sm:mx-20 flex-col">
+
+              <div id="my_posts" className="flex border-black rounded-lg border-2 p-2 m-auto hover:bg-gray-200" onClick={() => setMyPosts(true)}>
+                <BsList size={24} />
+                <div className="font-bold text-[18px]">My Posts</div>
               </div>
-            } />
-            </div>
-        ) : null}
+              <div id="saved_posts" className="flex border-black rounded-lg border-2 p-2 m-auto hover:bg-gray-200" onClick={() => setMyPosts(false)}>
+                <BsFillBookmarkFill size={24} />
+                <div className="font-bold text-[18px]">Saved Posts</div>
+              </div>
+
+          </div>
+          <div>
+            {myPosts ? "My posts" : "Saved Posts"}
+          </div>
+          {posts && posts.length > 0 ? (
+              <div>
+                {posts.map((post, index) => (
+                    <ForumPost
+                        key={index}
+                        id={post._id}
+                        username={post.owner ? post.owner.username : "" }
+                        program={post.program}
+                        title={post.title}
+                        content={post.content}
+                        likes={post.likes}
+                        saves={post.saves}
+                        tags={post.tags}
+                        dislikes={post.dislikes}
+                        location={post.location}
+                        comments={post.comments}
+                        date={post.timestamp}
+                    />
+                ))}
+              </div>
+          ) : null}
+        </div>
       </div>
 
       {modalOpen ? (
