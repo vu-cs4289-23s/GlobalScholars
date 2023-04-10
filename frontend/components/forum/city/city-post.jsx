@@ -9,7 +9,10 @@ import images from "../../../../images.js";
 import tw from "tailwind-styled-components";
 import {city_tags} from "../../../../data.js";
 import {BsStar, BsStarFill} from "react-icons/bs";
-
+import {BsInfoCircleFill  } from 'react-icons/bs';
+import { FaDollarSign } from 'react-icons/fa';
+import AffordabilityInfoIcon from "../../all-pages/pricing-guide.jsx";
+import RatingInfoIcon from "../../all-pages/rating-guide.jsx";
 
 export const MakePostBox = tw.div`
     flex 
@@ -73,9 +76,8 @@ const CityPost = () => {
     let [postAnon, setPostAnon] = useState("current-user");
 
     const [overallRating, setOverallRating] = useState(undefined);
-    const [safetyRating, setSafetyRating] = useState(undefined);
     const [affordabilityRating, setAffordabilityRating] = useState(undefined);
-    const [sightsRating, setSightsRating] = useState(undefined);
+  
 
     let [error, setError] = useState("");
     let [state, setState] = useState({
@@ -85,10 +87,7 @@ const CityPost = () => {
         city: "",
         program_name: "",
         overall_rating: 0,
-        safety_rating: 0,
         affordability_rating: 0,
-        sightseeing_rating: 0,
-        top_tags: [],
     });
 
 
@@ -122,6 +121,7 @@ const CityPost = () => {
             content: state.content,
             city: state.city,
             program_name: state.program_name,
+            // pass in overallRating and affordabilityRating values to update to city model
         }
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
@@ -130,7 +130,7 @@ const CityPost = () => {
             const forumNav = state.city;
             // reset post state
             dispatch(resetPost());
-            navigate(`/forum/${forumNav}`);
+            navigate(`/city/${forumNav}`);
         }
     };
 
@@ -291,10 +291,10 @@ const CityPost = () => {
                     </FormInputSectionTitle>
                     {/* Overall */}
                     <FormRatingContainer>
-                        <div className="m-2 flex justify-between text-center align-middle">
-                            <div className="w-[15%]">Overall:</div>
-                            <div className="text-[10px]"> 1 - Awful </div>
-                            <div className="space-x-3 flex justify-around">
+                        <div className="m-2 flex text-center  align-middle">
+                            <div className="w-[15%]">Overall Experience:</div>
+                            {/*<div className="text-[10px]"> 1 - Awful </div>*/}
+                            <div className="space-x-3 flex justify-center">
                                 {(overallRating !== undefined && overallRating >= 1) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(1)} /> :
                                     <BsStar size={30} onClick={() => setOverallRating(1)} /> }
@@ -310,83 +310,33 @@ const CityPost = () => {
                                 {(overallRating !== undefined && overallRating >= 5) ?
                                     <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setOverallRating(5)} /> :
                                     <BsStar size={30} onClick={() => setOverallRating(5)} /> }
+                                <RatingInfoIcon/>
                             </div>
-                            <div className="text-[10px]"> 5 - Awesome </div>
-                        </div>
-                    </FormRatingContainer>
-                    {/* Safety */}
-                    <FormRatingContainer>
-                        <div className="m-2 flex justify-between text-center align-middle">
-                            <div className="w-[15%]">Safety:</div>
-                            <div className="text-[10px]"> 1 - Dangerous </div>
-                            <div className="space-x-3 flex justify-around">
-                                {(safetyRating !== undefined && safetyRating >= 1) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(1)} /> :
-                                    <BsStar size={30} onClick={() => setSafetyRating(1)} /> }
-                                {(safetyRating !== undefined && safetyRating >= 2) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(2)} /> :
-                                    <BsStar size={30} onClick={() => setSafetyRating(2)} /> }
-                                {(safetyRating !== undefined && safetyRating >= 3) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(3)} /> :
-                                    <BsStar size={30} onClick={() => setSafetyRating(3)} /> }
-                                {(safetyRating !== undefined && safetyRating >= 4) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(4)} /> :
-                                    <BsStar size={30} onClick={() => setSafetyRating(4)} /> }
-                                {(safetyRating !== undefined && safetyRating >= 5) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSafetyRating(5)} /> :
-                                    <BsStar size={30} onClick={() => setSafetyRating(5)} /> }
-                            </div>
-                            <div className="text-[10px]"> 5 - Very Safe </div>
+                            {/*<div className="text-[10px]"> 5 - Awesome </div>*/}
                         </div>
                     </FormRatingContainer>
                     {/* Affordability */}
                     <FormRatingContainer>
-                        <div className="m-2 flex justify-between text-center align-middle">
+                        <div className="m-2 flex text-center  align-middle">
                             <div className="w-[15%]">Affordability:</div>
-                            <div className="text-[10px]"> 1 - Overpriced </div>
-                            <div className="space-x-3 flex justify-around">
-                                {(affordabilityRating !== undefined && affordabilityRating >= 1) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(1)} /> :
-                                    <BsStar size={30} onClick={() => setAffordabilityRating(1)} /> }
-                                {(affordabilityRating !== undefined && affordabilityRating >= 2) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(2)} /> :
-                                    <BsStar size={30} onClick={() => setAffordabilityRating(2)} /> }
-                                {(affordabilityRating !== undefined && affordabilityRating >= 3) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(3)} /> :
-                                    <BsStar size={30} onClick={() => setAffordabilityRating(3)} /> }
-                                {(affordabilityRating !== undefined && affordabilityRating >= 4) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(4)} /> :
-                                    <BsStar size={30} onClick={() => setAffordabilityRating(4)} /> }
-                                {(affordabilityRating !== undefined && affordabilityRating >= 5) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(5)} /> :
-                                    <BsStar size={30} onClick={() => setAffordabilityRating(5)} /> }
+                            <div className="space-x-3 flex justify-center">
+                            {(affordabilityRating !== undefined && affordabilityRating >= 1) ? (
+                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(1)} />
+                            ) : (
+                                <FaDollarSign size={30} onClick={() => setAffordabilityRating(1)} />
+                            )}
+                            {(affordabilityRating !== undefined && affordabilityRating >= 2) ? (
+                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(2)} />
+                            ) : (
+                                <FaDollarSign size={30} onClick={() => setAffordabilityRating(2)} />
+                            )}
+                            {(affordabilityRating !== undefined && affordabilityRating >= 3) ? (
+                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(3)} />
+                            ) : (
+                                <FaDollarSign size={30} onClick={() => setAffordabilityRating(3)} />
+                            )}
+                            <AffordabilityInfoIcon/>
                             </div>
-                            <div className="text-[10px]"> 5 - Cheap </div>
-                        </div>
-                    </FormRatingContainer>
-                    {/* Sights */}
-                    <FormRatingContainer>
-                        <div className="m-2 flex justify-between text-center align-middle">
-                            <div className="w-[15%]">Sightseeing:</div>
-                            <div className="text-[10px]"> 1 - Boring </div>
-                            <div className="space-x-3 flex justify-around">
-                                {(sightsRating !== undefined && sightsRating >= 1) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(1)} /> :
-                                    <BsStar size={30} onClick={() => setSightsRating(1)} /> }
-                                {(sightsRating !== undefined && sightsRating >= 2) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(2)} /> :
-                                    <BsStar size={30} onClick={() => setSightsRating(2)} /> }
-                                {(sightsRating !== undefined && sightsRating >= 3) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(3)} /> :
-                                    <BsStar size={30} onClick={() => setSightsRating(3)} /> }
-                                {(sightsRating !== undefined && sightsRating >= 4) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(4)} /> :
-                                    <BsStar size={30} onClick={() => setSightsRating(4)} /> }
-                                {(sightsRating !== undefined && sightsRating >= 5) ?
-                                    <BsStarFill size={30} color={"rgb(245, 235, 163)"} onClick={() => setSightsRating(5)} /> :
-                                    <BsStar size={30} onClick={() => setSightsRating(5)} /> }
-                            </div>
-                            <div className="text-[10px]"> 5 - Lots to see </div>
                         </div>
                     </FormRatingContainer>
                 </FormInputSectionContainer>

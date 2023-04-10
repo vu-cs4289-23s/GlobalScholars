@@ -77,9 +77,7 @@ const SearchBarModal = ({ setModal, modal }) => {
   }, []);
 
   const onClick = (ev) => {
-    console.log(`Clicking on ${ev.target.name}`);
-    // Navigate to forum page for location / program clicked
-    navigate(`/forum/${ev.target.name}`);
+    // TODO make the tags clickable and navigate somewhere
   };
 
   return (
@@ -125,8 +123,7 @@ const SearchBarModal = ({ setModal, modal }) => {
                 <a
                   className="dataItem w-full h-full "
                   // href={value["Program Link"]}
-                  href={`/forum/${value["Program Name"]}`}
-                  target="_blank"
+                  href={`/program/${value["Program Name"]}`}
                   key={key}
                 >
                   <div
@@ -150,9 +147,37 @@ const SearchBarModal = ({ setModal, modal }) => {
                 </a>
               );
             })}
+            {filteredData.slice(0, 15).map((value, key) => {
+              return (
+                <a
+                  className="dataItem w-full h-full "
+                  // href={value["Program Link"]}
+                  href={`/city/${value["City"]}`}
+                  key={key}
+                >
+                  <div
+                    className={`w-full h-full flex justify-center items-center bg-${
+                      colors[key % colors.length]
+                    }-100 cursor-pointer hover:text-black rounded transition linear  hover:-translate-y-1  hover:bg-${
+                      colors[key % colors.length]
+                    }-500 duration-100  `}
+                  >
+                    {/* <img
+                      src={value["Image Link"]}
+                      alt="program image"
+                      className="h-12 w-12 rounded-full mr-2"
+                    /> */}
+                    <p
+                      className={`w-full h-full  text-sm md:text-md lg:text-lg font-semibold text-gray-600 mr-2  hover:scale-105 `}
+                    >
+                      {value["City"]}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         )}
-
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 justify-between mx-12 pt-6 ">
           {tags.map((tag, i) => (
             <span
