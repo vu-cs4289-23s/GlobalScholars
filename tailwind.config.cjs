@@ -28,6 +28,7 @@ module.exports = {
     "shadow-rose-200",
     "shadow-indigo-200",
     "shadow-pink-200",
+    {pattern: /(bg|text|border)-(star-yellow|pumpkin|pure-orange|peach|dark-yellow|yellow-green|sea-foam|electric-lime|teal|dark-teal|light-blue|medium-blue|dark-blue|light-lavender|lavender|dark-lavender|baby-pink|dark-pink|pink-cream|light-gray)/}
   ],
   content: ["./index.html", "./frontend/**/*.{js,ts,jsx,tsx}"],
   theme: {
