@@ -172,6 +172,64 @@ const CityPost = () => {
                         </div>
                     </div>
                 </div>
+                {/* Location/Program Selector */}
+                <div className="flex border-black border-2 rounded-lg flex-col my-1">
+                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
+                        <div
+                            onClick={() => setOpen(!open)}
+                            className={`bg-white w-full p-2 flex items-center justify-between rounded ${
+                                !selected && "text-gray-700"
+                            }`}
+                        >
+                        {selected
+                            ? selected?.length > 25
+                                ? selected?.substring(0, 25) + "..."
+                                : selected
+                            : "Select Location"}
+                            <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+                    </div>
+                    <ul
+                        className={`bg-white mt-2 overflow-y-auto ${
+                            open ? "max-h-60" : "max-h-0"
+                        } `}
+                    >
+                    <div className="flex items-center px-2 sticky top-0 bg-white">
+                        <AiOutlineSearch size={18} className="text-gray-700" />
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value.toLowerCase())}
+                            placeholder="Enter location name"
+                            className="placeholder:text-gray-700 p-2 outline-none"
+                        />
+                    </div>
+                        {locations?.map((city) => (
+                            <li
+                                key={city?.name}
+                                className={`p-2 text-sm hover:bg-sky-600 hover:text-white
+                    ${
+                                    city?.name?.toLowerCase() === selected?.toLowerCase() &&
+                                    "bg-sky-600 text-white"
+                                }
+                    ${
+                                    city?.name?.toLowerCase().startsWith(inputValue)
+                                        ? "block"
+                                        : "hidden"
+                                }`}
+                                onClick={() => {
+                                    if (city?.name?.toLowerCase() !== selected.toLowerCase()) {
+                                        setSelected(city?.name);
+                                        setOpen(false);
+                                        setInputValue("");
+                                    }
+                                }}
+                            >
+                                {city?.name}
+                            </li>
+                        ))}
+                </ul>
+                </div>
+                </div>
                 {/* Post Title */}
                 <FormInputSectionContainer>
                     <FormInputSectionTitle>
@@ -191,65 +249,6 @@ const CityPost = () => {
                         />
                     </div>
                 </FormInputSectionContainer>
-                
-                {/* Location/Program Selector */}
-                <div className="flex border-black border-2 rounded-lg flex-col my-1">
-                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
-                        <div
-                            onClick={() => setOpen(!open)}
-                            className={`bg-white w-full p-2 flex items-center justify-between rounded ${
-                                !selected && "text-gray-700"
-                            }`}
-                        >
-                        {selected
-                            ? selected?.length > 25
-                            ? selected?.substring(0, 25) + "..."
-                            : selected
-                            : "Select Location"}
-                        <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
-                    </div>
-                    <ul
-                     className={`bg-white mt-2 overflow-y-auto ${
-                        open ? "max-h-60" : "max-h-0"
-                     } `}
-                    >
-                    <div className="flex items-center px-2 sticky top-0 bg-white">
-                        <AiOutlineSearch size={18} className="text-gray-700" />
-                        <input
-                            type="text"
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value.toLowerCase())}
-                            placeholder="Enter location name"
-                            className="placeholder:text-gray-700 p-2 outline-none"
-                        />
-                    </div>
-                        {locations?.map((city) => (
-                        <li
-                        key={city?.name}
-                        className={`p-2 text-sm hover:bg-sky-600 hover:text-white
-                    ${
-                        city?.name?.toLowerCase() === selected?.toLowerCase() &&
-                        "bg-sky-600 text-white"
-                    }
-                    ${
-                        city?.name?.toLowerCase().startsWith(inputValue)
-                        ? "block"
-                        : "hidden"
-                    }`}
-                    onClick={() => {
-                        if (city?.name?.toLowerCase() !== selected.toLowerCase()) {
-                            setSelected(city?.name);
-                            setOpen(false);
-                            setInputValue("");
-                        }
-                    }}
-                    >
-                            {city?.name}
-                </li>
-                ))}
-                </ul>
-                </div>
-                </div>
                 {/* Post Review */}
                 <FormInputSectionContainer>
                     <FormInputSectionTitle>
