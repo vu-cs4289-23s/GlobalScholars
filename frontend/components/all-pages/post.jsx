@@ -96,10 +96,9 @@ const ForumPost = ({
     // TODO: check if the current user has liked, disliked, or saved the post, if so, change the icon
 
     return (
-      <div className="flex rounded-lg w-bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between flex-col">
-          <div className="flex mb-2 justify-between">
-              <div
-                className="flex items-center"
+        <div className="flex rounded-lg bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between flex-col">
+            <div className="flex mb-2 justify-between">
+                <div className="flex items-center"
                 onClick={userClick}
                 style={{ cursor: 'pointer' }}
               >
@@ -128,7 +127,7 @@ const ForumPost = ({
           >
               <div className="font-bold m-2">{title}</div>
               <div className="mx-2">{content}</div>
-              <div className="m-2">
+              <div className="flex m-2">
                   {tags &&
                     tags.map((tag, index) => (
                       <Tag color={'red-400'} content={tag} name={tag} key={index} />

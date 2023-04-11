@@ -105,6 +105,7 @@ export default function ProgramForumPage() {
                 id={post._id}
                 avatar={post.owner ? post.owner.avatar_url : "" }
                 username={post.owner ? post.owner.username : "" }
+                title={post.title}
                 content={post.content}
                 likes={post.likes}
                 saves={post.saves}
