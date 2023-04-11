@@ -127,7 +127,7 @@ const ForumPost = ({
           >
               <div className="font-bold m-2">{title}</div>
               <div className="mx-2">{content}</div>
-              <div className="m-2">
+              <div className="flex m-2">
                   {tags &&
                     tags.map((tag, index) => (
                       <Tag color={'red-400'} content={tag} name={tag} key={index} />
