@@ -16,8 +16,8 @@ const Tag = ({ name, content, color, onClick }) => {
   ];
 
   return (
-    <div name={name} className={tag.join(" ")} onClick={onClick}>
-      <div name={name} className="mx-2 my-1">{content}</div>
+    <div id={name} className={tag.join(" ")} onClick={onClick}>
+      <div id={name} className="mx-2 my-1">{content}</div>
     </div>
   );
 };

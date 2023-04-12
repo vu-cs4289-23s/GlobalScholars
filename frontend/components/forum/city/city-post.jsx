@@ -103,13 +103,14 @@ const CityPost = () => {
         setLocations(images);
     }, []);
 
-    const onClickTag = (id) => {
-        console.log(id);
+    const onClickTag = (ev) => {
+        //console.log(id);
+        console.log(ev.target.id);
     }
 
     const tags = city_tags.map((tag, i) => {
         return (
-            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag(tag.id)} />
+            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
         );
     });
 

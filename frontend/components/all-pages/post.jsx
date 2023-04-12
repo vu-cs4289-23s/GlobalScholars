@@ -93,6 +93,12 @@ const ForumPost = ({
         }
     };
 
+    // const forumClick = (ev) => {
+    //     if (url) {
+    //         navigate(`${url}`);
+    //     }
+    // };
+
     // TODO: check if the current user has liked, disliked, or saved the post, if so, change the icon
 
   const like = () => {
@@ -126,7 +132,6 @@ const ForumPost = ({
         <div className="flex rounded-lg bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between flex-col">
             <div className="flex mb-2 justify-between">
                 <div className="flex items-center"
-                onClick={userClick}
                 style={{ cursor: 'pointer' }}
               >
                   <img
@@ -139,7 +144,7 @@ const ForumPost = ({
                     }}
                   />
 
-                  <div className="font-bold ml-2">{username}</div>
+                  <div className="font-bold ml-2" onClick={userClick}>{username}</div>
                   <div className="ml-2">in</div>
                   <div className="font-bold ml-2">{url.replace(/\s/g, '').toLowerCase()}</div>
               </div>
