@@ -1,25 +1,31 @@
-import { Popup, Marker } from "react-map-gl";
-import { useState } from "react";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { Popup, Marker } from 'react-map-gl';
+import { useState } from 'react';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
-const PopUpContainer = ({ longitude, latitude, city, country }) => {
+const PopUpContainer = ({
+  longitude,
+  latitude,
+  city,
+  country,
+  overall_rating,
+  affordability_rating,
+  selected,
+}) => {
   const [showPopUps, setShowPopUps] = useState(false);
-  const GetRandomPrice = () => {
-    const min = 100;
-    const max = 10000;
-    const randomPrice = Math.floor(Math.random() * (max - min + 1) + min);
-    return randomPrice;
-  };
+
   return (
-    <div>
-      <div
-        onMouseOver={() => setShowPopUps(true)}
-        onMouseLeave={() => setShowPopUps(false)}
-      >
+    <div
+      onMouseOver={() => setShowPopUps(true)}
+      onMouseLeave={() => setShowPopUps(false)}
+    >
+      <div>
         <Marker longitude={longitude} latitude={latitude} anchor="bottom">
           <FaMapMarkerAlt
-            className="text-lg hover:scale-110 transition ease-in-out duration-[100]"
-            style={{ fill: "red" }}
+            className={`text-xl cursor-auto ${
+              selected === city &&
+              'animate-bounce text-4xl duration-500 ease-in-out '
+            }`}
+            style={{ fill: 'red' }}
           />
         </Marker>
       </div>
@@ -36,7 +42,8 @@ const PopUpContainer = ({ longitude, latitude, city, country }) => {
             <p>
               {city}, {country}
             </p>
-            <p>${GetRandomPrice()}</p>
+            <p>Affordability: {affordability_rating.toFixed(2)}</p>
+            <p>Overall: {overall_rating.toFixed(2)}</p>
           </div>
         </Popup>
       )}

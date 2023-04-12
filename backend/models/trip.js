@@ -1,9 +1,12 @@
 import { Schema, model } from 'mongoose';
 
 const Trip = new Schema({
+  owner: { type: Schema.ObjectId, ref: 'User', required: true },
   title: { type: String, default: '' },
-  rating: { type: Number, default: 0 },
-  cost: { type: Number, default: 0 },
+  location: { type: Schema.ObjectId, ref: 'Location', required: true },
+  timestamp: { type: Date, default: Date.now },
+  overall_rating: { type: Number, default: 0 },
+  affordability_rating: { type: Number, default: 0 },
 
   saves: [
     {
@@ -11,10 +14,8 @@ const Trip = new Schema({
       ref: 'User',
     },
   ],
-  location: { type: Schema.ObjectId, ref: 'Location' },
-  cheapest_month: { type: [String], default: [] },
-
-  cost_by_month: { type: [String], default: [] },
+  start_date: { type: Number },
+  end_date: { type: Number },
 });
 
 export default model('Trip', Trip);
