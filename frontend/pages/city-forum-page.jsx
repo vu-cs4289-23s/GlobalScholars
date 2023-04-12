@@ -82,12 +82,12 @@ export default function CityForumPage() {
 
   // set posts react state with postInfo from redux state
   useEffect(() => {
-    console.log(postInfo);
+  //  console.log(postInfo);
     setPosts(postInfo);
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll">
+    <div id="forum-page" className="flex h-screen w-screen overflow-y-scroll bg-blue-light">
       <SideBar />
       <div>
         <img
@@ -114,6 +114,7 @@ export default function CityForumPage() {
                       id={post._id}
                       avatar={post.owner ? post.owner.avatar_url : "" }
                       username={post.owner ? post.owner.username : "" }
+                      title={post.title}
                       content={post.content}
                       likes={post.likes}
                       saves={post.saves}

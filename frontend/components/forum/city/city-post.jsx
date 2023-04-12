@@ -77,6 +77,7 @@ const CityPost = () => {
 
     const [overallRating, setOverallRating] = useState(undefined);
     const [affordabilityRating, setAffordabilityRating] = useState(undefined);
+    let [tagsState, setTagsState] = useState([]);
   
 
     let [error, setError] = useState("");
@@ -102,14 +103,13 @@ const CityPost = () => {
         setLocations(images);
     }, []);
 
-    const onClickTag = (ev) => {
-        console.log(`Tag: ${ev.target.name}`);
-        ev.stopPropagation();
+    const onClickTag = (id) => {
+        console.log(id);
     }
 
     const tags = city_tags.map((tag, i) => {
         return (
-            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
+            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag(tag.id)} />
         );
     });
 
@@ -119,7 +119,6 @@ const CityPost = () => {
             title: state.title,
             content: state.content,
             city: state.city,
-            // pass in overallRating and affordabilityRating values to update to city model
         }
         console.log(`Posting...`);
         dispatch(submitNewForumPost(post));
@@ -170,6 +169,64 @@ const CityPost = () => {
                         </div>
                     </div>
                 </div>
+                {/* Location/Program Selector */}
+                <div className="flex border-black border-2 rounded-lg flex-col my-1">
+                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
+                        <div
+                            onClick={() => setOpen(!open)}
+                            className={`bg-white w-full p-2 flex items-center justify-between rounded ${
+                                !selected && "text-gray-700"
+                            }`}
+                        >
+                        {selected
+                            ? selected?.length > 25
+                                ? selected?.substring(0, 25) + "..."
+                                : selected
+                            : "Select Location"}
+                            <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+                    </div>
+                    <ul
+                        className={`bg-white mt-2 overflow-y-auto ${
+                            open ? "max-h-60" : "max-h-0"
+                        } `}
+                    >
+                    <div className="flex items-center px-2 sticky top-0 bg-white">
+                        <AiOutlineSearch size={18} className="text-gray-700" />
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value.toLowerCase())}
+                            placeholder="Enter location name"
+                            className="placeholder:text-gray-700 p-2 outline-none"
+                        />
+                    </div>
+                        {locations?.map((city) => (
+                            <li
+                                key={city?.name}
+                                className={`p-2 text-sm hover:bg-sky-600 hover:text-white
+                    ${
+                                    city?.name?.toLowerCase() === selected?.toLowerCase() &&
+                                    "bg-sky-600 text-white"
+                                }
+                    ${
+                                    city?.name?.toLowerCase().startsWith(inputValue)
+                                        ? "block"
+                                        : "hidden"
+                                }`}
+                                onClick={() => {
+                                    if (city?.name?.toLowerCase() !== selected.toLowerCase()) {
+                                        setSelected(city?.name);
+                                        setOpen(false);
+                                        setInputValue("");
+                                    }
+                                }}
+                            >
+                                {city?.name}
+                            </li>
+                        ))}
+                </ul>
+                </div>
+                </div>
                 {/* Post Title */}
                 <FormInputSectionContainer>
                     <FormInputSectionTitle>
@@ -189,65 +246,6 @@ const CityPost = () => {
                         />
                     </div>
                 </FormInputSectionContainer>
-                
-                {/* Location/Program Selector */}
-                <div className="flex border-black border-2 rounded-lg flex-col my-1">
-                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
-                        <div
-                            onClick={() => setOpen(!open)}
-                            className={`bg-white w-full p-2 flex items-center justify-between rounded ${
-                                !selected && "text-gray-700"
-                            }`}
-                        >
-                        {selected
-                            ? selected?.length > 25
-                            ? selected?.substring(0, 25) + "..."
-                            : selected
-                            : "Select Location"}
-                        <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
-                    </div>
-                    <ul
-                     className={`bg-white mt-2 overflow-y-auto ${
-                        open ? "max-h-60" : "max-h-0"
-                     } `}
-                    >
-                    <div className="flex items-center px-2 sticky top-0 bg-white">
-                        <AiOutlineSearch size={18} className="text-gray-700" />
-                        <input
-                            type="text"
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value.toLowerCase())}
-                            placeholder="Enter location name"
-                            className="placeholder:text-gray-700 p-2 outline-none"
-                        />
-                    </div>
-                        {locations?.map((city) => (
-                        <li
-                        key={city?.name}
-                        className={`p-2 text-sm hover:bg-sky-600 hover:text-white
-                    ${
-                        city?.name?.toLowerCase() === selected?.toLowerCase() &&
-                        "bg-sky-600 text-white"
-                    }
-                    ${
-                        city?.name?.toLowerCase().startsWith(inputValue)
-                        ? "block"
-                        : "hidden"
-                    }`}
-                    onClick={() => {
-                        if (city?.name?.toLowerCase() !== selected.toLowerCase()) {
-                            setSelected(city?.name);
-                            setOpen(false);
-                            setInputValue("");
-                        }
-                    }}
-                    >
-                            {city?.name}
-                </li>
-                ))}
-                </ul>
-                </div>
-                </div>
                 {/* Post Review */}
                 <FormInputSectionContainer>
                     <FormInputSectionTitle>
@@ -320,17 +318,17 @@ const CityPost = () => {
                             <div className="w-[15%]">Affordability:</div>
                             <div className="space-x-3 flex justify-center">
                             {(affordabilityRating !== undefined && affordabilityRating >= 1) ? (
-                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(1)} />
+                                <FaDollarSign size={30} color={"rgb(11,155,29)"} onClick={() => setAffordabilityRating(1)} />
                             ) : (
                                 <FaDollarSign size={30} onClick={() => setAffordabilityRating(1)} />
                             )}
                             {(affordabilityRating !== undefined && affordabilityRating >= 2) ? (
-                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(2)} />
+                                <FaDollarSign size={30} color={"rgb(11,155,29)"} onClick={() => setAffordabilityRating(2)} />
                             ) : (
                                 <FaDollarSign size={30} onClick={() => setAffordabilityRating(2)} />
                             )}
                             {(affordabilityRating !== undefined && affordabilityRating >= 3) ? (
-                                <FaDollarSign size={30} color={"rgb(245, 235, 163)"} onClick={() => setAffordabilityRating(3)} />
+                                <FaDollarSign size={30} color={"rgb(11,155,29)"} onClick={() => setAffordabilityRating(3)} />
                             ) : (
                                 <FaDollarSign size={30} onClick={() => setAffordabilityRating(3)} />
                             )}

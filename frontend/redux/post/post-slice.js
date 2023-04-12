@@ -39,7 +39,7 @@ const postSlice = createSlice({
     },
     updatePost: (state, action) => {
       state.loading = false;
-      // state.postInfo = action.payload;
+      state.postInfo = action.payload;
       state.success = true;
       state.error = null;
     },
@@ -161,7 +161,8 @@ export const updatePostStats = (id, data) => async (dispatch) => {
       },
     };
     const response = await axios.put(`${backendURL}/post/update/${id}`, data, config);
-    dispatch(updatePost());
+    console.log(response);
+    dispatch(updatePost(response.data));
   } catch (error) {
     console.log(error);
     dispatch(error(error));

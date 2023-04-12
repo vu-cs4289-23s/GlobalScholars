@@ -73,23 +73,23 @@ const SideBar = () => {
       <div className="w-full flex sm:grid items-center justify-between m-4  sm:gap-8">
         <NavigationContainer onClick={() => navigate("/landing")}>
           {/* <img src={searchIcon} width={40} height={100}/> */}
-          <ImSearch size={36} />
+          <ImSearch size={36} className="my-auto" />
           <SidebarNavigationLinkTitle>Search</SidebarNavigationLinkTitle>
         </NavigationContainer>
         <NavigationContainer onClick={() => navigate("/city")}>
-          <FaCity size={36} />
+          <FaCity size={36} className="my-auto" />
           <SidebarNavigationLinkTitle>City</SidebarNavigationLinkTitle>
         </NavigationContainer>
         <NavigationContainer onClick={() => navigate("/program")}>
-          <ImBooks size={36} />
+          <ImBooks size={36} className="my-auto" />
           <SidebarNavigationLinkTitle>Program</SidebarNavigationLinkTitle>
         </NavigationContainer>
         <NavigationContainer onClick={() => navigate("/newpost")}>
-          <MdOutlineAddBox size={36} />
+          <MdOutlineAddBox size={36} className="my-auto" />
           <SidebarNavigationLinkTitle>Make Post</SidebarNavigationLinkTitle>
         </NavigationContainer>
         <NavigationContainer onClick={() => navigate("/price-estimator")}>
-          <BsCalculatorFill size={36} />
+          <BsCalculatorFill size={36} className="my-auto" />
           <SidebarNavigationLinkTitle>Calculator</SidebarNavigationLinkTitle>
         </NavigationContainer>
         <NavigationContainer
@@ -99,7 +99,7 @@ const SideBar = () => {
             <img
               src={userInfo.avatar_url}
               alt="profile"
-              className="rounded-full h-[36px] w-[36px]"
+              className="rounded-full h-[36px] w-[36px] my-auto"
             />
           ) : (
             <BsPersonCircle size={36} />

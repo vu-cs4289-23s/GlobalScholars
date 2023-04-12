@@ -7,7 +7,7 @@ export default function NewPost() {
     const [postType, setPostType] = useState("city");
 
     return (
-        <div className="w-screen h-screen flex flex-row bg-[url('/landing-background.avif')] bg-blue-200">
+        <div className="w-screen h-screen flex flex-row bg-blue-light">
             <SideBar />
             <div className="overflow-y-scroll h-full w-screen">
                 <div id="type-selector" className="">

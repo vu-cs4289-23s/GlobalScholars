@@ -165,26 +165,6 @@ const ProgramPost = () => {
                 </ul>
                 </div>
                 </div>
-                {/* Select Semester */}
-                <FormInputSectionContainer>
-                    <FormInputSectionTitle>
-                        <span className="font-bold">Select your semester of study</span>
-                        <span className=""> (required)</span>
-                        <span className="text-red-700">*</span>
-                    </FormInputSectionTitle>
-                    <div className="flex relative m-2">
-                        <div className="flex bg-white rounded-lg justify-center align-middle m-auto">
-                            <div>
-                                <select name="semester" id="semester" className="bg-white border-2 border-black rounded-lg m-2" placeholder="Select semester">
-                                    <option>Fall</option>
-                                    <option>Spring</option>
-                                    <option>Summer</option>
-                                    <option>Maymester</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </FormInputSectionContainer>
                 {/* Select Major */}
                 <FormInputSectionContainer>
                     <FormInputSectionTitle>
@@ -401,7 +381,6 @@ const ProgramPost = () => {
                 </div>
             </form>
         </span>
-
         </MakePostBox>
     );
 };

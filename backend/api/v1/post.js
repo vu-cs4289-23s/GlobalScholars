@@ -18,7 +18,7 @@ const Post = (app) => {
     // Define post schema
     const schema = object({
       title: string().required().min(1).max(50),
-      content: string().required().min(1).max(250),
+      content: string().required().min(1).max(1500),
    //   tags: array().required().min(1),
       city: string().optional(),
       program_name: string().optional(),
@@ -447,26 +447,26 @@ const Post = (app) => {
     let postQuery;
     let userQuery;
     if (req.body.likes) {
-      postQuery = { $push: { likes: req.session.user.id } };
+      postQuery = { $push: { likes: req.session.user._id } };
       userQuery = { $push: { likes: req.params.id } };
     }
     if (req.body.dislikes) {
-      postQuery = { $push: { dislikes: req.session.user.id } };
+      postQuery = { $push: { dislikes: req.session.user._id } };
       userQuery = { $push: { dislikes: req.params.id } };
     }
     if (req.body.saves) {
-      postQuery = { $push: { saves: req.session.user.id } };
+      postQuery = { $push: { saves: req.session.user._id } };
       userQuery = { $push: { saves: req.params.id } };
     }
 
     try {
       // Update Post document
-      const post =  await app.models.Post.findByIdAndUpdate(req.params.id, postQuery);
+      const data =  await app.models.Post.findByIdAndUpdate(req.params.id, postQuery);
       // Update User document
-      await app.models.User.findByIdAndUpdate(req.params.id, userQuery);
+      await app.models.User.findByIdAndUpdate(req.session.user._id, userQuery);
 
       // Send success to client
-      res.status(204).send(post);
+      res.status(200).send(data);
     } catch (err) {
       console.log(
         `Post.update post not found: ${req.params.id}`

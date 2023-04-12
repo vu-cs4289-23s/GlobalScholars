@@ -56,6 +56,7 @@ const ForumPost = ({
     // comments
     let [comment, setComment] = useState('');
     let { commentInfo, success } = useSelector((state) => state.comment);
+    let { postInfo } = useSelector((state) => state.post);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -112,11 +113,19 @@ const ForumPost = ({
     }));
   };
 
+  useEffect(() => {
+    if (postInfo && postInfo.likes) {
+      setNumLikes(postInfo.likes.length);
+    }
+    if (postInfo && postInfo.dislikes) {
+      setNumDislikes(postInfo.dislikes.length);
+    }
+  }, [postInfo]);
+
     return (
-      <div className="flex rounded-lg w-bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between flex-col">
-          <div className="flex mb-2 justify-between">
-              <div
-                className="flex items-center"
+        <div className="flex rounded-lg bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between flex-col">
+            <div className="flex mb-2 justify-between">
+                <div className="flex items-center"
                 onClick={userClick}
                 style={{ cursor: 'pointer' }}
               >
