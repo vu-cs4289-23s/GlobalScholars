@@ -1,12 +1,8 @@
-import Rating from "../all-forums/rating.jsx";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import Rating from '../all-forums/rating.jsx';
+import { useDispatch, useSelector } from 'react-redux';
 
-const CityDescription = ({
-  city,
-  country,
-  top_tags,
-  overall_rating,
-}) => {
+const CityDescription = ({ city, country, top_tags, overall_rating }) => {
   return (
     <div className="grid h-auto grid-cols-1 bg-light-gray sm:mx-20 mx-4 text-left pt-2 pb-6 px-4 rounded-[45px] ">
       <grid-cols-1>
@@ -14,20 +10,24 @@ const CityDescription = ({
           <span className="content-start row px-[3%]">
             Travel To:
             <span className="font-bold">
-              {" "}
+              {' '}
               {city}, {country}
             </span>
           </span>
         </span>
-        <div style={{display : "flex", flexDirection : "row"}} className="grid">
-        <p className="py-4 px-[5%] font-bold text-[20px]">Average Rating</p>
-        <div className="grid grid-cols-1 sm:grid-cols-4 self-center">
-          <Rating rating={overall_rating}/>
-        </div>
+        <div style={{ display: 'flex', flexDirection: 'row' }} className="grid">
+          <p className="py-4 px-[5%] font-bold text-[20px]">Average Rating</p>
+          <div className="grid grid-cols-1 sm:grid-cols-4 self-center">
+            <Rating rating={overall_rating} />
+          </div>
         </div>
         <p className="py-4 px-[5%] font-bold text-[20px]">Top Tags</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center">
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 justify-around justify-items-center text-center"></div>
+        <Link to={`/price-estimator/${city}`}>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mx-4 my-4">
+            Price Estimate
+          </button>
+        </Link>
       </grid-cols-1>
     </div>
   );

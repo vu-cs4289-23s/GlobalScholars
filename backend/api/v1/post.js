@@ -18,7 +18,7 @@ const Post = (app) => {
     // Define post schema
     const schema = object({
       title: string().required().min(1).max(50),
-      content: string().required().min(1).max(250),
+      content: string().required().min(1).max(1500),
    //   tags: array().required().min(1),
       city: string().optional(),
       program_name: string().optional(),
