@@ -9,15 +9,12 @@ const Location = new Schema({
   like_cnt: { type: Number, default: 0 },
 
   // Forum data
-<<<<<<< HEAD
   overall_rating: { type: Number, default: 0 },
   // safety_rating: { type: Number, default: 0 },
   affordability_rating: { type: Number, default: 0 },
   // sightseeing_rating: { type: Number, default: 0 },
-=======
   avg_overall_rating: { type: Number, default: 0 },
   avg_affordability_rating: { type: Number, default: 0 },
->>>>>>> 50dab08a60e86781510bf98f3bee07fa429096e5
   top_tags: [{ type: String }],
   image_link: { type: String },
   // Trip data

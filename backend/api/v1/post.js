@@ -526,11 +526,7 @@ const Post = (app) => {
    * @param {req.body.content}
    * @return {200} Updated post
    */
-<<<<<<< HEAD
   app.put("/api/v1/post/edit/:id", async (req, res) => {
-=======
-  app.put('api/v1/post/edit/:id', async (req, res) => {
->>>>>>> 50dab08a60e86781510bf98f3bee07fa429096e5
     // Define post schema
     const schema = object({
       content: string().min(1).max(250),
@@ -589,7 +585,6 @@ const Post = (app) => {
    * @param {req.body.saves}
    * @return {200} Updated post
    */
-<<<<<<< HEAD
   app.put("/api/v1/post/update/:id", async (req, res) => {
     // Verify user is logged in
     if (!req.session.user)
@@ -625,10 +620,6 @@ const Post = (app) => {
       );
       res.status(500).end();
     }
-=======
-  app.put('api/v1/post/update/:id', async (req, res) => {
-    // TODO: make endpoint
->>>>>>> 50dab08a60e86781510bf98f3bee07fa429096e5
   });
 };
 

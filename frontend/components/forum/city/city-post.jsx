@@ -78,25 +78,8 @@ const CityPost = () => {
 
   let [postAnon, setPostAnon] = useState('current-user');
 
-<<<<<<< HEAD
-    const [overallRating, setOverallRating] = useState(undefined);
-    const [affordabilityRating, setAffordabilityRating] = useState(undefined);
-    let [tagsState, setTagsState] = useState([]);
-  
-
-    let [error, setError] = useState("");
-    let [state, setState] = useState({
-        title: "",
-        content: "",
-        tags: [],
-        city: "",
-        overall_rating: 0,
-        affordability_rating: 0,
-    });
-=======
   const [overallRating, setOverallRating] = useState(undefined);
   const [affordabilityRating, setAffordabilityRating] = useState(undefined);
->>>>>>> 50dab08a60e86781510bf98f3bee07fa429096e5
 
   let [error, setError] = useState('');
   let [state, setState] = useState({
@@ -120,36 +103,15 @@ const CityPost = () => {
   useEffect(() => {
     // dispatch geo-slice call here once locations are all in the DB
 
-<<<<<<< HEAD
-        setLocations(images);
-    }, []);
-
-    const onClickTag = (ev) => {
-        //console.log(id);
-        console.log(ev.target.id);
-    }
-=======
     setLocations(images);
   }, []);
   console.log();
->>>>>>> 50dab08a60e86781510bf98f3bee07fa429096e5
 
   const onClickTag = (ev) => {
     console.log(`Tag: ${ev.target.name}`);
     ev.stopPropagation();
   };
 
-<<<<<<< HEAD
-    const onSubmit = (ev) => {
-        ev.preventDefault();
-        const post = {
-            title: state.title,
-            content: state.content,
-            city: state.city,
-        }
-        console.log(`Posting...`);
-        dispatch(submitNewForumPost(post));
-=======
   const tags = city_tags.map((tag, i) => {
     return (
       <Tag
@@ -161,7 +123,6 @@ const CityPost = () => {
       />
     );
   });
->>>>>>> 50dab08a60e86781510bf98f3bee07fa429096e5
 
   const onSubmit = (ev) => {
     ev.preventDefault();
