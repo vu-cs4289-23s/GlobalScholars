@@ -1,11 +1,11 @@
-import SearchBar from "../components/landing-page/search-bar";
-import SideBar from "../components/all-pages/sidebar";
-import { useDispatch, useSelector } from "react-redux";
-import { logoutAction, getUserAsyncAction } from "../redux/user/user-slice";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import images from "../../images.js";
-import ScrollingImages from "../components/all-pages/scrolling-images.jsx";
+import SearchBar from '../components/landing-page/search-bar';
+import SideBar from '../components/all-pages/sidebar';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutAction, getUserAsyncAction } from '../redux/user/user-slice';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import images from '../../images.js';
+import ScrollingImages from '../components/all-pages/scrolling-images.jsx';
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -18,13 +18,13 @@ export default function LandingPage() {
     dispatch(logoutAction());
   };
   useEffect(() => {
-    if (loggedIn === false && userInfo.username !== "") {
+    if (loggedIn === false && userInfo.username !== '') {
       dispatch(getUserAsyncAction(userInfo.username));
     }
   }, [loggedIn, userInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen">
+    <div id="forum-page" className="flex h-screen w-screen bg-blue-light">
       <SideBar />
       <div className="overflow-y-scroll overflow-x-hidden w-screen">
         <div className="flex flex-col h-1/2 -mx-1 bg-[url('/landing-background.avif')] bg-no-repeat bg-cover justify-end">
@@ -61,7 +61,7 @@ export default function LandingPage() {
         </div>
       ) : (
         <div className="absolute right-1 top-2">
-          <button onClick={() => navigate("/login")}>Log In</button>
+          <button onClick={() => navigate('/login')}>Log In</button>
         </div>
       )}
     </div>

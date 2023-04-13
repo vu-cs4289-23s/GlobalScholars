@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
 
-const Card = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
+const TripCard = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
   const [saved, setSaved] = useState(false);
 
   const handleSaveClick = () => {
@@ -46,9 +46,8 @@ const Card = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
         <div className="text-sm text-gray-600 mb-2">
           <p>{`Cheapest Month: ${cheapestDates}`}</p>
         </div>
-        
-    </div>
-    <div className="flex justify-end items-end w-full">
+      </div>
+      <div className="flex justify-end items-end w-full">
         {saved ? (
           <BiBookmarkMinus
             className="text-black text-3xl cursor-pointer align-bottom justify-end"
@@ -61,8 +60,8 @@ const Card = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
           />
         )}
       </div>
-  </div>
-);
+    </div>
+  );
 };
 
-export default Card;
+export default TripCard;
