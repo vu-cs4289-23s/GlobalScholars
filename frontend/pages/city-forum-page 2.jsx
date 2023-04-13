@@ -82,7 +82,7 @@ export default function CityForumPage() {
 
   // set posts react state with postInfo from redux state
   useEffect(() => {
-    console.log(postInfo);
+  //  console.log(postInfo);
     setPosts(postInfo);
   }, [postInfo]);
 
