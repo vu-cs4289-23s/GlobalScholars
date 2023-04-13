@@ -1,20 +1,20 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const backendURL = "/api/v1";
+const backendURL = '/api/v1';
 
 const initialState = {
   postInfo: {
-    _id: "",
-    owner: "",
+    _id: '',
+    owner: '',
     timestamp: Date.now(),
-    content: "",
+    content: '',
     tags: [],
     likes: 0,
     dislikes: 0,
     saves: 0,
-    location: "",
-    program: "",
+    location: '',
+    program: '',
   },
   loading: true,
   error: null,
@@ -22,7 +22,7 @@ const initialState = {
 };
 
 const postSlice = createSlice({
-  name: "post",
+  name: 'post',
   initialState,
   reducers: {
     getPosts: (state, action) => {
@@ -46,14 +46,15 @@ const postSlice = createSlice({
     error: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
+      state.success = false;
     },
     reset: (state, action) => {
       state.loading = initialState.loading;
       state.postInfo = initialState.postInfo;
       state.success = initialState.success;
       state.error = initialState.error;
-    }
-  }
+    },
+  },
 });
 
 // DEFINE ACTIONS HERE
@@ -61,11 +62,11 @@ export const getAllPostsAsyncAction = () => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
     const response = await axios.get(`${backendURL}/posts`, config);
-  //  console.log(response.data);
+    //  console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
     console.log(error);
@@ -77,11 +78,14 @@ export const getPostsByUserAsyncAction = (user) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const response = await axios.get(`${backendURL}/posts/user/${user}`, config);
-  //  console.log(response.data);
+    const response = await axios.get(
+      `${backendURL}/posts/user/${user}`,
+      config
+    );
+    //  console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
     console.log(error);
@@ -93,7 +97,7 @@ export const getPostByIdAsyncAction = (id) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
     const response = await axios.get(`${backendURL}/post/${id}`, config);
@@ -109,11 +113,14 @@ export const getPostsByLocationAsyncAction = (location) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const response = await axios.get(`${backendURL}/posts/location/${location}`, config);
- //   console.log(response.data);
+    const response = await axios.get(
+      `${backendURL}/posts/location/${location}`,
+      config
+    );
+    //   console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
     console.log(error);
@@ -125,10 +132,13 @@ export const getPostsByProgramAsyncAction = (program) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const response = await axios.get(`${backendURL}/posts/program/${program}`, config);
+    const response = await axios.get(
+      `${backendURL}/posts/program/${program}`,
+      config
+    );
     //   console.log(response.data);
     dispatch(getPosts(response.data));
   } catch (error) {
@@ -137,21 +147,41 @@ export const getPostsByProgramAsyncAction = (program) => async (dispatch) => {
   }
 };
 
-export const submitNewForumPost = (data) => async (dispatch) => {
+export const submitNewForumPostByCity = (data) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const response = await axios.post(`${backendURL}/post`, data, config);
-  //  console.log(response.data);
+    const response = await axios.post(`${backendURL}/post/city`, data, config);
+    //  console.log(response.data);
     dispatch(submitPost(response.data));
   } catch (error) {
     console.log(error);
     dispatch(error(error));
   }
-}
+};
+
+export const submitNewForumPostByProgram = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await axios.post(
+      `${backendURL}/post/program`,
+      data,
+      config
+    );
+    //  console.log(response.data);
+    dispatch(submitPost(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
+};
 
 export const updatePostStats = (id, data) => async (dispatch) => {
   try {
@@ -171,7 +201,7 @@ export const updatePostStats = (id, data) => async (dispatch) => {
 
 export const resetPost = () => (dispatch) => {
   dispatch(reset());
-}
+};
 
 export const { getPosts, submitPost, updatePost, reset, error } = postSlice.actions;
 

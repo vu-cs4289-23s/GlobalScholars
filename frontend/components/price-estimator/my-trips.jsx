@@ -1,6 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+<<<<<<< HEAD
 // import Card from './card.jsx';
+=======
+import Card from "./card.jsx";
+>>>>>>> 50dab08a60e86781510bf98f3bee07fa429096e5
 
 const MyTrips = ({ setTab }) => {
   const { userInfo, success } = useSelector((state) => state.user);

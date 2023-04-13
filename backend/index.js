@@ -1,42 +1,43 @@
 // Import libraries
-import path, { dirname } from "path";
-import fs from "fs";
-import http from "http";
-import https from "https";
-import express from "express";
-import bodyParser from "body-parser";
-import logger from "morgan";
-import session from "express-session";
-import envConfig from "simple-env-config";
-import pug from "pug";
-import { fileURLToPath } from "url";
-import cors from "cors";
-import dummyjson from "dummy-json";
+import path, { dirname } from 'path';
+import fs from 'fs';
+import http from 'http';
+import https from 'https';
+import express from 'express';
+import bodyParser from 'body-parser';
+import logger from 'morgan';
+import session from 'express-session';
+import envConfig from 'simple-env-config';
+import pug from 'pug';
+import { fileURLToPath } from 'url';
+import cors from 'cors';
+import dummyjson from 'dummy-json';
 
 // Import mongoose
-import { createRequire } from "module";
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // Import models
-import Post from "./models/post.js";
-import Program from "./models/program.js";
-import User from "./models/user.js";
-import Location from "./models/location.js";
-import Comment from "./models/comment.js";
-import PriceEstimate from "./models/price_estimate.js";
+import Post from './models/post.js';
+import Program from './models/program.js';
+import User from './models/user.js';
+import Location from './models/location.js';
+import Comment from './models/comment.js';
+import PriceEstimate from './models/price_estimate.js';
+import Trip from './models/trip.js';
 
 // Import routes
-import Routes from "./api/index.js";
+import Routes from './api/index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const resolve = (p) => path.resolve(__dirname, p);
 
-const env = process.env.NODE_ENV ? process.env.NODE_ENV : "dev";
+const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
 
 const setupServer = async () => {
   // Get the app config
-  const conf = await envConfig("../config.json", env);
+  const conf = await envConfig('../config.json', env);
   const port = process.env.PORT ? process.env.PORT : conf.port;
 
   // Setup our Express pipeline
@@ -47,17 +48,17 @@ const setupServer = async () => {
     })
   );
 
-  app.use(logger("dev"));
-  app.set("views", __dirname);
-  app.use(express.static(path.join(__dirname, "../dist")));
+  app.use(logger('dev'));
+  app.set('views', __dirname);
+  app.use(express.static(path.join(__dirname, '../dist')));
   // Setup pipeline session support
   app.store = session({
-    name: "session",
-    secret: "globallyscholaredsecret",
+    name: 'session',
+    secret: 'globallyscholaredsecret',
     resave: false,
     saveUninitialized: false,
     cookie: {
-      path: "/",
+      path: '/',
     },
   });
   app.use(app.store);
@@ -68,9 +69,9 @@ const setupServer = async () => {
 
   try {
     // Connect to MongoDB
-    mongoose.set("strictQuery", false);
+    mongoose.set('strictQuery', false);
     await mongoose.connect(conf.mongodb);
-    mongoose.connection.on("disconnected", () => {
+    mongoose.connection.on('disconnected', () => {
       console.log(`MongoDB shutting down`);
     });
     console.log(`MongoDB connected: ${conf.mongodb}`);
@@ -87,12 +88,13 @@ const setupServer = async () => {
     Location: Location,
     Comment: Comment,
     PriceEstimate: PriceEstimate,
+    Trip: Trip,
   };
 
   // Call routes
   Routes(app);
 
-  app.get("/api/v1/generateDummyData", function (req, res) {
+  app.get('/api/v1/generateDummyData', function (req, res) {
     let numberOfPosts = req.query.posts;
     if (numberOfPosts === undefined) {
       numberOfPosts = 10;
@@ -176,22 +178,22 @@ const setupServer = async () => {
 
     //convert json string to json object
 
-    res.set("Content-Type", "application/json");
+    res.set('Content-Type', 'application/json');
     res.status(200).send(result);
   });
-  app.use(express.static(resolve("../dist")));
+  app.use(express.static(resolve('../dist')));
 
   // // Give them the SPA base page
-  app.use("*", async (req, res) => {
+  app.use('*', async (req, res) => {
     const url = req.originalUrl;
-    const template = fs.readFileSync(resolve("../dist/index.html"), "utf-8");
+    const template = fs.readFileSync(resolve('../dist/index.html'), 'utf-8');
 
-    res.status(200).set({ "Content-Type": "text/html" }).end(template);
+    res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
   });
 
   // Run the server itself
   let server;
-  if (env === "production") {
+  if (env === 'production') {
     const options = {
       key: fs.readFileSync(conf.security.keyPath),
       cert: fs.readFileSync(conf.security.certPath),

@@ -1,16 +1,18 @@
 //bundle all api routes into one file to be exported
 
-import AnotherApi from "./another-api.js";
-import OneApi from "./one-api.js";
-import Post from "./v1/post.js";
-import Session from "./v1/session.js";
-import User from "./v1/user.js";
-import GEOData from "./v1/geo.js"
-import Comment from "./v1/comment.js";
+import AnotherApi from './another-api.js';
+import OneApi from './one-api.js';
+import Post from './v1/post.js';
+import Session from './v1/session.js';
+import User from './v1/user.js';
+import GEOData from './v1/geo.js';
+import Comment from './v1/comment.js';
+import Trip from './v1/trip.js';
 
 const Routes = (app) => {
   AnotherApi(app);
   OneApi(app);
+  Trip(app);
 
   Post(app);
   Session(app);
