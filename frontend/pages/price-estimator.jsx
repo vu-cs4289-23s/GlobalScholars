@@ -82,7 +82,7 @@ export default function PriceEstimator() {
       {/* page contents */}
       <div className="flex flex-col w-full h-full  ">
         {/* header bar */}
-        <h2 className="text-center my-8  text-2xl md:text-5xl text-medium-blue">
+        <h2 className="text-center my-8  text-2xl md:text-5xl font-bold text-black">
           Where would you like to travel?
         </h2>
         <div className=" flex flex-col  md:flex-row align-middle md:h-24  items-center justify-center font-bold text-lg md:text-2xl font-mono m-8 text-black">
