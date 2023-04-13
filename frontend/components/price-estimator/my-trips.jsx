@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Card from "./card.jsx";
 
 const MyTrips = ({ setTab }) => {
   const { userInfo, success } = useSelector((state) => state.user);
