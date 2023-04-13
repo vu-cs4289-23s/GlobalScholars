@@ -5,7 +5,7 @@ import tw from "tailwind-styled-components";
 import CityPost, {MakePostBox, FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
 import {program_tags} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
-import { resetPost, submitNewForumPost } from "../../../redux/post/post-slice.js";
+import { resetPost } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
 import data from "../../../../data.js";
 import { BiChevronDown } from "react-icons/bi";
