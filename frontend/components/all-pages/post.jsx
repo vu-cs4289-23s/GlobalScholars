@@ -31,6 +31,7 @@ const ForumPost = ({
                        location,
                        comments,
                        date,
+                        url
                    }) => {
 
     // time of post
@@ -114,7 +115,7 @@ const ForumPost = ({
 
                   <div className="font-bold ml-2">{username}</div>
                   <div className="ml-2">in</div>
-                  <div className="font-bold ml-2">{location}</div>
+                  <div className="font-bold ml-2">{url ? url.replace(/\s/g, '').toLowerCase() : ""}</div>
               </div>
               <div className="flex items-center">
                   {dateObj !== null ? dateObj.toLocaleDateString() : 'time'}

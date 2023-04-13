@@ -115,6 +115,7 @@ export default function ProgramForumPage() {
                 program={post.program}
                 location={post.location}
                 date={post.timestamp}
+                url={name ? `/city/${name}` : "/city"}
               />
             ))}
           </div>
