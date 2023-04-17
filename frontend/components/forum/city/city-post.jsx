@@ -105,11 +105,25 @@ const CityPost = () => {
 
     setLocations(images);
   }, []);
-  console.log();
 
   const onClickTag = (ev) => {
-    console.log(`Tag: ${ev.target.name}`);
-    ev.stopPropagation();
+    ev.preventDefault();
+    // if the tag is already selected, remove it from the array
+    if (state.tags.includes(ev.target.getAttribute('name'))) {
+      const newTags = state.tags.filter(
+        (tag) => tag !== ev.target.getAttribute('name')
+      );
+      setState({
+        ...state,
+        tags: newTags,
+      });
+    } else {
+      // otherwise, add it to the array
+      setState({
+        ...state,
+        tags: [...state.tags, ev.target.getAttribute('name')],
+      });
+    }
   };
 
   const tags = city_tags.map((tag, i) => {
@@ -132,6 +146,7 @@ const CityPost = () => {
       city: state.city,
       program_name: state.program_name,
       // pass in overallRating and affordabilityRating values to update to city model
+      tags: state.tags,
       overall_rating: overallRating,
       affordability_rating: affordabilityRating,
       trip_start_date: new Date(state.trip_start_date).getTime(),

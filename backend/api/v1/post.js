@@ -4,7 +4,7 @@ import { object, string, array, number } from 'yup';
 const postSchema = object({
   title: string().required().min(1).max(50),
   content: string().required().min(1).max(1500),
-  tags: array().optional(),
+  tags: array().of(string()).optional(),
   city: string().required(),
 });
 
@@ -23,7 +23,7 @@ const Post = (app) => {
    * Create a new post by location
    *
    * @param {req.body.content} String contents of post
-   * @param {req.body.tags} [Tags] tags associated with post
+   * @param {req.body.tags} [String] tags associated with post
    * @param {req.body.city} String location string associated with post
    * @param {req.body.program} String program id for the associated program
    * @param {req.body.overall_rating} String overall rating for the location
