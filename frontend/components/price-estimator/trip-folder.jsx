@@ -17,16 +17,18 @@ const TabbedFolder = ({ tabs, search, handleScrollToTop }) => {
   console.log(tabs);
 
   return (
-    <div className="folder">
-      <div className="top flex">
+    <div className="w-full h-full bg-[#93bad8] flex flex-col items-center">
+      <div className="relative flex w-[200px] h-[20px] rounded-t-full bg-[#93bad8] top-[-20px]">
         {tabs.map((tab) => (
           <div
             key={tab.title}
-            className={`px-4 ${
+            className={`px-4 w-[100px] cursor-pointer  ${
               activeTab === tab.title
                 ? 'bg-sky-200 font-semibold'
                 : 'bg-sky-100'
-            }`}
+            } ${
+              tab.title === 'Explore' ? 'rounded-tr-full' : 'rounded-tl-full'
+            } `}
             onClick={() => handleTabClick(tab.title)}
           >
             {tab.title}
@@ -34,13 +36,11 @@ const TabbedFolder = ({ tabs, search, handleScrollToTop }) => {
         ))}
       </div>
       {/* {/* <div class="front">gello</div> */}
-      <div className="back">
-        {activeTab === 'Explore' ? (
-          <Explore />
-        ) : (
-          <MyTrips setTab={setActiveTab} />
-        )}
-      </div>
+      {activeTab === 'Explore' ? (
+        <Explore />
+      ) : (
+        <MyTrips setTab={setActiveTab} />
+      )}
     </div>
     // <div className="flex flex-col h-full w-full mx-auto">
     //   <div className="flex bg-sky-200  z-0">

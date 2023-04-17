@@ -82,6 +82,7 @@ const Post = (app) => {
       owner: req.session.user._id,
       timestamp: Date.now(),
       title: tripData.title,
+      content: postData.content,
       overall_rating: tripData.overall_rating,
       affordability_rating: tripData.affordability_rating,
       saves: [],
