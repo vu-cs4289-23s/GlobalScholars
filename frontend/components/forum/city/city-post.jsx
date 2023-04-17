@@ -43,6 +43,13 @@ export const FormInputSectionTitle = tw.div`
     my-0.5
 `
 
+export const SectionError = tw.div`
+    mx-2
+    mb-2
+    text-error-red
+    text-sm
+`
+
 export const GuidelinesBox = tw.div`
     mx-2
     bg-gray-200
@@ -77,7 +84,11 @@ const CityPost = () => {
 
     const [overallRating, setOverallRating] = useState(undefined);
     const [affordabilityRating, setAffordabilityRating] = useState(undefined);
-  
+
+    // for tags
+    let [postTags, setPostTags] = useState([]);
+    let [tagError, setTagError] = useState("");
+    let [noTagsSelected, setNoTags] = useState(true);
 
     let [error, setError] = useState("");
     let [state, setState] = useState({
@@ -89,6 +100,9 @@ const CityPost = () => {
         overall_rating: 0,
         affordability_rating: 0,
     });
+    let [cityError, setCityError] = useState("");
+    let [titleError, setTitleError] = useState("");
+    let [contentError, setContentError] = useState("");
 
 
     // For the location selector code
@@ -103,14 +117,57 @@ const CityPost = () => {
         setLocations(images);
     }, []);
 
+    // for tag selection
+    useEffect(() => {
+        if (postTags.length < 0) {
+            setTagError("You must select at least one tag");
+        } else {
+           setTagError("");
+        }
+    }, [postTags]);
+
     const onClickTag = (ev) => {
-        console.log(`Tag: ${ev.target.name}`);
-        ev.stopPropagation();
+        setNoTags(false);
+        // copy over array and tag id
+        let arr = postTags;
+        const tagID = ev.target.id;
+        // get index of tag in arr
+        const index = arr.indexOf(tagID);
+        // check if tag is in the array
+        if (index === -1) {
+            // not in the arr so add it
+            // check length first
+            if (arr.length === 5) {
+                setTagError("Maximum of 5 tags allowed");
+            } else {
+                // add to arr
+                arr.push(tagID);
+                // highlight
+                document.getElementById(tagID).style.outline = '#000000 solid 2px';
+                // delete error
+                setTagError("");
+            }
+        } else {
+            // already in arr so remove it
+            // check length first
+            if (arr.length === 1) {
+                setTagError("Minimum of 1 tag required");
+            } else {
+                // delete from arr
+                arr.splice(index, 1);
+                // remove highlighting
+                document.getElementById(tagID).style.outline = '';
+                // delete error
+                setTagError("");
+            }
+        }
+        setPostTags(arr);
+        console.log(postTags);
     }
 
     const tags = city_tags.map((tag, i) => {
         return (
-            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
+            <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
         );
     });
 
@@ -121,21 +178,55 @@ const CityPost = () => {
             content: state.content,
             city: state.city,
             program_name: state.program_name,
+            tags: postTags,
             // pass in overallRating and affordabilityRating values to update to city model
         }
-        console.log(`Posting...`);
-        dispatch(submitNewForumPost(post));
-
-        if (success) {
-            const forumNav = state.city;
-            // reset post state
-            dispatch(resetPost());
-            navigate(`/city/${forumNav}`);
+        // check post
+        console.log(post);
+        // check city
+        if (post.city === "") {
+            setCityError("City selection required");
+        } else {
+            setCityError("");
         }
+        // check title
+        if (post.title === "") {
+            setTitleError("Title required");
+        } else {
+            setTitleError("");
+        }
+        // check content
+        if (post.content === "") {
+            setContentError("Your post cannot be blank");
+        } else {
+            setContentError("");
+        }
+        // check tags
+        if (post.tags.length === 0) {
+            setTagError("You must tag your post");
+        } else {
+            setTagError("");
+        }
+
+        if (cityError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
+            setError("");
+            console.log(`Posting...`);
+            dispatch(submitNewForumPost(post));
+
+            if (success) {
+                const forumNav = state.city;
+                // reset post state
+                dispatch(resetPost());
+                navigate(`/city/${forumNav}`);
+            }
+        } else {
+            setError("Please include all required fields");
+        }
+
     };
 
     const onChange = (ev) => {
-        setError("");
+        //setError("");
         // Update from form and clear errors
         setState({
             ...state,
@@ -159,19 +250,19 @@ const CityPost = () => {
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Select Name */}
-                <div className="flex gap-x-5 my-4">
-                    <div className="font-bold">Post as:</div>
-                    <div className="flex justify-between">
-                        <div>
-                            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="current-user"> (current user)</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="anon"> Anonymous</label>
-                        </div>
-                    </div>
-                </div>
+                {/*<div className="flex gap-x-5 my-4">*/}
+                {/*    <div className="font-bold">Post as:</div>*/}
+                {/*    <div className="flex justify-between">*/}
+                {/*        <div>*/}
+                {/*            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+                {/*            <label htmlFor="current-user"> (current user)</label>*/}
+                {/*        </div>*/}
+                {/*        <div>*/}
+                {/*            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+                {/*            <label htmlFor="anon"> Anonymous</label>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 {/* Location/Program Selector */}
                 <div className="flex border-black border-2 rounded-lg flex-col my-1">
                     <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
@@ -229,6 +320,9 @@ const CityPost = () => {
                         ))}
                 </ul>
                 </div>
+                    <SectionError>
+                        {cityError}
+                    </SectionError>
                 </div>
                 {/* Post Title */}
                 <FormInputSectionContainer>
@@ -248,6 +342,9 @@ const CityPost = () => {
                             value={state.title}
                         />
                     </div>
+                    <SectionError>
+                        {titleError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Review */}
                 <FormInputSectionContainer>
@@ -271,6 +368,9 @@ const CityPost = () => {
                             value={state.content}
                         />
                     </div>
+                    <SectionError>
+                        {contentError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Tags */}
                 <FormInputSectionContainer>
@@ -282,6 +382,9 @@ const CityPost = () => {
                     <FormTagContainer>
                         {tags}
                     </FormTagContainer>
+                    <SectionError>
+                        {tagError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Ratings */}
                 <FormInputSectionContainer>
@@ -354,7 +457,10 @@ const CityPost = () => {
                     </div>
                 </FormInputSectionContainer>
                 {/* Submit */}
-                <div className="flex justify-end mt-2">
+                <div className="flex justify-between mt-2">
+                    <SectionError>
+                        {error}
+                    </SectionError>
                     <button id="submitBtn" type="submit" onClick={onSubmit}>
                         Post
                     </button>

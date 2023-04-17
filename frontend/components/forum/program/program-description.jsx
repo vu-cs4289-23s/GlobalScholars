@@ -23,14 +23,14 @@ const ProgramDescription = ({
                 <div className="flex justify-items-center space-x-3 flex-wrap">
                     {terms &&
                         terms.map((tag, index) => (
-                            <Tag color={"red-400"} content={tag} name={tag} key={index} />
+                            <Tag color={"red-400"} content={tag} id={tag} opacity={100} key={index} />
                         ))}
                 </div>
                 <p className="pt-4 pb-1 font-bold text-[24px] italic">Top Tags</p>
                 <div className="flex justify-items-center space-x-3 flex-wrap">
                     {top_tags &&
                         top_tags.map((tag, index) => (
-                            <Tag color={"green-300"} content={tag} name={tag} key={index} />
+                            <Tag content={tag} id={tag} opacity={100} key={index} />
                         ))}
                 </div>
                 <p className="py-4 font-bold text-[24px] italic">Overall Rating</p>

@@ -28,10 +28,16 @@ module.exports = {
     "shadow-rose-200",
     "shadow-indigo-200",
     "shadow-pink-200",
-    {pattern: /(bg|text|border)-(star-yellow|pumpkin|pure-orange|peach|dark-yellow|yellow-green|sea-foam|electric-lime|teal|dark-teal|light-blue|medium-blue|dark-blue|light-lavender|lavender|dark-lavender|baby-pink|dark-pink|pink-cream|light-gray)/}
+    {pattern: /(bg|text|border)-(star-yellow|pumpkin|pure-orange|peach|dark-yellow|yellow-green|sea-foam|electric-lime|teal|dark-teal|light-blue|medium-blue|dark-blue|light-lavender|lavender|dark-lavender|baby-pink|dark-pink|pink-cream|light-gray|error-red)/}
   ],
   content: ["./index.html", "./frontend/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
     extend: {
       colors: {
         'blue-rgba': 'rgba(39, 74, 104)',
@@ -55,7 +61,8 @@ module.exports = {
         'baby-pink': 'rgb(255, 165, 171)',
         'dark-pink': 'rgb(218, 98, 125)',
         'pink-cream': 'rgb(249, 219, 189)',
-        'light-gray' : 'rgba(217, 217, 217, 1)'
+        'light-gray' : 'rgba(217, 217, 217, 1)',
+        'error-red' : 'rgb(225,8,8)'
       }
     },
   },
