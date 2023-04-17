@@ -17,7 +17,7 @@ const TabbedFolder = ({ tabs, search, handleScrollToTop }) => {
   console.log(tabs);
 
   return (
-    <div className="w-full h-full bg-[#93bad8] flex flex-col items-center">
+    <div className="w-full h-full bg-[#93bad8] flex flex-col items-center rounded-xl">
       <div className="relative flex w-[200px] h-[20px] rounded-t-full bg-[#93bad8] top-[-20px]">
         {tabs.map((tab) => (
           <div

@@ -35,6 +35,9 @@ const MapContainer = ({ destination, setDestination }) => {
     <div className="w-full  h-full">
       <Map
         mapStyle={mapJson}
+        style={{
+          borderRadius: '0.75rem',
+        }}
         {...viewState}
         onMove={(evt) => setViewState(evt.viewState)}
         mapLib={maplibregl}
