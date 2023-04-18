@@ -82,7 +82,7 @@ export default function PriceEstimator() {
       {/* page contents */}
       <div className="flex flex-col w-full h-full  ">
         {/* header bar */}
-        <h2 className="text-center my-8  text-2xl md:text-5xl text-medium-blue">
+        <h2 className="text-center my-8  text-2xl md:text-5xl font-bold text-black">
           Where would you like to travel?
         </h2>
         <div className=" flex flex-col  md:flex-row align-middle md:h-24   justify-items-center font-bold text-lg md:text-2xl font-mono p-4 text-black">
@@ -109,10 +109,9 @@ export default function PriceEstimator() {
               onChange={(e) => setEnd(e.target.value)}
             />
           </div>
-          <div className="flex pt-4 justify-center text-black cursor-pointer">
-            <button className="flex font-bold" onClick={() => Search()}>
-              Search
-              <ImSearch size={25} className="ml-2" />
+          <div className="flex mb-4 justify-center text-black cursor-pointer">
+            <button className="flex justify-center font-bold" onClick={() => Search()}>
+              <ImSearch size={25} className="mb-6" />
             </button>
           </div>
         </div>

@@ -13,8 +13,8 @@ export default function NewPost() {
                 <div id="type-selector" className="">
                     <div id="selector-container" className="">
                         <div className="flex w-auto bg-white sm:mx-20 text-left p-4 rounded-lg m-4 justify-around">
-                            <div className="font-bold text-[32px]">
-                               Select the type of post
+                            <div className="font-bold sm:text-[30px] text-[24px]">
+                               Select the forum type you would like to post to:
                             </div>
                             <div className="flex justify-center align-middle items-center">
                                 <select name="post-type" id="post-type" onChange={(e=>setPostType(e.target.value))} className="bg-white border-2 border-black rounded-lg m-2 p-2">

@@ -2,18 +2,22 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
 import tw from "tailwind-styled-components";
-import CityPost, {MakePostBox, FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
+import { MakePostBox, FormInputSectionContainer, FormInputSectionTitle, SectionError, GuidelinesBox,
+  FormTagContainer, FormRatingContainer } from "../city/city-post.jsx";
 import {program_tags} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
 import { resetPost, submitNewForumPostByProgram } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
-import data from "../../../../data.js";
-import { BiChevronDown } from "react-icons/bi";
-import { AiOutlineSearch } from "react-icons/ai";
 
 const ProgramPost = () => {
+  // for tags
+  let [postTags, setPostTags] = useState([]);
+  let [tagError, setTagError] = useState("");
+  let [noTagsSelected, setNoTags] = useState(true);
+
+  let [error, setError] = useState("");
+
   let [state, setState] = useState({
-    program_name: "",
     semester: "",
     major: "",
     title: "",
@@ -21,14 +25,26 @@ const ProgramPost = () => {
     tags: [],
     overall_rating: 0,
   });
+  let [titleError, setTitleError] = useState("");
+  let [contentError, setContentError] = useState("");
+  let [programError, setProgramError] = useState("");
+
   const [postAnon, setPostAnon] = useState(false);
   const [overallRating, setOverallRating] = useState(undefined);
   const [classesRating, setClassesRating] = useState(undefined);
   const [campusRating, setCampusRating] = useState(undefined);
   const [gradingRating, setGradingRating] = useState(undefined);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { postInfo, success, loading } = useSelector((state) => state.post);
+
+  // for tag selection
+  useEffect(() => {
+    if (postTags.length < 0) {
+      setTagError("You must select at least one tag");
+    } else {
+      setTagError("");
+    }
+  }, [postTags]);
 
   // For the program selector
   const [programs, setPrograms] = useState(null);
@@ -36,13 +52,47 @@ const ProgramPost = () => {
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
 
-  const onClickTag = (e) => {
-    console.log("you just clicked a tag");
+  const onClickTag = (ev) => {
+    setNoTags(false);
+    // copy over array and tag id
+    let arr = postTags;
+    const tagID = ev.target.id;
+    // get index of tag in arr
+    const index = arr.indexOf(tagID);
+    // check if tag is in the array
+    if (index === -1) {
+      // not in the arr so add it
+      // check length first
+      if (arr.length === 5) {
+        setTagError("Maximum of 5 tags allowed");
+      } else {
+        // add to arr
+        arr.push(tagID);
+        // highlight
+        document.getElementById(tagID).style.outline = '#000000 solid 2px';
+        // delete error
+        setTagError("");
+      }
+    } else {
+      // already in arr so remove it
+      // check length first
+      if (arr.length === 1) {
+        setTagError("Minimum of 1 tag required");
+      } else {
+        // delete from arr
+        arr.splice(index, 1);
+        // remove highlighting
+        document.getElementById(tagID).style.outline = '';
+        // delete error
+        setTagError("");
+      }
+    }
+    setPostTags(arr);
   }
 
   const tags = program_tags.map((tag, i) => {
     return (
-      <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
+      <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
     );
   });
 
@@ -52,24 +102,6 @@ const ProgramPost = () => {
       ...state,
       [ev.target.name]: ev.target.value,
     });
-  };
-
-  const onSubmit = (ev) => {
-    ev.preventDefault();
-    const post = {
-      title: state.title,
-      content: state.content,
-      program_name: state.program_name,
-    }
-    console.log(`Posting...`);
-    dispatch(submitNewForumPostByProgram(post));
-
-    if (success) {
-      const forumNav = state.program_name;
-      // reset post state
-      dispatch(resetPost());
-      navigate(`/program/${forumNav}`);
-    }
   };
 
   useEffect(() => {
@@ -89,24 +121,76 @@ const ProgramPost = () => {
     }
   }, [selected]);
 
+  const onSubmit = (ev) => {
+    ev.preventDefault();
+    const post = {
+      title: state.title,
+      content: state.content,
+      program_name: state.program_name,
+      tags: postTags,
+    }
+    // VALIDATE
+
+    //check program
+    if (post.program_name === "") {
+      setProgramError("Program required");
+    } else {
+      setProgramError("");
+    }
+    // check title
+    if (post.title === "") {
+      setTitleError("Title required");
+    } else {
+      setTitleError("");
+    }
+    // check content
+    if (post.content === "") {
+      setContentError("Your post cannot be blank");
+    } else {
+      setContentError("");
+    }
+    // check tags
+    if (post.tags.length === 0) {
+      setTagError("You must tag your post");
+    } else {
+      setTagError("");
+      setNoTags(false);
+    }
+
+    if (programError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
+      console.log(`Posting...`);
+      dispatch(submitNewForumPostByProgram(post));
+
+      if (success) {
+        const forumNav = state.program_name;
+        // reset post state
+        dispatch(resetPost());
+        navigate(`/program/${forumNav}`);
+      }
+    } else {
+      setError("Please include all required fields");
+    }
+  };
+
   return (
     <MakePostBox>
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Post as */}
-              <div className="flex gap-x-5 my-4">
-                    <div className="font-bold">Post as:</div>
-                    <div className="flex justify-between">
-                        <div>
-                            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="current-user"> (current user)</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="anon"> Anonymous</label>
-                        </div>
-                    </div>
-                </div>
+              {/*<div className="flex gap-x-5 my-4">*/}
+              {/*    <div className="font-bold">Post as:</div>*/}
+              {/*    <div className="flex justify-between">*/}
+              {/*        <div>*/}
+              {/*            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+              {/*            <label htmlFor="current-user"> (current user)</label>*/}
+              {/*        </div>*/}
+              {/*        <div>*/}
+              {/*            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+              {/*            <label htmlFor="anon"> Anonymous</label>*/}
+              {/*        </div>*/}
+              {/*    </div>*/}
+              {/*</div>*/}
+
               {/* Program Selector */}
               <div className="flex border-black border-2 rounded-lg flex-col my-1">
                     <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
@@ -203,6 +287,9 @@ const ProgramPost = () => {
                           placeholder="Post Title"
                         />
                     </div>
+                    <SectionError>
+                        {titleError}
+                    </SectionError>
                 </FormInputSectionContainer>
               {/* Post Review */}
               <FormInputSectionContainer>
@@ -226,6 +313,9 @@ const ProgramPost = () => {
                           placeholder="Your Review"
                         />
                     </div>
+                    <SectionError>
+                        {contentError}
+                    </SectionError>
                 </FormInputSectionContainer>
               {/* Post Tags */}
               <FormInputSectionContainer>
@@ -237,6 +327,9 @@ const ProgramPost = () => {
                     <FormTagContainer>
                         {tags}
                     </FormTagContainer>
+                    <SectionError>
+                        {tagError}
+                    </SectionError>
                 </FormInputSectionContainer>
               {/* Post Ratings */}
               <FormInputSectionContainer>
@@ -370,7 +463,10 @@ const ProgramPost = () => {
                     </FormRatingContainer>
                 </FormInputSectionContainer>
               {/* Submit */}
-              <div className="flex justify-end">
+              <div className="flex justify-between">
+                    <SectionError>
+                        {error}
+                    </SectionError>
                     <button
                       onClick={onSubmit}
                       id="submitBtn"
