@@ -4,7 +4,7 @@ import { object, string, array, number } from 'yup';
 const postSchema = object({
   title: string().required().min(1).max(50),
   content: string().required().min(1).max(1500),
-  tags: array().optional(),
+  tags: array().required().min(1).max(5),
   city: string().required(),
 });
 
@@ -152,7 +152,7 @@ const Post = (app) => {
    * @param {req.body.program} Program program object associated with post
    * @return {201, {id: ID of new post}} Return ID of new post
    */
-  app.post('/api/v1/post/porgram', async (req, res) => {
+  app.post('/api/v1/post/program', async (req, res) => {
     // Verify user is logged in
     if (!req.session.user)
       return res.status(401).send({ error: 'unauthorized' });
@@ -161,7 +161,7 @@ const Post = (app) => {
     const schema = object({
       title: string().required().min(1).max(50),
       content: string().required().min(1).max(1500),
-      //   tags: array().required().min(1),
+      tags: array().required().min(1).max(5),
       city: string().optional(),
       program_name: string().optional(),
     });
