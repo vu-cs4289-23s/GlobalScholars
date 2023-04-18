@@ -1,25 +1,25 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import userIcon from "../../assets/userProfile-icon.svg";
-import { googleLogout } from "@react-oauth/google";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import userIcon from '../../assets/userProfile-icon.svg';
+import { googleLogout } from '@react-oauth/google';
 
 const initialState = {
   loading: true,
   loggedIn: false,
   userInfo: {
-    username: localStorage.getItem("username")
-      ? localStorage.getItem("username")
-      : "",
-    first_name: "",
-    last_name: "",
+    username: localStorage.getItem('username')
+      ? localStorage.getItem('username')
+      : '',
+    first_name: '',
+    last_name: '',
     avatar_url: userIcon,
     majors: [],
     minors: [],
-    grad_year: "",
-    bio: "",
-    background_url: "",
+    grad_year: '',
+    bio: '',
+    background_url: '',
     posts: [],
-    saved_posts: [],
+    saves: [],
     // saved_comments: [],
     // saved_events: [],
     tags: [],
@@ -28,10 +28,10 @@ const initialState = {
   error: null,
   success: false,
 };
-const backendURL = "/api/v1";
+const backendURL = '/api/v1';
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     getUser: (state, action) => {
@@ -43,7 +43,7 @@ const userSlice = createSlice({
     },
     updateUser: (state, action) => {
       state.loading = false;
-      console.log("updateUser", state.userInfo);
+      console.log('updateUser', state.userInfo);
       for (const [key, value] of Object.entries(action.payload)) {
         state.userInfo[key] = value;
       }
@@ -55,7 +55,7 @@ const userSlice = createSlice({
     login: (state, action) => {
       state.loading = false;
       state.userInfo = action.payload;
-      localStorage.setItem("username", action.payload.username);
+      localStorage.setItem('username', action.payload.username);
       state.loggedIn = true;
       state.error = null;
     },
@@ -69,16 +69,16 @@ const userSlice = createSlice({
     logout: (state) => {
       state.loading = false;
       state.userInfo = {
-        username: "",
-        first_name: "",
-        last_name: "",
+        username: '',
+        first_name: '',
+        last_name: '',
         avatar_url: userIcon,
       };
       state.userToken = null;
       state.loggedIn = false;
       state.error = null;
       state.success = true;
-      localStorage.removeItem("username");
+      localStorage.removeItem('username');
     },
     error: (state, action) => {
       state.loading = false;
@@ -88,7 +88,7 @@ const userSlice = createSlice({
     loginWithGoogle: (state, action) => {
       state.loading = false;
       // state.userInfo = action.payload;
-      localStorage.setItem("userToken", action.payload);
+      localStorage.setItem('userToken', action.payload);
       state.userToken = action.payload;
       state.loggedIn = true;
       state.error = null;
@@ -107,7 +107,7 @@ export const loginAsyncAction = (data) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
     const response = await axios.post(`${backendURL}/session`, data, config);
@@ -123,7 +123,7 @@ export const getUserAsyncAction = (data) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
     const response = await axios.get(`${backendURL}/user/${data}`, config);
@@ -138,7 +138,7 @@ export const getUserByIdAsyncAction = (id) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
     const response = await axios.get(`${backendURL}/user/id/${id}`, config);
@@ -150,18 +150,18 @@ export const getUserByIdAsyncAction = (id) => async (dispatch) => {
 };
 
 export const updateUserAsyncAction = (data) => async (dispatch) => {
-  console.log("updateUserAsyncAction", data);
+  console.log('updateUserAsyncAction', data);
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
     await axios.put(
       `${backendURL}/user`,
       {
         ...data,
-        username: localStorage.getItem("username"),
+        username: localStorage.getItem('username'),
       },
       config
     );
@@ -173,18 +173,18 @@ export const updateUserAsyncAction = (data) => async (dispatch) => {
 };
 
 export const googleLogin = (response) => async (dispatch) => {
-//  console.log(response);
+  //  console.log(response);
   const data = {
-    username: response.email.split("@")[0].replace(/[^a-zA-Z0-9]/g, ""),
-    first_name: response.name.split(" ")[0],
-    last_name: response.name.split(" ")[1],
+    username: response.email.split('@')[0].replace(/[^a-zA-Z0-9]/g, ''),
+    first_name: response.name.split(' ')[0],
+    last_name: response.name.split(' ')[1],
     avatar_url: response.picture,
     primary_email: response.email,
     password: response.sub,
   };
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   try {
@@ -209,10 +209,10 @@ export const registerAndLoginAsyncAction = (data) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    console.log("registerAndLoginAsyncAction", data);
+    console.log('registerAndLoginAsyncAction', data);
     let response = await axios.post(`${backendURL}/user`, data, config);
     dispatch(register(response.data));
     response = await axios.post(`${backendURL}/session`, data, config);
@@ -225,11 +225,11 @@ export const registerAndLoginAsyncAction = (data) => async (dispatch) => {
 
 export const logoutAction = () => (dispatch) => {
   const config = {};
-  console.log("logoutAsync");
+  console.log('logoutAsync');
   axios
     .delete(`${backendURL}/session`, config)
     .then(() => {
-      console.log("logout success");
+      console.log('logout success');
       dispatch(logout());
     })
     .catch((err) => {

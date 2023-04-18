@@ -2,13 +2,22 @@ import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Tag from "../all-forums/tag.jsx";
 import React, {useState, useEffect} from "react";
 import tw from "tailwind-styled-components";
-import CityPost, {MakePostBox, FormInputSectionContainer, FormInputSectionTitle, GuidelinesBox, FormTagContainer, FormRatingContainer} from "../city/city-post.jsx";
+import { MakePostBox, FormInputSectionContainer, FormInputSectionTitle, SectionError, GuidelinesBox,
+    FormTagContainer, FormRatingContainer } from "../city/city-post.jsx";
 import {program_tags} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
-import { resetPost, submitNewForumPost } from "../../../redux/post/post-slice.js";
+import { resetPost, submitNewForumPostByProgram } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProgramPost = () => {
+
+    // for tags
+    let [postTags, setPostTags] = useState([]);
+    let [tagError, setTagError] = useState("");
+    let [noTagsSelected, setNoTags] = useState(true);
+
+    let [error, setError] = useState("");
+
     let [state, setState] = useState({
         semester: "",
         major: "",
@@ -17,6 +26,9 @@ const ProgramPost = () => {
         tags: [],
         overall_rating: 0,
     });
+    let [titleError, setTitleError] = useState("");
+    let [contentError, setContentError] = useState("");
+
     const [postAnon, setPostAnon] = useState(false);
     const [overallRating, setOverallRating] = useState(undefined);
     const [classesRating, setClassesRating] = useState(undefined);
@@ -25,13 +37,56 @@ const ProgramPost = () => {
     const dispatch = useDispatch();
     const { postInfo, success, loading } = useSelector((state) => state.post);
 
-    const onClickTag = (e) => {
-        console.log("you just clicked a tag");
+    // for tag selection
+    useEffect(() => {
+        if (postTags.length < 0) {
+            setTagError("You must select at least one tag");
+        } else {
+            setTagError("");
+        }
+    }, [postTags]);
+
+    const onClickTag = (ev) => {
+        setNoTags(false);
+        // copy over array and tag id
+        let arr = postTags;
+        const tagID = ev.target.id;
+        // get index of tag in arr
+        const index = arr.indexOf(tagID);
+        // check if tag is in the array
+        if (index === -1) {
+            // not in the arr so add it
+            // check length first
+            if (arr.length === 5) {
+                setTagError("Maximum of 5 tags allowed");
+            } else {
+                // add to arr
+                arr.push(tagID);
+                // highlight
+                document.getElementById(tagID).style.outline = '#000000 solid 2px';
+                // delete error
+                setTagError("");
+            }
+        } else {
+            // already in arr so remove it
+            // check length first
+            if (arr.length === 1) {
+                setTagError("Minimum of 1 tag required");
+            } else {
+                // delete from arr
+                arr.splice(index, 1);
+                // remove highlighting
+                document.getElementById(tagID).style.outline = '';
+                // delete error
+                setTagError("");
+            }
+        }
+        setPostTags(arr);
     }
 
     const tags = program_tags.map((tag, i) => {
         return (
-            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
+            <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
         );
     });
 
@@ -48,36 +103,63 @@ const ProgramPost = () => {
         const post = {
             title: state.title,
             content: state.content,
+            tags: postTags,
         }
-        console.log(`Posting...`);
-        dispatch(submitNewForumPost(post));
+        // check post
+        console.log(post);
+        // check title
+        if (post.title === "") {
+            setTitleError("Title required");
+        } else {
+            setTitleError("");
+        }
+        // check content
+        if (post.content === "") {
+            setContentError("Your post cannot be blank");
+        } else {
+            setContentError("");
+        }
+        // check tags
+        if (post.tags.length === 0) {
+            setTagError("You must tag your post");
+        } else {
+            setTagError("");
+            setNoTags(false);
+        }
 
-        // if (success) {
-        //     const forumNav = state.program;
-        //     // reset post state
-        //     dispatch(resetPost());
-        //     navigate(`/program/${forumNav}`);
-        // }
+        if (titleError === "" && contentError === "" && !noTagsSelected) {
+            console.log(`Posting...`);
+            dispatch(submitNewForumPostByProgram(post));
+
+            // if (success) {
+            //     const forumNav = state.program;
+            //     // reset post state
+            //     dispatch(resetPost());
+            //     navigate(`/program/${forumNav}`);
+            // }
+        } else {
+            setError("Please include all required fields");
+        }
     };
 
-    return (
-        <MakePostBox>
+  return (
+    <MakePostBox>
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Post as */}
-                <div className="flex gap-x-5 my-4">
-                    <div className="font-bold">Post as:</div>
-                    <div className="flex justify-between">
-                        <div>
-                            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="current-user"> (current user)</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="anon"> Anonymous</label>
-                        </div>
-                    </div>
-                </div>
+                {/*<div className="flex gap-x-5 my-4">*/}
+                {/*    <div className="font-bold">Post as:</div>*/}
+                {/*    <div className="flex justify-between">*/}
+                {/*        <div>*/}
+                {/*            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+                {/*            <label htmlFor="current-user"> (current user)</label>*/}
+                {/*        </div>*/}
+                {/*        <div>*/}
+                {/*            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+                {/*            <label htmlFor="anon"> Anonymous</label>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 {/* Select Major */}
                 <FormInputSectionContainer>
                     <FormInputSectionTitle>
@@ -116,6 +198,9 @@ const ProgramPost = () => {
                             placeholder="Post Title"
                         />
                     </div>
+                    <SectionError>
+                        {titleError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Review */}
                 <FormInputSectionContainer>
@@ -139,6 +224,9 @@ const ProgramPost = () => {
                             placeholder="Your Review"
                         />
                     </div>
+                    <SectionError>
+                        {contentError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Tags */}
                 <FormInputSectionContainer>
@@ -150,6 +238,9 @@ const ProgramPost = () => {
                     <FormTagContainer>
                         {tags}
                     </FormTagContainer>
+                    <SectionError>
+                        {tagError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Ratings */}
                 <FormInputSectionContainer>
@@ -283,7 +374,10 @@ const ProgramPost = () => {
                     </FormRatingContainer>
                 </FormInputSectionContainer>
                 {/* Submit */}
-                <div className="flex justify-end">
+                <div className="flex justify-between">
+                    <SectionError>
+                        {error}
+                    </SectionError>
                     <button
                         onClick={onSubmit}
                         id="submitBtn"
@@ -294,9 +388,8 @@ const ProgramPost = () => {
                 </div>
             </form>
         </span>
-
         </MakePostBox>
-    );
+  );
 };
 
 export default ProgramPost;

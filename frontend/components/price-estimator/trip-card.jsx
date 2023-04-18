@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
-const Card = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
+const TripCard = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
   const [saved, setSaved] = useState(false);
 
   const handleSaveClick = () => {
@@ -47,16 +47,8 @@ const Card = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
         <div className="text-sm text-gray-600 mb-2">
           <p>{`Cheapest Month: ${cheapestDates}`}</p>
         </div>
-        <div className="text-sm text-gray-600 mb-2">
-          <p>{`Cheapest Month: ${cheapestDates}`}</p>
-          <p>{`Learn more about `}
-            <Link to={`/forum/${city2}`}>{city2}</Link>
-          </p>
-        </div>
-          
-        
-    </div>
-    <div className="flex justify-end items-end w-full">
+      </div>
+      <div className="flex justify-end items-end w-full">
         {saved ? (
           <BiBookmarkMinus
             className="text-black text-3xl cursor-pointer align-bottom justify-end"
@@ -69,8 +61,8 @@ const Card = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
           />
         )}
       </div>
-  </div>
-);
+    </div>
+  );
 };
 
-export default Card;
+export default TripCard;

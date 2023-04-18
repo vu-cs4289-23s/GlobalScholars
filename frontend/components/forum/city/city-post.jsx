@@ -1,18 +1,21 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
-import Tag from "../all-forums/tag.jsx";
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { submitNewForumPost, resetPost } from "../../../redux/post/post-slice.js";
-import { BiChevronDown } from "react-icons/bi";
-import { AiOutlineSearch } from "react-icons/ai";
-import images from "../../../../images.js";
-import tw from "tailwind-styled-components";
-import {city_tags} from "../../../../data.js";
-import {BsStar, BsStarFill} from "react-icons/bs";
-import {BsInfoCircleFill  } from 'react-icons/bs';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import Tag from '../all-forums/tag.jsx';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  submitNewForumPostByCity,
+  resetPost,
+} from '../../../redux/post/post-slice.js';
+import { BiChevronDown } from 'react-icons/bi';
+import { AiOutlineSearch } from 'react-icons/ai';
+import images from '../../../../images.js';
+import tw from 'tailwind-styled-components';
+import { city_tags } from '../../../../data.js';
+import { BsStar, BsStarFill } from 'react-icons/bs';
+import { BsInfoCircleFill } from 'react-icons/bs';
 import { FaDollarSign } from 'react-icons/fa';
-import AffordabilityInfoIcon from "../../all-pages/pricing-guide.jsx";
-import RatingInfoIcon from "../../all-pages/rating-guide.jsx";
+import AffordabilityInfoIcon from '../../all-pages/pricing-guide.jsx';
+import RatingInfoIcon from '../../all-pages/rating-guide.jsx';
 
 export const MakePostBox = tw.div`
     flex 
@@ -27,7 +30,7 @@ export const MakePostBox = tw.div`
     rounded-lg 
     my-4
     mb-28
-`
+`;
 
 export const FormInputSectionContainer = tw.div`
     flex
@@ -36,11 +39,18 @@ export const FormInputSectionContainer = tw.div`
     rounded-lg
     flex-col
     my-1
-`
+`;
 
 export const FormInputSectionTitle = tw.div`
     mx-2
     my-0.5
+`;
+
+export const SectionError = tw.div`
+    mx-2
+    mb-2
+    text-error-red
+    text-sm
 `
 
 export const GuidelinesBox = tw.div`
@@ -48,7 +58,7 @@ export const GuidelinesBox = tw.div`
     bg-gray-200
     rounded-lg
     text-[12px]
-`
+`;
 
 export const FormTagContainer = tw.div`
     flex
@@ -56,7 +66,7 @@ export const FormTagContainer = tw.div`
     m-2
     text-[16px]
     gap-x-1.5
-`
+`;
 
 export const FormRatingContainer = tw.div`
     border-black 
@@ -66,51 +76,101 @@ export const FormRatingContainer = tw.div`
     mx-2 
     mb-2 
     space-x-0
-`
+`;
 
 const CityPost = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { postInfo, success, loading } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { postInfo, success, loading } = useSelector((state) => state.post);
 
-    let [postAnon, setPostAnon] = useState("current-user");
+  let [postAnon, setPostAnon] = useState('current-user');
 
     const [overallRating, setOverallRating] = useState(undefined);
     const [affordabilityRating, setAffordabilityRating] = useState(undefined);
-  
+
+    // for tags
+    let [postTags, setPostTags] = useState([]);
+    let [tagError, setTagError] = useState("");
+    let [noTagsSelected, setNoTags] = useState(true);
 
     let [error, setError] = useState("");
     let [state, setState] = useState({
-        title: "",
-        content: "",
-        tags: [],
-        city: "",
-        program_name: "",
-        overall_rating: 0,
-        affordability_rating: 0,
+      title: '',
+      content: '',
+      tags: [],
+      city: '',
+      program_name: '',
+      overall_rating: 0,
+      affordability_rating: 0,
+      trip_start_date: '',
+      trip_end_date: '',
     });
+    let [cityError, setCityError] = useState("");
+    let [titleError, setTitleError] = useState("");
+    let [contentError, setContentError] = useState("");
 
+  // For the location selector code
+  const [locations, setLocations] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+  const [selected, setSelected] = useState('');
+  const [open, setOpen] = useState(false);
 
-    // For the location selector code
-    const [locations, setLocations] = useState(null);
-    const [inputValue, setInputValue] = useState("");
-    const [selected, setSelected] = useState("");
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        // dispatch geo-slice call here once locations are all in the DB
-
+  useEffect(() => {
+    // dispatch geo-slice call here once locations are all in the DB
         setLocations(images);
     }, []);
 
+    // for tag selection
+    useEffect(() => {
+        if (postTags.length < 0) {
+            setTagError("You must select at least one tag");
+        } else {
+           setTagError("");
+        }
+    }, [postTags]);
+
     const onClickTag = (ev) => {
-        console.log(`Tag: ${ev.target.name}`);
-        ev.stopPropagation();
+        setNoTags(false);
+        // copy over array and tag id
+        let arr = postTags;
+        const tagID = ev.target.id;
+        // get index of tag in arr
+        const index = arr.indexOf(tagID);
+        // check if tag is in the array
+        if (index === -1) {
+            // not in the arr so add it
+            // check length first
+            if (arr.length === 5) {
+                setTagError("Maximum of 5 tags allowed");
+            } else {
+                // add to arr
+                arr.push(tagID);
+                // highlight
+                document.getElementById(tagID).style.outline = '#000000 solid 2px';
+                // delete error
+                setTagError("");
+            }
+        } else {
+            // already in arr so remove it
+            // check length first
+            if (arr.length === 1) {
+                setTagError("Minimum of 1 tag required");
+            } else {
+                // delete from arr
+                arr.splice(index, 1);
+                // remove highlighting
+                document.getElementById(tagID).style.outline = '';
+                // delete error
+                setTagError("");
+            }
+        }
+        setPostTags(arr);
+        console.log(postTags);
     }
 
     const tags = city_tags.map((tag, i) => {
         return (
-            <Tag key={i} name={tag.id} content={tag.content} color={tag.color} onClick={onClickTag} />
+            <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
         );
     });
 
@@ -121,27 +181,57 @@ const CityPost = () => {
             content: state.content,
             city: state.city,
             program_name: state.program_name,
+            tags: postTags,
             // pass in overallRating and affordabilityRating values to update to city model
+            overall_rating: overallRating,
+            affordability_rating: affordabilityRating,
+            trip_start_date: new Date(state.trip_start_date).getTime(),
+            trip_end_date: new Date(state.trip_end_date).getTime(),
         }
-        console.log(`Posting...`);
-        dispatch(submitNewForumPost(post));
+        // check post
+        console.log(post);
+        // check city
+        if (post.city === "") {
+            setCityError("City selection required");
+        } else {
+            setCityError("");
+        }
+        // check title
+        if (post.title === "") {
+            setTitleError("Title required");
+        } else {
+            setTitleError("");
+        }
+        // check content
+        if (post.content === "") {
+            setContentError("Your post cannot be blank");
+        } else {
+            setContentError("");
+        }
+        // check tags
+        if (post.tags.length === 0) {
+            setTagError("You must tag your post");
+        } else {
+            setTagError("");
+        }
 
-        if (success) {
-            const forumNav = state.city;
-            // reset post state
-            dispatch(resetPost());
-            navigate(`/city/${forumNav}`);
+        if (cityError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
+            setError("");
+            console.log(`Posting...`);
+            dispatch(submitNewForumPostByCity(post));
+
+            if (success) {
+                const forumNav = state.city;
+                // reset post state
+                dispatch(resetPost());
+                navigate(`/city/${forumNav}`);
+            }
+        } else {
+            setError("Please include all required fields");
         }
+
     };
 
-    const onChange = (ev) => {
-        setError("");
-        // Update from form and clear errors
-        setState({
-            ...state,
-            [ev.target.name]: ev.target.value,
-        });
-    };
 
     useEffect(() => {
         if (selected && selected !== "") {
@@ -154,24 +244,34 @@ const CityPost = () => {
         }
     }, [selected]);
 
-    return (
-        <MakePostBox>
+
+  const onChange = (ev) => {
+    setError('');
+    // Update from form and clear errors
+    setState({
+      ...state,
+      [ev.target.name]: ev.target.value,
+    });
+  };
+
+  return (
+    <MakePostBox>
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Select Name */}
-                <div className="flex gap-x-5 my-4">
-                    <div className="font-bold">Post as:</div>
-                    <div className="flex justify-between">
-                        <div>
-                            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="current-user"> (current user)</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />
-                            <label htmlFor="anon"> Anonymous</label>
-                        </div>
-                    </div>
-                </div>
+                {/*<div className="flex gap-x-5 my-4">*/}
+                {/*    <div className="font-bold">Post as:</div>*/}
+                {/*    <div className="flex justify-between">*/}
+                {/*        <div>*/}
+                {/*            <input type="radio" id="current-user" checked={!postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+                {/*            <label htmlFor="current-user"> (current user)</label>*/}
+                {/*        </div>*/}
+                {/*        <div>*/}
+                {/*            <input type="radio" id="anon" checked={postAnon} onChange={() => setPostAnon(!postAnon)} />*/}
+                {/*            <label htmlFor="anon"> Anonymous</label>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 {/* Location/Program Selector */}
                 <div className="flex border-black border-2 rounded-lg flex-col my-1">
                     <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
@@ -229,6 +329,9 @@ const CityPost = () => {
                         ))}
                 </ul>
                 </div>
+                    <SectionError>
+                        {cityError}
+                    </SectionError>
                 </div>
                 {/* Post Title */}
                 <FormInputSectionContainer>
@@ -248,6 +351,9 @@ const CityPost = () => {
                             value={state.title}
                         />
                     </div>
+                    <SectionError>
+                        {titleError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Review */}
                 <FormInputSectionContainer>
@@ -271,6 +377,9 @@ const CityPost = () => {
                             value={state.content}
                         />
                     </div>
+                    <SectionError>
+                        {contentError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Tags */}
                 <FormInputSectionContainer>
@@ -282,6 +391,9 @@ const CityPost = () => {
                     <FormTagContainer>
                         {tags}
                     </FormTagContainer>
+                    <SectionError>
+                        {tagError}
+                    </SectionError>
                 </FormInputSectionContainer>
                 {/* Post Ratings */}
                 <FormInputSectionContainer>
@@ -342,19 +454,36 @@ const CityPost = () => {
                 </FormInputSectionContainer>
                 {/* Post Date of travel */}
                 <FormInputSectionContainer>
-                    <FormInputSectionTitle>
-                        <span className="font-bold">Date of travel</span>
-                        <span className=""> (optional)</span>
-                    </FormInputSectionTitle>
-                    <div className="flex justify-between mx-2 my-1 mb-2">
-                        <span>Trip Start</span>
-                        <input type="date" id="trip-start" name="trip-start" />
-                        <input type="date" id="trip-end" name="trip-end" />
-                        <span>Trip End</span>
-                    </div>
+                  <FormInputSectionTitle>
+                    <span className="font-bold">Date of travel</span>
+                    <span className=""> (optional)</span>
+                  </FormInputSectionTitle>
+                  <div className="flex justify-between mx-2 my-1 mb-2">
+                    <span>Trip Start</span>
+                    <input
+                      type="month"
+                      id="trip-start"
+                      name="trip_start_date"
+                      min="2000-01"
+                      onChange={onChange}
+                      value={state.trip_start_date}
+                    />
+                    <input
+                      type="month"
+                      id="trip-end"
+                      name="trip_end_date"
+                      min="2000-01"
+                      onChange={onChange}
+                      value={state.trip_end_date}
+                    />
+                    <span>Trip End</span>
+                  </div>
                 </FormInputSectionContainer>
                 {/* Submit */}
-                <div className="flex justify-end mt-2">
+                <div className="flex justify-between mt-2">
+                    <SectionError>
+                        {error}
+                    </SectionError>
                     <button id="submitBtn" type="submit" onClick={onSubmit}>
                         Post
                     </button>
@@ -362,7 +491,7 @@ const CityPost = () => {
             </form>
         </span>
         </MakePostBox>
-    );
+  );
 };
 
 export default CityPost;

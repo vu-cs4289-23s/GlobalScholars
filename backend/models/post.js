@@ -1,44 +1,52 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const Post = new Schema({
-  owner: { type: Schema.ObjectId, ref: "User", required: true },
+  owner: { type: Schema.ObjectId, ref: 'User', required: true },
   timestamp: { type: Date },
   title: { type: String, default: "" },
   content: { type: String, default: "" },
   tags: [{
     type: String,
     required: true,
-    enum: ['Weekend trip', 'Day trip', 'Favorite city', 'Never going back', 'Lots of history', 'Great hostels',
-      'Awesome nightlife', 'Beautiful scenery', 'Amazing eats', 'Overpriced', 'Affordable', 'Kinda Pricey',
-      'Hold onto your stuff!', 'Not safe at night', 'Watch for scams!', 'Walkable', 'Hard to get around',
-      'Great public transit', 'University Housing', 'Host Family', 'No housing support', 'Beautiful campus',
-      'Great location', 'Lots of homework', 'Get ready to read', 'So many papers', 'Group projects', 'Extra credit',
-      'Not much homework', 'Tough grading', 'Test heavy', 'Lecture heavy', 'Beware of pop quizzes',
-      'Participation matters', 'Graded by few things']
+    enum: ['weekend-trip', 'day-trip', 'favorite-city', 'never-going-back', 'lots-of-history', 'great-hostels',
+      'awesome-nightlife', 'beautiful-scenery', 'amazing-eats', 'overpriced', 'affordable', 'kinda-pricey', 'hold-onto-stuff',
+      'not-safe-night', 'watch-for-scams', 'walkable', 'hard-toget-around', 'great-transit', 'university-housing',
+      'host-family', 'no-housing-support', 'beautiful-campus', 'great-location', 'lots-homework', 'reading', 'many-papers',
+      'group-projects', 'extra-credit', 'not-much-homework', 'tough-grading', 'test-heavy', 'lecture-heavy', 'pop-quizzes',
+      'participation-matters', 'few-graded-things', 'classes-breeze']
   }],
-  likes: [{
-    type: Schema.ObjectId,
-    ref: "User" }],
-  dislikes: [{
-    type: Schema.ObjectId,
-    ref: "User" }],
-  saves: [{
-    type: Schema.ObjectId,
-    ref: "User" }],
-  location: { type: Schema.ObjectId, ref: "Location" },
-  program: { type: Schema.ObjectId, ref: "Program" },
-  comments: [{ type: Schema.ObjectId, ref: "Comment" }]
+  likes: [
+    {
+      type: Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
+  dislikes: [
+    {
+      type: Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
+  saves: [
+    {
+      type: Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
+  location: { type: Schema.ObjectId, ref: 'Location' },
+  program: { type: Schema.ObjectId, ref: 'Program' },
+  comments: [{ type: Schema.ObjectId, ref: 'Comment' }],
 });
 
-Post.pre("validate", function(next) {
+Post.pre('validate', function (next) {
   this.timestamp = Date.now();
   next();
 });
 
-Post.pre("save", function(next) {
+Post.pre('save', function (next) {
   // Sanitize strings
-  this.content = this.content.replace(/<(?:.|\n)*?>/gm, "");
+  this.content = this.content.replace(/<(?:.|\n)*?>/gm, '');
   next();
 });
 
-export default model("Post", Post);
+export default model('Post', Post);

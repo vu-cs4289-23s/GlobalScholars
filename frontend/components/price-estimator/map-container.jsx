@@ -32,8 +32,7 @@ const MapContainer = ({ destination, setDestination }) => {
   }, [destination]);
 
   return (
-    <div className="w-full h-full p-4">
-      {/* <div ref={mapContainer} className=" absolute w-3/4 h-full "></div> */}
+    <div className="w-full h-[40vh] sm:h-full">
       <Map
         mapStyle={mapJson}
         {...viewState}
@@ -65,6 +64,11 @@ const MapContainer = ({ destination, setDestination }) => {
                 latitude={locationInfo[key].latitude}
                 city={locationInfo[key].city}
                 country={locationInfo[key].country}
+                affordability_rating={
+                  locationInfo[key].avg_affordability_rating
+                }
+                overall_rating={locationInfo[key].avg_overall_rating}
+                selected={destination.city}
               />
             );
           })}
