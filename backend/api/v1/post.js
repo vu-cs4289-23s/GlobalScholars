@@ -608,12 +608,60 @@ const Post = (app) => {
 
     try {
       // Update Post document
-      const data =  await app.models.Post.findByIdAndUpdate(req.params.id, postQuery);
+      const post =  await app.models.Post.findByIdAndUpdate(req.params.id, postQuery);
       // Update User document
-      await app.models.User.findByIdAndUpdate(req.session.user._id, userQuery);
+      const user = await app.models.User.findByIdAndUpdate(req.session.user._id, userQuery);
 
       // Send success to client
-      res.status(200).send(data);
+      res.status(200).send(post);
+    } catch (err) {
+      console.log(
+        `Post.update post not found: ${req.params.id}`
+      );
+      res.status(500).end();
+    }
+  });
+
+  /**
+   * Undo Post statistics
+   *
+   * @param (req.params.id} Id of post to update
+   * @param {req.body.likes}
+   * @param {req.body.dislikes}
+   * @param {req.body.saves}
+   * @return {200} Updated post
+   */
+  app.put("/api/v1/post/update/:id/undo", async (req, res) => {
+    // Verify user is logged in
+    if (!req.session.user)
+      return res.status(401).send({ error: "unauthorized" });
+
+    try {
+      // Update Post document
+      let post = await app.models.Post.findById(req.params.id);
+      // Update User document
+      let user = await app.models.User.findById(req.session.user._id);
+
+      if (req.body.likes) {
+        post.likes = post.likes.slice(0,-1);
+        user.likes = user.likes.slice(0,-1);
+      }
+      if (req.body.dislikes) {
+        post.dislikes = post.dislikes.slice(0,-1);
+        user.dislikes = user.dislikes.slice(0,-1);
+      }
+      if (req.body.saves) {
+        post.saves = post.saves.slice(0,-1);
+        user.saves = user.saves.slice(0,-1);
+      }
+
+      // Update Post document
+      await app.models.Post.findByIdAndUpdate(req.params.id, post);
+      // Update User document
+      await app.models.User.findByIdAndUpdate(req.session.user._id, user);
+
+      // Send success to client
+      res.status(204).end();
     } catch (err) {
       console.log(
         `Post.update post not found: ${req.params.id}`

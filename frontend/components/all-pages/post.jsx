@@ -1,13 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import {
-    BsBookmark,
-    BsFillBookmarkFill,
-    BsHandThumbsUp,
-    BsHandThumbsUpFill,
-    BsHandThumbsDown,
-    BsHandThumbsDownFill,
-} from 'react-icons/bs';
+  BsBookmark,
+  BsFillBookmarkFill,
+  BsHandThumbsUp,
+  BsHandThumbsUpFill,
+  BsHandThumbsDown,
+  BsHandThumbsDownFill,
+} from "react-icons/bs";
 import Tag from '../forum/all-forums/tag.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ import {
     resetComment,
     submitNewComment,
 } from '../../redux/comment/comment-slice.js';
-import { updatePostStats } from "../../redux/post/post-slice.js";
+import { updatePostStats, undoPostStats } from "../../redux/post/post-slice.js";
 
 const ForumPost = ({
   key,
@@ -46,12 +46,17 @@ const ForumPost = ({
     useEffect(() => {
       setNumLikes(likes ? likes.length : 0);
     }, [likes]);
+    let [likeShade, setLikeShade] = useState(false);
 
     // dislikes
     const [numDislikes, setNumDislikes] = useState(0);
     useEffect(() => {
         setNumDislikes(dislikes ? dislikes.length : 0);
     }, [dislikes]);
+    let [dislikeShade, setDislikeShade] = useState(false);
+
+    //saves
+    let [saveShade, setSaveShade] = useState(false);
 
     // comments
     let [comment, setComment] = useState('');
@@ -99,22 +104,44 @@ const ForumPost = ({
     //     }
     // };
 
-    // TODO: check if the current user has liked, disliked, or saved the post, if so, change the icon
-
   const like = () => {
+    setLikeShade(true);
     dispatch(updatePostStats(id, {
       likes: true,
     }));
   };
 
+  const undoLike = () => {
+    setLikeShade(false);
+    dispatch(undoPostStats(id, {
+      likes: true,
+    }));
+  };
+
   const dislike = () => {
+    setDislikeShade(true);
     dispatch(updatePostStats(id, {
       dislikes: true,
     }));
   };
 
+  const undoDislike = () => {
+    setDislikeShade(false);
+    dispatch(undoPostStats(id, {
+      dislikes: true,
+    }));
+  };
+
   const save = () => {
+    setSaveShade(true);
     dispatch(updatePostStats(id, {
+      saves: true,
+    }));
+  };
+
+  const undoSave = () => {
+    setSaveShade(false);
+    dispatch(undoPostStats(id, {
       saves: true,
     }));
   };
@@ -198,17 +225,53 @@ const ForumPost = ({
                     </button>
                   ) : (
                     <div className="flex justify-center align-middle items-center">
-                        <BsHandThumbsUp height={80} width={80} className="h-6 w-6 m-2" onClick={like}
-                        />
+                      { likeShade ?
+                        <BsHandThumbsUpFill
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={undoLike}>
+                        </BsHandThumbsUpFill>
+                        :
+                        <BsHandThumbsUp
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={like}
+                      />
+                      }
                         <div id="num-likes">{numLikes}</div>
+                      { dislikeShade ?
+                        <BsHandThumbsDownFill
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={undoDislike}>
+                        </BsHandThumbsDownFill>
+                        :
                         <BsHandThumbsDown
                           height={80}
                           width={80}
                           className="h-6 w-6 m-2"
                           onClick={dislike}
                         />
+                      }
                         <div id="num-dislikes">{numDislikes}</div>
-                        <BsBookmark height={80} width={80} className="h-6 w-6 m-2" onClick={save} />
+                      { saveShade ?
+                        <BsFillBookmarkFill
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={undoSave}
+                        >
+                        </BsFillBookmarkFill>
+                        :
+                        <BsBookmark
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={save} />
+                      }
                     </div>
                   )}
               </form>
