@@ -152,7 +152,7 @@ const Post = (app) => {
    * @param {req.body.program} Program program object associated with post
    * @return {201, {id: ID of new post}} Return ID of new post
    */
-  app.post('/api/v1/post/porgram', async (req, res) => {
+  app.post('/api/v1/post/program', async (req, res) => {
     // Verify user is logged in
     if (!req.session.user)
       return res.status(401).send({ error: 'unauthorized' });
