@@ -1,18 +1,21 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
-import Tag from "../all-forums/tag.jsx";
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { submitNewForumPost, resetPost } from "../../../redux/post/post-slice.js";
-import { BiChevronDown } from "react-icons/bi";
-import { AiOutlineSearch } from "react-icons/ai";
-import images from "../../../../images.js";
-import tw from "tailwind-styled-components";
-import {city_tags} from "../../../../data.js";
-import {BsStar, BsStarFill} from "react-icons/bs";
-import {BsInfoCircleFill  } from 'react-icons/bs';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import Tag from '../all-forums/tag.jsx';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  submitNewForumPostByCity,
+  resetPost,
+} from '../../../redux/post/post-slice.js';
+import { BiChevronDown } from 'react-icons/bi';
+import { AiOutlineSearch } from 'react-icons/ai';
+import images from '../../../../images.js';
+import tw from 'tailwind-styled-components';
+import { city_tags } from '../../../../data.js';
+import { BsStar, BsStarFill } from 'react-icons/bs';
+import { BsInfoCircleFill } from 'react-icons/bs';
 import { FaDollarSign } from 'react-icons/fa';
-import AffordabilityInfoIcon from "../../all-pages/pricing-guide.jsx";
-import RatingInfoIcon from "../../all-pages/rating-guide.jsx";
+import AffordabilityInfoIcon from '../../all-pages/pricing-guide.jsx';
+import RatingInfoIcon from '../../all-pages/rating-guide.jsx';
 
 export const MakePostBox = tw.div`
     flex 
@@ -27,7 +30,7 @@ export const MakePostBox = tw.div`
     rounded-lg 
     my-4
     mb-28
-`
+`;
 
 export const FormInputSectionContainer = tw.div`
     flex
@@ -36,12 +39,12 @@ export const FormInputSectionContainer = tw.div`
     rounded-lg
     flex-col
     my-1
-`
+`;
 
 export const FormInputSectionTitle = tw.div`
     mx-2
     my-0.5
-`
+`;
 
 export const SectionError = tw.div`
     mx-2
@@ -55,7 +58,7 @@ export const GuidelinesBox = tw.div`
     bg-gray-200
     rounded-lg
     text-[12px]
-`
+`;
 
 export const FormTagContainer = tw.div`
     flex
@@ -63,7 +66,7 @@ export const FormTagContainer = tw.div`
     m-2
     text-[16px]
     gap-x-1.5
-`
+`;
 
 export const FormRatingContainer = tw.div`
     border-black 
@@ -73,14 +76,14 @@ export const FormRatingContainer = tw.div`
     mx-2 
     mb-2 
     space-x-0
-`
+`;
 
 const CityPost = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { postInfo, success, loading } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { postInfo, success, loading } = useSelector((state) => state.post);
 
-    let [postAnon, setPostAnon] = useState("current-user");
+  let [postAnon, setPostAnon] = useState('current-user');
 
     const [overallRating, setOverallRating] = useState(undefined);
     const [affordabilityRating, setAffordabilityRating] = useState(undefined);
@@ -92,28 +95,28 @@ const CityPost = () => {
 
     let [error, setError] = useState("");
     let [state, setState] = useState({
-        title: "",
-        content: "",
-        tags: [],
-        city: "",
-        program_name: "",
-        overall_rating: 0,
-        affordability_rating: 0,
+      title: '',
+      content: '',
+      tags: [],
+      city: '',
+      program_name: '',
+      overall_rating: 0,
+      affordability_rating: 0,
+      trip_start_date: '',
+      trip_end_date: '',
     });
     let [cityError, setCityError] = useState("");
     let [titleError, setTitleError] = useState("");
     let [contentError, setContentError] = useState("");
 
+  // For the location selector code
+  const [locations, setLocations] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+  const [selected, setSelected] = useState('');
+  const [open, setOpen] = useState(false);
 
-    // For the location selector code
-    const [locations, setLocations] = useState(null);
-    const [inputValue, setInputValue] = useState("");
-    const [selected, setSelected] = useState("");
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        // dispatch geo-slice call here once locations are all in the DB
-
+  useEffect(() => {
+    // dispatch geo-slice call here once locations are all in the DB
         setLocations(images);
     }, []);
 
@@ -180,6 +183,10 @@ const CityPost = () => {
             program_name: state.program_name,
             tags: postTags,
             // pass in overallRating and affordabilityRating values to update to city model
+            overall_rating: overallRating,
+            affordability_rating: affordabilityRating,
+            trip_start_date: new Date(state.trip_start_date).getTime(),
+            trip_end_date: new Date(state.trip_end_date).getTime(),
         }
         // check post
         console.log(post);
@@ -211,7 +218,7 @@ const CityPost = () => {
         if (cityError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
             setError("");
             console.log(`Posting...`);
-            dispatch(submitNewForumPost(post));
+            dispatch(submitNewForumPostByCity(post));
 
             if (success) {
                 const forumNav = state.city;
@@ -225,14 +232,6 @@ const CityPost = () => {
 
     };
 
-    const onChange = (ev) => {
-        //setError("");
-        // Update from form and clear errors
-        setState({
-            ...state,
-            [ev.target.name]: ev.target.value,
-        });
-    };
 
     useEffect(() => {
         if (selected && selected !== "") {
@@ -245,8 +244,18 @@ const CityPost = () => {
         }
     }, [selected]);
 
-    return (
-        <MakePostBox>
+
+  const onChange = (ev) => {
+    setError('');
+    // Update from form and clear errors
+    setState({
+      ...state,
+      [ev.target.name]: ev.target.value,
+    });
+  };
+
+  return (
+    <MakePostBox>
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Select Name */}
@@ -445,16 +454,30 @@ const CityPost = () => {
                 </FormInputSectionContainer>
                 {/* Post Date of travel */}
                 <FormInputSectionContainer>
-                    <FormInputSectionTitle>
-                        <span className="font-bold">Date of travel</span>
-                        <span className=""> (optional)</span>
-                    </FormInputSectionTitle>
-                    <div className="flex justify-between mx-2 my-1 mb-2">
-                        <span>Trip Start</span>
-                        <input type="date" id="trip-start" name="trip-start" />
-                        <input type="date" id="trip-end" name="trip-end" />
-                        <span>Trip End</span>
-                    </div>
+                  <FormInputSectionTitle>
+                    <span className="font-bold">Date of travel</span>
+                    <span className=""> (optional)</span>
+                  </FormInputSectionTitle>
+                  <div className="flex justify-between mx-2 my-1 mb-2">
+                    <span>Trip Start</span>
+                    <input
+                      type="month"
+                      id="trip-start"
+                      name="trip_start_date"
+                      min="2000-01"
+                      onChange={onChange}
+                      value={state.trip_start_date}
+                    />
+                    <input
+                      type="month"
+                      id="trip-end"
+                      name="trip_end_date"
+                      min="2000-01"
+                      onChange={onChange}
+                      value={state.trip_end_date}
+                    />
+                    <span>Trip End</span>
+                  </div>
                 </FormInputSectionContainer>
                 {/* Submit */}
                 <div className="flex justify-between mt-2">
@@ -468,7 +491,7 @@ const CityPost = () => {
             </form>
         </span>
         </MakePostBox>
-    );
+  );
 };
 
 export default CityPost;

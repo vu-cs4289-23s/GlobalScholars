@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const Post = new Schema({
-  owner: { type: Schema.ObjectId, ref: "User", required: true },
+  owner: { type: Schema.ObjectId, ref: 'User', required: true },
   timestamp: { type: Date },
   title: { type: String, default: "" },
   content: { type: String, default: "" },
@@ -15,29 +15,38 @@ const Post = new Schema({
       'group-projects', 'extra-credit', 'not-much-homework', 'tough-grading', 'test-heavy', 'lecture-heavy', 'pop-quizzes',
       'participation-matters', 'few-graded-things', 'classes-breeze']
   }],
-  likes: [{
-    type: Schema.ObjectId,
-    ref: "User" }],
-  dislikes: [{
-    type: Schema.ObjectId,
-    ref: "User" }],
-  saves: [{
-    type: Schema.ObjectId,
-    ref: "User" }],
-  location: { type: Schema.ObjectId, ref: "Location" },
-  program: { type: Schema.ObjectId, ref: "Program" },
-  comments: [{ type: Schema.ObjectId, ref: "Comment" }]
+  likes: [
+    {
+      type: Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
+  dislikes: [
+    {
+      type: Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
+  saves: [
+    {
+      type: Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
+  location: { type: Schema.ObjectId, ref: 'Location' },
+  program: { type: Schema.ObjectId, ref: 'Program' },
+  comments: [{ type: Schema.ObjectId, ref: 'Comment' }],
 });
 
-Post.pre("validate", function(next) {
+Post.pre('validate', function (next) {
   this.timestamp = Date.now();
   next();
 });
 
-Post.pre("save", function(next) {
+Post.pre('save', function (next) {
   // Sanitize strings
-  this.content = this.content.replace(/<(?:.|\n)*?>/gm, "");
+  this.content = this.content.replace(/<(?:.|\n)*?>/gm, '');
   next();
 });
 
-export default model("Post", Post);
+export default model('Post', Post);

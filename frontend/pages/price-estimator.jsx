@@ -4,23 +4,28 @@ import { getUserAsyncAction, logoutAction } from '../redux/user/user-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import SideBar from '../components/all-pages/sidebar';
 import MapContainer from '../components/price-estimator/map-container';
-import Card from '../components/price-estimator/trip-card';
+import Card from '../components/price-estimator/card';
 import TabbedFolder from '../components/price-estimator/trip-folder';
 import DateSelector from '../components/price-estimator/date-dropdown';
 import { ImSearch } from 'react-icons/im';
 import LocationDropDown from '../components/price-estimator/location-dropdown';
 import { getAllTrips } from '../redux/trip/trip-slice';
+import Footer from '../components/all-pages/footer';
 
 const tabs = [{ title: 'My Trips' }, { title: 'Explore' }];
 
 export default function PriceEstimator() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
   const { locationInfo, loading } = useSelector((state) => state.geo);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { city } = useParams();
   const logOutHandle = () => {
     dispatch(logoutAction());
+  };
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -31,7 +36,7 @@ export default function PriceEstimator() {
       dispatch(getUserAsyncAction(userInfo.username));
     }
   }, [loggedIn, userInfo]);
-  const [from, setFrom] = useState({
+  const [destination, setDestination] = useState({
     city: 'Nashville',
 
     longitude: -86.7816,
@@ -40,14 +45,16 @@ export default function PriceEstimator() {
 
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
-  const Search = (arg) => {
+  const [search, setSearch] = useState(false);
+  const Search = () => {
     dispatch(
       getAllTrips({
-        destination: to.city,
-        startDate: start,
-        endDate: end,
+        destination: destination.city,
+        start_date: new Date(start).getTime(),
+        end_date: new Date(end).getTime(),
       })
     );
+    setSearch(true);
   };
 
   useEffect(() => {
@@ -55,7 +62,7 @@ export default function PriceEstimator() {
       //set from euqal to the longitude and latitude cooridnates from locqationInfo object
       for (let i = 0; i < locationInfo.length; i++) {
         if (locationInfo[i].city === city) {
-          setFrom({
+          setDestination({
             city: locationInfo[i].city,
             longitude: locationInfo[i].longitude,
             latitude: locationInfo[i].latitude,
@@ -66,41 +73,62 @@ export default function PriceEstimator() {
   }, [city, locationInfo]);
 
   return (
-    <div id="price-estimator" className="flex h-screen w-screen">
+    <div
+      id="price-estimator"
+      className="flex h-screen max-h-[100vh] w-screen  bg-blue-light"
+    >
       <SideBar />
 
       {/* page contents */}
-      <div className="overflow-x-hidden w-screen">
+      <div className="flex flex-col w-full h-full  ">
         {/* header bar */}
-        <div className=" grid-row grid-col flex w-screen h-1/8 font-bold font-mono text-4xl ml-4 mt-16 text-center  text-black">
+        <h2 className="text-center my-8  text-2xl md:text-5xl font-bold text-black">
           Where would you like to travel?
-        </div>
-        <div className=" grid-row flex w-screen h-1/6 absolutefont-bold text-2xl font-mono p-4 text-black">
-          <div className=" grid-col flex w-1/4 p-8 ml-6 z-30 text-black">
+        </h2>
+        <div className=" flex flex-col  md:flex-row align-middle md:h-24   justify-items-center font-bold text-lg md:text-2xl font-mono p-4 text-black">
+          <div className=" flex px-4 h-12 z-30 justify-center text-black">
             DESTINATION:
-            <LocationDropDown selected={from} setSelected={setFrom} />
+            <LocationDropDown
+              selected={destination}
+              setSelected={setDestination}
+            />
           </div>
-          <div className=" grid-col  flex p-8 text-black">
+          <div className=" flex px-4 h-12 justify-center text-black">
             START:
-            <DateSelector selected={start} setSelectedDate={setStart} />
+            <input
+              type="month"
+              className="h-12"
+              onChange={(e) => setStart(e.target.value)}
+            />
+          </div>
+          <div className=" flex px-4 justify-center text-black">
             END:
-            <DateSelector selected={end} setSelectedDate={setEnd} />
+            <input
+              type="month"
+              className="h-12"
+              onChange={(e) => setEnd(e.target.value)}
+            />
           </div>
-          <div className=" grid-col flex p-8 ml-6 text-black cursor-pointer">
-            <ImSearch size={36} onClick={Search} />
+          <div className="flex mb-4 justify-center text-black cursor-pointer">
+            <button className="flex justify-center font-bold" onClick={() => Search()}>
+              <ImSearch size={25} className="mb-6" />
+            </button>
           </div>
         </div>
-        <div className="ml-28 w-4/5 h-4/5 ">
-          <MapContainer destination={from} setDestination={setFrom} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 w-full h-full justify-center gap-2 px-4 ">
+          <MapContainer
+            destination={destination}
+            setDestination={setDestination}
+          />
+
+          <TabbedFolder
+            tabs={tabs}
+            search={search}
+            handleScrollToTop={handleScrollToTop}
+          />
         </div>
 
-        <div className="grid-row flex w-full overflow-y-scroll h-2/3 absolutefont-bold font-mono p-4 text-black">
-          <TabbedFolder tabs={tabs} card={<Card />} />
-        </div>
-
-        <div className="absolute right-1 top-2">
-          <button onClick={() => logOutHandle()}>Log Out</button>
-        </div>
+        <Footer />
       </div>
     </div>
   );

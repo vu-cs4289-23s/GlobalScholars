@@ -6,7 +6,7 @@ import { MakePostBox, FormInputSectionContainer, FormInputSectionTitle, SectionE
     FormTagContainer, FormRatingContainer } from "../city/city-post.jsx";
 import {program_tags} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
-import { resetPost, submitNewForumPost } from "../../../redux/post/post-slice.js";
+import { resetPost, submitNewForumPostByProgram } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProgramPost = () => {
@@ -129,7 +129,7 @@ const ProgramPost = () => {
 
         if (titleError === "" && contentError === "" && !noTagsSelected) {
             console.log(`Posting...`);
-            dispatch(submitNewForumPost(post));
+            dispatch(submitNewForumPostByProgram(post));
 
             // if (success) {
             //     const forumNav = state.program;
@@ -142,8 +142,8 @@ const ProgramPost = () => {
         }
     };
 
-    return (
-        <MakePostBox>
+  return (
+    <MakePostBox>
         <span className="text-[16px] w-full h-full">
             <form className="flex flex-col align-middle">
                 {/* Post as */}
@@ -388,9 +388,8 @@ const ProgramPost = () => {
                 </div>
             </form>
         </span>
-
         </MakePostBox>
-    );
+  );
 };
 
 export default ProgramPost;

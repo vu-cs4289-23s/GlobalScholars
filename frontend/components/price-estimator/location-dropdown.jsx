@@ -16,10 +16,10 @@ export default function LocationDropDown({ selected, setSelected }) {
     }
   }, []);
   return (
-    <div className="relative w-56 h-full ">
+    <div className="relative w-48 h-full ">
       <Menu as="div" className="relative inline-block  text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md ring-2 ring-black ring-opacity-5 bg-white  px-4 py-2 text-sm font-medium text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
+          <Menu.Button className="inline-flex w-48 justify-center rounded-md ring-2 ring-black ring-opacity-5 bg-white  px-4 py-2 text-sm font-medium text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
             {selected === '' ? 'Locations' : selected.city}
             <BsChevronDown
               className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
@@ -36,7 +36,7 @@ export default function LocationDropDown({ selected, setSelected }) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className=" max-h-96 right-0 mt-2 w-56 origin-top-right divide-y rounded-md bg-white  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-scroll">
+          <Menu.Items className=" max-h-96 right-0 mt-2 w-48 origin-top-right divide-y rounded-md bg-white  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-scroll">
             <div className="px-1 py-1">
               {
                 //map through locationInfo object
