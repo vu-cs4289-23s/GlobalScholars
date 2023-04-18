@@ -8,6 +8,9 @@ import {program_tags} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
 import { resetPost, submitNewForumPostByProgram } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
+import { BiChevronDown } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
+import data from "../../../../data.js";
 
 const ProgramPost = () => {
   // for tags
@@ -36,6 +39,7 @@ const ProgramPost = () => {
   const [gradingRating, setGradingRating] = useState(undefined);
   const dispatch = useDispatch();
   const { postInfo, success, loading } = useSelector((state) => state.post);
+  const navigate = useNavigate();
 
   // for tag selection
   useEffect(() => {
