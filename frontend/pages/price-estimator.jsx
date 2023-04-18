@@ -101,8 +101,8 @@ export default function PriceEstimator() {
             END:
             <DateSelector selected={end} setSelectedDate={setEnd} />
           </div>
-          <div className="flex h-12 items-center text-black z-10">
-            <button className="flex" onClick={() => Search()}>
+          <div className="flex h-12 items-center z-10">
+            <button className="flex font-bold" onClick={() => Search()}>
               <p>Search</p>
               <ImSearch size={25} className="ml-2" />
             </button>
