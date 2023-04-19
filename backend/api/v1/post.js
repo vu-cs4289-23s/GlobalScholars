@@ -23,7 +23,7 @@ const Post = (app) => {
    * Create a new post by location
    *
    * @param {req.body.content} String contents of post
-   * @param {req.body.tags} [Tags] tags associated with post
+   * @param {req.body.tags} [String] tags associated with post
    * @param {req.body.city} String location string associated with post
    * @param {req.body.program} String program id for the associated program
    * @param {req.body.overall_rating} String overall rating for the location
@@ -82,6 +82,7 @@ const Post = (app) => {
       owner: req.session.user._id,
       timestamp: Date.now(),
       title: tripData.title,
+      content: postData.content,
       overall_rating: tripData.overall_rating,
       affordability_rating: tripData.affordability_rating,
       saves: [],

@@ -51,7 +51,7 @@ export const SectionError = tw.div`
     mb-2
     text-error-red
     text-sm
-`
+`;
 
 export const GuidelinesBox = tw.div`
     mx-2
@@ -245,13 +245,25 @@ const CityPost = () => {
     }, [selected]);
 
 
-  const onChange = (ev) => {
-    setError('');
-    // Update from form and clear errors
-    setState({
-      ...state,
-      [ev.target.name]: ev.target.value,
-    });
+    if (
+      cityError === '' &&
+      titleError === '' &&
+      contentError === '' &&
+      !noTagsSelected
+    ) {
+      setError('');
+      console.log(`Posting...`);
+      dispatch(submitNewForumPostByCity(post));
+
+      if (success) {
+        const forumNav = state.city;
+        // reset post state
+        dispatch(resetPost());
+        navigate(`/city/${forumNav}`);
+      }
+    } else {
+      setError('Please include all required fields');
+    }
   };
 
   return (
