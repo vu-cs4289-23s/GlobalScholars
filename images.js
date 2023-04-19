@@ -10,7 +10,7 @@ const images = [
   { name: "Rome, Italy", src: "/landing-locations/rome.jpeg" },
   { name: "Seville, Spain", src: "/landing-locations/seville.jpeg" },
   { name: "Stockholm, Sweden", src: "/landing-locations/stockholm.jpeg" },
-  { name: "Prague, Czech Republic", src: "/landing-locations/prague.jpeg" },
+  { name: "Prague, Czech Republic", src: "/landing-locations/prague.jpg" },
   {
     name: "Amsterdam, Netherlands",
     src: "/landing-locations/Amsterdam, Netherlands.jpeg",
@@ -23,7 +23,7 @@ const images = [
   { name: "Berlin, Germany", src: "/landing-locations/Berlin, Germany.jpeg" },
   { name: "Bremen, Germany", src: "/landing-locations/Bremen, Germany.jpeg" },
   { name: "Cork, Ireland", src: "/landing-locations/Cork, Ireland.jpeg" },
-  { name: "Dublin, Ireland", src: "/landing-locations/Dublin, Ireland.jpeg" },
+  { name: "Dublin, Ireland", src: "/landing-locations/Dublin_Ireland.jpg" },
   {
     name: "Freiburg, Germany",
     src: "/landing-locations/Freiburg, Germany.jpeg",
