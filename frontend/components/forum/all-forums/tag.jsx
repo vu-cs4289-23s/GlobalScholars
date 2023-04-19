@@ -22,6 +22,7 @@ const Tag = ({ id, opacity, onClick }) => {
     ${selected ? 'border-2 border-black' : ''}
   `;
 
+
   function findTag(item) {
     if (item.id === id) {
       setColor(item.color);
