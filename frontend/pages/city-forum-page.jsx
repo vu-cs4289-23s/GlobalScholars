@@ -82,6 +82,7 @@ export default function CityForumPage() {
 
   // set posts react state with postInfo from redux state
   useEffect(() => {
+  //  console.log(postInfo);
     setPosts(postInfo);
   }, [postInfo]);
 
@@ -123,6 +124,7 @@ export default function CityForumPage() {
                       program={post.program}
                       location={post.location}
                       date={post.timestamp}
+                      url={name ? `/city/${name}` : "/city"}
                   />
               ))}
               </div>
