@@ -22,7 +22,7 @@ export default function NewPost() {
         if (userInfo.username === undefined || userInfo.username === '') {
             navigate("/login");
         }
-    }, [userInfo])
+    }, [userInfo]);
 
     return (
         <div className="w-screen h-screen flex flex-row bg-blue-light">

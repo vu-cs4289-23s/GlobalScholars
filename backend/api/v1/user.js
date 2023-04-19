@@ -274,6 +274,8 @@ const User = (app) => {
       avatar_url: user.avatar_url,
       posts: user.posts,
       saves: user.saves,
+      likes: user.likes,
+      dislikes: user.dislikes,
     });
   });
 

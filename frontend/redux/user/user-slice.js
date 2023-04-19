@@ -23,6 +23,8 @@ const initialState = {
     // saved_comments: [],
     // saved_events: [],
     tags: [],
+    likes: [],
+    dislikes: [],
   },
   userToken: null,
   error: null,
