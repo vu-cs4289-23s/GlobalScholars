@@ -4,7 +4,6 @@ import React, {useState, useEffect} from "react";
 import ProgramPost from "../components/forum/program/program-post.jsx";
 
 export default function NewPost() {
-
     const [postType, setPostType] = useState("city");
 
     return (

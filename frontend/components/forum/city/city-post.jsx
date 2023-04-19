@@ -51,7 +51,7 @@ export const SectionError = tw.div`
     mb-2
     text-error-red
     text-sm
-`
+`;
 
 export const GuidelinesBox = tw.div`
     mx-2
@@ -212,7 +212,12 @@ const CityPost = () => {
             setTagError("");
         }
 
-        if (cityError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
+        if (
+            cityError === "" && 
+            titleError === "" && 
+            contentError === "" && 
+            !noTagsSelected
+            ) {
             setError("");
             console.log(`Posting...`);
             dispatch(submitNewForumPostByCity(post));

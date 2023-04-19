@@ -85,7 +85,7 @@ export default function PriceEstimator() {
         <h2 className="text-center my-8  text-2xl md:text-5xl font-bold text-black">
           Where would you like to travel?
         </h2>
-        <div className=" flex flex-col  md:flex-row align-middle md:h-24   justify-items-center font-bold text-lg md:text-2xl font-mono p-4 text-black">
+        <div className=" flex flex-col  md:flex-row align-middle md:h-24  items-center justify-center font-bold text-lg md:text-2xl font-mono m-8 text-black">
           <div className=" flex px-4 h-12 z-30 justify-center text-black">
             DESTINATION:
             <LocationDropDown
@@ -93,29 +93,25 @@ export default function PriceEstimator() {
               setSelected={setDestination}
             />
           </div>
-          <div className=" flex px-4 h-12 justify-center text-black">
+          <div className=" flex h-12 min-w-64  justify-center text-black z-10">
             START:
-            <input
-              type="month"
-              className="h-12"
-              onChange={(e) => setStart(e.target.value)}
-            />
+            <DateSelector selected={start} setSelectedDate={setStart} />
           </div>
-          <div className=" flex px-4 justify-center text-black">
+          <div className=" flex h-12 min-w-64 justify-center text-black z-10">
             END:
-            <input
-              type="month"
-              className="h-12"
-              onChange={(e) => setEnd(e.target.value)}
-            />
+            <DateSelector selected={end} setSelectedDate={setEnd} />
           </div>
-          <div className="flex mb-4 justify-center text-black cursor-pointer">
-            <button className="flex justify-center font-bold" onClick={() => Search()}>
-              <ImSearch size={25} className="mb-6" />
+          <div className="flex h-12 items-center z-10">
+            <button className="flex font-bold" onClick={() => Search()}>
+              <p>Search</p>
+              <ImSearch size={25} className="ml-2" />
             </button>
           </div>
+          {/* <div className="flex pt-4 justify-center text-black cursor-pointer">
+            
+          </div> */}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 w-full h-full justify-center gap-2 px-4 ">
+        <div className="flex flex-col sm:flex-row  justify-center gap-2 px-4 min-h-[50vh] md:h-full">
           <MapContainer
             destination={destination}
             setDestination={setDestination}

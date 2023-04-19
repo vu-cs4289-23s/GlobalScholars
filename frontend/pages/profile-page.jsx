@@ -97,6 +97,7 @@ export default function ProfilePage() {
                         location={post.location}
                         comments={post.comments}
                         date={post.timestamp}
+                        url={""}
                     />
                 ))}
               </div>
