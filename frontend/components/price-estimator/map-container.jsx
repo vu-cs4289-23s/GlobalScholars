@@ -32,9 +32,12 @@ const MapContainer = ({ destination, setDestination }) => {
   }, [destination]);
 
   return (
-    <div className="w-full h-[40vh] sm:h-full">
+    <div className="w-full  h-full">
       <Map
         mapStyle={mapJson}
+        style={{
+          borderRadius: '0.75rem',
+        }}
         {...viewState}
         onMove={(evt) => setViewState(evt.viewState)}
         mapLib={maplibregl}
@@ -69,6 +72,7 @@ const MapContainer = ({ destination, setDestination }) => {
                 }
                 overall_rating={locationInfo[key].avg_overall_rating}
                 selected={destination.city}
+                setDestination={setDestination}
               />
             );
           })}

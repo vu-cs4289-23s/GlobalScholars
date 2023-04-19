@@ -1,13 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import {
-    BsBookmark,
-    BsFillBookmarkFill,
-    BsHandThumbsUp,
-    BsHandThumbsUpFill,
-    BsHandThumbsDown,
-    BsHandThumbsDownFill,
-} from 'react-icons/bs';
+  BsBookmark,
+  BsFillBookmarkFill,
+  BsHandThumbsUp,
+  BsHandThumbsUpFill,
+  BsHandThumbsDown,
+  BsHandThumbsDownFill,
+} from "react-icons/bs";
 import Tag from '../forum/all-forums/tag.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -15,24 +15,24 @@ import {
     resetComment,
     submitNewComment,
 } from '../../redux/comment/comment-slice.js';
+import { updatePostStats, undoPostStats } from "../../redux/post/post-slice.js";
 
 const ForumPost = ({
-                       key,
-                       id,
-                       username,
-                       avatar,
-                       program,
-                       title,
-                       content,
-                       likes,
-                       saves,
-                       tags,
-                       dislikes,
-                       location,
-                       comments,
-                       date,
-                        url
-                   }) => {
+  key,
+  id,
+  username,
+  avatar,
+  program,
+  title,
+  content,
+  likes,
+  saves,
+  tags,
+  dislikes,
+  location,
+  comments,
+  date,
+  url, }) => {
 
     // time of post
     const [dateObj, setDateObj] = useState(null);
@@ -42,22 +42,26 @@ const ForumPost = ({
     }, [date]);
 
     // likes
-    const [numLikes, setNumLikes] = useState(100);
+    const [numLikes, setNumLikes] = useState(0);
     useEffect(() => {
-        // setNumLikes(likes.length);
-        setNumLikes(0);
+      setNumLikes(likes ? likes.length : 0);
     }, [likes]);
+    let [likeShade, setLikeShade] = useState(false);
 
     // dislikes
-    const [numDislikes, setNumDislikes] = useState(100);
+    const [numDislikes, setNumDislikes] = useState(0);
     useEffect(() => {
-        // setNumDislikes(likes.length);
-        setNumDislikes(0);
+        setNumDislikes(dislikes ? dislikes.length : 0);
     }, [dislikes]);
+    let [dislikeShade, setDislikeShade] = useState(false);
+
+    //saves
+    let [saveShade, setSaveShade] = useState(false);
 
     // comments
     let [comment, setComment] = useState('');
     let { commentInfo, success } = useSelector((state) => state.comment);
+    let { postInfo } = useSelector((state) => state.post);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -94,13 +98,67 @@ const ForumPost = ({
         }
     };
 
-    // TODO: check if the current user has liked, disliked, or saved the post, if so, change the icon
+    // const forumClick = (ev) => {
+    //     if (url) {
+    //         navigate(`${url}`);
+    //     }
+    // };
+
+  const like = () => {
+    setLikeShade(true);
+    dispatch(updatePostStats(id, {
+      likes: true,
+    }));
+  };
+
+  const undoLike = () => {
+    setLikeShade(false);
+    dispatch(undoPostStats(id, {
+      likes: true,
+    }));
+  };
+
+  const dislike = () => {
+    setDislikeShade(true);
+    dispatch(updatePostStats(id, {
+      dislikes: true,
+    }));
+  };
+
+  const undoDislike = () => {
+    setDislikeShade(false);
+    dispatch(undoPostStats(id, {
+      dislikes: true,
+    }));
+  };
+
+  const save = () => {
+    setSaveShade(true);
+    dispatch(updatePostStats(id, {
+      saves: true,
+    }));
+  };
+
+  const undoSave = () => {
+    setSaveShade(false);
+    dispatch(undoPostStats(id, {
+      saves: true,
+    }));
+  };
+
+  useEffect(() => {
+    if (postInfo && postInfo.likes) {
+      setNumLikes(postInfo.likes.length);
+    }
+    if (postInfo && postInfo.dislikes) {
+      setNumDislikes(postInfo.dislikes.length);
+    }
+  }, [postInfo]);
 
     return (
         <div className="flex rounded-lg bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between flex-col">
             <div className="flex mb-2 justify-between">
                 <div className="flex items-center"
-                onClick={userClick}
                 style={{ cursor: 'pointer' }}
               >
                   <img
@@ -113,7 +171,7 @@ const ForumPost = ({
                     }}
                   />
 
-                  <div className="font-bold ml-2">{username}</div>
+                  <div className="font-bold ml-2" onClick={userClick}>{username}</div>
                   <div className="ml-2">in</div>
                   <div className="font-bold ml-2">{url ? url.replace(/\s/g, '').toLowerCase() : ""}</div>
               </div>
@@ -167,15 +225,53 @@ const ForumPost = ({
                     </button>
                   ) : (
                     <div className="flex justify-center align-middle items-center">
-                        <BsHandThumbsUp height={80} width={80} className="h-6 w-6 m-2" />
+                      { likeShade ?
+                        <BsHandThumbsUpFill
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={undoLike}>
+                        </BsHandThumbsUpFill>
+                        :
+                        <BsHandThumbsUp
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={like}
+                      />
+                      }
                         <div id="num-likes">{numLikes}</div>
+                      { dislikeShade ?
+                        <BsHandThumbsDownFill
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={undoDislike}>
+                        </BsHandThumbsDownFill>
+                        :
                         <BsHandThumbsDown
                           height={80}
                           width={80}
                           className="h-6 w-6 m-2"
+                          onClick={dislike}
                         />
+                      }
                         <div id="num-dislikes">{numDislikes}</div>
-                        <BsBookmark height={80} width={80} className="h-6 w-6 m-2" />
+                      { saveShade ?
+                        <BsFillBookmarkFill
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={undoSave}
+                        >
+                        </BsFillBookmarkFill>
+                        :
+                        <BsBookmark
+                          height={80}
+                          width={80}
+                          className="h-6 w-6 m-2"
+                          onClick={save} />
+                      }
                     </div>
                   )}
               </form>

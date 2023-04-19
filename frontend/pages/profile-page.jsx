@@ -85,7 +85,6 @@ export default function ProfilePage() {
               <div>
                 {posts.map((post, index) => (
                     <ForumPost
-                        key={index}
                         id={post._id}
                         username={post.owner ? post.owner.username : "" }
                         program={post.program}
@@ -98,6 +97,7 @@ export default function ProfilePage() {
                         location={post.location}
                         comments={post.comments}
                         date={post.timestamp}
+                        url={""}
                     />
                 ))}
               </div>

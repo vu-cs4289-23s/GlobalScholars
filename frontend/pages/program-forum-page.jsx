@@ -84,24 +84,28 @@ export default function ProgramForumPage() {
       <SideBar />
       <div className="bg-blue-light overflow-y-scroll">
         <img
-          className="flex h-1/4 w-screen object-center object-cover"
+          className="flex h-[30%] w-screen object-center object-cover"
           src={program.image_link}
         />
-        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-        { name ?
-          <ProgramDescription
-          program={program.program_name}
-          terms={program.terms}
-          top_tags={program.top_tags}
-          overall_rating={program.overall_rating}
-        /> :
-          <SearchBar forum={true}/>}
-        <FilterBar />
+        {name ? <div></div>
+            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+              <SearchBar forum={true}/>
+              <FilterBar />
+            </div> }
+
+        <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
+          { name ?
+            <ProgramDescription
+            program={program.program_name}
+            terms={program.terms}
+            top_tags={program.top_tags}
+            overall_rating={program.overall_rating}
+          /> :
+            <div></div>}
         {posts && posts.length > 0 ? (
           <div>
             {posts.map((post, index) => (
               <ForumPost
-                key={index}
                 id={post._id}
                 avatar={post.owner ? post.owner.avatar_url : "" }
                 username={post.owner ? post.owner.username : "" }
@@ -115,7 +119,7 @@ export default function ProgramForumPage() {
                 program={post.program}
                 location={post.location}
                 date={post.timestamp}
-                url={name ? `/city/${name}` : "/city"}
+                url={name ? `/program/${name}` : "/program"}
               />
             ))}
           </div>
