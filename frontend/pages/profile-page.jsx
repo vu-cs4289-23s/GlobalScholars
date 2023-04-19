@@ -85,7 +85,6 @@ export default function ProfilePage() {
               <div>
                 {posts.map((post, index) => (
                     <ForumPost
-                        key={index}
                         id={post._id}
                         username={post.owner ? post.owner.username : "" }
                         program={post.program}

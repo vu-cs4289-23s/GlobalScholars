@@ -32,7 +32,6 @@ export default function PostPage() {
           {post && post !== {} ? (
             <div>
               <ForumPost
-                  key={1}
                   id={post._id}
                   username={post.owner ? post.owner.username : "" }
                   title={post.title}
