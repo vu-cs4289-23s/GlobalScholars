@@ -78,7 +78,7 @@ export const FormRatingContainer = tw.div`
     space-x-0
 `;
 
-const CityPost = () => {
+const CityPost = ({username}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { postInfo, success, loading } = useSelector((state) => state.post);
@@ -187,6 +187,7 @@ const CityPost = () => {
             affordability_rating: affordabilityRating,
             trip_start_date: new Date(state.trip_start_date).getTime(),
             trip_end_date: new Date(state.trip_end_date).getTime(),
+            user: username,
         }
         // check post
         console.log(post);
@@ -220,12 +221,11 @@ const CityPost = () => {
             console.log(`Posting...`);
             dispatch(submitNewForumPostByCity(post));
 
-            if (success) {
-                const forumNav = state.city;
-                // reset post state
-                dispatch(resetPost());
-                navigate(`/city/${forumNav}`);
-            }
+            // redirect page
+            const forumNav = state.city;
+            // reset post state
+            dispatch(resetPost());
+            navigate(`/city/${forumNav}`);
         } else {
             setError("Please include all required fields");
         }
@@ -272,9 +272,12 @@ const CityPost = () => {
                 {/*        </div>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                {/* Location/Program Selector */}
+                {/* Location Selector */}
                 <div className="flex border-black border-2 rounded-lg flex-col my-1">
-                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
+                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-13"}>
+                        <span className="font-bold">Select a Location</span>
+                        <span className=""> (required)</span>
+                        <span className="text-red-700">*</span>
                         <div
                             onClick={() => setOpen(!open)}
                             className={`bg-white w-full p-2 flex items-center justify-between rounded ${
@@ -285,7 +288,7 @@ const CityPost = () => {
                             ? selected?.length > 25
                                 ? selected?.substring(0, 25) + "..."
                                 : selected
-                            : "Select Location"}
+                            : "Location"}
                             <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
                     </div>
                     <ul
@@ -399,7 +402,8 @@ const CityPost = () => {
                 <FormInputSectionContainer>
                     <FormInputSectionTitle>
                         <span className="font-bold">Ratings</span>
-                        <span className=""> (optional)</span>
+                        <span className=""> (required)</span>
+                        <span className="text-red-700">*</span>
                     </FormInputSectionTitle>
                     {/* Overall */}
                     <FormRatingContainer>
@@ -456,7 +460,8 @@ const CityPost = () => {
                 <FormInputSectionContainer>
                   <FormInputSectionTitle>
                     <span className="font-bold">Date of travel</span>
-                    <span className=""> (optional)</span>
+                        <span className=""> (required)</span>
+                        <span className="text-red-700">*</span>
                   </FormInputSectionTitle>
                   <div className="flex justify-between mx-2 my-1 mb-2">
                     <span>Trip Start</span>

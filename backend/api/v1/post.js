@@ -34,8 +34,18 @@ const Post = (app) => {
    */
   app.post('/api/v1/post/city', async (req, res) => {
     // Verify user is logged in
-    if (!req.session.user)
-      return res.status(401).send({ error: 'unauthorized' });
+    if (!req.session.user) {
+      try {
+        // grab user from post body
+        const user = await app.models.User.findOne({ username: req.body.user });
+        if (!user) {
+          return res.status(401).send({ error: 'unauthorized' });
+        }
+        req.session.user = user;
+      } catch (err) {
+        return res.status(401).send({ error: 'unauthorized' });
+      }
+    }
 
     // Validate request body
     let postData = {
@@ -154,8 +164,18 @@ const Post = (app) => {
    */
   app.post('/api/v1/post/program', async (req, res) => {
     // Verify user is logged in
-    if (!req.session.user)
-      return res.status(401).send({ error: 'unauthorized' });
+    if (!req.session.user) {
+      try {
+        // grab user from post body
+        const user = await app.models.User.findOne({ username: req.body.user });
+        if (!user) {
+          return res.status(401).send({ error: 'unauthorized' });
+        }
+        req.session.user = user;
+      } catch (err) {
+        return res.status(401).send({ error: 'unauthorized' });
+      }
+    }
 
     // Define post schema
     const schema = object({
