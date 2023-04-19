@@ -11,6 +11,7 @@ import { ImSearch } from 'react-icons/im';
 import LocationDropDown from '../components/price-estimator/location-dropdown';
 import { getAllTrips } from '../redux/trip/trip-slice';
 import Footer from '../components/all-pages/footer';
+import { getAllLocationsAsyncAction } from '../redux/geo/geo-slice';
 
 const tabs = [{ title: 'My Trips' }, { title: 'Explore' }];
 
@@ -56,6 +57,12 @@ export default function PriceEstimator() {
     );
     setSearch(true);
   };
+
+  useEffect(() => {
+    if (locationInfo[0] === undefined) {
+      dispatch(getAllLocationsAsyncAction());
+    }
+  }, [locationInfo]);
 
   useEffect(() => {
     if (city !== undefined) {
