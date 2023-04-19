@@ -187,57 +187,30 @@ const CityPost = () => {
             trip_start_date: new Date(state.trip_start_date).getTime(),
             trip_end_date: new Date(state.trip_end_date).getTime(),
         }
-        // check post
-        console.log(post);
         // check city
         if (post.city === "") {
             setCityError("City selection required");
-            console.log(cityError)
-            console.log("no city selected")
         } else {
             setCityError("");
-            console.log(cityError)
-            console.log("city has been selected")
         }
         // check title
         if (post.title === "") {
             setTitleError("Title required");
-            console.log(titleError)
-            console.log("no title entered")
         } else {
             setTitleError("");
-            console.log(titleError)
-            console.log("title found")
         }
         // check content
         if (post.content === "") {
             setContentError("Your post cannot be blank");
-            console.log(contentError)
-            console.log("no content entered")
         } else {
             setContentError("");
-            console.log(contentError)
-            console.log("content found")
         }
         // check tags
         if (post.tags.length === 0) {
             setTagError("You must tag your post");
-            console.log(tagError)
-            console.log("no tags selected")
         } else {
             setTagError("");
-            console.log(tagError)
-            console.log("tags found")
         }
-
-        console.log(cityError)
-        console.log(cityError === "")
-        console.log(titleError)
-        console.log(titleError === "")
-        console.log(contentError)
-        console.log(contentError === "")
-        console.log(!noTagsSelected)
-        console.log(cityError === "" && titleError === "" && contentError === "" && !noTagsSelected)
 
         if (cityError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
             setError("");
