@@ -40,12 +40,12 @@ const FilterBar = ({ posts, setPosts }) => {
     return (
         <div className="flex rounded-lg bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between sm:flex-row flex-col">
             <div className="flex sm:space-x-3 sm:align-middle sm:justify-center my-auto">
-                <div className="flex space-x-1.5">
-                    <GiFallingStar size={28} onClick={handleNewestClick}/>
+                <div className="flex space-x-1.5" onClick={handleNewestClick}>
+                    <GiFallingStar size={28} />
                     <div className="font-bold text-[20px]"> Newest</div>
                 </div>
-                <div className="flex space-x-1.5">
-                    <FaCrown size={28} onClick={handleAllTimeClick}/>
+                <div className="flex space-x-1.5" onClick={handleAllTimeClick}>
+                    <FaCrown size={28} />
                     <div className="font-bold text-[20px]"> All Time</div>
                 </div>
             </div>
