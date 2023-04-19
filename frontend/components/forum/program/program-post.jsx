@@ -104,13 +104,6 @@ const ProgramPost = () => {
       [ev.target.name]: ev.target.value,
     });
   };
-  const onChange = (ev) => {
-    // Update from form and clear errors
-    setState({
-      ...state,
-      [ev.target.name]: ev.target.value,
-    });
-  };
 
   const onSubmit = (ev) => {
     ev.preventDefault();
