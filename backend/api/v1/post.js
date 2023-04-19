@@ -607,7 +607,6 @@ const Post = (app) => {
    */
   app.put('/api/v1/post/update/:id', async (req, res) => {
     // Verify user is logged in
-<<<<<<< HEAD
     if (!req.session.user) {
       try {
         // grab user from post body
@@ -620,10 +619,6 @@ const Post = (app) => {
         return res.status(401).send({ error: 'unauthorized' });
       }
     }
-=======
-    if (!req.session.user)
-      return res.status(401).send({ error: 'unauthorized' });
->>>>>>> 85a21f547eeafcb849279436d44085fbd97a769b
 
     // Increment likes, dislikes, or saves count
     let postQuery;
@@ -672,7 +667,6 @@ const Post = (app) => {
    */
   app.put('/api/v1/post/update/:id/undo', async (req, res) => {
     // Verify user is logged in
-<<<<<<< HEAD
     if (!req.session.user) {
       try {
         // grab user from post body
@@ -685,10 +679,6 @@ const Post = (app) => {
         return res.status(401).send({ error: 'unauthorized' });
       }
     }
-=======
-    if (!req.session.user)
-      return res.status(401).send({ error: 'unauthorized' });
->>>>>>> 85a21f547eeafcb849279436d44085fbd97a769b
 
     try {
       // Update Post document
