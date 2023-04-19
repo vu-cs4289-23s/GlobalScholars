@@ -9,6 +9,10 @@ const Location = new Schema({
   like_cnt: { type: Number, default: 0 },
 
   // Forum data
+  overall_rating: { type: Number, default: 0 },
+  // safety_rating: { type: Number, default: 0 },
+  affordability_rating: { type: Number, default: 0 },
+  // sightseeing_rating: { type: Number, default: 0 },
   avg_overall_rating: { type: Number, default: 0 },
   avg_affordability_rating: { type: Number, default: 0 },
   top_tags: [{ type: String }],

@@ -10,6 +10,7 @@ const PopUpContainer = ({
   overall_rating,
   affordability_rating,
   selected,
+  setDestination,
 }) => {
   const [showPopUps, setShowPopUps] = useState(false);
 
@@ -26,6 +27,7 @@ const PopUpContainer = ({
               'animate-bounce text-4xl duration-500 ease-in-out '
             }`}
             style={{ fill: 'red' }}
+            onClick={() => setDestination({ city, longitude, latitude })}
           />
         </Marker>
       </div>

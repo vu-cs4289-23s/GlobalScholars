@@ -98,7 +98,7 @@ const SideBar = () => {
           {userInfo.avatar_url ? (
             <img
               src={userInfo.avatar_url}
-              alt="profile"
+              alt="/public/default.png"
               className="rounded-full h-[36px] w-[36px] my-auto"
             />
           ) : (

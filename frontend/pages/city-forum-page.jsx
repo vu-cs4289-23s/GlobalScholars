@@ -82,6 +82,7 @@ export default function CityForumPage() {
 
   // set posts react state with postInfo from redux state
   useEffect(() => {
+  //  console.log(postInfo);
     setPosts(postInfo);
   }, [postInfo]);
 
@@ -93,7 +94,13 @@ export default function CityForumPage() {
           className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
+        {name ? <div></div>
+            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+              <SearchBar forum={true}/>
+              <FilterBar />
+            </div> }
+
+        <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
           {name ?
             <CityDescription
               description={location.description}
@@ -103,8 +110,11 @@ export default function CityForumPage() {
               overall_rating={location.overall_rating}
             />
           :
-            <SearchBar forum={true}/>}
-          <FilterBar />
+              <div></div>}
+          {name ?
+              <FilterBar />
+              :
+              <div></div>}
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
           <div>
@@ -123,6 +133,7 @@ export default function CityForumPage() {
                       program={post.program}
                       location={post.location}
                       date={post.timestamp}
+                      url={name ? `/city/${name}` : "/city"}
                   />
               ))}
               </div>
