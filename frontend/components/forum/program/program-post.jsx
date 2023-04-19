@@ -15,7 +15,7 @@ import { program_tags } from '../../../../data.js';
 import { BsStar, BsStarFill } from 'react-icons/bs';
 import {
   resetPost,
-  submitNewForumPost,
+  submitNewForumPostByProgram,
 } from '../../../redux/post/post-slice.js';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -136,7 +136,7 @@ const ProgramPost = () => {
 
     if (titleError === '' && contentError === '' && !noTagsSelected) {
       console.log(`Posting...`);
-      dispatch(submitNewForumPost(post));
+      dispatch(submitNewForumPostByProgram(post));
 
       // if (success) {
       //     const forumNav = state.program;
