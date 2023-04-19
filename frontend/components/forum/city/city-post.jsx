@@ -95,15 +95,15 @@ const CityPost = () => {
 
     let [error, setError] = useState("");
     let [state, setState] = useState({
-      title: '',
-      content: '',
+      title: "",
+      content: "",
       tags: [],
-      city: '',
-      program_name: '',
+      city: "",
+      program_name: "",
       overall_rating: 0,
       affordability_rating: 0,
-      trip_start_date: '',
-      trip_end_date: '',
+      trip_start_date: "",
+      trip_end_date: "",
     });
     let [cityError, setCityError] = useState("");
     let [titleError, setTitleError] = useState("");
@@ -165,7 +165,6 @@ const CityPost = () => {
             }
         }
         setPostTags(arr);
-        console.log(postTags);
     }
 
     const tags = city_tags.map((tag, i) => {
@@ -188,8 +187,6 @@ const CityPost = () => {
             trip_start_date: new Date(state.trip_start_date).getTime(),
             trip_end_date: new Date(state.trip_end_date).getTime(),
         }
-        // check post
-        console.log(post);
         // check city
         if (post.city === "") {
             setCityError("City selection required");
@@ -215,7 +212,12 @@ const CityPost = () => {
             setTagError("");
         }
 
-        if (cityError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
+        if (
+            cityError === "" && 
+            titleError === "" && 
+            contentError === "" && 
+            !noTagsSelected
+            ) {
             setError("");
             console.log(`Posting...`);
             dispatch(submitNewForumPostByCity(post));
@@ -245,26 +247,34 @@ const CityPost = () => {
     }, [selected]);
 
 
-    if (
-      cityError === '' &&
-      titleError === '' &&
-      contentError === '' &&
-      !noTagsSelected
-    ) {
-      setError('');
-      console.log(`Posting...`);
-      dispatch(submitNewForumPostByCity(post));
-
-      if (success) {
-        const forumNav = state.city;
-        // reset post state
-        dispatch(resetPost());
-        navigate(`/city/${forumNav}`);
-      }
-    } else {
-      setError('Please include all required fields');
-    }
+  const onChangeTitle = (ev) => {
+    // setError('');
+    // Update from form and clear errors
+    setState({
+      ...state,
+      title: ev.target.value,
+    });
+    setTitleError("");
   };
+
+    const onChangeReview = (ev) => {
+        // setError('');
+        // Update from form and clear errors
+        setState({
+            ...state,
+            content: ev.target.value,
+        });
+        setContentError("");
+    };
+
+    const onChangeTravel = (ev) => {
+        // setError('');
+        // Update from form and clear errors
+        setState({
+            ...state,
+            [ev.target.value]: ev.target.value,
+        });
+    };
 
   return (
     <MakePostBox>
@@ -333,6 +343,7 @@ const CityPost = () => {
                                         setSelected(city?.name);
                                         setOpen(false);
                                         setInputValue("");
+                                        setCityError("");
                                     }
                                 }}
                             >
@@ -359,7 +370,7 @@ const CityPost = () => {
                             name="title"
                             type="text"
                             placeholder="Post Title"
-                            onChange={onChange}
+                            onChange={onChangeTitle}
                             value={state.title}
                         />
                     </div>
@@ -385,7 +396,7 @@ const CityPost = () => {
                             name="content"
                             type="text"
                             placeholder="Your Review"
-                            onChange={onChange}
+                            onChange={onChangeReview}
                             value={state.content}
                         />
                     </div>
@@ -477,7 +488,7 @@ const CityPost = () => {
                       id="trip-start"
                       name="trip_start_date"
                       min="2000-01"
-                      onChange={onChange}
+                      onChange={onChangeTravel}
                       value={state.trip_start_date}
                     />
                     <input
@@ -485,7 +496,7 @@ const CityPost = () => {
                       id="trip-end"
                       name="trip_end_date"
                       min="2000-01"
-                      onChange={onChange}
+                      onChange={onChangeTravel}
                       value={state.trip_end_date}
                     />
                     <span>Trip End</span>
