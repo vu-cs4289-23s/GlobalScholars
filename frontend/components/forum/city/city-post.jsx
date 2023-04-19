@@ -95,15 +95,15 @@ const CityPost = () => {
 
     let [error, setError] = useState("");
     let [state, setState] = useState({
-      title: '',
-      content: '',
+      title: "",
+      content: "",
       tags: [],
-      city: '',
-      program_name: '',
+      city: "",
+      program_name: "",
       overall_rating: 0,
       affordability_rating: 0,
-      trip_start_date: '',
-      trip_end_date: '',
+      trip_start_date: "",
+      trip_end_date: "",
     });
     let [cityError, setCityError] = useState("");
     let [titleError, setTitleError] = useState("");
@@ -165,7 +165,6 @@ const CityPost = () => {
             }
         }
         setPostTags(arr);
-        console.log(postTags);
     }
 
     const tags = city_tags.map((tag, i) => {
@@ -193,27 +192,52 @@ const CityPost = () => {
         // check city
         if (post.city === "") {
             setCityError("City selection required");
+            console.log(cityError)
+            console.log("no city selected")
         } else {
             setCityError("");
+            console.log(cityError)
+            console.log("city has been selected")
         }
         // check title
         if (post.title === "") {
             setTitleError("Title required");
+            console.log(titleError)
+            console.log("no title entered")
         } else {
             setTitleError("");
+            console.log(titleError)
+            console.log("title found")
         }
         // check content
         if (post.content === "") {
             setContentError("Your post cannot be blank");
+            console.log(contentError)
+            console.log("no content entered")
         } else {
             setContentError("");
+            console.log(contentError)
+            console.log("content found")
         }
         // check tags
         if (post.tags.length === 0) {
             setTagError("You must tag your post");
+            console.log(tagError)
+            console.log("no tags selected")
         } else {
             setTagError("");
+            console.log(tagError)
+            console.log("tags found")
         }
+
+        console.log(cityError)
+        console.log(cityError === "")
+        console.log(titleError)
+        console.log(titleError === "")
+        console.log(contentError)
+        console.log(contentError === "")
+        console.log(!noTagsSelected)
+        console.log(cityError === "" && titleError === "" && contentError === "" && !noTagsSelected)
 
         if (cityError === "" && titleError === "" && contentError === "" && !noTagsSelected) {
             setError("");
@@ -245,14 +269,34 @@ const CityPost = () => {
     }, [selected]);
 
 
-  const onChange = (ev) => {
-    setError('');
+  const onChangeTitle = (ev) => {
+    // setError('');
     // Update from form and clear errors
     setState({
       ...state,
-      [ev.target.name]: ev.target.value,
+      title: ev.target.value,
     });
+    setTitleError("");
   };
+
+    const onChangeReview = (ev) => {
+        // setError('');
+        // Update from form and clear errors
+        setState({
+            ...state,
+            content: ev.target.value,
+        });
+        setContentError("");
+    };
+
+    const onChangeTravel = (ev) => {
+        // setError('');
+        // Update from form and clear errors
+        setState({
+            ...state,
+            [ev.target.value]: ev.target.value,
+        });
+    };
 
   return (
     <MakePostBox>
@@ -321,6 +365,7 @@ const CityPost = () => {
                                         setSelected(city?.name);
                                         setOpen(false);
                                         setInputValue("");
+                                        setCityError("");
                                     }
                                 }}
                             >
@@ -347,7 +392,7 @@ const CityPost = () => {
                             name="title"
                             type="text"
                             placeholder="Post Title"
-                            onChange={onChange}
+                            onChange={onChangeTitle}
                             value={state.title}
                         />
                     </div>
@@ -373,7 +418,7 @@ const CityPost = () => {
                             name="content"
                             type="text"
                             placeholder="Your Review"
-                            onChange={onChange}
+                            onChange={onChangeReview}
                             value={state.content}
                         />
                     </div>
@@ -465,7 +510,7 @@ const CityPost = () => {
                       id="trip-start"
                       name="trip_start_date"
                       min="2000-01"
-                      onChange={onChange}
+                      onChange={onChangeTravel}
                       value={state.trip_start_date}
                     />
                     <input
@@ -473,7 +518,7 @@ const CityPost = () => {
                       id="trip-end"
                       name="trip_end_date"
                       min="2000-01"
-                      onChange={onChange}
+                      onChange={onChangeTravel}
                       value={state.trip_end_date}
                     />
                     <span>Trip End</span>
