@@ -479,11 +479,10 @@ const Post = (app) => {
         try {
           data = await app.models.Post.find({
             owner: user._id,
+          }).populate('owner', {
+            username: 1,
+            avatar_url: 1,
           })
-            .populate('owner', {
-              username: 1,
-              avatar_url: 1,
-            })
             .populate('location', {
               city: 1,
             })

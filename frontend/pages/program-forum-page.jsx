@@ -147,29 +147,61 @@ export default function ProgramForumPage() {
           className="flex h-[30%] w-screen object-center object-cover"
           src={program.image_link}
         />
-        {name ? (
-          <div></div>
-        ) : (
-          <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
-            <SearchBar forum={true} />
-            <FilterBar
-              posts={posts}
-              setPosts={setPosts}
-              onClickAdvanced={() => setShowAdvanced(true)}
-              showClear={showClear}
-              onClickClear={onClickClear}
-            />
-          </div>
-        )}
+        {name ? <div></div>
+            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+              <SearchBar forum={true}/>
+              <FilterBar 
+                posts={posts} 
+                setPosts={setPosts}
+                onClickAdvanced={() => setShowAdvanced(true)}
+                showClear={showClear}
+                onClickClear={onClickClear}
+              />
+              {showAdvanced && (
+                  <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+              )}
+            </div> }
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          {name && (
-            <div>
-              <ProgramDescription
-                program={program.program_name}
-                terms={program.terms}
-                top_tags={program.top_tags}
-                overall_rating={program.overall_rating}
+          { name && (
+              <div>
+                <ProgramDescription
+                  program={program.program_name}
+                  terms={program.terms}
+                  top_tags={program.top_tags}
+                  overall_rating={program.overall_rating}
+                />
+                <FilterBar 
+                  posts={posts} 
+                  setPosts={setPosts}
+                  onClickAdvanced={() => setShowAdvanced(true)}
+                  showClear={showClear}
+                  onClickClear={onClickClear}
+                />
+                {showAdvanced && (
+                    <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+                )}
+              </div>)
+          }
+        {posts && posts.length > 0 ? (
+          <div>
+            {posts.map((post, index) => (
+              <ForumPost
+                id={post._id}
+                avatar={post.owner ? post.owner.avatar_url : "" }
+                username={post.owner ? post.owner.username : "" }
+                title={post.title}
+                content={post.content}
+                likes={post.likes}
+                saves={post.saves}
+                tags={post.tags}
+                dislikes={post.dislikes}
+                comments={post.comments}
+                program={post.program}
+                location={post.location}
+                date={post.timestamp}
+                url={name ? `/program/${name}` : "/program"}
+                userPosts={[]}
               />
               <FilterBar
                 posts={posts}

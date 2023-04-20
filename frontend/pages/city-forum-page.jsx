@@ -55,6 +55,7 @@ export default function CityForumPage() {
     setShowAdvanced(false);
     setSelectedTags([]);
   };
+
   const onClickTag = (ev) => {
     let arr = selectedTags;
     const tagID = ev.target.id;
