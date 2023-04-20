@@ -78,7 +78,7 @@ export const FormRatingContainer = tw.div`
     space-x-0
 `;
 
-const CityPost = () => {
+const CityPost = ({username}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { postInfo, success, loading } = useSelector((state) => state.post);
@@ -186,6 +186,7 @@ const CityPost = () => {
       affordability_rating: affordabilityRating,
       trip_start_date: new Date(state.trip_start_date).getTime(),
       trip_end_date: new Date(state.trip_end_date).getTime(),
+      user: username,
     };
     // check city
     if (post.city === '') {
@@ -291,75 +292,66 @@ const CityPost = () => {
           {/*        </div>*/}
           {/*    </div>*/}
           {/*</div>*/}
-          {/* Location/Program Selector */}
+          {/* Location Selector */}
           <div className="flex border-black border-2 rounded-lg flex-col my-1">
-            <div
-              className={
-                open ? 'w-100 font-medium h-80' : 'w-100 font-medium h-10'
-              }
-            >
-              <div
-                onClick={() => setOpen(!open)}
-                className={`bg-white w-full p-2 flex items-center justify-between rounded ${
-                  !selected && 'text-gray-700'
-                }`}
-              >
-                {selected
-                  ? selected?.length > 25
-                    ? selected?.substring(0, 25) + '...'
-                    : selected
-                  : 'Select Location'}
-                <BiChevronDown
-                  size={20}
-                  className={`${open && 'rotate-180'}`}
-                />
-              </div>
-              <ul
-                className={`bg-white mt-2 overflow-y-auto ${
-                  open ? 'max-h-60' : 'max-h-0'
-                } `}
-              >
-                <div className="flex items-center px-2 sticky top-0 bg-white">
-                  <AiOutlineSearch size={18} className="text-gray-700" />
-                  <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) =>
-                      setInputValue(e.target.value.toLowerCase())
-                    }
-                    placeholder="Enter location name"
-                    className="placeholder:text-gray-700 p-2 outline-none"
-                  />
+                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-13"}>
+                        <span className="font-bold">Select a Location</span>
+                        <span className=""> (required)</span>
+                        <span className="text-red-700">*</span>
+                        <div
+                          onClick={() => setOpen(!open)}
+                          className={`bg-white w-full p-2 flex items-center justify-between rounded ${
+                            !selected && "text-gray-700"
+                          }`}
+                        >
+                        {selected
+                          ? selected?.length > 25
+                            ? selected?.substring(0, 25) + "..."
+                            : selected
+                          : "Location"}
+                          <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+                    </div>
+                    <ul
+                      className={`bg-white mt-2 overflow-y-auto ${
+                        open ? "max-h-60" : "max-h-0"
+                      } `}
+                    >
+                    <div className="flex items-center px-2 sticky top-0 bg-white">
+                        <AiOutlineSearch size={18} className="text-gray-700" />
+                        <input
+                          type="text"
+                          value={inputValue}
+                          onChange={(e) => setInputValue(e.target.value.toLowerCase())}
+                          placeholder="Enter location name"
+                          className="placeholder:text-gray-700 p-2 outline-none"
+                        />
+                    </div>
+                      {locations?.map((city) => (
+                        <li
+                          key={city?.name}
+                          className={`p-2 text-sm hover:bg-sky-600 hover:text-white
+                    ${
+                            city?.name?.toLowerCase() === selected?.toLowerCase() &&
+                            "bg-sky-600 text-white"
+                          }
+                    ${
+                            city?.name?.toLowerCase().startsWith(inputValue)
+                              ? "block"
+                              : "hidden"
+                          }`}
+                          onClick={() => {
+                            if (city?.name?.toLowerCase() !== selected.toLowerCase()) {
+                              setSelected(city?.name);
+                              setOpen(false);
+                              setInputValue("");
+                            }
+                          }}
+                        >
+                          {city?.name}
+                        </li>
+                      ))}
+                </ul>
                 </div>
-                {locations?.map((city) => (
-                  <li
-                    key={city?.name}
-                    className={`p-2 text-sm hover:bg-sky-600 hover:text-white
-                    ${
-                      city?.name?.toLowerCase() === selected?.toLowerCase() &&
-                      'bg-sky-600 text-white'
-                    }
-                    ${
-                      city?.name?.toLowerCase().startsWith(inputValue)
-                        ? 'block'
-                        : 'hidden'
-                    }`}
-                    onClick={() => {
-                      if (
-                        city?.name?.toLowerCase() !== selected.toLowerCase()
-                      ) {
-                        setSelected(city?.name);
-                        setOpen(false);
-                        setInputValue('');
-                        setCityError('');
-                      }
-                    }}
-                  >
-                    {city?.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
             <SectionError>{cityError}</SectionError>
           </div>
           {/* Post Title */}
@@ -424,7 +416,8 @@ const CityPost = () => {
           <FormInputSectionContainer>
             <FormInputSectionTitle>
               <span className="font-bold">Ratings</span>
-              <span className=""> (optional)</span>
+              <span className=""> (required)</span>
+              <span className="text-red-700">*</span>
             </FormInputSectionTitle>
             {/* Overall */}
             <FormRatingContainer>
@@ -535,7 +528,8 @@ const CityPost = () => {
           <FormInputSectionContainer>
             <FormInputSectionTitle>
               <span className="font-bold">Date of travel</span>
-              <span className=""> (optional)</span>
+              <span className=""> (required)</span>
+              <span className="text-red-700">*</span>
             </FormInputSectionTitle>
             <div className="flex justify-between mx-2 my-1 mb-2">
               <span>Trip Start</span>

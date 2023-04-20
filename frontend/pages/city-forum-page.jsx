@@ -7,7 +7,7 @@ import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
+import { getUserAsyncAction, getUserSession, logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
@@ -134,6 +134,9 @@ export default function CityForumPage() {
                       location={post.location}
                       date={post.timestamp}
                       url={name ? `/city/${name}` : "/city"}
+                      sessionLikes={userInfo ? userInfo.likes : []}
+                      sessionDislikes={userInfo ? userInfo.dislikes : []}
+                      sessionSaves={userInfo ? userInfo.saves : []}
                   />
               ))}
               </div>
