@@ -3,10 +3,12 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllLocationsAsyncAction } from '../../redux/geo/geo-slice.js';
+import { lat_long_data_countries } from '../../../data.js';
 
 export default function LocationDropDown({ selected, setSelected }) {
   const { locationInfo } = useSelector((state) => state.geo);
   const dispatch = useDispatch();
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     //check if the locationInfo object is empty
@@ -15,12 +17,43 @@ export default function LocationDropDown({ selected, setSelected }) {
       dispatch(getAllLocationsAsyncAction());
     }
   }, []);
+
+  useEffect(() => {
+    //check if the locationInfo object is empty
+    let arr = [];
+    for (let i = 0; i < lat_long_data_countries.length; i++) {
+      arr.push({
+        country: lat_long_data_countries[i].country,
+        latitude: lat_long_data_countries[i].latitude,
+        longitude: lat_long_data_countries[i].longitude,
+      });
+    }
+    //filter out duplicate countries
+    arr = arr.filter(
+      (thing, index, self) =>
+        index === self.findIndex((t) => t.country === thing.country)
+    );
+    // sort by alphabetical order
+    arr.sort((a, b) => {
+      if (a.country < b.country) {
+        return -1;
+      }
+      if (a.country > b.country) {
+        return 1;
+      }
+      return 0;
+    });
+    //set the countries to the arr
+    setCountries(arr);
+  }, []);
+  console.log(countries);
+
   return (
     <div className="relative w-48 h-full ">
       <Menu as="div" className="relative inline-block  text-left">
         <div>
-          <Menu.Button className="inline-flex w-48 justify-center rounded-md ring-2 ring-black ring-opacity-5 bg-white  px-4 py-2 text-sm font-medium text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
-            {selected === '' ? 'Locations' : selected.city}
+          <Menu.Button className=" inline-flex w-48 justify-center rounded-md ring-2 ring-black ring-opacity-5 bg-white  px-4 py-2 text-sm font-bold sm:text-base text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
+            {selected.country}
             <BsChevronDown
               className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
               aria-hidden="true"
@@ -39,31 +72,37 @@ export default function LocationDropDown({ selected, setSelected }) {
           <Menu.Items className=" max-h-96 right-0 mt-2 w-48 origin-top-right divide-y rounded-md bg-white  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-scroll">
             <div className="px-1 py-1">
               {
-                //map through locationInfo object
-                //map through  by rows
-                Object.keys(locationInfo).map((key, id) => {
-                  // console.log(locationInfo[key].city);
+                //map through the countries array
+                countries.map((country, id) => {
                   return (
                     <Menu.Item key={id}>
                       {({ active }) => (
                         <button
                           className={`${
-                            active ? ' bg-white  text-white' : 'text-gray-900'
+                            active
+                              ? ' bg-white  text-violet-700'
+                              : 'text-gray-900'
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm p-1 m-1`}
-                          onClick={() => setSelected(locationInfo[key])}
+                          onClick={() =>
+                            setSelected({
+                              country: country.country,
+                              latitude: country.latitude,
+                              longitude: country.longitude,
+                            })
+                          }
                         >
                           {active ? (
-                            <DuplicateActiveIcon
+                            <EditActiveIcon
                               className="mr-2 h-5 w-5"
                               aria-hidden="true"
                             />
                           ) : (
-                            <DuplicateInactiveIcon
+                            <EditInactiveIcon
                               className="mr-2 h-5 w-5"
                               aria-hidden="true"
                             />
                           )}
-                          {locationInfo[key].city}
+                          {country.country}
                         </button>
                       )}
                     </Menu.Item>

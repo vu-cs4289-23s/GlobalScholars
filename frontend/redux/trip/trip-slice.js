@@ -5,7 +5,7 @@ const backendURL = '/api/v1';
 
 const initialState = {
   tripInfo: {
-    trips: [],
+    cities: [],
   },
   loading: true,
   error: null,
@@ -18,17 +18,19 @@ const tripSlice = createSlice({
   reducers: {
     getTrips: (state, action) => {
       state.loading = false;
-      state.tripInfo.trips = action.payload;
+      state.tripInfo.cities = action.payload;
       state.success = true;
       state.error = null;
     },
     error: (state, action) => {
       state.loading = false;
+      state.tripInfo.trips = initialState.tripInfo.trips;
       state.error = action.payload.message;
+      state.success = false;
     },
     reset: (state, action) => {
       state.loading = initialState.loading;
-      state.tripInfo = initialState.tripInfo;
+      state.tripInfo.cities = initialState.tripInfo.cities;
       state.success = initialState.success;
       state.error = initialState.error;
     },

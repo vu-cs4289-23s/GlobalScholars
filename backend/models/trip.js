@@ -5,6 +5,8 @@ const Trip = new Schema({
   title: { type: String, default: '' },
   content: { type: String, default: '' },
   location: { type: Schema.ObjectId, ref: 'Location', required: true },
+  city: { type: String, default: '' },
+  country: { type: String, default: '' },
   timestamp: { type: Date, default: Date.now },
   overall_rating: { type: Number, default: 0 },
   affordability_rating: { type: Number, default: 0 },
