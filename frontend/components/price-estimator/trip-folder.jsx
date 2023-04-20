@@ -3,7 +3,7 @@ import Explore from './explore';
 import MyTrips from './my-trips';
 import { useEffect } from 'react';
 
-const TabbedFolder = ({ tabs, search, handleScrollToTop }) => {
+const TabbedFolder = ({ tabs, search, setSearch }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].title);
 
   const handleTabClick = (tabTitle) => {
@@ -13,6 +13,7 @@ const TabbedFolder = ({ tabs, search, handleScrollToTop }) => {
     if (search) {
       setActiveTab('Explore');
     }
+    setSearch(false);
   }, [search]);
 
   return (
@@ -41,7 +42,6 @@ const TabbedFolder = ({ tabs, search, handleScrollToTop }) => {
         <MyTrips setTab={setActiveTab} />
       )}
     </div>
-   
   );
 };
 

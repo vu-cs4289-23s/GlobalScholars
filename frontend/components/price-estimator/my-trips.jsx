@@ -2,22 +2,53 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserAsyncAction } from '../../redux/user/user-slice';
 import Card from './card.jsx';
+import images from '../../../images';
 
 const MyTrips = ({ setTab }) => {
   const { userInfo, success } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserAsyncAction(userInfo.username));
+  }, []);
 
   return (
-    <div className="w-full h-full">
+    <div className="overflow-y-scroll w-full h-full">
       {userInfo.saves ? (
-        userInfo.saves.map((trip) => (
-          <Card
-            key={trip.id}
-            title={trip.title}
-            overall_rating={trip.overall_rating}
-            affordability_rating={trip.affordability_rating}
-          />
-        ))
+        userInfo.saves.map((post) => {
+          // its not a trip
+          if (post.location === null) return null;
+          const location = post.location;
+          const city = location.city;
+          const country = location.country;
+          let image = {
+            src: '/default_location.jpeg',
+          };
+          for (let i = 0; i < images.length; i++) {
+            //case insensitive
+            if (
+              images[i].name.toLowerCase().includes(location.city.toLowerCase())
+            ) {
+              image = images[i];
+              break;
+            }
+          }
+          console.log(location);
+          return (
+            <Card
+              key={post.id}
+              id={post._id}
+              city={city}
+              username={userInfo.username}
+              country={country}
+              title={post.title}
+              count={location.trips.length}
+              image_link={image.src}
+              explore={false}
+              overall_rating={location.avg_overall_rating}
+              affordability_rating={location.avg_affordability_rating}
+            />
+          );
+        })
       ) : (
         <div className="flex flex-col items-center justify-center h-full">
           <h1 className="text-2xl font-semibold text-gray-500">

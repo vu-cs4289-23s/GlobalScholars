@@ -133,6 +133,7 @@ const Post = (app) => {
 
     let post = new app.models.Post(newPost);
     let trip = new app.models.Trip(newTrip);
+    trip.post = post._id;
     location.trips.push(trip._id);
 
     // Save post to model

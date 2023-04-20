@@ -39,7 +39,7 @@ const postSlice = createSlice({
     },
     updatePost: (state, action) => {
       state.loading = false;
-      // state.postInfo = action.payload;
+      state.postInfo = action.payload;
       state.success = true;
       state.error = null;
     },
@@ -187,38 +187,47 @@ export const updatePostStats = (id, data) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const response = await axios.put(`${backendURL}/post/update/${id}`, data, config);
-  //  console.log(response);
+    const response = await axios.put(
+      `${backendURL}/post/update/${id}`,
+      data,
+      config
+    );
+    //  console.log(response);
     dispatch(updatePost(response.data));
   } catch (error) {
     console.log(error);
     dispatch(error(error));
   }
-}
+};
 
 export const undoPostStats = (id, data) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const response = await axios.put(`${backendURL}/post/update/${id}/undo`, data, config);
-  //  console.log(response);
+    const response = await axios.put(
+      `${backendURL}/post/update/${id}/undo`,
+      data,
+      config
+    );
+    //  console.log(response);
     dispatch(updatePost(response.data));
   } catch (error) {
     console.log(error);
     dispatch(error(error));
   }
-}
+};
 
 export const resetPost = () => (dispatch) => {
   dispatch(reset());
 };
 
-export const { getPosts, submitPost, updatePost, reset, error } = postSlice.actions;
+export const { getPosts, submitPost, updatePost, reset, error } =
+  postSlice.actions;
 
 export default postSlice.reducer;
