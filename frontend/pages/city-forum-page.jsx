@@ -97,7 +97,9 @@ export default function CityForumPage() {
         {name ? <div></div>
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
-              <FilterBar />
+              
+              <FilterBar/>
+
             </div> }
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
@@ -112,7 +114,7 @@ export default function CityForumPage() {
           :
               <div></div>}
           {name ?
-              <FilterBar />
+                <FilterBar posts={posts} setPosts={setPosts} />
               :
               <div></div>}
         {/*put toggle above description?*/}
