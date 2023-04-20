@@ -1,14 +1,17 @@
 import SideBar from "../components/all-pages/sidebar";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
+import AdvancedFilter from "../components/forum/all-forums/advanced-filter.jsx";
 import ForumPost from "../components/all-pages/post.jsx";
+import Tag from "../components/forum/all-forums/tag.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { getAllPostsAsyncAction, getPostsByProgramAsyncAction } from "../redux/post/post-slice.js";
 import ProgramDescription from "../components/forum/program/program-description.jsx";
 import { getForumDataByName } from "../redux/geo/geo-slice.js";
 import SearchBar from "../components/landing-page/search-bar.jsx";
+import {program_tags} from "../../data.js";
 
 export default function ProgramForumPage() {
   let { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -27,6 +30,37 @@ export default function ProgramForumPage() {
     like_cnt: 0,
   });
   let [posts, setPosts] = useState([]);
+
+  let [showAdvanced, setShowAdvanced] = useState(false);
+  let [selectedTag, setSelectedTag] = useState("");
+  const onClickX = () => {
+    setShowAdvanced(false);
+    setSelectedTag("");
+  }
+  const onClickTag = (ev) => {
+    const tagID = ev.target.id;
+    if (selectedTag === tagID) {
+      // same element selected
+      document.getElementById(tagID).style.outline = '';
+      setSelectedTag("");
+    } else if (selectedTag !== "") {
+      // undo highlighting
+      document.getElementById(selectedTag).style.outline = '';
+    }
+    setSelectedTag(tagID);
+    document.getElementById(tagID).style.outline = '#000000 solid 2px';
+  }
+  let tags = program_tags.map((tag, i) => {
+            return (
+                <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
+            );
+        })
+  const onClickFilter = () => {
+    setShowAdvanced(false);
+    if (selectedTag !== "") {
+      setSelectedTag("");
+    }
+  }
 
 
   const logOutHandle = () => {
@@ -80,7 +114,7 @@ export default function ProgramForumPage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
+    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba overflow-hidden">
       <SideBar />
       <div className="bg-blue-light overflow-y-scroll">
         <img
@@ -90,18 +124,27 @@ export default function ProgramForumPage() {
         {name ? <div></div>
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
-              <FilterBar />
+              <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+              {showAdvanced && (
+                  <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+              )}
             </div> }
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          { name ?
-            <ProgramDescription
-            program={program.program_name}
-            terms={program.terms}
-            top_tags={program.top_tags}
-            overall_rating={program.overall_rating}
-          /> :
-            <div></div>}
+          { name && (
+              <div>
+                <ProgramDescription
+                  program={program.program_name}
+                  terms={program.terms}
+                  top_tags={program.top_tags}
+                  overall_rating={program.overall_rating}
+                />
+                <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+                {showAdvanced && (
+                    <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+                )}
+              </div>)
+          }
         {posts && posts.length > 0 ? (
           <div>
             {posts.map((post, index) => (

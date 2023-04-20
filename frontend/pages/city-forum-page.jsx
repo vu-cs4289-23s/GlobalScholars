@@ -2,16 +2,19 @@ import SideBar from "../components/all-pages/sidebar";
 import SearchBar from "../components/landing-page/search-bar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
+import AdvancedFilter from "../components/forum/all-forums/advanced-filter.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
 import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
 import Comment from "../components/all-pages/comment.jsx";
+import {city_tags} from "../../data.js";
+import Tag from "../components/forum/all-forums/tag.jsx";
 
 export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -34,6 +37,37 @@ export default function CityForumPage() {
     image_link: "", // TODO -- add location image links to DB
     like_cnt: 0,
   });
+
+  let [showAdvanced, setShowAdvanced] = useState(false);
+  let [selectedTag, setSelectedTag] = useState("");
+  const onClickX = () => {
+    setShowAdvanced(false);
+    setSelectedTag("");
+  }
+  const onClickTag = (ev) => {
+    const tagID = ev.target.id;
+    if (selectedTag === tagID) {
+      // same element selected
+      document.getElementById(tagID).style.outline = '';
+      setSelectedTag("");
+    } else if (selectedTag !== "") {
+      // undo highlighting
+      document.getElementById(selectedTag).style.outline = '';
+    }
+    setSelectedTag(tagID);
+    document.getElementById(tagID).style.outline = '#000000 solid 2px';
+  }
+  let tags = city_tags.map((tag, i) => {
+    return (
+        <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
+    );
+  })
+  const onClickFilter = () => {
+    setShowAdvanced(false);
+    if (selectedTag !== "") {
+      setSelectedTag("");
+    }
+  }
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -97,24 +131,28 @@ export default function CityForumPage() {
         {name ? <div></div>
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
-              <FilterBar />
+              <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+              {showAdvanced && (
+                  <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+              )}
             </div> }
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
           {name ?
-            <CityDescription
-              description={location.description}
-              city={location.city}
-              country={location.country}
-              top_tags={location.top_tags}
-              overall_rating={location.overall_rating}
-            />
-          :
-              <div></div>}
-          {name ?
-              <FilterBar />
-              :
-              <div></div>}
+              <div>
+                <CityDescription
+                  description={location.description}
+                  city={location.city}
+                  country={location.country}
+                  top_tags={location.top_tags}
+                  overall_rating={location.overall_rating}
+                />
+                <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+                {showAdvanced && (
+                    <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+                )}
+              </div>
+          : null }
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
           <div>

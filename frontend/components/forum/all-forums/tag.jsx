@@ -5,21 +5,18 @@ import program from '../../../../backend/models/program.js';
 const Tag = ({ id, opacity, onClick }) => {
   let [color, setColor] = useState('');
   let [content, setContent] = useState('');
-  const [selected, setSelected] = useState(false);
 
   const style = `
     flex
     rounded-full
     bg-opacity-${opacity}
     hover:bg-opacity-100
-    text-xs
     text-black
     sm:text-base
     justify-center
     my-1
     cursor-pointer
     bg-${color}
-    ${selected ? 'border-2 border-black' : ''}
   `;
 
 
@@ -38,14 +35,7 @@ const Tag = ({ id, opacity, onClick }) => {
   }, []);
 
   return (
-    <div
-      id={id}
-      className={`${style}`}
-      onClick={() => {
-        setSelected(!selected);
-        onClick(id);
-      }}
-    >
+    <div id={id} className={`${style}`} onClick={onClick}>
       <div id={id} className="mx-2 my-1">
         {content}
       </div>
