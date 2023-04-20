@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserAsyncAction, getUserSession, logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
-import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
+import { getAllPostsAsyncAction, getPostsByLocationAsyncAction, updatePostStats } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
 import Comment from "../components/all-pages/comment.jsx";
 import {city_tags} from "../../data.js";

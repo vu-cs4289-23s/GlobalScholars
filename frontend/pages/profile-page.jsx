@@ -91,6 +91,7 @@ export default function ProfilePage() {
                 {posts.map((post, index) => (
                     <ForumPost
                         id={post._id}
+                        avatar={post.owner ? post.owner.avatar_url : "" }
                         username={post.owner ? post.owner.username : "" }
                         program={post.program}
                         title={post.title}
@@ -102,7 +103,9 @@ export default function ProfilePage() {
                         location={post.location}
                         comments={post.comments}
                         date={post.timestamp}
-                        url={""}
+                        url={post.location && post.location.city !== "Accra" ?
+                          post.location.city : post.program ?
+                            post.program.program_name : ""}
                     />
                 ))}
               </div>
@@ -112,6 +115,7 @@ export default function ProfilePage() {
               {saves.map((post, index) => (
                 <ForumPost
                   id={post._id}
+                  avatar={post.owner ? post.owner.avatar_url : "" }
                   username={post.owner ? post.owner.username : "" }
                   program={post.program}
                   title={post.title}
@@ -123,7 +127,9 @@ export default function ProfilePage() {
                   location={post.location}
                   comments={post.comments}
                   date={post.timestamp}
-                  url={""}
+                  url={post.location && post.location.city !== "Accra" ?
+                    post.location.city : post.program ?
+                      post.program.program_name : ""}
                 />
               ))}
             </div>

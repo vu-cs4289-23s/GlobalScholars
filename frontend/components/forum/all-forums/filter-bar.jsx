@@ -42,17 +42,17 @@ const FilterBar = ({ posts, setPosts, onClickAdvanced, showClear, onClickClear }
 
     return (
         <div className="flex rounded-lg bg-white sm:mx-20 mx-4 text-left p-2 px-4 my-4 sm:justify-between sm:flex-row flex-col">
-            <div className="flex sm:space-x-3 sm:align-middle sm:justify-center my-auto">
-                <div className="flex space-x-1.5" onClick={handleNewestClick}>
+            <div className="flex sm:space-x-3 sm:align-middle sm:justify-center my-auto" >
+                <div className="flex space-x-1.5" style={{ cursor: 'pointer' }} onClick={handleNewestClick}>
                     <GiFallingStar size={28} />
                     <div className="font-bold text-[20px]"> Newest</div>
                 </div>
-                <div className="flex space-x-1.5" onClick={handleAllTimeClick}>
+                <div className="flex space-x-1.5" style={{ cursor: 'pointer' }} onClick={handleAllTimeClick}>
                     <FaCrown size={28} />
                     <div className="font-bold text-[20px]"> All Time</div>
                 </div>
             </div>
-            <div className="ml-auto flex">
+            <div className="ml-auto flex" style={{ cursor: 'pointer' }}>
                 {showClear && (<div
                     id="clearFilter"
                     className="flex p-2 m-auto mr-1.5 text-gray-500"
