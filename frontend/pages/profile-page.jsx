@@ -28,6 +28,7 @@ export default function ProfilePage() {
   const [modalOpen, setModalOpen] = useState(false);
   let [posts, setPosts] = useState([]);
   let [myPosts, setMyPosts] = useState(true);
+  let [saves, setSaves] = useState([]);
 
   useEffect(() => {
     if (success && !loggedIn) {
@@ -57,6 +58,10 @@ export default function ProfilePage() {
     setPosts(postInfo);
   }, [postInfo]);
 
+  useEffect(() => {
+    setSaves(userInfo.saves);
+  }, [userInfo]);
+
   return (
     <div id="profile-page" className="flex overflow-x-hidden h-screen w-screen bg-blue-light">
       <SideBar />
@@ -78,14 +83,15 @@ export default function ProfilePage() {
               </div>
 
           </div>
-          <div className="font-bold text-2xl ">
-            {myPosts ? "My posts" : "Saved Posts"}
+          <div>
+            {myPosts ? "Posts" : "Saves"}
           </div>
-          {posts && posts.length > 0 ? (
+          {myPosts && posts && posts.length > 0 ? (
               <div>
                 {posts.map((post, index) => (
                     <ForumPost
                         id={post._id}
+                        avatar={post.owner ? post.owner.avatar_url : "" }
                         username={post.owner ? post.owner.username : "" }
                         program={post.program}
                         title={post.title}
@@ -97,11 +103,37 @@ export default function ProfilePage() {
                         location={post.location}
                         comments={post.comments}
                         date={post.timestamp}
-                        url={""}
+                        url={post.location && post.location.city !== "Accra" ?
+                          post.location.city : post.program ?
+                            post.program.program_name : ""}
                     />
                 ))}
               </div>
-          ) : null}
+          ) :
+          !myPosts && saves && saves.length > 0 ? (
+            <div>
+              {saves.map((post, index) => (
+                <ForumPost
+                  id={post._id}
+                  avatar={post.owner ? post.owner.avatar_url : "" }
+                  username={post.owner ? post.owner.username : "" }
+                  program={post.program}
+                  title={post.title}
+                  content={post.content}
+                  likes={post.likes}
+                  saves={post.saves}
+                  tags={post.tags}
+                  dislikes={post.dislikes}
+                  location={post.location}
+                  comments={post.comments}
+                  date={post.timestamp}
+                  url={post.location && post.location.city !== "Accra" ?
+                    post.location.city : post.program ?
+                      post.program.program_name : ""}
+                />
+              ))}
+            </div>
+            ) : null}
         </div>
       </div>
 

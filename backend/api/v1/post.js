@@ -481,7 +481,13 @@ const Post = (app) => {
           }).populate('owner', {
             username: 1,
             avatar_url: 1,
-          });
+          })
+            .populate('location', {
+              city: 1,
+            })
+            .populate('program', {
+              program_name: 1,
+            });
 
           // Posts don't exist
           if (!data) {
