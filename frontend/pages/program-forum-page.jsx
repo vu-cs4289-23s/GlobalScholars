@@ -90,7 +90,7 @@ export default function ProgramForumPage() {
         {name ? <div></div>
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
-              <FilterBar />
+            <FilterBar posts={posts} setPosts={setPosts}/>
             </div> }
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
@@ -102,6 +102,12 @@ export default function ProgramForumPage() {
             overall_rating={program.overall_rating}
           /> :
             <div></div>}
+
+          {name ?
+            <FilterBar posts={posts} setPosts={setPosts} />
+            :
+            <div></div>}
+
         {posts && posts.length > 0 ? (
           <div>
             {posts.map((post, index) => (

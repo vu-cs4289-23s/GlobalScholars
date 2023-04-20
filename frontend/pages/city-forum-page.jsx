@@ -98,7 +98,7 @@ export default function CityForumPage() {
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
               
-              <FilterBar/>
+              <FilterBar posts={posts} setPosts={setPosts}/>
 
             </div> }
 
