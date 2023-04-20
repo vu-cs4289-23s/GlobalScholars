@@ -1,10 +1,10 @@
-import { useForm } from "react-hook-form";
-import { Form } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { registerAndLoginAsyncAction } from "../../redux/user/user-slice";
-import axios from "axios";
+import { useForm } from 'react-hook-form';
+import { Form } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerAndLoginAsyncAction } from '../../redux/user/user-slice';
+import axios from 'axios';
 
 const Register = () => {
   const { loading, loggedIn, error, success } = useSelector(
@@ -19,9 +19,9 @@ const Register = () => {
     dispatch(registerAndLoginAsyncAction(data));
   };
   useEffect(() => {
-    console.log("USER INFO", loggedIn);
+    console.log('USER INFO', loggedIn);
     if (loggedIn) {
-      navigate("/landing");
+      navigate('/');
     }
   }, [loggedIn]);
   return (
@@ -34,7 +34,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Username"
-            {...register("username")}
+            {...register('username')}
             className="flex rounded-none  bg-transparent border-none shadow-none ring-0 placeholder-slate-600 hover:ring-0 hover:outline-none  focus:outline-none border-b-orange-50 focus:ring-0"
           />
         </div>
@@ -42,7 +42,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="First Name"
-            {...register("first_name")}
+            {...register('first_name')}
             className="flex rounded-none mt-8  border-b-2 bg-transparent border-none ring-0 shadow-none placeholder-slate-600  hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>
@@ -50,7 +50,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Last Name"
-            {...register("last_name")}
+            {...register('last_name')}
             className="flex rounded-none mt-8  bg-transparent border-none shadow-none ring-0  placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>
@@ -58,7 +58,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Email"
-            {...register("primary_email")}
+            {...register('primary_email')}
             className="flex rounded-none mt-8  bg-transparent border-none shadow-none ring-0 placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>
@@ -66,7 +66,7 @@ const Register = () => {
           <input
             type="password"
             placeholder="Password"
-            {...register("password")}
+            {...register('password')}
             className="flex rounded-none mt-8  bg-transparent border-none shadow-none ring-0 placeholder-slate-600 hover:ring-0 hover:outline-none focus:outline-none focus:ring-0"
           />
         </div>

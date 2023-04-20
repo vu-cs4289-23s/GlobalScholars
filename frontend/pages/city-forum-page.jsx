@@ -2,16 +2,19 @@ import SideBar from "../components/all-pages/sidebar";
 import SearchBar from "../components/landing-page/search-bar";
 import CityDescription from "../components/forum/city/city-description.jsx";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
+import AdvancedFilter from "../components/forum/all-forums/advanced-filter.jsx";
 import CityPost from "../components/forum/city/city-post.jsx";
 import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
+import { getUserAsyncAction, getUserSession, logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
-import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
+import { getAllPostsAsyncAction, getPostsByLocationAsyncAction, updatePostStats } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
 import Comment from "../components/all-pages/comment.jsx";
+import {city_tags} from "../../data.js";
+import Tag from "../components/forum/all-forums/tag.jsx";
 
 export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -20,6 +23,7 @@ export default function CityForumPage() {
   const dispatch = useDispatch();
   const { name } = useParams();
   let [posts, setPosts] = useState([]);
+  let [allPosts, setAllPosts] = useState([]);
   let { postInfo } = useSelector((state) => state.post);
   const [location, setLocation] = useState({
     city: "City",
@@ -34,6 +38,58 @@ export default function CityForumPage() {
     image_link: "", // TODO -- add location image links to DB
     like_cnt: 0,
   });
+
+  // filtering
+  let [showAdvanced, setShowAdvanced] = useState(false);
+  let [showClear, setShowClear] = useState(false);
+  let [selectedTags, setSelectedTags] = useState([]);
+  const onClickX = () => {
+    setShowAdvanced(false);
+    setSelectedTags([]);
+  }
+  const onClickTag = (ev) => {
+    let arr = selectedTags;
+    const tagID = ev.target.id;
+    const index = arr.indexOf(tagID);
+    // check if tag is in the array
+    if (index === -1) {
+      // not in the arr so add it
+      arr.push(tagID);
+      // highlight
+      document.getElementById(tagID).style.outline = '#000000 solid 2px';
+    } else {
+      // already in arr so remove it
+      arr.splice(index, 1);
+      // remove highlighting
+      document.getElementById(tagID).style.outline = '';
+    }
+    setSelectedTags(arr);
+  }
+  let tags = city_tags.map((tag, i) => {
+    return (
+        <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
+    );
+  })
+  const onClickFilter = () => {
+    setShowAdvanced(false);
+    setShowClear(true);
+    if (selectedTags !== []) {
+      let arr = [];
+      selectedTags.forEach((tag) => {
+        allPosts.forEach((post) => {
+          if (post.tags.includes(tag)) {
+            arr.push(post);
+          }
+        })
+      })
+      setPosts(arr);
+    }
+  }
+  const onClickClear = () => {
+    setSelectedTags([]);
+    setPosts(allPosts);
+    setShowClear(false);
+  }
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -82,7 +138,9 @@ export default function CityForumPage() {
 
   // set posts react state with postInfo from redux state
   useEffect(() => {
+  //  console.log(postInfo);
     setPosts(postInfo);
+    setAllPosts(postInfo);
   }, [postInfo]);
 
   return (
@@ -93,19 +151,43 @@ export default function CityForumPage() {
           className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        <div className="absolute top-40 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          {name ?
-            <CityDescription
-              description={location.description}
-              city={location.city}
-              country={location.country}
-              top_tags={location.top_tags}
-              overall_rating={location.overall_rating}
-            />
-          :
-            <SearchBar forum={true}/>}
+        {name ? <div></div>
+            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+              <SearchBar forum={true}/>
+              <FilterBar 
+                posts={posts} 
+                setPosts={setPosts} 
+                onClickAdvanced={() => setShowAdvanced(true)}
+                showClear={showClear}
+                onClickClear={onClickClear}
+              />
+              {showAdvanced && (
+                  <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+              )}
+            </div> }
 
-          <FilterBar posts={posts} setPost={setPosts()} />
+        <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
+          {name ?
+              <div>
+                <CityDescription
+                  description={location.description}
+                  city={location.city}
+                  country={location.country}
+                  top_tags={location.top_tags}
+                  overall_rating={location.overall_rating}
+                />
+                <FilterBar 
+                  posts={posts} 
+                  setPosts={setPosts} 
+                  onClickAdvanced={() => setShowAdvanced(true)}
+                  showClear={showClear}
+                  onClickClear={onClickClear}
+                />
+                {showAdvanced && (
+                    <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+                )}
+              </div>
+          : null }
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
           <div>
@@ -124,6 +206,10 @@ export default function CityForumPage() {
                       program={post.program}
                       location={post.location}
                       date={post.timestamp}
+                      url={name ? `/city/${name}` : "/city"}
+                      sessionLikes={userInfo ? userInfo.likes : []}
+                      sessionDislikes={userInfo ? userInfo.dislikes : []}
+                      sessionSaves={userInfo ? userInfo.saves : []}
                   />
               ))}
               </div>

@@ -22,7 +22,7 @@ import './index.css';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <LandingPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -47,11 +47,6 @@ const router = createBrowserRouter([
   {
     path: '/program/:name',
     element: <ProgramForumPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/landing',
-    element: <LandingPage />,
     errorElement: <ErrorPage />,
   },
   {

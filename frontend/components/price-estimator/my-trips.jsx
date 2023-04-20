@@ -1,13 +1,15 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Card from "./card.jsx";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserAsyncAction } from '../../redux/user/user-slice';
+import Card from './card.jsx';
 
 const MyTrips = ({ setTab }) => {
   const { userInfo, success } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   return (
     <div className="w-full h-full">
-      {success && userInfo.saves.length > 0 ? (
+      {userInfo.saves ? (
         userInfo.saves.map((trip) => (
           <Card
             key={trip.id}

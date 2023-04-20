@@ -26,15 +26,18 @@ const MapContainer = ({ destination, setDestination }) => {
       setViewState({
         longitude: destination.longitude,
         latitude: destination.latitude,
-        zoom: 5.5,
+        zoom: 2.75,
       });
     }
   }, [destination]);
 
   return (
-    <div className="w-full h-[40vh] sm:h-full">
+    <div className="w-full  h-full">
       <Map
         mapStyle={mapJson}
+        style={{
+          borderRadius: '0.75rem',
+        }}
         {...viewState}
         onMove={(evt) => setViewState(evt.viewState)}
         mapLib={maplibregl}
@@ -52,8 +55,8 @@ const MapContainer = ({ destination, setDestination }) => {
           onTrackUserLocationEnd={(geo) => console.log('HERE')}
         />
 
-        {!loading &&
-          locationInfo[0] &&
+        {!loading && locationInfo && locationInfo.length > 0
+          &&
           //map through locationInfo object
           //map through  by rows
           Object.keys(locationInfo).map((key, id) => {
@@ -69,6 +72,7 @@ const MapContainer = ({ destination, setDestination }) => {
                 }
                 overall_rating={locationInfo[key].avg_overall_rating}
                 selected={destination.city}
+                setDestination={setDestination}
               />
             );
           })}

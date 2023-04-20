@@ -238,13 +238,34 @@ const User = (app) => {
   app.get("/api/v1/user/:username", async (req, res) => {
     let user = await app.models.User.findOne({
       username: req.params.username.toLowerCase(),
-    }).exec();
+    })
+      .populate({
+        path: 'saves',
+        populate: {
+          path: 'owner',
+        },
+      })
+      .populate({
+        path: 'saves',
+        populate: {
+          path: 'location',
+        },
+      })
+      .populate({
+        path: 'saves',
+        populate: {
+          path: 'program',
+        },
+      })
+      .exec();
 
     if (!user) {
       //try with player id
       user = await app.models.User.findOne({
         username: req.params.username.toLowerCase(),
-      }).exec();
+      })
+        .populate('saves')
+        .exec();
       if (!user) {
         return res
           .status(404)
@@ -274,6 +295,8 @@ const User = (app) => {
       avatar_url: user.avatar_url,
       posts: user.posts,
       saves: user.saves,
+      likes: user.likes,
+      dislikes: user.dislikes,
     });
   });
 
@@ -287,7 +310,8 @@ const User = (app) => {
     // Fetch user filtering by id
     let data;
     try {
-      data = await app.models.User.findById(req.params.id);
+      data = await app.models.User.findById(req.params.id)
+        .populate('saves');
 
       // Check if user exists
       if (!data) {

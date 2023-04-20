@@ -15,6 +15,7 @@ const Location = new Schema({
   image_link: { type: String },
   // Trip data
   trips: [{ type: Schema.ObjectId, ref: 'Trip', default: [] }],
+  cheapest_month: { type: Number, default: 0 },
 
   // coordinates
   latitude: { type: Number, default: 0 },
