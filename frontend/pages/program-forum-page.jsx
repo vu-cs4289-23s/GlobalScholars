@@ -1,14 +1,20 @@
-import SideBar from "../components/all-pages/sidebar";
-import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
-import ForumPost from "../components/all-pages/post.jsx";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
-import { getAllPostsAsyncAction, getPostsByProgramAsyncAction } from "../redux/post/post-slice.js";
-import ProgramDescription from "../components/forum/program/program-description.jsx";
-import { getForumDataByName } from "../redux/geo/geo-slice.js";
-import SearchBar from "../components/landing-page/search-bar.jsx";
+import SideBar from '../components/all-pages/sidebar';
+import FilterBar from '../components/forum/all-forums/filter-bar.jsx';
+import AdvancedFilter from '../components/forum/all-forums/advanced-filter.jsx';
+import ForumPost from '../components/all-pages/post.jsx';
+import Tag from '../components/forum/all-forums/tag.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { getUserAsyncAction, logoutAction } from '../redux/user/user-slice';
+import {
+  getAllPostsAsyncAction,
+  getPostsByProgramAsyncAction,
+} from '../redux/post/post-slice.js';
+import ProgramDescription from '../components/forum/program/program-description.jsx';
+import { getForumDataByName } from '../redux/geo/geo-slice.js';
+import SearchBar from '../components/landing-page/search-bar.jsx';
+import { program_tags } from '../../data.js';
 
 export default function ProgramForumPage() {
   let { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -18,16 +24,45 @@ export default function ProgramForumPage() {
   const dispatch = useDispatch();
   const { name } = useParams();
   let [program, setProgram] = useState({
-    program_name: "Program Name",
-    description: "",
+    program_name: 'Program Name',
+    description: '',
     terms: [],
     top_tags: [],
     overall_rating: 0,
-    image_link: "https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2017/12/11205619/brochure_1170.jpg",
+    image_link:
+      'https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2017/12/11205619/brochure_1170.jpg',
     like_cnt: 0,
   });
   let [posts, setPosts] = useState([]);
 
+  let [showAdvanced, setShowAdvanced] = useState(false);
+  let [selectedTag, setSelectedTag] = useState('');
+  const onClickX = () => {
+    setShowAdvanced(false);
+    setSelectedTag('');
+  };
+  const onClickTag = (ev) => {
+    const tagID = ev.target.id;
+    if (selectedTag === tagID) {
+      // same element selected
+      document.getElementById(tagID).style.outline = '';
+      setSelectedTag('');
+    } else if (selectedTag !== '') {
+      // undo highlighting
+      document.getElementById(selectedTag).style.outline = '';
+    }
+    setSelectedTag(tagID);
+    document.getElementById(tagID).style.outline = '#000000 solid 2px';
+  };
+  let tags = program_tags.map((tag, i) => {
+    return <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />;
+  });
+  const onClickFilter = () => {
+    setShowAdvanced(false);
+    if (selectedTag !== '') {
+      setSelectedTag('');
+    }
+  };
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -35,9 +70,9 @@ export default function ProgramForumPage() {
 
   useEffect(() => {
     if (success && !loggedIn) {
-      navigate("/login");
+      navigate('/login');
     }
-    if (loggedIn === false && userInfo.username !== "") {
+    if (loggedIn === false && userInfo.username !== '') {
       dispatch(getUserAsyncAction(userInfo.username));
     }
   }, [loggedIn, userInfo]);
@@ -51,7 +86,7 @@ export default function ProgramForumPage() {
 
   useEffect(() => {
     // Set Program data
-    if (programInfo && programInfo.program_name !== "") {
+    if (programInfo && programInfo.program_name !== '') {
       setProgram({
         program_name: programInfo.program_name,
         terms: programInfo.terms,
@@ -66,7 +101,7 @@ export default function ProgramForumPage() {
   }, [programInfo]);
 
   useEffect(() => {
-    if (program.program_name && program.program_name !== "Program Name") {
+    if (program.program_name && program.program_name !== 'Program Name') {
       // Fetch posts by city name passed through
       dispatch(getPostsByProgramAsyncAction(program.program_name));
     } else {
@@ -80,64 +115,81 @@ export default function ProgramForumPage() {
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
+    <div
+      id="forum-page"
+      className="flex h-screen w-screen bg-blue-rgba overflow-hidden"
+    >
       <SideBar />
       <div className="bg-blue-light overflow-y-scroll">
         <img
           className="flex h-[30%] w-screen object-center object-cover"
           src={program.image_link}
         />
-        {name ? <div></div>
-            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
-              <SearchBar forum={true}/>
-            <FilterBar posts={posts} setPosts={setPosts}/>
-            </div> }
+        {name ? (
+          <div></div>
+        ) : (
+          <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+            <SearchBar forum={true} />
+            <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+            {showAdvanced && (
+              <AdvancedFilter
+                onClickX={onClickX}
+                onClickFilter={onClickFilter}
+                tags={tags}
+              />
+            )}
+          </div>
+        )}
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          { name ?
-            <ProgramDescription
-            program={program.program_name}
-            terms={program.terms}
-            top_tags={program.top_tags}
-            overall_rating={program.overall_rating}
-          /> :
-            <div></div>}
-
-          {name ?
-            <FilterBar posts={posts} setPosts={setPosts} />
-            :
-            <div></div>}
-
-        {posts && posts.length > 0 ? (
-          <div>
-            {posts.map((post, index) => (
-              <ForumPost
-                id={post._id}
-                avatar={post.owner ? post.owner.avatar_url : "" }
-                username={post.owner ? post.owner.username : "" }
-                title={post.title}
-                content={post.content}
-                likes={post.likes}
-                saves={post.saves}
-                tags={post.tags}
-                dislikes={post.dislikes}
-                comments={post.comments}
-                program={post.program}
-                location={post.location}
-                date={post.timestamp}
-                url={name ? `/program/${name}` : "/program"}
-                userPosts={[]}
+          {name && (
+            <div>
+              <ProgramDescription
+                program={program.program_name}
+                terms={program.terms}
+                top_tags={program.top_tags}
+                overall_rating={program.overall_rating}
               />
-            ))}
-          </div>
-        ) : null}
+              <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+              {showAdvanced && (
+                <AdvancedFilter
+                  onClickX={onClickX}
+                  onClickFilter={onClickFilter}
+                  tags={tags}
+                />
+              )}
+            </div>
+          )}
+          {posts && posts.length > 0 ? (
+            <div>
+              {posts.map((post, index) => (
+                <ForumPost
+                  id={post._id}
+                  avatar={post.owner ? post.owner.avatar_url : ''}
+                  username={post.owner ? post.owner.username : ''}
+                  title={post.title}
+                  content={post.content}
+                  likes={post.likes}
+                  saves={post.saves}
+                  tags={post.tags}
+                  dislikes={post.dislikes}
+                  comments={post.comments}
+                  program={post.program}
+                  location={post.location}
+                  date={post.timestamp}
+                  url={name ? `/program/${name}` : '/program'}
+                  userPosts={[]}
+                />
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="absolute right-1 top-2">
         <button onClick={() => logOutHandle()}>Log Out</button>
       </div>
       <div className="absolute  w-1/4 flex-row right-2 top-14">
-        { name ? <SearchBar /> : null}
+        {name ? <SearchBar /> : null}
       </div>
     </div>
   );

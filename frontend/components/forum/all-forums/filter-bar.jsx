@@ -1,7 +1,30 @@
 import { RiFireFill, RiFilter2Fill } from "react-icons/ri";
 import { FaCrown, FaFilter } from "react-icons/fa";
 import { GiFallingStar } from "react-icons/gi";
-import React from "react";
+import { MdOutlineClose } from "react-icons/md";
+import React, {useState} from "react";
+import { city_tags, program_tags } from '../../../../data.js';
+import Tag from "./tag.jsx";
+
+const FilterBar = ({ onClickAdvanced }) => {
+
+    // let [showAdvancedBox, setShowAdvanced] = useState(false);
+    //
+    // let tags = undefined;
+    //
+    // if (city) {
+    //     tags = city_tags.map((tag, i) => {
+    //         return (
+    //             <Tag key={i} id={tag.id} opacity={100} />
+    //         );
+    //     })
+    // } else {
+    //     tags = program_tags.map((tag, i) => {
+    //         return (
+    //             <Tag key={i} id={tag.id} opacity={100} />
+    //         );
+    //     })
+    // }
 
 
 const FilterBar = ({ posts, setPosts }) => {
@@ -54,7 +77,21 @@ const FilterBar = ({ posts, setPosts }) => {
                     <RiFilter2Fill size={24}/>
                     <div className="font-bold text-[18px]">Advanced</div>
                 </div>
+                {/*{showAdvancedBox && (*/}
+                {/*    <div className="absolute z-10 mt-1 p-2 bg-white border rounded shadow-md flex w-[30%] overflow-y-scroll overflow-hidden">*/}
+                {/*        <div className="text-sm w-[90%]">*/}
+                {/*            <div className="text-bold">*/}
+                {/*                Filter Posts by Tag:*/}
+                {/*            </div>*/}
+                {/*            <div className=" space-x-1.5">*/}
+                {/*                {tags}*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*        <MdOutlineClose onClick={() => setShowAdvanced(false)} />*/}
+                {/*    </div>*/}
+                {/*)}*/}
             </div>
+
         </div>
     );
 };
