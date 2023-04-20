@@ -35,7 +35,7 @@ const ForumPost = ({
   url,
   sessionLikes,
   sessionDislikes,
-  sessionSaves
+  sessionSaves,
 }) => {
 
     // time of post
