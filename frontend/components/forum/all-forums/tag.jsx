@@ -11,7 +11,6 @@ const Tag = ({ id, opacity, onClick }) => {
     rounded-full
     bg-opacity-${opacity}
     hover:bg-opacity-100
-    text-xs
     text-black
     sm:text-base
     justify-center
