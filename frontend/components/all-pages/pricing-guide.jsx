@@ -13,12 +13,13 @@ const AffordabilityInfoIcon = () => {
         onMouseLeave={() => setShowPopup(false)}
       />
       {showPopup && (
-        <div className="absolute z-10 top-0 left-full ml-2 mt-1 p-2 bg-white border rounded shadow-md">
-          <p className="text-sm">
-            $: $100-$250<br />
-            $$: $250-$400<br />
-            $$$: $400+
-          </p>
+        <div className="absolute z-10 top-0 left-full ml-2 mt-1 p-2 bg-white border rounded shadow-md text-xs w-32 h-28 text-middle">
+          <span className="text-[rgb(11,155,29)]">$</span>
+          <p>$0-$500</p>
+          <span className="text-[rgb(11,155,29)]">$$</span>
+          <p>$500-$1000</p>
+          <span className="text-[rgb(11,155,29)]">$$$</span>
+          <p>$1000+</p>
         </div>
       )}
     </div>

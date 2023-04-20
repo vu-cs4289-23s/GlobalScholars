@@ -42,7 +42,7 @@ export default function ProgramForumPage() {
   const onClickX = () => {
     setShowAdvanced(false);
     setSelectedTags([]);
-  }
+  };
   const onClickTag = (ev) => {
     let arr = selectedTags;
     const tagID = ev.target.id;
@@ -60,7 +60,7 @@ export default function ProgramForumPage() {
       document.getElementById(tagID).style.outline = '';
     }
     setSelectedTags(arr);
-  }
+  };
   let tags = program_tags.map((tag, i) => {
     return <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />;
   });
@@ -74,16 +74,16 @@ export default function ProgramForumPage() {
           if (post.tags.includes(tag)) {
             arr.push(post);
           }
-        })
-      })
+        });
+      });
       setPosts(arr);
     }
-  }
+  };
   const onClickClear = () => {
     setSelectedTags([]);
     setPosts(allPosts);
     setShowClear(false);
-  }
+  };
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -147,37 +147,37 @@ export default function ProgramForumPage() {
           className="flex h-[30%] w-screen object-center object-cover"
           src={program.image_link}
         />
-        {name ? <div></div>
-            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
-              <SearchBar forum={true}/>
-              <FilterBar 
-                posts={posts} 
+        {name ? (
+          <div></div>
+        ) : (
+          <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+            <SearchBar forum={true} />
+            <FilterBar
+              posts={posts}
+              setPosts={setPosts}
+              onClickAdvanced={() => setShowAdvanced(true)}
+              showClear={showClear}
+              onClickClear={onClickClear}
+            />
+          </div>
+        )}
+
+        <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
+          {name && (
+            <div>
+              <ProgramDescription
+                program={program.program_name}
+                terms={program.terms}
+                top_tags={program.top_tags}
+                overall_rating={program.overall_rating}
+              />
+              <FilterBar
+                posts={posts}
                 setPosts={setPosts}
                 onClickAdvanced={() => setShowAdvanced(true)}
                 showClear={showClear}
                 onClickClear={onClickClear}
               />
-            )}
-          </div>
-        )}
-
-        <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          { name && (
-              <div>
-                <ProgramDescription
-                  program={program.program_name}
-                  terms={program.terms}
-                  top_tags={program.top_tags}
-                  overall_rating={program.overall_rating}
-                />
-                <FilterBar 
-                  posts={posts} 
-                  setPosts={setPosts}
-                  onClickAdvanced={() => setShowAdvanced(true)}
-                  showClear={showClear}
-                  onClickClear={onClickClear}
-                />
-              )}
             </div>
           )}
           {posts && posts.length > 0 ? (

@@ -5,6 +5,7 @@ const Trip = new Schema({
   title: { type: String, default: '' },
   content: { type: String, default: '' },
   location: { type: Schema.ObjectId, ref: 'Location', required: true },
+  post: { type: Schema.ObjectId, ref: 'Post', required: true },
   city: { type: String, default: '' },
   country: { type: String, default: '' },
   timestamp: { type: Date, default: Date.now },

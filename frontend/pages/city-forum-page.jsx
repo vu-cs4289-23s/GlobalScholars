@@ -1,20 +1,28 @@
-import SideBar from "../components/all-pages/sidebar";
-import SearchBar from "../components/landing-page/search-bar";
-import CityDescription from "../components/forum/city/city-description.jsx";
-import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
-import AdvancedFilter from "../components/forum/all-forums/advanced-filter.jsx";
-import CityPost from "../components/forum/city/city-post.jsx";
-import ForumPost from "../components/all-pages/post.jsx";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getUserAsyncAction, getUserSession, logoutAction } from "../redux/user/user-slice";
-import { getForumDataByName, } from "../redux/geo/geo-slice.js";
-import { getAllPostsAsyncAction, getPostsByLocationAsyncAction, updatePostStats } from "../redux/post/post-slice.js";
-import Reviews from "../components/profile-page/reviews.jsx";
-import Comment from "../components/all-pages/comment.jsx";
-import {city_tags} from "../../data.js";
-import Tag from "../components/forum/all-forums/tag.jsx";
+import SideBar from '../components/all-pages/sidebar';
+import SearchBar from '../components/landing-page/search-bar';
+import CityDescription from '../components/forum/city/city-description.jsx';
+import FilterBar from '../components/forum/all-forums/filter-bar.jsx';
+import AdvancedFilter from '../components/forum/all-forums/advanced-filter.jsx';
+import CityPost from '../components/forum/city/city-post.jsx';
+import ForumPost from '../components/all-pages/post.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+  getUserAsyncAction,
+  getUserSession,
+  logoutAction,
+} from '../redux/user/user-slice';
+import { getForumDataByName } from '../redux/geo/geo-slice.js';
+import {
+  getAllPostsAsyncAction,
+  getPostsByLocationAsyncAction,
+  updatePostStats,
+} from '../redux/post/post-slice.js';
+import Reviews from '../components/profile-page/reviews.jsx';
+import Comment from '../components/all-pages/comment.jsx';
+import { city_tags } from '../../data.js';
+import Tag from '../components/forum/all-forums/tag.jsx';
 
 export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -46,7 +54,7 @@ export default function CityForumPage() {
   const onClickX = () => {
     setShowAdvanced(false);
     setSelectedTags([]);
-  }
+  };
   const onClickTag = (ev) => {
     let arr = selectedTags;
     const tagID = ev.target.id;
@@ -64,7 +72,7 @@ export default function CityForumPage() {
       document.getElementById(tagID).style.outline = '';
     }
     setSelectedTags(arr);
-  }
+  };
   let tags = city_tags.map((tag, i) => {
     return <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />;
   });
@@ -78,16 +86,16 @@ export default function CityForumPage() {
           if (post.tags.includes(tag)) {
             arr.push(post);
           }
-        })
-      })
+        });
+      });
       setPosts(arr);
     }
-  }
+  };
   const onClickClear = () => {
     setSelectedTags([]);
     setPosts(allPosts);
     setShowClear(false);
-  }
+  };
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -152,38 +160,38 @@ export default function CityForumPage() {
           className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        {name ? <div></div>
-            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
-              <SearchBar forum={true}/>
-              <FilterBar 
-                posts={posts} 
-                setPosts={setPosts} 
+        {name ? (
+          <div></div>
+        ) : (
+          <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+            <SearchBar forum={true} />
+            <FilterBar
+              posts={posts}
+              setPosts={setPosts}
+              onClickAdvanced={() => setShowAdvanced(true)}
+              showClear={showClear}
+              onClickClear={onClickClear}
+            />
+          </div>
+        )}
+
+        <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
+          {name ? (
+            <div>
+              <CityDescription
+                description={location.description}
+                city={location.city}
+                country={location.country}
+                top_tags={location.top_tags}
+                overall_rating={location.overall_rating}
+              />
+              <FilterBar
+                posts={posts}
+                setPosts={setPosts}
                 onClickAdvanced={() => setShowAdvanced(true)}
                 showClear={showClear}
                 onClickClear={onClickClear}
               />
-            
-          </div>
-        }
-
-        <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          {name ?
-              <div>
-                <CityDescription
-                  description={location.description}
-                  city={location.city}
-                  country={location.country}
-                  top_tags={location.top_tags}
-                  overall_rating={location.overall_rating}
-                />
-                <FilterBar 
-                  posts={posts} 
-                  setPosts={setPosts} 
-                  onClickAdvanced={() => setShowAdvanced(true)}
-                  showClear={showClear}
-                  onClickClear={onClickClear}
-                />
-              )}
             </div>
           ) : null}
           {/*put toggle above description?*/}

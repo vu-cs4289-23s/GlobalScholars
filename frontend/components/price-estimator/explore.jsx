@@ -27,10 +27,14 @@ const Explore = () => {
 
           return (
             <Card
-              key={trip.id}
+              key={trip.post}
+              id={trip.post}
               title={trip.title}
               city={trip.city}
               image_link={image.src}
+              start_date={trip.start_date}
+              end_date={trip.end_date}
+              explore={true}
               country={trip.country}
               overall_rating={trip.avg_overall_rating}
               affordability_rating={trip.avg_affordability_rating}

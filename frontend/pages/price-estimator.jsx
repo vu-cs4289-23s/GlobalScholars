@@ -47,6 +47,8 @@ export default function PriceEstimator() {
   const [end, setEnd] = useState(new Date());
   const [search, setSearch] = useState(false);
   const Search = () => {
+    setSearch(true);
+
     dispatch(
       getAllTrips({
         destination: destination.country,
@@ -54,7 +56,6 @@ export default function PriceEstimator() {
         end_date: new Date(end).getTime(),
       })
     );
-    setSearch(true);
   };
 
   useEffect(() => {
@@ -123,7 +124,7 @@ export default function PriceEstimator() {
             setDestination={setDestination}
           />
 
-          <TabbedFolder tabs={tabs} search={search} />
+          <TabbedFolder tabs={tabs} search={search} setSearch={setSearch} />
         </div>
 
         <Footer />
