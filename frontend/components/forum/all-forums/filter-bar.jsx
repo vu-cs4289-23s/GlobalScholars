@@ -27,7 +27,7 @@ const FilterBar = ({ onClickAdvanced }) => {
     // }
 
 
-const FilterBar = ({ posts, setPosts }) => {
+const FilterBar = ({ posts, setPosts, onClickAdvanced, showClear, onClickClear }) => {
     
     //sort posts most likes - least likes
     const handleAllTimeClick = () => {
@@ -72,9 +72,21 @@ const FilterBar = ({ posts, setPosts }) => {
                     <div className="font-bold text-[20px]"> All Time</div>
                 </div>
             </div>
-            <div>
-                <div id="filterBtn" className="flex border-black rounded-lg border-2 p-2 m-auto">
-                    <RiFilter2Fill size={24}/>
+            <div className="ml-auto flex">
+                {showClear && (<div
+                    id="clearFilter"
+                    className="flex p-2 m-auto mr-1.5 text-gray-500"
+                    onClick={onClickClear}
+                >
+                    <MdOutlineClose size={20} className="my-auto"/>
+                    <div className="font-bold text-[16px]">Clear Filter</div>
+                </div>)}
+                <div
+                    id="filterBtn"
+                    className="flex border-black rounded-lg border-2 p-2 m-auto"
+                    onClick={onClickAdvanced}
+                >
+                    <RiFilter2Fill size={24} className="my-auto" />
                     <div className="font-bold text-[18px]">Advanced</div>
                 </div>
                 {/*{showAdvancedBox && (*/}

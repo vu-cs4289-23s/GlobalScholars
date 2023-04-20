@@ -30,6 +30,7 @@ export default function CityForumPage() {
   const dispatch = useDispatch();
   const { name } = useParams();
   let [posts, setPosts] = useState([]);
+  let [allPosts, setAllPosts] = useState([]);
   let { postInfo } = useSelector((state) => state.post);
   const [location, setLocation] = useState({
     city: 'City',
@@ -45,34 +46,55 @@ export default function CityForumPage() {
     like_cnt: 0,
   });
 
+  // filtering
   let [showAdvanced, setShowAdvanced] = useState(false);
-  let [selectedTag, setSelectedTag] = useState('');
+  let [showClear, setShowClear] = useState(false);
+  let [selectedTags, setSelectedTags] = useState([]);
   const onClickX = () => {
     setShowAdvanced(false);
-    setSelectedTag('');
-  };
+    setSelectedTags([]);
+  }
   const onClickTag = (ev) => {
+    let arr = selectedTags;
     const tagID = ev.target.id;
-    if (selectedTag === tagID) {
-      // same element selected
+    const index = arr.indexOf(tagID);
+    // check if tag is in the array
+    if (index === -1) {
+      // not in the arr so add it
+      arr.push(tagID);
+      // highlight
+      document.getElementById(tagID).style.outline = '#000000 solid 2px';
+    } else {
+      // already in arr so remove it
+      arr.splice(index, 1);
+      // remove highlighting
       document.getElementById(tagID).style.outline = '';
-      setSelectedTag('');
-    } else if (selectedTag !== '') {
-      // undo highlighting
-      document.getElementById(selectedTag).style.outline = '';
     }
-    setSelectedTag(tagID);
-    document.getElementById(tagID).style.outline = '#000000 solid 2px';
-  };
+    setSelectedTags(arr);
+  }
   let tags = city_tags.map((tag, i) => {
     return <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />;
   });
   const onClickFilter = () => {
     setShowAdvanced(false);
-    if (selectedTag !== '') {
-      setSelectedTag('');
+    setShowClear(true);
+    if (selectedTags !== []) {
+      let arr = [];
+      selectedTags.forEach((tag) => {
+        allPosts.forEach((post) => {
+          if (post.tags.includes(tag)) {
+            arr.push(post);
+          }
+        })
+      })
+      setPosts(arr);
     }
-  };
+  }
+  const onClickClear = () => {
+    setSelectedTags([]);
+    setPosts(allPosts);
+    setShowClear(false);
+  }
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -123,6 +145,7 @@ export default function CityForumPage() {
   useEffect(() => {
     //  console.log(postInfo);
     setPosts(postInfo);
+    setAllPosts(postInfo);
   }, [postInfo]);
 
   return (
@@ -136,38 +159,36 @@ export default function CityForumPage() {
           className="flex h-[30%] w-screen object-center object-cover"
           src="/landing-locations/copenhagen.jpeg"
         />
-        {name ? (
-          <div></div>
-        ) : (
-          <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
-            <SearchBar forum={true} />
-            <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
-            {showAdvanced && (
-              <AdvancedFilter
-                onClickX={onClickX}
-                onClickFilter={onClickFilter}
-                tags={tags}
+        {name ? <div></div>
+            : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
+              <SearchBar forum={true}/>
+              <FilterBar 
+                posts={posts} 
+                setPosts={setPosts} 
+                onClickAdvanced={() => setShowAdvanced(true)}
+                showClear={showClear}
+                onClickClear={onClickClear}
               />
-            )}
+            
           </div>
-        )}
+        }
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          {name ? (
-            <div>
-              <CityDescription
-                description={location.description}
-                city={location.city}
-                country={location.country}
-                top_tags={location.top_tags}
-                overall_rating={location.overall_rating}
-              />
-              <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
-              {showAdvanced && (
-                <AdvancedFilter
-                  onClickX={onClickX}
-                  onClickFilter={onClickFilter}
-                  tags={tags}
+          {name ?
+              <div>
+                <CityDescription
+                  description={location.description}
+                  city={location.city}
+                  country={location.country}
+                  top_tags={location.top_tags}
+                  overall_rating={location.overall_rating}
+                />
+                <FilterBar 
+                  posts={posts} 
+                  setPosts={setPosts} 
+                  onClickAdvanced={() => setShowAdvanced(true)}
+                  showClear={showClear}
+                  onClickClear={onClickClear}
                 />
               )}
             </div>
