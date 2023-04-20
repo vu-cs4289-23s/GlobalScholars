@@ -23,6 +23,8 @@ const initialState = {
     // saved_comments: [],
     // saved_events: [],
     tags: [],
+    likes: [],
+    dislikes: [],
   },
   userToken: null,
   error: null,
@@ -98,6 +100,9 @@ const userSlice = createSlice({
       state.userInfo = action.payload;
       state.loggedIn = true;
       state.error = null;
+    },
+    getUserSession: (state, action) => {
+
     },
   },
 });
@@ -237,6 +242,22 @@ export const logoutAction = () => (dispatch) => {
       dispatch(error(err));
     });
   googleLogout();
+};
+
+export const getUserSession = () => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await axios.get(`${backendURL}/session`, config);
+    console.log(response);
+    dispatch(getUser(response.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(error(error));
+  }
 };
 
 export const {

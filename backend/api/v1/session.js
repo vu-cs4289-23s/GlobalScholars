@@ -80,6 +80,17 @@ const Session = (app) => {
       res.status(200).end();
     }
   });
+
+  /**
+   * Fetch the user in session
+   */
+  app.get("/api/v1/session", (req, res) => {
+    if (req.session.user) {
+      res.status(200).send(req.session.user);
+    } else {
+      res.status(200).send(undefined);
+    }
+  });
 };
 
 export default Session;

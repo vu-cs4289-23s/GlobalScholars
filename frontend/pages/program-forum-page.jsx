@@ -120,6 +120,7 @@ export default function ProgramForumPage() {
                 location={post.location}
                 date={post.timestamp}
                 url={name ? `/program/${name}` : "/program"}
+                userPosts={[]}
               />
             ))}
           </div>
