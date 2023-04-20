@@ -11,10 +11,10 @@ const FilterBar = ({  }) => {
                     <GiFallingStar size={28} />
                     <div className="font-bold text-[20px]"> Newest</div>
                 </div>
-                <div className="flex space-x-1.5">
-                    <RiFireFill size={28} />
-                    <div className="font-bold text-[20px]"> Trending</div>
-                </div>
+                {/*<div className="flex space-x-1.5">*/}
+                {/*    <RiFireFill size={28} />*/}
+                {/*    <div className="font-bold text-[20px]"> Trending</div>*/}
+                {/*</div>*/}
                 <div className="flex space-x-1.5">
                     <FaCrown size={28} />
                     <div className="font-bold text-[20px]"> All Time</div>

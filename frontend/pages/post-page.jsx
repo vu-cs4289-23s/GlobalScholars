@@ -55,6 +55,8 @@ export default function PostPage() {
                 <Comment
                   key={index}
                   content={comment.content}
+                  username={comment.username}
+                  timestamp={comment.timestamp}
                 />
               ))}
             </div>

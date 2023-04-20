@@ -138,7 +138,7 @@ const ForumPost = ({
               <form className="flex w-full">
           <textarea
             name={'comment'}
-            placeholder="Leave a comment"
+            placeholder="Leave a"
             className=" h-[50%] w-full flex justify-start relative top-4 rounded-md focus:scale-[102%] focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:ease-linear transition-all duration-300 ease-in-out "
             onChange={(e) => setComment(e.target.value)}
             value={comment}

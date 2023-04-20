@@ -104,7 +104,8 @@ export default function CityForumPage() {
             />
           :
             <SearchBar forum={true}/>}
-          <FilterBar />
+
+          <FilterBar posts={posts} setPost={setPosts()} />
         {/*put toggle above description?*/}
         {posts && posts.length > 0 ? (
           <div>
