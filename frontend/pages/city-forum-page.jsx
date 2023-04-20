@@ -7,8 +7,8 @@ import CityPost from "../components/forum/city/city-post.jsx";
 import ForumPost from "../components/all-pages/post.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { getUserAsyncAction,  logoutAction } from "../redux/user/user-slice";
+import { useEffect, useState } from "react";
+import { getUserAsyncAction, getUserSession, logoutAction } from "../redux/user/user-slice";
 import { getForumDataByName, } from "../redux/geo/geo-slice.js";
 import { getAllPostsAsyncAction, getPostsByLocationAsyncAction } from "../redux/post/post-slice.js";
 import Reviews from "../components/profile-page/reviews.jsx";
@@ -131,7 +131,11 @@ export default function CityForumPage() {
         {name ? <div></div>
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
-              <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+              <FilterBar 
+                posts={posts} 
+                setPosts={setPosts} 
+                onClickAdvanced={() => setShowAdvanced(true)} 
+              />
               {showAdvanced && (
                   <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
               )}
@@ -147,7 +151,11 @@ export default function CityForumPage() {
                   top_tags={location.top_tags}
                   overall_rating={location.overall_rating}
                 />
-                <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+                <FilterBar 
+                  posts={posts} 
+                  setPosts={setPosts} 
+                  onClickAdvanced={() => setShowAdvanced(true)} 
+                />
                 {showAdvanced && (
                     <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
                 )}
@@ -172,6 +180,9 @@ export default function CityForumPage() {
                       location={post.location}
                       date={post.timestamp}
                       url={name ? `/city/${name}` : "/city"}
+                      sessionLikes={userInfo ? userInfo.likes : []}
+                      sessionDislikes={userInfo ? userInfo.dislikes : []}
+                      sessionSaves={userInfo ? userInfo.saves : []}
                   />
               ))}
               </div>

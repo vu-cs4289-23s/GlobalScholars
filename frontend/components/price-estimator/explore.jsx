@@ -8,13 +8,15 @@ const Explore = () => {
 
   return (
     <div className="overflow-y-scroll h-full w-full">
-      {success && tripInfo.trips.length > 0 ? (
-        tripInfo.trips.map((trip) => (
+      {success && tripInfo.cities.length > 0 ? (
+        tripInfo.cities.map((trip) => (
           <Card
             key={trip.id}
             title={trip.title}
-            overall_rating={trip.overall_rating}
-            affordability_rating={trip.affordability_rating}
+            city={trip.city}
+            country={trip.country}
+            overall_rating={trip.avg_overall_rating}
+            affordability_rating={trip.avg_affordability_rating}
           />
         ))
       ) : (

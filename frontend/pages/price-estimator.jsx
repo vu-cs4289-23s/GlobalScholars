@@ -11,6 +11,7 @@ import { ImSearch } from 'react-icons/im';
 import LocationDropDown from '../components/price-estimator/location-dropdown';
 import { getAllTrips } from '../redux/trip/trip-slice';
 import Footer from '../components/all-pages/footer';
+import { getAllLocationsAsyncAction } from '../redux/geo/geo-slice';
 
 const tabs = [{ title: 'My Trips' }, { title: 'Explore' }];
 
@@ -37,10 +38,9 @@ export default function PriceEstimator() {
     }
   }, [loggedIn, userInfo]);
   const [destination, setDestination] = useState({
-    city: 'Nashville',
-
-    longitude: -86.7816,
-    latitude: 36.1627,
+    country: 'United States',
+    longitude: -95.712891,
+    latitude: 37.09024,
   });
 
   const [start, setStart] = useState(new Date());
@@ -49,13 +49,19 @@ export default function PriceEstimator() {
   const Search = () => {
     dispatch(
       getAllTrips({
-        destination: destination.city,
+        destination: destination.country,
         start_date: new Date(start).getTime(),
         end_date: new Date(end).getTime(),
       })
     );
     setSearch(true);
   };
+
+  useEffect(() => {
+    if (locationInfo[0] === undefined) {
+      dispatch(getAllLocationsAsyncAction());
+    }
+  }, [locationInfo]);
 
   useEffect(() => {
     if (city !== undefined) {
@@ -117,11 +123,7 @@ export default function PriceEstimator() {
             setDestination={setDestination}
           />
 
-          <TabbedFolder
-            tabs={tabs}
-            search={search}
-            handleScrollToTop={handleScrollToTop}
-          />
+          <TabbedFolder tabs={tabs} search={search} />
         </div>
 
         <Footer />

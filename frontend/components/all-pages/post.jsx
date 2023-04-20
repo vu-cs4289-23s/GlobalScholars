@@ -32,7 +32,11 @@ const ForumPost = ({
   location,
   comments,
   date,
-  url, }) => {
+  url,
+  sessionLikes,
+  sessionDislikes,
+  sessionSaves
+}) => {
 
     // time of post
     const [dateObj, setDateObj] = useState(null);
@@ -46,17 +50,17 @@ const ForumPost = ({
     useEffect(() => {
       setNumLikes(likes ? likes.length : 0);
     }, [likes]);
-    let [likeShade, setLikeShade] = useState(false);
+    let [likeShade, setLikeShade] = useState(!!(sessionLikes && sessionLikes.includes(id)));
 
     // dislikes
     const [numDislikes, setNumDislikes] = useState(0);
     useEffect(() => {
         setNumDislikes(dislikes ? dislikes.length : 0);
     }, [dislikes]);
-    let [dislikeShade, setDislikeShade] = useState(false);
+    let [dislikeShade, setDislikeShade] = useState(!!(sessionDislikes && sessionDislikes.includes(id)));
 
     //saves
-    let [saveShade, setSaveShade] = useState(false);
+    let [saveShade, setSaveShade] = useState(!!(sessionSaves && sessionSaves.includes(id)));
 
     // comments
     let [comment, setComment] = useState('');
@@ -108,6 +112,7 @@ const ForumPost = ({
     setLikeShade(true);
     dispatch(updatePostStats(id, {
       likes: true,
+      user: username,
     }));
   };
 
@@ -115,6 +120,7 @@ const ForumPost = ({
     setLikeShade(false);
     dispatch(undoPostStats(id, {
       likes: true,
+      user: username,
     }));
   };
 
@@ -122,6 +128,7 @@ const ForumPost = ({
     setDislikeShade(true);
     dispatch(updatePostStats(id, {
       dislikes: true,
+      user: username,
     }));
   };
 
@@ -129,6 +136,7 @@ const ForumPost = ({
     setDislikeShade(false);
     dispatch(undoPostStats(id, {
       dislikes: true,
+      user: username,
     }));
   };
 
@@ -136,6 +144,7 @@ const ForumPost = ({
     setSaveShade(true);
     dispatch(updatePostStats(id, {
       saves: true,
+      user: username,
     }));
   };
 
@@ -143,6 +152,7 @@ const ForumPost = ({
     setSaveShade(false);
     dispatch(undoPostStats(id, {
       saves: true,
+      user: username,
     }));
   };
 

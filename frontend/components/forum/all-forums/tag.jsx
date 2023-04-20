@@ -19,7 +19,6 @@ const Tag = ({ id, opacity, onClick }) => {
     bg-${color}
   `;
 
-
   function findTag(item) {
     if (item.id === id) {
       setColor(item.color);

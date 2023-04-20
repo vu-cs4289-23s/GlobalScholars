@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 import tw from "tailwind-styled-components";
 import { MakePostBox, FormInputSectionContainer, FormInputSectionTitle, SectionError, GuidelinesBox,
   FormTagContainer, FormRatingContainer } from "../city/city-post.jsx";
-import {program_tags} from "../../../../data.js";
+import {program_tags, majors} from "../../../../data.js";
 import { BsStar, BsStarFill } from "react-icons/bs"
 import { resetPost, submitNewForumPostByProgram } from "../../../redux/post/post-slice.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import data from "../../../../data.js";
 
-const ProgramPost = () => {
+const ProgramPost = ({username}) => {
   // for tags
   let [postTags, setPostTags] = useState([]);
   let [tagError, setTagError] = useState("");
@@ -132,6 +132,7 @@ const ProgramPost = () => {
       content: state.content,
       program_name: state.program_name,
       tags: postTags,
+      user: username,
     }
     // VALIDATE
 
@@ -165,12 +166,11 @@ const ProgramPost = () => {
       console.log(`Posting...`);
       dispatch(submitNewForumPostByProgram(post));
 
-      if (success) {
-        const forumNav = state.program_name;
-        // reset post state
-        dispatch(resetPost());
-        navigate(`/program/${forumNav}`);
-      }
+      // redirect page
+      const forumNav = state.program_name;
+      // reset post state
+      dispatch(resetPost());
+      navigate(`/program/${forumNav}`);
     } else {
       setError("Please include all required fields");
     }
@@ -197,7 +197,10 @@ const ProgramPost = () => {
 
               {/* Program Selector */}
               <div className="flex border-black border-2 rounded-lg flex-col my-1">
-                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-10"}>
+                    <div className={open ? "w-100 font-medium h-80": "w-100 font-medium h-13"}>
+                        <span className="font-bold">Select a Program</span>
+                        <span className=""> (required)</span>
+                        <span className="text-red-700">*</span>
                         <div
                           onClick={() => setOpen(!open)}
                           className={`bg-white w-full p-2 flex items-center justify-between rounded ${
@@ -208,7 +211,7 @@ const ProgramPost = () => {
                           ? selected?.length > 25
                             ? selected?.substring(0, 25) + "..."
                             : selected
-                          : "Select Program"}
+                          : "Program"}
                           <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
                     </div>
                     <ul
@@ -264,10 +267,9 @@ const ProgramPost = () => {
                         <div className="flex bg-white rounded-lg justify-center align-middle m-auto">
                             <div>
                                 <select name="major" id="major" className="bg-white border-2 border-black rounded-lg m-2" placeholder="Select major">
-                                    <option>Computer Science</option>
-                                    <option>Economics</option>
-                                    <option>Math</option>
-                                    <option>Human and Organizational Development (HOD)</option>
+                                    {majors?.map((major, index) => {
+                                      return <option>{major}</option>;
+                                    })}
                                 </select>
                             </div>
                         </div>

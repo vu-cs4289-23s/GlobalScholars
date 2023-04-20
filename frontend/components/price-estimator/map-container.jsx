@@ -26,7 +26,7 @@ const MapContainer = ({ destination, setDestination }) => {
       setViewState({
         longitude: destination.longitude,
         latitude: destination.latitude,
-        zoom: 5.5,
+        zoom: 2.75,
       });
     }
   }, [destination]);
@@ -55,8 +55,8 @@ const MapContainer = ({ destination, setDestination }) => {
           onTrackUserLocationEnd={(geo) => console.log('HERE')}
         />
 
-        {!loading &&
-          locationInfo[0] &&
+        {!loading && locationInfo && locationInfo.length > 0
+          &&
           //map through locationInfo object
           //map through  by rows
           Object.keys(locationInfo).map((key, id) => {

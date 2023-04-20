@@ -124,7 +124,11 @@ export default function ProgramForumPage() {
         {name ? <div></div>
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
-              <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+              <FilterBar 
+                posts={posts} 
+                setPosts={setPosts}
+                onClickAdvanced={() => setShowAdvanced(true)} 
+              />
               {showAdvanced && (
                   <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
               )}
@@ -139,7 +143,11 @@ export default function ProgramForumPage() {
                   top_tags={program.top_tags}
                   overall_rating={program.overall_rating}
                 />
-                <FilterBar onClickAdvanced={() => setShowAdvanced(true)} />
+                <FilterBar 
+                  posts={posts} 
+                  setPosts={setPosts}
+                  onClickAdvanced={() => setShowAdvanced(true)} 
+                />
                 {showAdvanced && (
                     <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
                 )}
@@ -163,6 +171,7 @@ export default function ProgramForumPage() {
                 location={post.location}
                 date={post.timestamp}
                 url={name ? `/program/${name}` : "/program"}
+                userPosts={[]}
               />
             ))}
           </div>

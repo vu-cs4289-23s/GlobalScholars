@@ -34,8 +34,18 @@ const Post = (app) => {
    */
   app.post('/api/v1/post/city', async (req, res) => {
     // Verify user is logged in
-    if (!req.session.user)
-      return res.status(401).send({ error: 'unauthorized' });
+    if (!req.session.user) {
+      try {
+        // grab user from post body
+        const user = await app.models.User.findOne({ username: req.body.user });
+        if (!user) {
+          return res.status(401).send({ error: 'unauthorized' });
+        }
+        req.session.user = user;
+      } catch (err) {
+        return res.status(401).send({ error: 'unauthorized' });
+      }
+    }
 
     // Validate request body
     let postData = {
@@ -58,9 +68,8 @@ const Post = (app) => {
       postData = await postSchema.validate(postData);
       tripData = await tripSchema.validate(tripData);
     } catch (err) {
-      const message = err.details[0].message;
-      console.log(`Post.create validation failure: ${message}`);
-      res.status(400).send({ error: message });
+      console.log(`Post.create validation failure: ${err}`);
+      return res.status(400).send({ error: err });
     }
 
     // Set up new post
@@ -103,7 +112,7 @@ const Post = (app) => {
       }
     } catch (err) {
       console.log(`Post.create location fetch failure: ${err}`);
-      res.status(400).send({ error: 'failure creating post' });
+      return res.status(400).send({ error: 'failure creating post' });
     }
 
     // Calculate average cost of trip and update it to location model
@@ -155,8 +164,18 @@ const Post = (app) => {
    */
   app.post('/api/v1/post/program', async (req, res) => {
     // Verify user is logged in
-    if (!req.session.user)
-      return res.status(401).send({ error: 'unauthorized' });
+    if (!req.session.user) {
+      try {
+        // grab user from post body
+        const user = await app.models.User.findOne({ username: req.body.user });
+        if (!user) {
+          return res.status(401).send({ error: 'unauthorized' });
+        }
+        req.session.user = user;
+      } catch (err) {
+        return res.status(401).send({ error: 'unauthorized' });
+      }
+    }
 
     // Define post schema
     const schema = object({
@@ -527,7 +546,7 @@ const Post = (app) => {
    * @param {req.body.content}
    * @return {200} Updated post
    */
-  app.put("/api/v1/post/edit/:id", async (req, res) => {
+  app.put('/api/v1/post/edit/:id', async (req, res) => {
     // Define post schema
     const schema = object({
       content: string().min(1).max(250),
@@ -586,10 +605,20 @@ const Post = (app) => {
    * @param {req.body.saves}
    * @return {200} Updated post
    */
-  app.put("/api/v1/post/update/:id", async (req, res) => {
+  app.put('/api/v1/post/update/:id', async (req, res) => {
     // Verify user is logged in
-    if (!req.session.user)
-      return res.status(401).send({ error: "unauthorized" });
+    if (!req.session.user) {
+      try {
+        // grab user from post body
+        const user = await app.models.User.findOne({ username: req.body.user });
+        if (!user) {
+          return res.status(401).send({ error: 'unauthorized' });
+        }
+        req.session.user = user;
+      } catch (err) {
+        return res.status(401).send({ error: 'unauthorized' });
+      }
+    }
 
     // Increment likes, dislikes, or saves count
     let postQuery;
@@ -609,16 +638,20 @@ const Post = (app) => {
 
     try {
       // Update Post document
-      const post =  await app.models.Post.findByIdAndUpdate(req.params.id, postQuery);
+      const post = await app.models.Post.findByIdAndUpdate(
+        req.params.id,
+        postQuery
+      );
       // Update User document
-      const user = await app.models.User.findByIdAndUpdate(req.session.user._id, userQuery);
+      const user = await app.models.User.findByIdAndUpdate(
+        req.session.user._id,
+        userQuery
+      );
 
       // Send success to client
       res.status(200).send(post);
     } catch (err) {
-      console.log(
-        `Post.update post not found: ${req.params.id}`
-      );
+      console.log(`Post.update post not found: ${req.params.id}`);
       res.status(500).end();
     }
   });
@@ -632,10 +665,20 @@ const Post = (app) => {
    * @param {req.body.saves}
    * @return {200} Updated post
    */
-  app.put("/api/v1/post/update/:id/undo", async (req, res) => {
+  app.put('/api/v1/post/update/:id/undo', async (req, res) => {
     // Verify user is logged in
-    if (!req.session.user)
-      return res.status(401).send({ error: "unauthorized" });
+    if (!req.session.user) {
+      try {
+        // grab user from post body
+        const user = await app.models.User.findOne({ username: req.body.user });
+        if (!user) {
+          return res.status(401).send({ error: 'unauthorized' });
+        }
+        req.session.user = user;
+      } catch (err) {
+        return res.status(401).send({ error: 'unauthorized' });
+      }
+    }
 
     try {
       // Update Post document
@@ -644,16 +687,16 @@ const Post = (app) => {
       let user = await app.models.User.findById(req.session.user._id);
 
       if (req.body.likes) {
-        post.likes = post.likes.slice(0,-1);
-        user.likes = user.likes.slice(0,-1);
+        post.likes = post.likes.slice(0, -1);
+        user.likes = user.likes.slice(0, -1);
       }
       if (req.body.dislikes) {
-        post.dislikes = post.dislikes.slice(0,-1);
-        user.dislikes = user.dislikes.slice(0,-1);
+        post.dislikes = post.dislikes.slice(0, -1);
+        user.dislikes = user.dislikes.slice(0, -1);
       }
       if (req.body.saves) {
-        post.saves = post.saves.slice(0,-1);
-        user.saves = user.saves.slice(0,-1);
+        post.saves = post.saves.slice(0, -1);
+        user.saves = user.saves.slice(0, -1);
       }
 
       // Update Post document
@@ -664,9 +707,7 @@ const Post = (app) => {
       // Send success to client
       res.status(204).end();
     } catch (err) {
-      console.log(
-        `Post.update post not found: ${req.params.id}`
-      );
+      console.log(`Post.update post not found: ${req.params.id}`);
       res.status(500).end();
     }
   });
