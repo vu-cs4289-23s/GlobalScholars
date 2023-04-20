@@ -75,11 +75,11 @@ export default function ProfilePage() {
           <div className="flex justify-center rounded-lg bg-white mx-4 p-2 px-4 my-4 sm:flex-row sm:mx-20">
               <div id="my_posts" className="flex border-black rounded-lg border-2 p-2 m-auto hover:bg-gray-200" onClick={() => setMyPosts(true)}>
                 <BsList size={24} className="my-auto" />
-                <div className="font-bold text-[18px]">My Posts</div>
+                <div className="font-bold text-lg ">My Posts</div>
               </div>
               <div id="saved_posts" className="flex border-black rounded-lg border-2 p-2 m-auto hover:bg-gray-200" onClick={() => setMyPosts(false)}>
                 <BsFillBookmarkFill size={24} className="my-auto" />
-                <div className="font-bold text-[18px]">Saved Posts</div>
+                <div className="font-bold text-lg ">Saved Posts</div>
               </div>
 
           </div>
