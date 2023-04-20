@@ -1,27 +1,20 @@
-import SideBar from '../components/all-pages/sidebar';
-import SearchBar from '../components/landing-page/search-bar';
-import CityDescription from '../components/forum/city/city-description.jsx';
-import FilterBar from '../components/forum/all-forums/filter-bar.jsx';
-import AdvancedFilter from '../components/forum/all-forums/advanced-filter.jsx';
-import CityPost from '../components/forum/city/city-post.jsx';
-import ForumPost from '../components/all-pages/post.jsx';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import {
-  getUserAsyncAction,
-  getUserSession,
-  logoutAction,
-} from '../redux/user/user-slice';
-import { getForumDataByName } from '../redux/geo/geo-slice.js';
-import {
-  getAllPostsAsyncAction,
-  getPostsByLocationAsyncAction,
-} from '../redux/post/post-slice.js';
-import Reviews from '../components/profile-page/reviews.jsx';
-import Comment from '../components/all-pages/comment.jsx';
-import { city_tags } from '../../data.js';
-import Tag from '../components/forum/all-forums/tag.jsx';
+import SideBar from "../components/all-pages/sidebar";
+import SearchBar from "../components/landing-page/search-bar";
+import CityDescription from "../components/forum/city/city-description.jsx";
+import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
+import AdvancedFilter from "../components/forum/all-forums/advanced-filter.jsx";
+import CityPost from "../components/forum/city/city-post.jsx";
+import ForumPost from "../components/all-pages/post.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getUserAsyncAction, getUserSession, logoutAction } from "../redux/user/user-slice";
+import { getForumDataByName, } from "../redux/geo/geo-slice.js";
+import { getAllPostsAsyncAction, getPostsByLocationAsyncAction, updatePostStats } from "../redux/post/post-slice.js";
+import Reviews from "../components/profile-page/reviews.jsx";
+import Comment from "../components/all-pages/comment.jsx";
+import {city_tags} from "../../data.js";
+import Tag from "../components/forum/all-forums/tag.jsx";
 
 export default function CityForumPage() {
   const { userInfo, loggedIn, success } = useSelector((state) => state.user);
