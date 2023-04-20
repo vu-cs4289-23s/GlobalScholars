@@ -1,14 +1,17 @@
 import SideBar from "../components/all-pages/sidebar";
 import FilterBar from "../components/forum/all-forums/filter-bar.jsx";
+import AdvancedFilter from "../components/forum/all-forums/advanced-filter.jsx";
 import ForumPost from "../components/all-pages/post.jsx";
+import Tag from "../components/forum/all-forums/tag.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getUserAsyncAction, logoutAction } from "../redux/user/user-slice";
 import { getAllPostsAsyncAction, getPostsByProgramAsyncAction } from "../redux/post/post-slice.js";
 import ProgramDescription from "../components/forum/program/program-description.jsx";
 import { getForumDataByName } from "../redux/geo/geo-slice.js";
 import SearchBar from "../components/landing-page/search-bar.jsx";
+import {program_tags} from "../../data.js";
 
 export default function ProgramForumPage() {
   let { userInfo, loggedIn, success } = useSelector((state) => state.user);
@@ -27,7 +30,58 @@ export default function ProgramForumPage() {
     like_cnt: 0,
   });
   let [posts, setPosts] = useState([]);
+  let [allPosts, setAllPosts] = useState([]);
 
+  let [showAdvanced, setShowAdvanced] = useState(false);
+  let [showClear, setShowClear] = useState(false);
+  let [selectedTags, setSelectedTags] = useState([]);
+  const onClickX = () => {
+    setShowAdvanced(false);
+    setSelectedTags([]);
+  }
+  const onClickTag = (ev) => {
+    let arr = selectedTags;
+    const tagID = ev.target.id;
+    const index = arr.indexOf(tagID);
+    // check if tag is in the array
+    if (index === -1) {
+      // not in the arr so add it
+      arr.push(tagID);
+      // highlight
+      document.getElementById(tagID).style.outline = '#000000 solid 2px';
+    } else {
+      // already in arr so remove it
+      arr.splice(index, 1);
+      // remove highlighting
+      document.getElementById(tagID).style.outline = '';
+    }
+    setSelectedTags(arr);
+  }
+  let tags = program_tags.map((tag, i) => {
+            return (
+                <Tag key={i} id={tag.id} opacity={100} onClick={onClickTag} />
+            );
+        })
+  const onClickFilter = () => {
+    setShowAdvanced(false);
+    setShowClear(true);
+    if (selectedTags !== []) {
+      let arr = [];
+      selectedTags.forEach((tag) => {
+        allPosts.forEach((post) => {
+          if (post.tags.includes(tag)) {
+            arr.push(post);
+          }
+        })
+      })
+      setPosts(arr);
+    }
+  }
+  const onClickClear = () => {
+    setSelectedTags([]);
+    setPosts(allPosts);
+    setShowClear(false);
+  }
 
   const logOutHandle = () => {
     dispatch(logoutAction());
@@ -77,10 +131,11 @@ export default function ProgramForumPage() {
   // set posts react state with postInfo from redux state
   useEffect(() => {
     setPosts(postInfo);
+    setAllPosts(postInfo);
   }, [postInfo]);
 
   return (
-    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba">
+    <div id="forum-page" className="flex h-screen w-screen bg-blue-rgba overflow-hidden">
       <SideBar />
       <div className="bg-blue-light overflow-y-scroll">
         <img
@@ -90,24 +145,39 @@ export default function ProgramForumPage() {
         {name ? <div></div>
             : <div className="absolute top-10 z-1 w-[85%] h-[60%] sm:h-[77%]">
               <SearchBar forum={true}/>
-            <FilterBar posts={posts} setPosts={setPosts}/>
+              <FilterBar 
+                posts={posts} 
+                setPosts={setPosts}
+                onClickAdvanced={() => setShowAdvanced(true)}
+                showClear={showClear}
+                onClickClear={onClickClear}
+              />
+              {showAdvanced && (
+                  <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+              )}
             </div> }
 
         <div className="absolute top-44 z-1 w-[85%] overflow-scroll h-[60%] sm:h-[77%]">
-          { name ?
-            <ProgramDescription
-            program={program.program_name}
-            terms={program.terms}
-            top_tags={program.top_tags}
-            overall_rating={program.overall_rating}
-          /> :
-            <div></div>}
-
-          {name ?
-            <FilterBar posts={posts} setPosts={setPosts} />
-            :
-            <div></div>}
-
+          { name && (
+              <div>
+                <ProgramDescription
+                  program={program.program_name}
+                  terms={program.terms}
+                  top_tags={program.top_tags}
+                  overall_rating={program.overall_rating}
+                />
+                <FilterBar 
+                  posts={posts} 
+                  setPosts={setPosts}
+                  onClickAdvanced={() => setShowAdvanced(true)}
+                  showClear={showClear}
+                  onClickClear={onClickClear}
+                />
+                {showAdvanced && (
+                    <AdvancedFilter onClickX={onClickX} onClickFilter={onClickFilter} tags={tags} />
+                )}
+              </div>)
+          }
         {posts && posts.length > 0 ? (
           <div>
             {posts.map((post, index) => (
