@@ -26,7 +26,7 @@ const MapContainer = ({ destination, setDestination }) => {
       setViewState({
         longitude: destination.longitude,
         latitude: destination.latitude,
-        zoom: 5.5,
+        zoom: 2.75,
       });
     }
   }, [destination]);

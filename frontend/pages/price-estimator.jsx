@@ -38,10 +38,9 @@ export default function PriceEstimator() {
     }
   }, [loggedIn, userInfo]);
   const [destination, setDestination] = useState({
-    city: 'Nashville',
-
-    longitude: -86.7816,
-    latitude: 36.1627,
+    country: 'United States',
+    longitude: -95.712891,
+    latitude: 37.09024,
   });
 
   const [start, setStart] = useState(new Date());
@@ -50,7 +49,7 @@ export default function PriceEstimator() {
   const Search = () => {
     dispatch(
       getAllTrips({
-        destination: destination.city,
+        destination: destination.country,
         start_date: new Date(start).getTime(),
         end_date: new Date(end).getTime(),
       })
@@ -124,11 +123,7 @@ export default function PriceEstimator() {
             setDestination={setDestination}
           />
 
-          <TabbedFolder
-            tabs={tabs}
-            search={search}
-            handleScrollToTop={handleScrollToTop}
-          />
+          <TabbedFolder tabs={tabs} search={search} />
         </div>
 
         <Footer />

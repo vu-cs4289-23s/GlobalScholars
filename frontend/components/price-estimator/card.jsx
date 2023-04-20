@@ -4,7 +4,13 @@ import { useDispatch } from 'react-redux';
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
 import { FaDollarSign } from 'react-icons/fa';
 
-const Card = ({ title, overall_rating, affordability_rating }) => {
+const Card = ({
+  title,
+  city,
+  country,
+  overall_rating,
+  affordability_rating,
+}) => {
   const dispatch = useDispatch();
 
   const [saved, setSaved] = useState(false);
@@ -22,7 +28,7 @@ const Card = ({ title, overall_rating, affordability_rating }) => {
       />
       <div class="flex flex-col justify-start p-6 w-full h-full">
         <h5 class="w-full text-xl text-center font-medium text-neutral-800 dark:text-neutral-50">
-          {title}
+          {city}, {country}
         </h5>
         <div className="flex flex-row  justify-start items-center">
           <p class="text-base text-neutral-600 dark:text-neutral-200">

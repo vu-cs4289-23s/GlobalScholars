@@ -27,7 +27,7 @@ const PopUpContainer = ({
               'animate-bounce text-4xl duration-500 ease-in-out '
             }`}
             style={{ fill: 'red' }}
-            onClick={() => setDestination({ city, longitude, latitude })}
+            onClick={() => setDestination({ country, longitude, latitude })}
           />
         </Marker>
       </div>

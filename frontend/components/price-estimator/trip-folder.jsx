@@ -14,7 +14,6 @@ const TabbedFolder = ({ tabs, search, handleScrollToTop }) => {
       setActiveTab('Explore');
     }
   }, [search]);
-  console.log(tabs);
 
   return (
     <div className="w-full h-full bg-[#93bad8] flex flex-col items-center rounded-xl">
