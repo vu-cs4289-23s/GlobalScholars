@@ -55,8 +55,8 @@ const MapContainer = ({ destination, setDestination }) => {
           onTrackUserLocationEnd={(geo) => console.log('HERE')}
         />
 
-        {!loading &&
-          locationInfo[0] &&
+        {!loading && locationInfo && locationInfo.length > 0
+          &&
           //map through locationInfo object
           //map through  by rows
           Object.keys(locationInfo).map((key, id) => {
