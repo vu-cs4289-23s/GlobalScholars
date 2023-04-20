@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const TripCard = ({ city1, city2, rating, price, cheapestDates, imageUrl }) => {
   const [saved, setSaved] = useState(false);
